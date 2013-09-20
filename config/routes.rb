@@ -1,7 +1,7 @@
 EmailTesting::Application.routes.draw do
   resources :posts
 
-
+  mount_griddler
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
