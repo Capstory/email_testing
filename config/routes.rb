@@ -1,6 +1,7 @@
 EmailTesting::Application.routes.draw do
   resources :posts
   
+  match 'retrieve_emails' => "email_retrievers#activate"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

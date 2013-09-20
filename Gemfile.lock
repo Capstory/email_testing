@@ -111,6 +111,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   griddler
   jquery-rails
+  mail
   pg
   rails (= 3.2.11)
   sass-rails (~> 3.2.3)
