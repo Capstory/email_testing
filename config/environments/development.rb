@@ -34,4 +34,13 @@ EmailTesting::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => 'email_testing_dev',
+      :access_key_id => 'AKIAI32PTERUQJYBQUDA',
+      :secret_access_key => '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'
+    }
+  }
 end
