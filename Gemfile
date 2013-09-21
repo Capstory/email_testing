@@ -25,7 +25,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
+# removed gem 'griddler' until more certain of the direction to take with fetching emails
 gem 'rmagick'
 gem 'paperclip'
 gem 'aws-sdk'
