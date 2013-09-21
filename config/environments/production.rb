@@ -68,9 +68,9 @@ EmailTesting::Application.configure do
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
-      :bucket => ENV['email_testing'],
-      :access_key_id => ENV['AKIAI32PTERUQJYBQUDA'],
-      :secret_access_key => ENV['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']
+      :bucket => 'email_testing',
+      :access_key_id => 'AKIAI32PTERUQJYBQUDA',
+      :secret_access_key => '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'
     }
   }
 end
