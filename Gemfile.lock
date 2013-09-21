@@ -47,11 +47,7 @@ GEM
     coffee-script-source (1.6.3)
     erubis (2.7.0)
     execjs (2.0.1)
-    griddler (0.6.1)
-      htmlentities
-      rails (>= 3.2.0)
     hike (1.2.3)
-    htmlentities (4.3.1)
     i18n (0.6.5)
     journey (1.0.4)
     jquery-rails (3.0.4)
@@ -126,7 +122,6 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk
   coffee-rails (~> 3.2.1)
-  griddler
   jquery-rails
   mail
   paperclip
