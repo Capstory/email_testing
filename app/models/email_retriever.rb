@@ -27,7 +27,18 @@ class EmailRetriever
 
       	message = Mail.new(imap.uid_fetch(mail, "RFC822")[0].attr["RFC822"])
         
-      	#fetch plain part message from multipart gmail content
+      	# This is the key portion of the script
+      	# It is here that the attachments are parsed out and uploaded
+      	# The key tutorials on how to do this I found at the sites listed below
+      	# http://steve.dynedge.co.uk/2010/12/09/receiving-and-saving-incoming-email-images-and-attachments-with-paperclip-and-rails-3/
+      	# https://github.com/thoughtbot/paperclip
+      	# https://github.com/mikel/mail
+      	# Initially, I was hoping to simply use paperclip to upload the pictures
+      	# In reality, I needed to have a temporary file to store the picture in and then transfer it to S3
+      	
+      	# S3 integration was handled here:
+      	# https://devcenter.heroku.com/articles/paperclip-s3
+      	
       	if message.multipart?
           if message.has_attachments?
             message.attachments.each do |attachment|

@@ -1,27 +1,17 @@
-<h1>Listing posts</h1>
 
-<table>
-  <tr>
-    <th>Body</th>
-    <th>Email</th>
-    <th>Image</th>
-    <th></th>
-    <th></th>
-  </tr>
+<%= button_to "Get Emails", retrieve_emails_path, class: 'button' %>
 
 <% @posts.each do |post| %>
-  <tr>
-    <td><%= post.body %></td>
-    <td><%= post.email %></td>
-		<td><%= image_tag post.image.url(:thumb) %></td>
-    <td><%= link_to 'Show', post %></td>
-    <td><%= link_to 'Edit', edit_post_path(post) %></td>
-    <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+	<div class="small-4 columns">
+		<div class="panel">
+			<% if !post.image.blank? %>
+				<%= image_tag post.image.url(:medium) %>
+			<% else %>
+				<p><%= post.body %></p>
+			<% end %>
+			<h4><small><%= post.email %>	|  <%= link_to "Delete", post, method: :delete, data: { confirm: "Are you sure?" } %></small></h4>
+		</div>
+	</div>
 <% end %>
-</table>
 
-<br />
 
-<%= link_to 'New Post', new_post_path %>
-<%= button_to "Get Emails", retrieve_emails_path %>
