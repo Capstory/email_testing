@@ -2,7 +2,7 @@ EmailTesting::Application.routes.draw do
 
   resources :users
   match "auth/:provider/callback" => "sessions#create"
-  match 'auth/failure' => redirect("/")
+  # match 'auth/failure' => redirect("/")
   match "signout" => "sessions#destroy"
   
   resources :posts

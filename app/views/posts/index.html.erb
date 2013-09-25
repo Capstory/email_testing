@@ -2,7 +2,8 @@
 	Signed in as <%= current_user.name %>
 	<%= link_to "Sign Out", signout_path %>
 <% else %>
-	<%= link_to "Sign in With Twitter", '/auth/twitter' %>
+	<%= link_to "Sign in With Twitter", '/auth/twitter' %> |
+	<%= link_to "Sign in with Facebook", '/auth/facebook' %>
 <% end %>
 
 <%= button_to "Get Emails", retrieve_emails_path, class: 'button' %>
