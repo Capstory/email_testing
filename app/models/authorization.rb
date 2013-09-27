@@ -20,4 +20,5 @@ class Authorization < ActiveRecord::Base
       auth.save!
     end
   end
+  
 end

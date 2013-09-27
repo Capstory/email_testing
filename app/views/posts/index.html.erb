@@ -1,9 +1,12 @@
 <% if current_user %>
-	Signed in as <%= current_user.name %>
+	<% user_name = !current_user.name.blank? ? current_user.name : "Mr. No Name" %>
+	Signed in as <%= link_to user_name, user_path(current_user)  %>
 	<%= link_to "Sign Out", signout_path %>
 <% else %>
 	<%= link_to "Sign in With Twitter", '/auth/twitter' %> |
-	<%= link_to "Sign in with Facebook", '/auth/facebook' %>
+	<%= link_to "Sign in with Facebook", '/auth/facebook' %> |
+	<%= link_to "Create an Account", '/auth/identity/register' %> or
+	<%= link_to "Log in with Password", '/auth/identity' %>
 <% end %>
 
 <%= button_to "Get Emails", retrieve_emails_path, class: 'button' %>
