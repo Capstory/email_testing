@@ -1,27 +1,18 @@
-<% if current_user %>
-	<% user_name = !current_user.name.blank? ? current_user.name : "Mr. No Name" %>
-	Signed in as <%= link_to user_name, user_path(current_user)  %>
-	<%= link_to "Sign Out", signout_path %>
-<% else %>
-	<%= link_to "Sign in With Twitter", '/auth/twitter' %> |
-	<%= link_to "Sign in with Facebook", '/auth/facebook' %> |
-	<%= link_to "Create an Account", '/auth/identity/register' %> or
-	<%= link_to "Log in with Password", '/auth/identity' %>
-<% end %>
 
 <%= button_to "Get Emails", retrieve_emails_path, class: 'button' %>
-
-<% @posts.each do |post| %>
-	<div class="small-4 columns">
-		<div class="panel">
-			<% if !post.image.blank? %>
-				<%= image_tag post.image.url(:medium) %>
-			<% else %>
-				<p><%= post.body %></p>
-			<% end %>
-			<h4><small><%= post.email %>	|  <%= link_to "Delete", post, method: :delete, data: { confirm: "Are you sure?" } %></small></h4>
-		</div>
+<div class="row">
+	<div id="masonryContainer">
+		<% @posts.each do |post| %>
+			<div class="masonry-brick">
+				<div class="panel">
+					<% if !post.image.blank? %>
+						<%= image_tag post.image.url(:medium) %>
+					<% else %>
+						<p><%= post.body %></p>
+					<% end %>
+					<h4><small><%= post.email %>	|  <%= link_to "Delete", post, method: :delete, data: { confirm: "Are you sure?" } %></small></h4>
+				</div>
+			</div>
+		<% end %>
 	</div>
-<% end %>
-
-
+</div>

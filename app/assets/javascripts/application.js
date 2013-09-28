@@ -13,6 +13,16 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require masonry.pkgd.min
 //= require_tree .
 
-$(function(){ $(document).foundation(); });
+$(function(){ 
+  
+  $(document).foundation(); 
+  
+  $('#masonryContainer').masonry({  
+    itemSelector: '.masonry-brick',
+    columnWidth: 240
+  });
+  
+  });

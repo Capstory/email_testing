@@ -22,8 +22,35 @@
   </head>
 
   <body>
+		<nav class="top-bar">
+		  <ul class="title-area">
+		    <li class="name">
+		      <h5 class="title-text"><span class="subheader"><%= link_to "Weddings", root_url %></span><br><%= link_to "@ Capstory", root_url %></h5>
+		    </li>
+		  </ul>
+		  <section class="top-bar-section">
+		    <ul class="right">
+					<% if current_user %>
+						<% user_name = !current_user.name.blank? ? current_user.name : "Mr. No Name" %>
+						<li><%= link_to "Signed In as #{user_name}", current_user %></li>
+						<li><%= link_to "Sign Out", signout_path %></li>
+					<% else %>
+						<li class="has-dropdown"><a href="#">Sign In</a>
+			        <ul class="dropdown">
+			          <li><%= link_to "Sign in With Twitter", '/auth/twitter' %></li>
+			          <li><%= link_to "Sign in with Facebook", '/auth/facebook' %></li>
+			          <li><%= link_to "Log in with Password", '/auth/identity' %></li>
+			          <li class="divider"></li>
+			          <li><%= link_to "Create an Account", '/auth/identity/register' %></li>
+			        </ul>
+			      </li>
+					<% end %>
+		      <li><%= link_to "Contact Us" %></li>
+		    </ul>
+		  </div>
+		</nav>
 		<div class="row">
-			<div class="large-12 large-centered columns">
+			<div class="small-12 small-centered columns">
     		<%= yield %>
 			</div>
 		</div>
