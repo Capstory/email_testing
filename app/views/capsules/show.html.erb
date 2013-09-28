@@ -1,0 +1,16 @@
+<h4><%= @capsule.name %></h4>
+
+<%= button_to "Get Emails", retrieve_emails_path(capsule_id: @capsule.id), class: 'button' %>
+
+<% @capsule.posts.each do |post| %>
+	<div class="small-4 columns">
+		<div class="panel">
+			<% if !post.image.blank? %>
+				<%= image_tag post.image.url(:medium) %>
+			<% else %>
+				<p><%= post.body %></p>
+			<% end %>
+			<h4><small><%= post.email %>	|  <%= link_to "Delete", post, method: :delete, data: { confirm: "Are you sure?" } %></small></h4>
+		</div>
+	</div>
+<% end %>

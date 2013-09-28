@@ -7,11 +7,12 @@ class EmailRetriever
     attr_accessor :original_filename, :content_type
   end
 
-  def initialize
+  def initialize(capsule_id)
     @host = 'imap.gmail.com'
     @port = 993
     @username = "test.emails.capstory"
     @password = "foobar1234"
+    @capsule_id = capsule_id
   end
 
   def start
@@ -60,7 +61,7 @@ class EmailRetriever
     	from_email = from_email = header_portion.sender[0].mailbox + "@" + header_portion.sender[0].host
 
     	# do whatever you want to do with those data...like print it
-    	Post.create!(body: plain_body, email: from_email, image: @upload_file)
+    	Post.create!(body: plain_body, email: from_email, image: @upload_file, capsule_id: @capsule_id)
 
     	#mark message as deleted to remove duplicates in fetching
     	imap.store(mail, "+FLAGS", [:Seen])

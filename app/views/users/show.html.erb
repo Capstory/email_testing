@@ -1,1 +1,10 @@
 <h4><%= @user.name %></h4>
+<%= form_for(@capsule) do |f| %>
+	<%= f.hidden_field :user_id, value: @user.id %>
+	<%= f.text_field :name, class:'', placeholder: 'Enter a Capsule Name' %>
+	<%= f.submit "Create New Capsule", class: 'button' %>
+<% end %>
+
+<% @user.capsules.each do |capsule| %>
+	<h6><%= link_to capsule.name, capsule_path(capsule.id) %></h6>
+<% end %>

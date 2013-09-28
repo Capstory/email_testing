@@ -9,6 +9,7 @@ EmailTesting::Application.routes.draw do
   
   match "retrieve_emails" => "email_retrievers#activate"
 
+  resources :capsules
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

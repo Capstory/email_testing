@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130927013338) do
+ActiveRecord::Schema.define(:version => 20130928155416) do
 
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
@@ -21,6 +21,21 @@ ActiveRecord::Schema.define(:version => 20130927013338) do
     t.datetime "updated_at",       :null => false
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
+  end
+
+  create_table "capsules", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "encapsulations", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "capsule_id"
+    t.boolean  "owner"
+    t.boolean  "guest"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "identities", :force => true do |t|
@@ -41,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20130927013338) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "capsule_id"
   end
 
   create_table "users", :force => true do |t|
