@@ -20,9 +20,10 @@ $(function(){
   
   $(document).foundation(); 
   
-  $('#masonryContainer').masonry({  
-    itemSelector: '.masonry-brick',
-    columnWidth: 240
+  $(window).load(function(){
+    $('#masonryContainer').masonry({  
+      itemSelector: '.masonry-brick',
+      columnWidth: 240
+    });
   });
-  
-  });
+});
