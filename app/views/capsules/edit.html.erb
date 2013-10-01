@@ -1,0 +1,6 @@
+<%= form_for(@capsule) do |f| %>
+	<%= f.label "Enter an email address for this capsule" %>
+	<%= f.text_field :email %>
+	
+	<%= f.submit "Save", class: 'button' %>
+<% end %>

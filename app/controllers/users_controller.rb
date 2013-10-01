@@ -16,7 +16,7 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       flash[:error] = "Unable to Update User"
-      render 'new'
+      render 'edit'
     end
   end
 end

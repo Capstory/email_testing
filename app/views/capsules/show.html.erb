@@ -1,6 +1,16 @@
-<h4><%= @capsule.name %></h4>
 
-<%= button_to "Get Emails", retrieve_emails_path(capsule_id: @capsule.id), class: 'button' %>
+<div class="row">
+	<div class="small-10 columns">
+		<h4><%= @capsule.name %></h4>
+	</div>
+	<div class="small-2 columns">
+		<% if current_user && current_user.admin %>
+			<%= link_to "Edit Capsule", edit_capsule_path(@capsule) %>
+		<% end %>
+	</div>
+</div>
+
+<%= button_to "Get Emails", retrieve_emails_path(capsule_id: @capsule.id, capsule_email: @capsule.email), class: 'button' %>
 
 <% @capsule.posts.each do |post| %>
 	<div class="small-4 columns">

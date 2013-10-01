@@ -20,4 +20,19 @@ class CapsulesController < ApplicationController
   def show
     @capsule = Capsule.find(params[:id])
   end
+  
+  def edit
+    @capsule = Capsule.find(params[:id])
+  end
+  
+  def update
+    @capsule = Capsule.find(params[:id])
+    if @capsule.update_attributes(params[:capsule])
+      flash[:success] = "Capsule Updated"
+      redirect_to @capsule
+    else
+      flash[:error] = "Unable to update Capsule"
+      render 'edit'
+    end
+  end
 end

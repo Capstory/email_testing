@@ -7,11 +7,11 @@ class EmailRetriever
     attr_accessor :original_filename, :content_type
   end
 
-  def initialize(capsule_id)
-    @host = 'imap.gmail.com'
+  def initialize(capsule_id, capsule_email)
+    @host = 'secure.emailsrvr.com'
     @port = 993
-    @username = "test.emails.capstory"
-    @password = "foobar1234"
+    @username = capsule_email
+    @password = "foobar"
     @capsule_id = capsule_id
   end
 
