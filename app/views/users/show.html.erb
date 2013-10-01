@@ -1,4 +1,13 @@
-<h4><%= @user.name %></h4>
+<div class="row">
+	<div class="small-10 columns">
+		<h4><%= @user.name %></h4>
+	</div>
+	<div class="small-2 columns">
+		<% if current_user && current_user.admin %>
+			<%= link_to "Edit User", edit_user_path(@user) %>
+		<% end %>
+	</div>
+</div>
 <%= form_for(@capsule) do |f| %>
 	<%= f.hidden_field :user_id, value: @user.id %>
 	<%= f.text_field :name, class:'', placeholder: 'Enter a Capsule Name' %>

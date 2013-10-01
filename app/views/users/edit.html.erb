@@ -1,0 +1,16 @@
+<div class="small-3 small-centered columns">
+	<%= form_for(@user) do |f| %>
+		<%= f.label "Make user admin?" %>
+		<br>
+		<div class="switch round">
+			<%= f.radio_button :admin, "false", checked: "checked" %>
+			<%= f.label :admin_false, "Off" %>
+
+			<%= f.radio_button :admin, "true" %>
+			<%= f.label :admin_true, "On" %>
+	
+			<span></span>
+		</div>
+		<%= f.submit "Save" %>
+	<% end %>
+</div>

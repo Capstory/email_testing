@@ -1,12 +1,12 @@
 class User < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :admin
   
   has_many :authorizations
   has_many :encapsulations
   has_many :capsules, through: :encapsulations
   
   def self.create_from_hash!(hash)
-    create(:name => hash[:info][:name])
+    create(:name => hash[:info][:name], :admin => false)
   end
   
   # def self.from_omniauth(auth)
