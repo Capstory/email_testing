@@ -1,0 +1,7 @@
+<div class="large-8 large-centered columns">
+	<% @access_requests.each do |request| %>
+		<div class="panel">
+			<p><%= link_to request.email, access_request_path(request) %> is awaiting confirmation</p>
+		</div>
+	<% end %>
+</div>

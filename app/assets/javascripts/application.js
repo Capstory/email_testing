@@ -20,6 +20,10 @@ $(function(){
   
   $(document).foundation(); 
   
+  $('.imgLiquidFill').imgLiquid({
+    verticalAlign: '80%'
+  });
+  
   $(window).load(function(){
     $('#masonryContainer').masonry({  
       itemSelector: '.masonry-brick',

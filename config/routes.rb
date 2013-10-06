@@ -1,3 +1,9 @@
+class SiteConstraints
+  def matches?(request)
+    request.session[:user_id].present?
+  end
+end
+
 EmailTesting::Application.routes.draw do
 
   resources :users
@@ -10,6 +16,13 @@ EmailTesting::Application.routes.draw do
   match "retrieve_emails" => "email_retrievers#activate"
 
   resources :capsules
+
+  # Static Page Routes
+  match "home" => "static_pages#home"
+  match "login" => "static_pages#login"
+  match "thank_you" => "static_pages#thank_you"
+  
+  resources :access_requests, only: ["create", "index", "show"]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -60,7 +73,11 @@ EmailTesting::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'posts#index'
+  constraints(SiteConstraints.new) do
+    root :to => "posts#index"
+  end
+    
+  root :to => 'static_pages#home'
 
   # See how all your routes lay out with "rake routes"
 
