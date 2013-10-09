@@ -19,3 +19,13 @@ h5.title-text a:hover {
 #masonryContainer { 
 	width: 0 auto; 
 }
+
+#application_logo {
+	position:relative;
+	top: 10px;
+	left: 10px;
+	a, a:hover, a:visited {
+		background: none;
+		text-decoration: none;
+	}
+}

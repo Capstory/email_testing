@@ -1,4 +1,5 @@
 class AccessRequestsController < ApplicationController
+  before_filter :admin_authentication
   
   def index
     @access_requests = AccessRequest.all

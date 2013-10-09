@@ -1,0 +1,9 @@
+<div class="small-8 small-centered columns">
+	<% @users.each do |user| %>
+		<div class="panel">
+			<p><%= user.email %></p>
+			<p><%= user.name %></p>
+			<p>Admin? <%= user.admin %></p>
+		</div>
+	<% end %>
+</div>

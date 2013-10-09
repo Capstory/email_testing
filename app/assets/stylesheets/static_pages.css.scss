@@ -49,3 +49,18 @@
 		text-decoration: none;
 	}
 }
+
+#loginPage {
+	margin-top: 50px;
+	a:visited {
+		color: darken(white, 1%);
+	}
+	#login_logo {
+		margin-bottom: 50px;
+		a, a:hover, a:visited {
+			background: none;
+			text-decoration: none;
+		}
+	}
+}
+

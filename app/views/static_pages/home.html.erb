@@ -35,15 +35,19 @@
 		</div>
 	</div> --> 
 </div>
-<div id="requestInviteModal" class="reveal-modal">
-  <%= form_for(@access_request) do |f| %>
-		<h2>Invitation Request Form</h2>
-		<%= f.text_field :name, class: '', placeholder: 'Your Name' %>
-		
-		<%= f.text_field :email, class: '', placeholder: 'Your Email' %>
-		
-		<%= f.submit "Register!", class: 'button' %>
-	<% end %>
 
+
+<div id="requestInviteModal" class="reveal-modal small">
+	<div class="small-6 small-centered columns">
+		  <%= form_for(@access_request) do |f| %>
+				<h2>Invitation Request Form</h2>
+				<%= f.text_field :name, class: '', placeholder: 'Your Name' %>
+		
+				<%= f.text_field :email, class: '', placeholder: 'Your Email' %>
+		
+				<%= f.submit "Register!", class: 'button' %>
+			<% end %>
+	</div>
   <a class="close-reveal-modal">&#215;</a>
 </div>
+
