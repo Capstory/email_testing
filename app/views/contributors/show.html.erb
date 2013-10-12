@@ -1,0 +1,6 @@
+<div class="small-8 small-centered columns">
+	<h5 class="subheader"><%= @contributor.name %></h5>
+	<% @contributor.capsules.each do |capsule| %>
+		<%= link_to capsule.name, capsule %>
+	<% end %>
+</div>

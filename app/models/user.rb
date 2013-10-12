@@ -1,12 +1,12 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :admin
+  attr_accessible :name, :email
   
   has_many :authorizations
   has_many :encapsulations
   has_many :capsules, through: :encapsulations
   
   def self.create_from_hash!(hash)
-    create(:name => hash[:info][:name], :admin => false)
+    create(:name => hash[:info][:name])
   end
   
   # def self.from_omniauth(auth)
@@ -19,4 +19,9 @@ class User < ActiveRecord::Base
   #       user.save!
   #     end
   #   end
+  
+  def self.capsule_owner?(capsule_id)
+    @encapsulation = Encapsulation.find_by user_id: self.id, capsule_id: capsule_id
+    @encapsulation.owner ? true : false
+  end
 end

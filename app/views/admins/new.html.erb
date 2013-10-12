@@ -1,0 +1,21 @@
+<div class="small-3 small-centered columns">
+	<%= form_for(@admin) do |f| %>
+		<% if @user.nil? %>
+			<%= f.label "Admin's Name" %>
+			<%= f.text_field :name %>
+		
+			<%= f.label "Admin's Email Address" %>
+			<%= f.text_field :email %>
+			
+		<% else %>
+			<%= f.label "Admin's Name" %>
+			<%= f.text_field :name, value: @user.name %>
+			
+			<%= f.label "Admin's Email Address" %>
+			<%= f.text_field :email, value: @user.email %>
+			
+			<%= f.hidden_field :user_id, value: @user.id %>
+		<% end %>
+		<%= f.submit "Save" %>
+	<% end %>
+</div>

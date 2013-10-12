@@ -3,7 +3,12 @@
 		<div class="panel">
 			<p><%= user.email %></p>
 			<p><%= user.name %></p>
-			<p>Admin? <%= user.admin %></p>
+			<% if user.type == "Admin" %>
+				<p>User is an Administrator</p>
+			<% else %>
+				<%= link_to "Make Admin", new_admin_path(id: user.id), class: 'button small' %>
+			<% end %>
+			<%= link_to "Delete", user_path(user), method: :delete, class: 'button small'  %>
 		</div>
 	<% end %>
 </div>

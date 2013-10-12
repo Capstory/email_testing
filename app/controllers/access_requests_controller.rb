@@ -1,8 +1,9 @@
 class AccessRequestsController < ApplicationController
-  before_filter :admin_authentication
+  #before_filter :admin_authentication
   
   def index
     @access_requests = AccessRequest.all
+    @client = Client.new
   end
   
   def create

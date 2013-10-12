@@ -1,0 +1,6 @@
+<% @capsules.each do |capsule| %>
+		<div class="panel">
+			<%= capsule.name %>
+			<%= link_to capsule.users.first.name, capsule.users.first %>
+		</div>
+<% end %>

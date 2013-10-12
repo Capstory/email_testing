@@ -1,0 +1,5 @@
+<div id="maximage">
+	<% @capsule.posts.each do |post| %>
+		<%= image_tag post.image.url, width: '500px', height: '200px'  %>
+	<% end %>
+</div>

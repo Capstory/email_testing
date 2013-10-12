@@ -1,0 +1,8 @@
+<div class="small-8 small-centered columns">
+	<% @contributors.each do |contributor| %>
+		<div class="panel">
+			<p><%= link_to contributor.name, contributor %></p>
+			<p class="subheader"><%= contributor.email %></p>
+		</div>
+	<% end %>
+</div>

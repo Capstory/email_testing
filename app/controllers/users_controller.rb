@@ -23,4 +23,15 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
+  
+  def destroy
+    user = User.find(params[:id])
+    if current_user.id == user.id
+      flash[:error] = "You can't delete yourself"
+      redirect_to :back
+    else
+      user.delete
+      redirect_to users_path  
+    end
+  end
 end

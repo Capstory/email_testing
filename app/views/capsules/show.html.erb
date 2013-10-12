@@ -1,26 +1,33 @@
 
 <div class="row">
-	<div class="small-10 columns">
-		<h4><%= @capsule.name %></h4>
+	<div class="small-8 columns">
+		<%= button_to "Get Emails", retrieve_emails_path(capsule_id: @capsule.id, capsule_email: @capsule.email), class: 'button small' %>
+		<h4 class="subheader"><%= @capsule.name %></h4>
+
 	</div>
-	<div class="small-2 columns">
-		<% if current_user && current_user.admin %>
-			<%= link_to "Edit Capsule", edit_capsule_path(@capsule) %>
+	<div class="small-4 columns">
+		<% if current_user && ( current_user.admin? || current_user.capsule_owner?(@capsule.id) )%>
+		<ul class="inline-list">
+			<li><%= link_to "Edit Capsule", edit_capsule_path(@capsule), class: 'button small' %></li>
+			<li><%= link_to "Start Slideshow", slideshow_path(capsule_id: @capsule.id), class: 'button small' %></li>
+		</ul>	
 		<% end %>
 	</div>
 </div>
 
-<%= button_to "Get Emails", retrieve_emails_path(capsule_id: @capsule.id, capsule_email: @capsule.email), class: 'button' %>
 
-<% @capsule.posts.each do |post| %>
-	<div class="small-4 columns">
-		<div class="panel">
-			<% if !post.image.blank? %>
-				<%= image_tag post.image.url(:medium) %>
-			<% else %>
-				<p><%= post.body %></p>
-			<% end %>
-			<h4><small><%= post.email %>	|  <%= link_to "Delete", post, method: :delete, data: { confirm: "Are you sure?" } %></small></h4>
+
+<div id="masonryContainer">
+	<% @capsule.posts.order("created_at DESC").each do |post| %>
+		<div class="masonry-brick">
+			<div class="panel">
+				<% if !post.image.blank? %>
+					<%= image_tag post.image.url(:medium) %>
+				<% else %>
+					<p><%= post.body %></p>
+				<% end %>
+				<h4><small><%= post.email %>	|  <%= link_to "Delete", post, method: :delete, data: { confirm: "Are you sure?" } %></small></h4>
+			</div>
 		</div>
-	</div>
-<% end %>
+	<% end %>
+</div>

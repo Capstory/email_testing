@@ -7,6 +7,10 @@ end
 EmailTesting::Application.routes.draw do
 
   resources :users
+  resources :clients
+  resources :admins
+  resources :contributors
+  
   match "auth/:provider/callback" => "sessions#create"
   # match 'auth/failure' => redirect("/")
   match "signout" => "sessions#destroy"
@@ -16,6 +20,7 @@ EmailTesting::Application.routes.draw do
   match "retrieve_emails" => "email_retrievers#activate"
 
   resources :capsules
+  match 'slideshow' => "capsules#slideshow"
 
   # Static Page Routes
   match "home" => "static_pages#home"

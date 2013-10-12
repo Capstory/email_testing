@@ -1,0 +1,14 @@
+<div class="small-8 small-centered columns">
+	<h4 class="subheader">Add a Key Contributor to your account</h4>
+	<%= form_for(@contributor) do |f| %>
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+		
+		<%= f.label :email %>
+		<%= f.text_field :email %>
+		
+		<%= f.hidden_field :capsule_id, value: @capsule_id %>
+		
+		<%= f.submit "Create New Key Contributor", class: 'button' %>
+	<% end %>
+</div>

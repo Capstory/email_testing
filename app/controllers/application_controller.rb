@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   
   def admin_authentication
     if current_user
-      redirect_to login_path unless current_user.admin
+      redirect_to login_path unless current_user.admin?
     else
       flash[:error] = "Please Login First"
       redirect_to login_path

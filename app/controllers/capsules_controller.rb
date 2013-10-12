@@ -1,5 +1,14 @@
 class CapsulesController < ApplicationController
+  layout :resolve_layout
   
+  def index
+    @capsules = Capsule.all
+  end
+  
+  def slideshow
+    @capsule = Capsule.find(params[:capsule_id])
+  end
+
   def create
     @capsule = Capsule.create(name: params[:capsule][:name])
     if @capsule.save
@@ -33,6 +42,15 @@ class CapsulesController < ApplicationController
     else
       flash[:error] = "Unable to update Capsule"
       render 'edit'
+    end
+  end
+  
+  def resolve_layout
+    case action_name
+    when "slideshow"
+      "slideshow"
+    else
+      "application"
     end
   end
 end

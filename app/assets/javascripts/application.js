@@ -14,6 +14,11 @@
 //= require jquery_ujs
 //= require foundation
 //= require masonry.pkgd.min
+//= require jquery.cycle.all
+//= require jquery.localscroll
+//= require jquery.maximage
+//= require jquery.scrollto
+//= require jquery.fullscreen
 //= require_tree .
 
 $(function(){ 
@@ -29,5 +34,11 @@ $(function(){
       itemSelector: '.masonry-brick',
       columnWidth: 240
     });
+  });
+  
+  $("#maximage").maximage();
+  
+  $("#enterFullScreen").click(function(){
+    $("#maximage").fullscreen();
   });
 });

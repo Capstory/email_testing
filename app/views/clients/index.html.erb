@@ -1,0 +1,7 @@
+<% @clients.each do |client| %>	
+	<div class="panel">
+		<p><%= client.name %></p>
+		<p><%= client.email %></p>
+		<small>Client Created @ <%= time_ago_in_words client.created_at %> ago</small>
+	</div>
+<% end %>
