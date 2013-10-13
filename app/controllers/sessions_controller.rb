@@ -3,12 +3,26 @@ class SessionsController < ApplicationController
   def create
     auth = request.env["omniauth.auth"]
     unless @auth = Authorization.find_from_hash(auth)
-      @auth = Authorization.create_from_hash(auth, current_user)
+      if auth[:provider] = "identity"
+        @identity = Identity.find(auth[:uid])
+        case @identity.genre
+        when "client"
+          redirect_to create_client_path(name: auth[:info][:name], email: auth[:info][:email], uid: auth[:uid], provider: auth[:provider], oauth_token: auth[:credentials][:token])
+        when "admin"
+          redirect_to create_admin_path(name: auth[:info][:name], email: auth[:info][:email], uid: auth[:uid], provider: auth[:provider], oauth_token: auth[:credentials][:token])
+        when "contributor"
+          redirect_to create_contributor_path(name: auth[:info][:name], email: auth[:info][:email], uid: auth[:uid], provider: auth[:provider], oauth_token: auth[:credentials][:token])
+        end
+      else
+       # @auth = Authorization.create_from_hash(auth)
+       flash[:error] = "Unable to complete request at this time"
+       redirect_to :back
+      end
+    else
+      session[:user_id] = @auth.user.id
+      flash[:success] = "Thank you for signing in"
+      redirect_to root_url
     end
-    
-    session[:user_id] = @auth.user.id
-    flash[:success] = "Thank you for signing in"
-    redirect_to root_url
   end
   
   def destroy

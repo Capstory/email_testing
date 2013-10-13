@@ -20,8 +20,4 @@ class User < ActiveRecord::Base
   #     end
   #   end
   
-  def self.capsule_owner?(capsule_id)
-    @encapsulation = Encapsulation.find_by user_id: self.id, capsule_id: capsule_id
-    @encapsulation.owner ? true : false
-  end
 end

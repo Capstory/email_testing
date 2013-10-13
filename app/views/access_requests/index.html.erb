@@ -1,11 +1,5 @@
 <% @access_requests.each do |request| %>
 	<div class="panel">
 		<p><%= link_to request.email, access_request_path(request) %> is awaiting confirmation</p>
-		<%= form_for(@client) do |f| %>
-			<%= f.hidden_field :name, value: request.name %>
-			<%= f.hidden_field :email, value: request.email %>
-			<%= f.submit "Create Client Account", class: 'button small' %>
-			
-		<% end %>
 	</div>
 <% end %>

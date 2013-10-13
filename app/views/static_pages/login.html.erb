@@ -2,25 +2,23 @@
 	<div class="small-8 small-centered columns" id="login_logo">
 		<%= link_to image_tag("logo.png"), root_url %>
 	</div>
-	<div class="small-8 small-centered columns">
-		<div class="small-6 columns">
+	<div class="small-6 small-centered columns">
+			<!-- <div class="small-6 columns">
 			<div class="panel">
 				<%= link_to "Sign In with Twitter", "#", class: 'button large' %>
 				<%= link_to "Sign In with Facebook", "#", class: 'button large' %>
 				<%= link_to "Create an Account", '/auth/identity/register', class: 'button large' %>
 			</div>
-		</div>
-		<div class="small-6 columns">
-			<div class="panel">
-				<%= form_tag "auth/identity/callback" do %>
-					<%= label_tag :auth_key, "Enter Your Email" %>
-					<%= text_field_tag :auth_key %>
-					
-					<%= label_tag :password, "Enter Your Password" %>
-					<%= password_field_tag :password %>
-					<%= submit_tag "Login", class: 'button' %>
-				<% end %>
-			</div>
+		</div> -->
+		<div class="panel">
+			<%= form_tag "auth/identity/callback" do %>
+				<%= label_tag :auth_key, "Enter Your Email" %>
+				<%= text_field_tag :auth_key %>
+				
+				<%= label_tag :password, "Enter Your Password" %>
+				<%= password_field_tag :password %>
+				<%= submit_tag "Login", class: 'button' %>
+			<% end %>
 		</div>
 	</div>
 </div>

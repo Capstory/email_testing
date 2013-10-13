@@ -5,6 +5,10 @@ class SiteConstraints
 end
 
 EmailTesting::Application.routes.draw do
+  
+  match "create_client" => "clients#create"
+  match "create_admin" => "admins#create"
+  match "create_contributor" => "contributors#create"
 
   resources :users
   resources :clients

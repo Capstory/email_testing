@@ -11,4 +11,5 @@ class Client < User
   def contributor?
     false
   end
+  
 end
