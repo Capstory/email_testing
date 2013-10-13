@@ -1,10 +1,7 @@
 class EmailRetrieversController < ApplicationController
   def activate
-    email = EmailRetriever.new(params[:capsule_id], params[:capsule_email])
-    if email.start
-      redirect_to :back
-    else
-      redirect_to :back
-    end
+    Resque.enqueue(EmailEngine, params[:capsule_id], params[:capsule_email])
+      
+    redirect_to :back
   end
 end

@@ -32,7 +32,9 @@ EmailTesting::Application.routes.draw do
   match "thank_you" => "static_pages#thank_you"
   
   resources :access_requests, only: ["create", "index", "show"]
-
+  
+  mount Resque::Server, at: "/resque"
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
