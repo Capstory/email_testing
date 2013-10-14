@@ -1,1 +1,1 @@
-resque: env bundle exec rake resque:work QUEUE='*'
+resque: env bundle exec rake resque:work
