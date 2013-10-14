@@ -183,6 +183,7 @@ DEPENDENCIES
   paperclip
   pg
   rails (= 3.2.11)
+  redis
   resque
   rmagick
   sass-rails (~> 3.2.3)
