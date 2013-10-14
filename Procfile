@@ -1,1 +1,1 @@
-resque: env bundle exec rake resque:work
+resque: bundle exec rake resque:work
