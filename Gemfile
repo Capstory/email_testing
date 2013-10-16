@@ -41,7 +41,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 gem 'redis'
 gem 'resque', require: "resque/server"
-
+gem 'clockwork'
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 
