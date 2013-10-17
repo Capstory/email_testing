@@ -39,6 +39,8 @@ gem 'omniauth-identity'
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 
+gem 'i18n', "~> 0.6.5"
+
 gem 'redis'
 gem 'resque', require: "resque/server"
 gem 'clockwork'
