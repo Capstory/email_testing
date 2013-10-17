@@ -37,9 +37,6 @@ GEM
     builder (3.0.4)
     climate_control (0.0.3)
       activesupport (>= 3.0)
-    clockwork (0.6.1)
-      activesupport
-      tzinfo (~> 0.3.35)
     cocaine (0.5.1)
       climate_control (>= 0.0.3, < 1.0)
     coffee-rails (3.2.2)
@@ -177,7 +174,6 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk
   bcrypt-ruby (~> 3.0.0)
-  clockwork
   coffee-rails (~> 3.2.1)
   jquery-rails
   mail
