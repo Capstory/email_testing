@@ -25,6 +25,7 @@ EmailTesting::Application.routes.draw do
 
   resources :capsules
   match 'slideshow' => "capsules#slideshow"
+  match "reynoldslovestory" => "capsules/7"
 
   # Static Page Routes
   match "home" => "static_pages#home"

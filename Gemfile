@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby "1.9.2"
 gem 'rails', '3.2.11'
 
 # Bundle edge Rails instead:
@@ -40,7 +40,7 @@ gem 'omniauth-identity'
 gem 'bcrypt-ruby', '~> 3.0.0'
 
 # gem 'i18n', "~> 0.6.5"
-
+# gem 'redis-i18n', '~> 0.6.5'
 gem 'redis'
 gem 'resque', require: "resque/server"
 
