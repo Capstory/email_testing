@@ -1,6 +1,5 @@
-
 <div class="imgLiquidFill imgLiquid" style="height:700px;" id="mainPhoto">
-	<%= image_tag "street_of_love.jpg" %>
+	<%= image_tag "bg.png" %>
 </div>
 <div class="row" id="imgFillBody">
 	<div class="small-8 small-centered columns">
@@ -14,12 +13,12 @@
 		<div class="row">
 			<div class="small-8 columns">
 				<h2>
-					Capture Every Single Moment
+					Capture Every Moment
 					<span class="subheader">Request an Invitation</span>
 				</h2>
 			</div>
 			<div class="small-4 columns" id="requestButton">
-				<button class="button large" data-reveal-id="requestInviteModal">Reserve Your Wedding Day</button>
+				<button class="button large" data-reveal-id="requestInviteModal">Request a Reservation</button>
 			</div>
 		</div>
 		<div class="row">
@@ -41,11 +40,12 @@
 	<div class="small-6 small-centered columns">
 		  <%= form_for(@access_request) do |f| %>
 				<h2>Invitation Request Form</h2>
+                	<span class="subheader"> We'll be in touch soon to let you know if we can do your wedding!</span>
 				<%= f.text_field :name, class: '', placeholder: 'Your Name' %>
 		
 				<%= f.text_field :email, class: '', placeholder: 'Your Email' %>
 		
-				<%= f.submit "Register!", class: 'button' %>
+				<%= f.submit "Send Request", class: 'button' %>
 			<% end %>
 	</div>
   <a class="close-reveal-modal">&#215;</a>
