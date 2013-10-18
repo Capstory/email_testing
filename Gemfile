@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
-ruby "1.9.2"
+ruby "1.9.3"
+# temporary, ruby "1.9.2"
 gem 'rails', '3.2.11'
 
 # Bundle edge Rails instead:
@@ -27,7 +28,7 @@ end
 
 gem 'jquery-rails'
 # removed gem 'griddler' until more certain of the direction to take with fetching emails
-gem 'rmagick'
+# temporary, gem 'rmagick'
 gem 'paperclip'
 gem 'aws-sdk'
 gem 'mail'

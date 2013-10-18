@@ -1,0 +1,66 @@
+#mainPhoto {
+	margin-top: -70px;
+}
+
+#imgFillBody {
+	margin-top: -600px;
+	h1 {
+		font-size: 60px;
+		text-align: center;
+		color: darken(#EDEDED, 20%);
+	}
+	#logo {
+		a, a:hover, a:visited {
+			background:none;
+			text-decoration:none;
+		}
+	}
+}
+
+
+#requestInvite {
+	background: lighten(#EDEDED, 30%);
+	opacity: .8;
+	margin-top: 400px;
+	h2 {
+		opacity: 1;
+		color: darken(#c69c56, 20%);
+	}
+	#requestButton {
+		margin-top: 20px;
+	}
+	h5 {
+		opacity: 1;
+		text-align: center;
+		color: darken(#EDEDED, 60%);
+		a, a:hover, a:visited {
+			color: #c69c56;
+			background: none;
+			text-decoration: none;
+		}
+	}
+}
+
+#thank_you_logo {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	a, a:hover, a:visited {
+		background: none;
+		text-decoration: none;
+	}
+}
+
+#loginPage {
+	margin-top: 50px;
+	a:visited {
+		color: darken(white, 1%);
+	}
+	#login_logo {
+		margin-bottom: 50px;
+		a, a:hover, a:visited {
+			background: none;
+			text-decoration: none;
+		}
+	}
+}
+
