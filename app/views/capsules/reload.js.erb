@@ -1,0 +1,2 @@
+$("#original_container").hide();
+$("#reload_container").html("<%= escape_javascript(render(:partial => 'posts', locals: { capsule: @new_capsule })).html_safe %>");

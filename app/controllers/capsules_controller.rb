@@ -30,6 +30,12 @@ class CapsulesController < ApplicationController
     @capsule = Capsule.find(params[:id])
   end
   
+  def reload
+    @new_capsule = Capsule.find(params[:id])
+    
+    respond_to :js
+  end
+  
   def edit
     @capsule = Capsule.find(params[:id])
   end

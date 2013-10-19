@@ -1,39 +1,36 @@
 
 <div class="row">
 	<div class="small-5 columns">
-		<% button_classes = @capsule.email.blank? ? 'button small disabled' : 'button small'%>
-		<%= button_to "Get Pics", retrieve_emails_path(capsule_id: @capsule.id, capsule_email: @capsule.email), class: "#{button_classes}" %>
+		<% if current_user && capsule_owner(current_user.id, @capsule.id) %>
+			<button id="start_jobs" class="small">Start Email Engine</button>
+			<button id="stop_jobs" style="display: none;" class="small">Stop Email Engine</button>
+			<%= link_to "Start Slideshow", slideshow_path(capsule_id: @capsule.id), class: 'button small' %>
+		<% end %>
 		<h4 class="subheader"><%= @capsule.name %></h4>
 	</div>
 	<div class="small-7 columns">
-		<% if current_user && ( current_user.admin? || capsule_owner(current_user.id, @capsule.id) )%>
-		<ul class="inline-list">
-			<li><%= link_to "Edit Capsule", edit_capsule_path(@capsule), class: 'button small' %></li>
-			<li><%= link_to "Add a Key Contributor", new_contributor_path(capsule_id: @capsule.id), class: 'button small' %></li>
-			<li><%= link_to "Start Slideshow", slideshow_path(capsule_id: @capsule.id), class: 'button small' %></li>
-		</ul>	
+		<% if current_user && current_user.admin? %>
+			<ul class="inline-list">
+				<% button_classes = @capsule.email.blank? ? 'button small disabled' : 'button small'%>
+				<li><%= button_to "Get Pics", retrieve_emails_path(capsule_id: @capsule.id, capsule_email: @capsule.email), class: "#{button_classes}", id: "get_emails_button", remote:true %></li>
+				<li><%= link_to "Edit Capsule", edit_capsule_path(@capsule), class: 'button small' %></li>
+				<li><%= link_to "Add a Key Contributor", new_contributor_path(capsule_id: @capsule.id), class: 'button small' %></li>
+			</ul>	
 		<% end %>
 	</div>
 </div>
 
 
 <div class="row">
-
 	<div class="small-9 columns">
 		<h6 class="subheader">Pictures</h6>
+		<%= link_to "Reload Photos", reload_path(id: @capsule.id), remote: true, id: 'reload_button' %>
 		<div id="masonryContainer">
-			<% @capsule.posts.order("created_at DESC").each do |post| %>
-				<div class="masonry-brick">
-					<div class="panel">
-						<% if !post.image.blank? %>
-							<%= image_tag post.image.url(:medium) %>
-						<% else %>
-							<p><%= post.body %></p>
-						<% end %>
-						<h4><small><%= post.email %>	|  <%= link_to "Delete", post, method: :delete, data: { confirm: "Are you sure?" } %></small></h4>
-					</div>
-				</div>
-			<% end %>
+			<div id="original_container">
+				<%= render 'posts', capsule: @capsule %>
+			</div>
+			<div id="reload_container">
+			</div>
 		</div>
 	</div>
 	<div class="small-3 columns">

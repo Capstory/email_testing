@@ -41,4 +41,21 @@ $(function(){
   $("#enterFullScreen").click(function(){
     $("#maximage").fullscreen();
   });
+  
+  $("#start_jobs").click(function(){
+		interval = setInterval(intervalRun, 30000);
+		$("#start_jobs").hide();
+		$("#stop_jobs").show();
+	});
+	
+	$("#stop_jobs").click(function(){
+		clearInterval(interval);
+		$("#stop_jobs").hide();
+		$("#start_jobs").show();
+	});
+	
+	function intervalRun(){
+			$("#reload_button").click();
+			$("#get_emails_button").click();
+		}
 });

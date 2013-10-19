@@ -1,0 +1,12 @@
+<% capsule.posts.order("created_at DESC").each do |post| %>
+	<div class="masonry-brick">
+		<div class="panel">
+			<% if !post.image.blank? %>
+				<%= image_tag post.image.url(:medium) %>
+			<% else %>
+				<p><%= post.body %></p>
+			<% end %>
+			<!-- <h4><small><%= post.email %>	|  <%= link_to "Delete", post, method: :delete, data: { confirm: "Are you sure?" } %></small></h4> -->
+		</div>
+	</div>
+<% end %>
