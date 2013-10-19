@@ -1,8 +1,8 @@
 
 <div class="row">
 	<div class="small-5 columns">
-		<% if current_user && capsule_owner(current_user.id, @capsule.id) %>
-			<button id="start_jobs" class="small">Start Email Engine</button>
+		<% if current_user && (current_user.admin? || capsule_owner(current_user.id, @capsule.id)) %>
+			<button id="start_jobs" class="small" data-width="200px" data-tooltip class="has-tip" title="Press this button to start fetching recently submited photos automatically. Runs until you stop it.">Start Email Engine</button>
 			<button id="stop_jobs" style="display: none;" class="small">Stop Email Engine</button>
 			<%= link_to "Start Slideshow", slideshow_path(capsule_id: @capsule.id), class: 'button small' %>
 		<% end %>
@@ -24,7 +24,7 @@
 <div class="row">
 	<div class="small-9 columns">
 		<h6 class="subheader">Pictures</h6>
-		<%= link_to "Reload Photos", reload_path(id: @capsule.id), remote: true, id: 'reload_button' %>
+		<!-- <%= link_to "Reload Photos", reload_path(id: @capsule.id), remote: true, id: 'reload_button' %> -->
 		<div id="masonryContainer">
 			<div id="original_container">
 				<%= render 'posts', capsule: @capsule %>
