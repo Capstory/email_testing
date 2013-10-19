@@ -52,6 +52,14 @@
 		</nav>
 		<div class="row">
 			<div class="small-12 small-centered columns">
+				<% flash.each do |key, value| %>
+					<% alert_class = key == :error ? :alert : key %>
+					<div class="alert-box <%= alert_class %>">
+						<p class="subheader"><%= value %></p>
+						<a href class="close">x</a>
+					</div>
+				<% end %>
+				
     		<%= yield %>
 			</div>
 		</div>
