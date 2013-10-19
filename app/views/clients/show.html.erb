@@ -1,6 +1,6 @@
 <div class="small-8 small-centered columns">
-	<h5 class="subheader"><%= @client.name %></h5>
+	<h3 class="subheader"><%= @client.name %></h3>
 	<% @client.capsules.each do |capsule| %>
-		<%= link_to capsule.name, capsule %>
+		<h5>Go to <%= link_to capsule.name, capsule %></h5>
 	<% end %>
 </div>

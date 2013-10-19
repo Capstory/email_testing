@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
     else
       session[:user_id] = @auth.user.id
       flash[:success] = "Thank you for signing in"
-      redirect_to root_url
+      redirect_to @auth.user
     end
   end
   

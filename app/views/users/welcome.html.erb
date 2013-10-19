@@ -1,0 +1,9 @@
+<div class="small-6 small-centered columns">
+
+	<h1 class="subheader">Welcome <%= current_user ? current_user.name : "to Capstory" %></h1>
+	<% if current_user %>
+		<div class="small-9 small-centered columns">
+		<%= link_to "Go to Your Profile", current_user, class: 'button large' %>
+		</div>
+	<% end %>
+</div>

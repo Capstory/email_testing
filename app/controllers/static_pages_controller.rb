@@ -10,4 +10,5 @@ class StaticPagesController < ApplicationController
   def thank_you
     @access_request = AccessRequest.find(params[:request_id])
   end
+  
 end
