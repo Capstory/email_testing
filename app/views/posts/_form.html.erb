@@ -10,16 +10,11 @@
       </ul>
     </div>
   <% end %>
+	<%= f.hidden_field :capsule_id, value: @capsule.id %>
 
-  <div class="field">
-    <%= f.label :body %><br />
-    <%= f.text_area :body %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+ 	<%= f.file_field :image %>
+	
+	<%= f.submit "Upload", class: 'button' %>
+	
+	<%= link_to "Cancel", @capsule, class: 'button' %>
 <% end %>
