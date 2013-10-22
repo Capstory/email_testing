@@ -27,7 +27,11 @@ class EmailRetriever
     imap.uid_search(["NOT", "SEEN"]).each do |mail|
 
       	message = Mail.new(imap.uid_fetch(mail, "RFC822")[0].attr["RFC822"])
-        
+        header_portion = imap.uid_fetch(mail, "ENVELOPE")[0].attr["ENVELOPE"]
+
+      	#fetch to and from email address.. you can fetch other mail headers too in same manner.
+      	from_email = header_portion.sender[0].mailbox + "@" + header_portion.sender[0].host
+      	
       	# This is the key portion of the script
       	# It is here that the attachments are parsed out and uploaded
       	# The key tutorials on how to do this I found at the sites listed below
@@ -49,19 +53,19 @@ class EmailRetriever
               @upload_file.flush
               @upload_file.original_filename = attachment.filename
               @upload_file.content_type = attachment.mime_type
+              
+              Post.create!(body: "no message", email: from_email, image: @upload_file, capsule_id: @capsule_id)
+              
+              @upload_file.close
+              @upload_file.unlink
             end
           end
         else
           plain_body = message.body.decoded
+          
+          Post.create!(body: plain_body, email: from_email, image: @upload_file, capsule_id: @capsule_id)
         end
       
-      header_portion = imap.uid_fetch(mail, "ENVELOPE")[0].attr["ENVELOPE"]
-      
-    	#fetch to and from email address.. you can fetch other mail headers too in same manner.
-    	from_email = from_email = header_portion.sender[0].mailbox + "@" + header_portion.sender[0].host
-
-    	# do whatever you want to do with those data...like print it
-    	Post.create!(body: plain_body, email: from_email, image: @upload_file, capsule_id: @capsule_id)
 
     	#mark message as deleted to remove duplicates in fetching
     	imap.store(mail, "+FLAGS", [:Seen])
