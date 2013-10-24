@@ -30,6 +30,17 @@ h5.title-text a:hover {
 	}
 }
 
+.error_messages {
+	border-radius: 5px;
+	padding: 10px;
+	margin: 10px;
+	background-color: lighten(red, 40%);
+	opacity: 0.9;
+	ul {
+		list-style-type: none;
+	}
+}
+
 
 /*	----------------------------------------------------------------
 	MaxCycle (Fullscreen Slideshow for use with jQuery Cycle Plugin)

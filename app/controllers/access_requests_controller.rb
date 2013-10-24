@@ -4,6 +4,7 @@ class AccessRequestsController < ApplicationController
   def index
     @access_requests = AccessRequest.all
     @client = Client.new
+    @identity = session[:identity]
   end
   
   def create
@@ -17,6 +18,6 @@ class AccessRequestsController < ApplicationController
   end
   
   def show
-    @access_request = AccessRequest.find(params[:id])
+    @access_request = params[:access_request_id] ? AccessRequest.find(params[:access_request_id]) : AccessRequest.find(params[:id])
   end
 end

@@ -1,6 +1,7 @@
 <h5>Access Request from: <%= @access_request.name %> @ <%= @access_request.email %></h5>
 <p class="subheader">Fill Out the Form Below to Create Account from this Access Request</p>
 <%= form_tag "/auth/identity/register" do %>
+
 	<%= label_tag :name %>
 	<%= text_field_tag :name, @access_request.name %>
 	
@@ -14,6 +15,8 @@
 	<%= password_field_tag :password_confirmation %>
 	
 	<%= hidden_field_tag :genre, "client" %>
+	
+	<%= hidden_field_tag :access_request_id, @access_request.id %>
 	
 	<%= submit_tag "Create Client Account", class: 'button small' %>
 	

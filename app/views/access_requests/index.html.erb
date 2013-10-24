@@ -1,3 +1,13 @@
+<% if @identity && @identity.errors.any? %>
+    <div class="small-10 small-centered columns error_messages">
+      <h4 class="subheader"><%= pluralize(@identity.errors.count, "error") %> prohibited this account from being saved:</h4>
+      <ul>
+	      <% @identity.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+      </ul>
+    </div>
+<% end %>
 <% @access_requests.each do |request| %>
 	<div class="panel">
 		<p><%= link_to request.email, access_request_path(request) %> is awaiting confirmation</p>
