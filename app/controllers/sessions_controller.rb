@@ -32,7 +32,7 @@ class SessionsController < ApplicationController
   end
   
   def failure
-    flash[:error] = "There was a problem with the login."
-    redirect_to root_url 
+    flash[:error] = "There was a problem with the login. Please, ensure that you correctly entered your login information"
+    redirect_to login_path
   end
 end

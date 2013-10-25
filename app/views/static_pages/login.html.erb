@@ -2,6 +2,13 @@
 	<div class="small-8 small-centered columns" id="login_logo">
 		<%= link_to image_tag("logo.png"), root_url %>
 	</div>
+	<% flash.each do |key, value| %>
+		<% alert_class = key == :error ? :alert : key %>
+		<div class="alert-box <%= alert_class %>">
+			<p class="subheader"><%= value %></p>
+			<a href class="close">x</a>
+		</div>
+	<% end %>
 	<div class="small-6 small-centered columns">
 			<!-- <div class="small-6 columns">
 			<div class="panel">
