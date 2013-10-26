@@ -27,6 +27,7 @@ EmailTesting::Application.routes.draw do
   match 'slideshow' => "capsules#slideshow"
   match 'reload' => "capsules#reload"
   match "/reynoldslovestory" => "capsules#show", id: 7
+  match "/demo" => "capsules#show", id: 8
 
   # Static Page Routes
   match "home" => "static_pages#home"
