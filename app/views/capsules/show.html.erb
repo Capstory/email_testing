@@ -23,7 +23,7 @@
 
 
 <div class="row">
-	<div class="small-9 columns">
+	<div class="small-12 columns">
 		<div class="row">
 			<div class="small-2 columns">
 				<h6 class="subheader">Pictures</h6>
@@ -41,7 +41,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="small-3 columns">
+	<!-- <div class="small-3 columns">
 		<h6 class="subheader">Key Contributors</h6>
 		<% if current_user && ( current_user.admin? || capsule_owner(current_user.id, @capsule.id) ) %>
 			<% @capsule.users.where(type: "Contributor").each do |contributor| %>
@@ -52,5 +52,5 @@
 		<% else %>
 			<p><%= @capsule.users.where(type: "Contributor").count %></p>
 		<% end %>
-	</div>
+	</div> -->
 </div>

@@ -19,6 +19,7 @@
 //= require jquery.maximage
 //= require jquery.scrollto
 //= require jquery.fullscreen
+//= require colorbox-rails
 //= require_tree .
 
 $(function(){ 
@@ -58,4 +59,8 @@ $(function(){
 			$("#reload_button").click();
 			$("#get_emails_button").click();
 		}
+		
+		$(document).bind('cbox_open', function(){
+		  $("#cboxClose").hide();
+		});
 });
