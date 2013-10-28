@@ -23,6 +23,8 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
   gem 'zurb-foundation'
+  
+  gem 'jquery-ui-rails'
 end
 
 gem 'jquery-rails'

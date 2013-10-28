@@ -2,7 +2,7 @@
 	<div class="masonry-brick">
 		<div class="panel">
 			<% if !post.image.blank? %>
-				<%= link_to image_tag(post.image.url(:medium)), post.image.url, data: { colorbox: true, colorbox_photo: true, colorbox_height: "400px" } %>
+				<%= link_to image_tag(post.image.url(:medium)), post.image.url, data: { colorbox: true, colorbox_photo: true, colorbox_height: "500px" } %>
 			<% else %>
 				<p><%= post.body %></p>
 			<% end %>

@@ -7,7 +7,7 @@
 			<%= link_to "Start Slideshow", slideshow_path(capsule_id: @capsule.id), class: 'button small' %>
 			<span style="display:none;"><%= button_to "Get Pics", retrieve_emails_path(capsule_id: @capsule.id, capsule_email: @capsule.email), id: "get_emails_button", remote:true %></span>
 		<% end %>
-		<h4 class="subheader"><%= @capsule.name %></h4>
+		<h4 class="subheader"><%= @capsule.name %> <br><small>Event Date: <%= @capsule.event_date.nil? ? "Not Available" : @capsule.event_date.to_formatted_s(:long_ordinal) %></small></h4>
 	</div>
 	<div class="small-7 columns">
 		<% if current_user && current_user.admin? %>

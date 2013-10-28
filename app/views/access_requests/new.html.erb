@@ -1,0 +1,28 @@
+<div class="small-8 small-centered columns">
+	<h2>Invitation Request Form</h2>
+
+  <%= form_for(@access_request) do |f| %>
+		<div class="error_messages">
+			<% if @access_request.errors.any? %>
+		      <h4 class="subheader"><%= pluralize(@access_request.errors.count, "error") %> prevented your request from being saved:</h4>
+
+		      <ul>
+		      <% @access_request.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		      <% end %>
+		      </ul>
+		    </div>
+		  <% end %>
+		</div>
+	
+    <span class="subheader"> We'll be in touch soon to let you know if we can do your wedding!</span>
+			
+		<%= f.text_field :name, class: '', placeholder: 'Your Name' %>
+
+		<%= f.text_field :email, class: '', placeholder: 'Your Email' %>
+		
+		<%= f.text_field :event_date, class: '', placeholder: 'Choose a Date' %>
+
+		<%= f.submit "Send Request", class: 'button' %>
+	<% end %>
+</div>

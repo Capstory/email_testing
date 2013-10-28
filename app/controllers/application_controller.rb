@@ -26,4 +26,10 @@ class ApplicationController < ActionController::Base
     end
   end
   helper_method :capsule_owner
+  
+  def clear_identity_session
+    if @identity
+      session[:identity] = nil
+    end
+  end
 end

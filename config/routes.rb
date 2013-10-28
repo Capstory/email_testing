@@ -26,8 +26,13 @@ EmailTesting::Application.routes.draw do
   resources :capsules
   match 'slideshow' => "capsules#slideshow"
   match 'reload' => "capsules#reload"
-  match "/reynoldslovestory" => "capsules#show", id: 7
-  match "/demo" => "capsules#show", id: 8
+  if Rails.env.production?
+    match "/reynoldslovestory" => "capsules#show", id: 7
+    match "/demo" => "capsules#show", id: 8
+  else
+    match "/reynoldslovestory" => "capsules#show", id: 3
+    match "/demo" => "capsules#show", id: 3
+  end
 
   # Static Page Routes
   match "home" => "static_pages#home"

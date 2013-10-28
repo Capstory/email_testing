@@ -19,6 +19,7 @@
 //= require jquery.maximage
 //= require jquery.scrollto
 //= require jquery.fullscreen
+//= require jquery.ui.datepicker
 //= require colorbox-rails
 //= require_tree .
 
@@ -36,6 +37,7 @@ $(function(){
       columnWidth: 240
     });
   });
+  
   
   $("#maximage").maximage();
   
@@ -60,7 +62,16 @@ $(function(){
 			$("#get_emails_button").click();
 		}
 		
-		$(document).bind('cbox_open', function(){
-		  $("#cboxClose").hide();
-		});
+	$(document).bind('cbox_open', function(){
+	  $("#cboxClose").hide();
+	});
+	
+	$(".sub-nav dd").click(function(){
+	  var item_id = $(this).attr('id');
+	  $(".sub-nav dd").removeClass("active");
+	  $(".list_of_requests").hide();
+	  $(this).addClass("active");
+	  var item_to_show = "#" + item_id + "_requests";
+	  $(item_to_show).show();
+	});
 });

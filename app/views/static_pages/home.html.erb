@@ -40,11 +40,13 @@
 	<div class="small-8 small-centered columns">
 		  <%= form_for(@access_request) do |f| %>
 				<h2>Invitation Request Form</h2>
-                	<span class="subheader"> We'll be in touch soon to let you know if we can do your wedding!</span>
+        <span class="subheader"> We'll be in touch soon to let you know if we can do your wedding!</span>
 					
 				<%= f.text_field :name, class: '', placeholder: 'Your Name' %>
 		
 				<%= f.text_field :email, class: '', placeholder: 'Your Email' %>
+				
+				<%= f.text_field :event_date, class: '', placeholder: 'Choose a Date' %>
 		
 				<%= f.submit "Send Request", class: 'button' %>
 			<% end %>

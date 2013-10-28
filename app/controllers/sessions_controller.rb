@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
         @identity = Identity.find(auth[:uid])
         case @identity.genre
         when "client"
-          redirect_to create_client_path(name: auth[:info][:name], email: auth[:info][:email], uid: auth[:uid], provider: auth[:provider], oauth_token: auth[:credentials][:token])
+          redirect_to create_client_path(name: auth[:info][:name], email: auth[:info][:email], event_date: @identity.event_date,  uid: auth[:uid], provider: auth[:provider], oauth_token: auth[:credentials][:token])
         when "admin"
           redirect_to create_admin_path(name: auth[:info][:name], email: auth[:info][:email], uid: auth[:uid], provider: auth[:provider], oauth_token: auth[:credentials][:token])
         when "contributor"

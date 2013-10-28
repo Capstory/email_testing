@@ -1,5 +1,5 @@
 class Identity < OmniAuth::Identity::Models::ActiveRecord
-  attr_accessible :email, :name, :password, :password_confirmation, :genre
+  attr_accessible :email, :name, :password, :password_confirmation, :genre, :event_date
   
   validates_presence_of :name
   validates_uniqueness_of :email

@@ -16,8 +16,11 @@
 	
 	<%= hidden_field_tag :genre, "client" %>
 	
+	<%= hidden_field_tag :event_date, @access_request.event_date %>
+	
 	<%= hidden_field_tag :access_request_id, @access_request.id %>
 	
 	<%= submit_tag "Create Client Account", class: 'button small' %>
+	<%= link_to "Back", access_requests_path, class: 'button small' %>
 	
 <% end %>
