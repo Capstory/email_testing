@@ -1,5 +1,5 @@
 class AccessRequestMailer < ActionMailer::Base
-  default from: "support@capstory.me"
+  default from: "hello@capstory.me"
   
   def welcome_email(access_request)
     @access_request = access_request
