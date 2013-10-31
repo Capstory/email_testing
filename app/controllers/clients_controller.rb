@@ -52,4 +52,13 @@ class ClientsController < ApplicationController
       redirect_to :back
     end
   end
+  
+  def access_request_redirect_to_client
+    if @client = Client.find_by_name_and_email(params[:name], params[:email])
+      redirect_to @client
+    else
+      flash.now[:error] = "Unable to find client"
+      redirect_to :back
+    end
+  end
 end

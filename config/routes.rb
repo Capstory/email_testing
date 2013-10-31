@@ -9,6 +9,8 @@ EmailTesting::Application.routes.draw do
   match "create_client" => "clients#create"
   match "create_admin" => "admins#create"
   match "create_contributor" => "contributors#create"
+  
+  match "access_request_to_client" => "clients#access_request_redirect_to_client"
 
   resources :users
   resources :clients

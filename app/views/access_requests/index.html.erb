@@ -21,7 +21,7 @@
 	<% @access_requests.each do |request| %>
 		<% if request.pending? %>
 			<div class="panel">
-				<p><%= link_to request.email, access_request_path(request) %> is awaiting confirmation</p>
+				<p><%= link_to request.name, access_request_path(request) %> is awaiting confirmation</p>
 				<p class="subheader">The date of their event is <%= request.event_date ? request.event_date.to_formatted_s(:long_ordinal) : "not available" %></p>
 			</div>
 		<% end %>
@@ -31,7 +31,7 @@
 	<% @access_requests.each do |request| %>
 		<% if request.validated? %>
 			<div class="panel">
-				<p><%= link_to request.email, access_request_path(request) %> is awaiting confirmation</p>
+				<p><%= link_to request.name, access_request_to_client_path(name: request.name, email: request.email, event_date: request.event_date) %> has been confirmed and their capsule has been created</p>
 				<p class="subheader">The date of their event is <%= request.event_date ? request.event_date.to_formatted_s(:long_ordinal) : "not available" %></p>
 			</div>
 		<% end %>
@@ -41,7 +41,7 @@
 	<% @access_requests.each do |request| %>
 		<% if request.no_status? %>
 			<div class="panel">
-				<p><%= link_to request.email, access_request_path(request) %> is awaiting confirmation</p>
+				<p><%= link_to request.name, access_request_path(request) %> has no status</p>
 				<p class="subheader">The date of their event is <%= request.event_date ? request.event_date.to_formatted_s(:long_ordinal) : "not available" %></p>
 			</div>
 		<% end %>
@@ -50,7 +50,11 @@
 <div class="list_of_requests" id="all_requests" style="display:none;">
 	<% @access_requests.each do |request| %>
 			<div class="panel">
-				<p><%= link_to request.email, access_request_path(request) %> is awaiting confirmation</p>
+				<% if request.pending? %>
+					<p><%= link_to request.name, access_request_path(request) %> is awaiting confirmation</p>
+				<% else %>
+					<p><%= link_to request.name, access_request_to_client_path(name: request.name, email: request.email, event_date: request.event_date) %> has been confirmed and their capsule has been created</p>
+				<% end %>
 				<p class="subheader">The date of their event is <%= request.event_date ? request.event_date.to_formatted_s(:long_ordinal) : "not available" %></p>
 			</div>
 	<% end %>

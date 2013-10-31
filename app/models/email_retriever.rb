@@ -10,7 +10,7 @@ class EmailRetriever
   def initialize(capsule_id, capsule_email)
     @host = 'secure.emailsrvr.com'
     @port = 993
-    @username = capsule_email
+    @username = "submit@capstory.me"
     @password = "foobar"
     @capsule_id = capsule_id
   end
@@ -31,6 +31,7 @@ class EmailRetriever
 
       	#fetch to and from email address.. you can fetch other mail headers too in same manner.
       	from_email = header_portion.sender[0].mailbox + "@" + header_portion.sender[0].host
+      	to_email = header_portion.to.first.mailbox + "@capstory.me"
       	
       	# This is the key portion of the script
       	# It is here that the attachments are parsed out and uploaded
