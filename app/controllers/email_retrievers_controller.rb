@@ -1,6 +1,6 @@
 class EmailRetrieversController < ApplicationController
   def activate
-    Resque.enqueue(EmailEngine, params[:capsule_id], params[:capsule_email])
+    Resque.enqueue(EmailEngine)
       
     redirect_to :back
   end

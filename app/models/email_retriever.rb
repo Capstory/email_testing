@@ -7,12 +7,11 @@ class EmailRetriever
     attr_accessor :original_filename, :content_type
   end
 
-  def initialize(capsule_id, capsule_email)
+  def initialize
     @host = 'secure.emailsrvr.com'
     @port = 993
     @username = "submit@capstory.me"
     @password = "foobar"
-    @capsule_id = capsule_id
   end
 
   def start
@@ -31,7 +30,10 @@ class EmailRetriever
 
       	#fetch to and from email address.. you can fetch other mail headers too in same manner.
       	from_email = header_portion.sender[0].mailbox + "@" + header_portion.sender[0].host
-      	to_email = header_portion.to.first.mailbox + "@capstory.me"
+      	to_email = header_portion.to[0].mailbox + "@capstory.me"
+      	
+      	default_capsule_id = Rails.env.production? ? 12 : 3
+      	@capsule_id = Capsule.exists?(email: to_email) ? Capsule.find_by_email(to_email).id : default_capsule_id
       	
       	# This is the key portion of the script
       	# It is here that the attachments are parsed out and uploaded

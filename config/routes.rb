@@ -31,6 +31,7 @@ EmailTesting::Application.routes.draw do
   if Rails.env.production?
     match "/reynoldslovestory" => "capsules#show", id: 7
     match "/demo" => "capsules#show", id: 8
+    match "/misplaced" => "capsules#show", id: 12
   else
     match "/reynoldslovestory" => "capsules#show", id: 3
     match "/demo" => "capsules#show", id: 3
