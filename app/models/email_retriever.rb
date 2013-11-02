@@ -29,11 +29,11 @@ class EmailRetriever
         header_portion = imap.uid_fetch(mail, "ENVELOPE")[0].attr["ENVELOPE"]
 
       	#fetch to and from email address.. you can fetch other mail headers too in same manner.
-      	from_email = header_portion.sender[0].mailbox + "@" + header_portion.sender[0].host
-      	to_email = header_portion.to[0].mailbox + "@capstory.me"
+      	@sender_email = header_portion.sender[0].mailbox + "@" + header_portion.sender[0].host
+      	@capsule_email = header_portion.to[0].mailbox + "@capstory.me"
       	
       	default_capsule_id = Rails.env.production? ? 12 : 3
-      	@capsule_id = Capsule.exists?(email: to_email) ? Capsule.find_by_email(to_email).id : default_capsule_id
+      	@capsule_id = Capsule.exists?(email: @capsule_email) ? Capsule.find_by_email(@capsule_email).id : default_capsule_id
       	
       	# This is the key portion of the script
       	# It is here that the attachments are parsed out and uploaded
@@ -59,7 +59,7 @@ class EmailRetriever
               
               post_body = @upload_file.content_type == "text/plain" ? attachment.body.decoded : "No message"
               
-              Post.create!(body: post_body, email: from_email, image: @upload_file, capsule_id: @capsule_id)
+              Post.create!(body: post_body, email: @sender_email, image: @upload_file, capsule_id: @capsule_id)
               
               @upload_file.close
               @upload_file.unlink
@@ -68,13 +68,14 @@ class EmailRetriever
         else
           plain_body = message.body.decoded
           
-          Post.create!(body: plain_body, email: from_email, image: nil, capsule_id: @capsule_id)
+          Post.create!(body: plain_body, email: @sender_email, image: nil, capsule_id: @capsule_id)
         end
-      
-
+        
     	#mark message as deleted to remove duplicates in fetching
     	imap.store(mail, "+FLAGS", [:Seen])
-
+      
+      # Send a response to the sender  
+      PostMailer.new_post_response(@sender_email, @capsule_email, @capsule_id).deliver
     end
     imap.expunge()
     #logout and close imap connection
