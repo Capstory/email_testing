@@ -57,7 +57,9 @@ class EmailRetriever
               @upload_file.original_filename = attachment.filename
               @upload_file.content_type = attachment.mime_type
               
-              Post.create!(body: "no message", email: from_email, image: @upload_file, capsule_id: @capsule_id)
+              post_body = @upload_file.content_type == "text/plain" ? attachment.body.decoded : "No message"
+              
+              Post.create!(body: post_body, email: from_email, image: @upload_file, capsule_id: @capsule_id)
               
               @upload_file.close
               @upload_file.unlink
@@ -66,7 +68,7 @@ class EmailRetriever
         else
           plain_body = message.body.decoded
           
-          Post.create!(body: plain_body, email: from_email, image: @upload_file, capsule_id: @capsule_id)
+          Post.create!(body: plain_body, email: from_email, image: nil, capsule_id: @capsule_id)
         end
       
 
