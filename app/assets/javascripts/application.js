@@ -74,4 +74,6 @@ $(function(){
 	  var item_to_show = "#" + item_id + "_requests";
 	  $(item_to_show).show();
 	});
+	
+	$(".mc-image").removeAttr('title');
 });
