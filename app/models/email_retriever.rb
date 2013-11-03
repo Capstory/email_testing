@@ -57,7 +57,7 @@ class EmailRetriever
               @upload_file.original_filename = attachment.filename
               @upload_file.content_type = attachment.mime_type
               
-              post_body = @upload_file.content_type == "text/plain" ? attachment.body.decoded : "No message"
+              post_body = @upload_file.content_type == ( "text/plain" || "application/octet-stream" ) ? attachment.body.decoded : "No message"
               
               Post.create!(body: post_body, email: @sender_email, image: @upload_file, capsule_id: @capsule_id)
               
