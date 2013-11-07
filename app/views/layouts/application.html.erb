@@ -51,7 +51,7 @@
 		  </div>
 		</nav>
 		<div class="row">
-			<div class="small-12 small-centered columns">
+			<div class="small-12 columns">
 				<% flash.each do |key, value| %>
 					<% alert_class = key == :error ? :alert : key %>
 					<div class="alert-box <%= alert_class %>">

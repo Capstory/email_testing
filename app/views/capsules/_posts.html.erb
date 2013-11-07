@@ -2,7 +2,7 @@
 	<div class="masonry-brick">
 		<div>
 			<% if post.body.nil? || post.body.upcase == "NO MESSAGE" %>
-				<%= link_to image_tag(post.image.url(:thumb)), post.image.url, data: { colorbox: true, colorbox_photo: true, colorbox_height: "500px" } %>
+				<%= link_to image_tag(post.image.url(:medium)), post.image.url, data: { colorbox: true, colorbox_photo: true, colorbox_height: "500px" } %>
 			<% else %>
 				<blockquote><%= post.body %></blockquote>
 			<% end %>

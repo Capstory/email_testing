@@ -34,7 +34,7 @@ $(function(){
   $(window).load(function(){
     $('#masonryContainer').masonry({  
       itemSelector: '.masonry-brick',
-      columnWidth: 120
+      columnWidth: 150
     });
   });
   
