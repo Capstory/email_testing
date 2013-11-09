@@ -76,4 +76,5 @@ $(function(){
 	});
 	
 	$(".mc-image").removeAttr('title');
+
 });

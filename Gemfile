@@ -29,6 +29,7 @@ end
 
 gem 'jquery-rails'
 gem 'colorbox-rails'
+gem 'filepicker-rails'
 # removed gem 'griddler' until more certain of the direction to take with fetching emails
 gem 'rmagick'
 gem 'paperclip'

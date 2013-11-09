@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131027171649) do
+ActiveRecord::Schema.define(:version => 20131109214650) do
 
   create_table "access_requests", :force => true do |t|
     t.string   "name"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20131027171649) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "capsule_id"
+    t.string   "filepicker_url"
   end
 
   create_table "users", :force => true do |t|

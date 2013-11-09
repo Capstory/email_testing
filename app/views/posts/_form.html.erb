@@ -12,7 +12,7 @@
   <% end %>
 	<%= f.hidden_field :capsule_id, value: @capsule.id %>
 
- 	<%= f.file_field :image %>
+ 	<%= f.filepicker_field :filepicker_url, multiple: false, services: "COMPUTER, DROPBOX, FACEBOOK, FLICKR, INSTAGRAM" %>
 	
 	<%= f.submit "Upload", class: 'button' %>
 	

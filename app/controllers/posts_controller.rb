@@ -37,7 +37,11 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.create(params[:post])
+    @post = Post.create do |post|
+      post.filepicker_url = params[:post][:filepicker_url]
+      post.capsule_id = params[:post][:capsule_id]
+      post.image = URI.parse(post.filepicker_url)
+    end 
     if @post.save
       flash[:success] = "Photo successfully uploaded"
       redirect_to @post.capsule
