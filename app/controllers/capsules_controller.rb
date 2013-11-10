@@ -42,7 +42,8 @@ class CapsulesController < ApplicationController
   
   def update
     @capsule = Capsule.find(params[:id])
-    if @capsule.update_attributes(params[:capsule])
+    named_url = params[:capsule][:email].nil? ? nil : params[:capsule][:email].split("@").first
+    if @capsule.update_attributes(email: params[:capsule][:email], named_url: named_url)
       flash[:success] = "Capsule Updated"
       redirect_to @capsule
     else

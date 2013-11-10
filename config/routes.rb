@@ -26,6 +26,7 @@ EmailTesting::Application.routes.draw do
   match "retrieve_emails" => "email_retrievers#activate"
 
   resources :capsules
+
   match 'slideshow' => "capsules#slideshow"
   match 'reload' => "capsules#reload"
   if Rails.env.production?
@@ -45,7 +46,7 @@ EmailTesting::Application.routes.draw do
   resources :access_requests, only: ["create", "index", "show"]
   
   mount Resque::Server, at: "/resque"
-  
+  get '/:id' => "capsules#show"  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

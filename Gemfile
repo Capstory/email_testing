@@ -27,6 +27,8 @@ group :assets do
   gem 'jquery-ui-rails'
 end
 
+gem 'friendly_id'
+
 gem 'jquery-rails'
 gem 'colorbox-rails'
 gem 'filepicker-rails'

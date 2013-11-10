@@ -55,6 +55,8 @@ GEM
       multipart-post (~> 1.2.0)
     filepicker-rails (1.0.0)
       rails (>= 3.2)
+    friendly_id (4.0.10.1)
+      activerecord (>= 3.0, < 4.0)
     hashie (2.0.5)
     hike (1.2.3)
     httpauth (0.2.0)
@@ -185,6 +187,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   colorbox-rails
   filepicker-rails
+  friendly_id
   jquery-rails
   jquery-ui-rails
   mail
