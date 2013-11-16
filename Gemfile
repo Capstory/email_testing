@@ -29,7 +29,7 @@ group :assets do
 end
 
 gem 'friendly_id'
-
+# gem 'private_pub'
 gem 'jquery-rails'
 gem 'colorbox-rails'
 gem 'filepicker-rails'

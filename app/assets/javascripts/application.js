@@ -21,6 +21,7 @@
 //= require jquery.fullscreen
 //= require jquery.ui.datepicker
 //= require colorbox-rails
+//= require private_pub
 //= require_tree .
 
 $(function(){ 
@@ -76,5 +77,5 @@ $(function(){
 	});
 	
 	$(".mc-image").removeAttr('title');
-
+  
 });
