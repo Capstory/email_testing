@@ -2,12 +2,10 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.order("created_at DESC").all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @posts }
-    end
+    @capsule = Capsule.find(params[:capsule_id])
+    @posts = @capsule.posts.where('id > ?', params[:after].to_i)
+    
+    respond_to :js
   end
 
   # GET /posts/1

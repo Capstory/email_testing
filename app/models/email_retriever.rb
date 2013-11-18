@@ -77,9 +77,7 @@ class EmailRetriever
       # Send a response to the sender  
       PostMailer.new_post_response(@sender_email, @capsule_email, @capsule_id).deliver
       
-      # For real-time integration with Private Pub
-      # @new_capsule = Capsule.find(@capsule_id)
-      # PrivatePub.publish_to("/photos/new", "alert('There is a new photo!');")
+
     end
     imap.expunge()
     #logout and close imap connection

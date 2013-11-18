@@ -31,11 +31,11 @@ $(function(){
     verticalAlign: '80%'
   });
   
-  $(window).load(function(){
-    $('#masonryContainer').masonry({  
-      itemSelector: '.masonry-brick',
-      columnWidth: 150
-    });
+  var $container = $("#original_container");
+  
+  $container.masonry({  
+    itemSelector: '.masonry-brick',
+    columnWidth: 150
   });
   
   

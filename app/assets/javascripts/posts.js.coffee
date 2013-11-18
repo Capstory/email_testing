@@ -1,3 +1,10 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+@PostPoller =
+  poll: ->
+    setTimeout @request, 5000
+    
+  request: ->
+    $.get($("#original_container").data('url'), after: $('.post').first().data('id'))
+    
+jQuery ->
+  if $("#original_container").length > 0
+    PostPoller.poll()

@@ -1,0 +1,22 @@
+var $newElement = $("<%= j render @posts.order('created_at DESC') %>");
+
+
+$("#original_container").prepend($newElement).fadeIn('slow');
+
+$("#original_container").masonry('destroy');
+$("#original_container").masonry({
+  itemSelector: '.masonry-brick',
+  columnWidth: 150
+});
+
+setTimeout(function(){
+  $("#original_container").masonry('destroy');
+  $("#original_container").masonry({
+    itemSelector: '.masonry-brick',
+    columnWidth: 150
+  });
+}, 100);
+
+
+
+PostPoller.poll();
