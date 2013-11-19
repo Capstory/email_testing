@@ -33,10 +33,12 @@ $(function(){
   
   var $container = $("#original_container");
   
-  $container.masonry({  
-    itemSelector: '.masonry-brick',
-    columnWidth: 150
-  });
+  $(window).bind('load', function(){
+    $container.masonry({  
+      itemSelector: '.masonry-brick',
+      columnWidth: 150
+    });
+  )};
   
   
   $("#maximage").maximage();
