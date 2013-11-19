@@ -38,7 +38,7 @@ $(function(){
       itemSelector: '.masonry-brick',
       columnWidth: 150
     });
-  )};
+  });
   
   
   $("#maximage").maximage();
