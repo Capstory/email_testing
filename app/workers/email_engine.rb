@@ -4,5 +4,6 @@ class EmailEngine
   def self.perform
     email = EmailRetriever.new
     email.start
+    # puts "I'm checking the email right now!"
   end
 end
