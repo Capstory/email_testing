@@ -74,8 +74,11 @@ class EmailRetriever
     	#mark message as deleted to remove duplicates in fetching
     	imap.store(mail, "+FLAGS", [:Seen])
       
-      # Send a response to the sender  
-      PostMailer.new_post_response(@sender_email, @capsule_email, @capsule_id).deliver
+      # Send a response to the sender
+      @cap = Capsule.find(@capsule_id)
+      @capsule_link = @cap.named_url.nil? ? @capsule_id : @cap.named_url  
+       
+      PostMailer.new_post_response(@sender_email, @capsule_email, @capsule_link).deliver
       
 
     end
