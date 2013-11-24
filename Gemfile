@@ -32,7 +32,8 @@ end
 gem 'friendly_id'
 # gem 'private_pub'
 gem 'jquery-rails'
-gem 'colorbox-rails'
+# gem 'colorbox-rails'
+gem 'fancybox2-rails'
 gem 'filepicker-rails'
 # removed gem 'griddler' until more certain of the direction to take with fetching emails
 gem 'rmagick'

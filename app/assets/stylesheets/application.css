@@ -10,7 +10,7 @@
  *
  *= require_self
  *= require foundation_and_overrides
- *= require colorbox-rails
+ *= require fancybox
  *= require jquery.ui.datepicker
  *= require custom
  *= require_tree .

@@ -46,13 +46,12 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
-    colorbox-rails (0.1.0)
-      jquery-rails
-      rails (>= 3.1.1)
     daemons (1.1.9)
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.0.2)
+    fancybox2-rails (0.2.5)
+      railties (>= 3.1.0)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
     filepicker-rails (1.0.0)
@@ -198,7 +197,7 @@ DEPENDENCIES
   aws-sdk
   bcrypt-ruby (~> 3.0.0)
   coffee-rails (~> 3.2.1)
-  colorbox-rails
+  fancybox2-rails
   filepicker-rails
   friendly_id
   jquery-rails

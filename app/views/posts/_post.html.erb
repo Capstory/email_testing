@@ -1,7 +1,7 @@
 <div class="masonry-brick">
 	<%= div_for post, data: { id: post.id } do %>
 		<% if post.body.nil? || post.body.upcase == "NO MESSAGE" %>
-			<%= link_to image_tag(post.image.url(:medium)), post.image.url, data: { colorbox: true, colorbox_photo: true, colorbox_height: "600px" } %>
+			<%= link_to image_tag(post.image.url(:medium)), post.image.url, class: 'grouped_elements', rel: 'group1', data: { fancybox_type: "image" } %>
 		<% else %>
 			<blockquote><%= post.body %></blockquote>
 		<% end %>

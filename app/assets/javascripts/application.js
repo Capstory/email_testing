@@ -20,7 +20,7 @@
 //= require jquery.scrollto
 //= require jquery.fullscreen
 //= require jquery.ui.datepicker
-//= require colorbox-rails
+//= require fancybox
 //= require_tree .
 
 $(function(){ 
@@ -78,5 +78,7 @@ $(function(){
 	});
 	
 	$(".mc-image").removeAttr('title');
+	
+	$(".grouped_elements").fancybox();
   
 });
