@@ -2,11 +2,11 @@
 <div class="row">
 	<div class="small-5 columns">
 		<% if current_user && (current_user.admin? || capsule_owner(current_user.id, @capsule.id)) %>
-			<% engine_button = @capsule.email.blank? ? "small disabled" : "small" %>
+			<!-- <% engine_button = @capsule.email.blank? ? "small disabled" : "small" %>
 			<button id="start_jobs" class=<%=  "#{engine_button}" %> data-width="200px" data-tooltip class="has-tip" title="Press this button to start fetching recently submited photos automatically. Runs until you stop it.">Start Email Engine</button>
-			<button id="stop_jobs" style="display: none;" class="small" data-width="200px" data-tooltip class="has-tip" title="Press this button to stop fetching photos automatically.">Stop Email Engine</button>
+			<button id="stop_jobs" style="display: none;" class="small" data-width="200px" data-tooltip class="has-tip" title="Press this button to stop fetching photos automatically.">Stop Email Engine</button> -->
 			<%= link_to "Start Slideshow", slideshow_path(capsule_id: @capsule.id), class: 'button small' %>
-			<span style="display:none;"><%= button_to "Get Pics", retrieve_emails_path, id: "get_emails_button", remote: true %></span>
+			<!-- <span style="display:none;"><%= button_to "Get Pics", retrieve_emails_path, id: "get_emails_button", remote: true %></span> -->
 		<% end %>
 		<% the_date = @capsule.event_date ? @capsule.event_date.to_s(:long) : "Not Available" %>
 		<h4 class="subheader"><%= @capsule.name %> <br><small>Event Date: <%= @capsule.event_date.nil? ? "Not Available" : the_date %></small></h4>
@@ -15,7 +15,7 @@
 		<% if current_user && current_user.admin? %>
 			<ul class="inline-list">
 				<% button_classes = @capsule.email.blank? ? 'button small disabled' : 'button small' %>				
-				<li><%= button_to "Get Pics", retrieve_emails_path, class: "#{button_classes}", id: "get_emails_button", remote: true %></li>
+				<!-- <li><%= button_to "Get Pics", retrieve_emails_path, class: "#{button_classes}", id: "get_emails_button", remote: true %></li> -->
 				<li><%= link_to "Edit Capsule", edit_capsule_path(@capsule), class: 'button small' %></li>
 				<li><%= link_to "Add a Key Contributor", new_contributor_path(capsule_id: @capsule.id), class: 'button small' %></li>
 			</ul>	
