@@ -34,12 +34,10 @@
 				<%= link_to "Upload a Photo", new_post_path(capsule_id: @capsule.id ), class: 'button tiny' %>
 			</div>
 		</div>
-		<span style="display: none;"><%= link_to "Reload Photos", reload_path(id: @capsule.id), remote: true, id: 'reload_button' %></span>
+		<!-- <span style="display: none;"><%= link_to "Reload Photos", reload_path(id: @capsule.id), remote: true, id: 'reload_button' %></span> -->
 			<%= content_tag :div, id: "original_container", data: { url: posts_url(capsule_id: @capsule.id) } do %>
 					<%= render @capsule.posts.order("created_at DESC") %>
 			<% end %>
-			<div id="reload_container">
-			</div>
 	</div>
 	<!-- <div class="small-3 columns">
 		<h6 class="subheader">Key Contributors</h6>

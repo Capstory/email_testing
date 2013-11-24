@@ -57,6 +57,9 @@ GEM
       multipart-post (~> 1.2.0)
     filepicker-rails (1.0.0)
       rails (>= 3.2)
+    foundation-rails (5.0.2.0)
+      railties (>= 3.1.0)
+      sass (>= 3.2.0)
     friendly_id (4.0.10.1)
       activerecord (>= 3.0, < 4.0)
     hashie (2.0.5)
@@ -188,8 +191,6 @@ GEM
     uuidtools (2.1.4)
     vegas (0.1.11)
       rack (>= 1.0.0)
-    zurb-foundation (4.3.2)
-      sass (>= 3.2.0)
 
 PLATFORMS
   ruby
@@ -200,6 +201,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   colorbox-rails
   filepicker-rails
+  foundation-rails
   friendly_id
   jquery-rails
   jquery-ui-rails
@@ -218,4 +220,3 @@ DEPENDENCIES
   sqlite3
   thin
   uglifier (>= 1.0.3)
-  zurb-foundation
