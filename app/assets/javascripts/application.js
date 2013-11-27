@@ -81,4 +81,7 @@ $(function(){
 	
 	$(".grouped_elements").fancybox();
   
+  $(".show_delete").click(function(){
+    $(this).next("small").toggle('slow');
+  });
 });

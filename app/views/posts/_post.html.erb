@@ -1,9 +1,17 @@
 <div class="masonry-brick">
 	<%= div_for post, data: { id: post.id } do %>
 		<% if post.body.nil? || post.body.upcase == "NO MESSAGE" %>
-			<%= link_to image_tag(post.image.url(:medium)), post.image.url, class: 'grouped_elements', rel: 'group1', data: { fancybox_type: "image" } %>
+			<% if current_user && ( current_user.admin? || capsule_owner(current_user.id, @capsule.id) ) %>
+				<% @title = "<a href='/posts/#{post.id}' data-method='delete' data-confirm='Are your sure?'>Delete</a>" %>
+			<% end %>
+			<%= link_to image_tag(post.image.url(:medium)), post.image.url, class: 'grouped_elements', rel: 'group1', title: @title, data: { fancybox_type: "image" } %>
 		<% else %>
-			<blockquote><%= post.body %></blockquote>
+			<% if current_user && ( current_user.admin? || capsule_owner(current_user.id, @capsule.id) ) %>
+				<span class="show_delete"><blockquote><%= post.body %></blockquote></span>
+				<small style="display:none;"><%= link_to "Delete", post, method: :delete, data: { confirm: "Are you sure?" } %></small>
+			<% else %>
+				<blockquote><%= post.body %></blockquote>
+			<% end %>
 		<% end %>
 	<% end %>
 </div>
