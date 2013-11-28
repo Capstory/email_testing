@@ -81,7 +81,13 @@ $(function(){
 	
 	$(".grouped_elements").fancybox({
     beforeLoad: function(){
-      this.title = $(this.element).attr('data-title');
+      var $elementTitle = $(this.element).attr('data-title');
+      if ($elementTitle === "No Title") {
+        this.title = $(this.element).attr('title');
+      } 
+      else {
+        this.title = $elementTitle;
+      }
     }
 	});
   

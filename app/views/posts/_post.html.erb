@@ -3,6 +3,8 @@
 		<% if post.body.nil? || post.body.upcase == "NO MESSAGE" %>
 			<% if current_user && ( current_user.admin? || capsule_owner(current_user.id, @capsule.id) ) %>
 				<% @title = "<a href='/posts/#{post.id}' data-method='delete' data-confirm='Are your sure?'>Delete</a>" %>
+			<% else %>
+				<% @title = "No Title" %>
 			<% end %>
 			<%= link_to image_tag(post.image.url(:medium)), post.image.url, class: 'grouped_elements', rel: 'group1', data: { fancybox_type: "image", title: @title } %>
 		<% else %>
