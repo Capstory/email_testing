@@ -79,7 +79,11 @@ $(function(){
 	
 	$(".mc-image").removeAttr('title');
 	
-	$(".grouped_elements").fancybox();
+	$(".grouped_elements").fancybox({
+    beforeLoad: function(){
+      this.title = $(this.element).attr('data-title');
+    }
+	});
   
   $(".show_delete").click(function(){
     $(this).next("small").toggle('slow');

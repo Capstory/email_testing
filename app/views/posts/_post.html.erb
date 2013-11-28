@@ -4,7 +4,7 @@
 			<% if current_user && ( current_user.admin? || capsule_owner(current_user.id, @capsule.id) ) %>
 				<% @title = "<a href='/posts/#{post.id}' data-method='delete' data-confirm='Are your sure?'>Delete</a>" %>
 			<% end %>
-			<%= link_to image_tag(post.image.url(:medium)), post.image.url, class: 'grouped_elements', rel: 'group1', title: @title, data: { fancybox_type: "image" } %>
+			<%= link_to image_tag(post.image.url(:medium)), post.image.url, class: 'grouped_elements', rel: 'group1', data: { fancybox_type: "image", title: @title } %>
 		<% else %>
 			<% if current_user && ( current_user.admin? || capsule_owner(current_user.id, @capsule.id) ) %>
 				<span class="show_delete"><blockquote><%= post.body %></blockquote></span>
