@@ -15,4 +15,22 @@ class PostMailer < ActionMailer::Base
     
     mail(from: @capsule_email, reply_to: @capsule_email, to: @sender_email, subject: "Thank You!")
   end
+  
+  def isse_day_one(sender)
+    @sender_email = sender 
+    
+    mail(from: "isse@capstory.me", reply_to: "isse@capstory.me", to: @sender_email, subject: "Good Morning!")
+  end
+  
+  def isse_day_two(sender)
+    @sender_email = sender 
+    
+    mail(from: "isse@capstory.me", reply_to: "isse@capstory.me", to: @sender_email, subject: "Good Morning!")
+  end
+  
+  def isse_day_three(sender)
+    @sender_email = sender 
+    
+    mail(from: "isse@capstory.me", reply_to: "isse@capstory.me", to: @sender_email, subject: "Good Morning!")
+  end
 end

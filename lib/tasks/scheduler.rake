@@ -25,3 +25,30 @@ task :day_two_reminder => :environment do
     end
   end
 end
+
+desc "ISSE Post Day 1 SMS"
+task :isse_day_one => :environment do
+  capsule = Capsule.find_by_email("isse@capstory.me")
+  senders = capsule.posts.pluck(:email).compact.uniq
+  senders.each do |sender|
+    PostMailer.isse_day_one(sender).deliver
+  end
+end
+
+desc "ISSE Post Day 2 SMS"
+task :isse_day_two => :environment do
+  capsule = Capsule.find_by_email("isse@capstory.me")
+  senders = capsule.posts.pluck(:email).compact.uniq
+  senders.each do |sender|
+    PostMailer.isse_day_two(sender).deliver
+  end
+end
+
+desc "ISSE Post Day 3 SMS"
+task :isse_day_three => :environment do
+  capsule = Capsule.find_by_email("isse@capstory.me")
+  senders = capsule.posts.pluck(:email).compact.uniq
+  senders.each do |sender|
+    PostMailer.isse_day_three(sender).deliver
+  end
+end
