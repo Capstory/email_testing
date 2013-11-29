@@ -28,6 +28,7 @@ class CapsulesController < ApplicationController
   
   def show
     @capsule = Capsule.find(params[:id])
+    @post = Post.new
   end
   
   def reload
