@@ -44,7 +44,7 @@
 				  <% end %>
 					<%= f.hidden_field :capsule_id, value: @capsule.id %>
 
-				 	<%= f.filepicker_field :filepicker_url, multiple: false, services: "COMPUTER, DROPBOX, FACEBOOK, FLICKR, INSTAGRAM", onchange: 'onImageUpload()', button_text: "Upload A Photo", class: 'button tiny pick_file' %>
+				 	<%= f.filepicker_field :filepicker_url, multiple: true, services: "COMPUTER, DROPBOX, FACEBOOK, FLICKR, INSTAGRAM", onchange: 'onImageUpload()', button_text: "Upload A Photo", class: 'button tiny pick_file' %>
 				
 					<div id="after_filepicker_upload" class="alert-box success" style="display:none;">
 						<p class='subheader'>Image processing finished. Click the button to complete the upload.</p>

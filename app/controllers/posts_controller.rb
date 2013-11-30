@@ -35,11 +35,21 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.create do |post|
-      post.filepicker_url = params[:post][:filepicker_url]
-      post.capsule_id = params[:post][:capsule_id]
-      post.image = URI.parse(post.filepicker_url)
-    end 
+    filepicker_urls = params[:post][:filepicker_url]
+    if filepicker_urls.include?(",")
+      filepicker_array = filepicker_urls.split(",")
+      filepicker_array.each { |url| url.strip! }
+    else
+      filepicker_array = []
+      filepicker_array << filepicker_urls 
+    end
+    filepicker_array.each do |url|
+      @post = Post.create do |post|
+        post.filepicker_url = url
+        post.capsule_id = params[:post][:capsule_id]
+        post.image = URI.parse(post.filepicker_url)
+      end 
+    end
     if @post.save
       flash[:success] = "Photo successfully uploaded"
       redirect_to @post.capsule
