@@ -24,18 +24,29 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
   gem 'zurb-foundation'
+  
+  # foundation-rails is Foundation version 5. However, I had problems implementing the new version. It would not deploy properly.
+  # Thus, I will need to revisit it sometime in the near future.
   # gem 'foundation-rails'
   
   gem 'jquery-ui-rails'
 end
 
+gem 'font-awesome-rails'
 gem 'friendly_id'
+
+# private_pub is a websockets gem created by Ryan Bates. While I think it is a great idea, 
+# I couldn't get if functioning with our current set up. Thus, I have excluded it. 
+# However, I may consider revisiting it in the future.
 # gem 'private_pub'
+
 gem 'jquery-rails'
+
+# colorbox-rails is deprecated. Now using fancybox2-rails for lightboxes in Capsules.
 # gem 'colorbox-rails'
 gem 'fancybox2-rails'
 gem 'filepicker-rails'
-# removed gem 'griddler' until more certain of the direction to take with fetching emails
+
 gem 'rmagick'
 gem 'paperclip'
 gem 'aws-sdk'

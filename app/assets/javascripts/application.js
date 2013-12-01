@@ -95,5 +95,10 @@ $(function(){
     $(this).next("small").toggle('slow');
   });
   
-
+  // $("#show_capsule_controls").click(function(){
+  //   $(".capsule_controls").toggle('slow');
+  //   return false;
+  // });
+  
+  
 });

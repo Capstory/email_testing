@@ -1,24 +1,35 @@
-
+<% if current_user && (current_user.admin? || capsule_owner(current_user.id, @capsule.id)) %>
+	<div class="row">
+		<div class="small-3 small-offset-9 columns">
+			<%= link_to fa_icon("ellipsis-v lg", text: "Slideshow"), "#", class: "dropdown", data: { dropdown: "drop" } %>
+			<ul id="drop" data-dropdown-content class="f-dropdown">
+				<li><%= link_to fa_icon("picture-o", text: "Start Slideshow"), slideshow_path(capsule_id: @capsule.id) %></li>
+				<% if current_user.admin? %>
+					<li><%= link_to fa_icon("edit", text: "Edit Capsule"), edit_capsule_path(@capsule) %></li>
+					<li><%= link_to fa_icon("user", text: "Add a Key Contributor"), new_contributor_path(capsule_id: @capsule.id) %></li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+	<div class="row capsule_controls">
+		
+		<div class="small-9 columns panel">
+			<ul class="inline-list">	
+				<li><%= link_to "Start Slideshow", slideshow_path(capsule_id: @capsule.id), class: 'button small' %></li>
+				<% if current_user.admin? %>
+					<li><%= link_to "Edit Capsule", edit_capsule_path(@capsule), class: 'button small' %></li>
+					<li><%= link_to "Add a Key Contributor", new_contributor_path(capsule_id: @capsule.id), class: 'button small' %></li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+<% end %>
 <div class="row">
 	<div class="small-5 columns">
-		<% if current_user && (current_user.admin? || capsule_owner(current_user.id, @capsule.id)) %>
-
-			<%= link_to "Start Slideshow", slideshow_path(capsule_id: @capsule.id), class: 'button small' %>
-
-		<% end %>
 		<% the_date = @capsule.event_date ? @capsule.event_date.to_s(:long) : "Not Available" %>
-		<h4 class="subheader"><%= @capsule.name %> <br><small>Event Date: <%= @capsule.event_date.nil? ? "Not Available" : the_date %></small></h4>
+		<h5 class="subheader"><%= @capsule.name %> <br><small>Event Date: <%= @capsule.event_date.nil? ? "Not Available" : the_date %></small></h5>
 	</div>
-	<div class="small-7 columns">
-		<% if current_user && current_user.admin? %>
-			<ul class="inline-list">
-				<% button_classes = @capsule.email.blank? ? 'button small disabled' : 'button small' %>				
-
-				<li><%= link_to "Edit Capsule", edit_capsule_path(@capsule), class: 'button small' %></li>
-				<li><%= link_to "Add a Key Contributor", new_contributor_path(capsule_id: @capsule.id), class: 'button small' %></li>
-			</ul>	
-		<% end %>
-	</div>
+	
 </div>
 
 
@@ -27,7 +38,7 @@
 		<div class="row">
 			<div class="small-2 columns">
 				<h6 class="subheader">Pictures</h6>
-
+				
 			</div>
 			<div class="small-10 columns">
 				<%= form_for(@post) do |f| %>
@@ -45,12 +56,11 @@
 					<%= f.hidden_field :capsule_id, value: @capsule.id %>
 
 				 	<%= f.filepicker_field :filepicker_url, multiple: true, services: "COMPUTER, DROPBOX, FACEBOOK, FLICKR, INSTAGRAM", onchange: 'onImageUpload()', button_text: "Upload A Photo", class: 'button tiny pick_file' %>
-				
-					<div id="after_filepicker_upload" class="alert-box success" style="display:none;">
-						<p class='subheader'>Image processing finished. Click the button to complete the upload.</p>
-						<%= f.submit "Upload", class: 'button' %>
-					</div>
 
+					<!-- <div id="after_filepicker_upload" class="alert-box success" style="display:none;">
+						<p class='subheader'>Image processing finished. Click the button to complete the upload.</p>
+					</div> -->
+					<%= f.submit "Upload", class: 'button', id: 'filepicker_submit_button', style: "display:none;" %>
 
 				<% end %>
 			</div>
@@ -74,4 +84,13 @@
 	</div> -->
 </div>
 
+
+<div id="filepicker_modal" class="reveal-modal small" data-reveal>
+	<div class="small-3 small-centered columns">
+		<h4 class="subheader">Processing...</h4>
+		<p class="subheader">thank you for your patience</p>
+		<br>
+		<%= fa_icon "spinner 4x spin" %>
+	</div>
+</div>
 
