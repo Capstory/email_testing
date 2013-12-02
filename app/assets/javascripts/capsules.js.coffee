@@ -3,5 +3,6 @@ window.onImageUpload = ->
   $("#filepicker_modal").foundation('reveal', 'open', {
     closeOnBackgroundClick: false
   })
+  PostPoller.clear(PostPoller.poll_timer)
   $("#filepicker_submit_button").click()
 
