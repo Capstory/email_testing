@@ -13,27 +13,15 @@
   	<!-- Set the viewport width to device width for mobile -->
   	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  	<title><%= content_for?(:title) ? yield(:title) : "Weddings @ Capstory || Collect Every Moment" %></title>
+  	<title><%= content_for?(:title) ? yield(:title) : "Capstory | In these moments, one lens is not enough." %></title>
 
   	<%= stylesheet_link_tag    "application" %>
   	<%= javascript_include_tag "vendor/custom.modernizr" %>
     <%= csrf_meta_tags %>
   </head>
 
-  <body>
-	<!-- 	<nav class="top-bar">
-		  <ul class="title-area">
-		    <li class="name">
-		      <h5 class="title-text"><span class="subheader"><%= link_to "Weddings", root_url %></span><br><%= link_to "@ Capstory", root_url %></h5>
-		    </li>
-		  </ul>
-		  <section class="top-bar-section">
-		    <ul class="right">
-					<li><%= link_to "Login", login_path %></li>
-		      <li><%= link_to "Contact Us" %></li>
-		    </ul>
-		  </div>
-		</nav> --> 
+  <body class="body-push business auto-close-menu">
+
     	<%= yield %>
 		
     

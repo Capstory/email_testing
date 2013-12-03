@@ -27,7 +27,7 @@
 <div class="row">
 	<div class="small-5 columns">
 		<% the_date = @capsule.event_date ? @capsule.event_date.to_s(:long) : "Not Available" %>
-		<h5 class="subheader"><%= @capsule.name %> <br><small>Event Date: <%= @capsule.event_date.nil? ? "Not Available" : the_date %></small></h5>
+		<h5 class="subheader" style="text-align:left;"><%= @capsule.name %> <br><small>Event Date: <%= @capsule.event_date.nil? ? "Not Available" : the_date %></small></h5>
 	</div>
 	
 </div>
@@ -36,11 +36,11 @@
 <div class="row">
 	<div class="small-12 columns">
 		<div class="row">
-			<div class="small-2 columns">
+			<!-- <div class="small-2 columns">
 				<h6 class="subheader">Pictures</h6>
 				
-			</div>
-			<div class="small-10 columns">
+			</div> -->
+			<div class="small-2 columns">
 				<%= form_for(@post) do |f| %>
 				  <% if @post.errors.any? %>
 				    <div id="error_explanation">

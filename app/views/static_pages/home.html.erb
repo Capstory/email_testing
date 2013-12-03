@@ -1,56 +1,235 @@
-<div class="imgLiquidFill imgLiquid" style="height:850px;" id="mainPhoto">
-	<%= image_tag "bg.png" %>
-</div>
-<div class="row" id="imgFillBody">
-	<div class="small-8 small-centered columns">
-		<span id="logo">
-			<%= link_to image_tag("logo.png", width: '650px', height: '60px'), root_url %>
-		</span>
-	</div>
-</div>
-<div class="row">		
-	<div class="small-10 small-centered columns" id="requestInvite">
-		<div class="row">
-			<div class="small-8 columns">
-				<h2>
-					In these moments, one lens is not enough<br>
-					<span class="subheader">Request an Invitation</span>
-				</h2>
-			</div>
-			<div class="small-4 columns" id="requestButton">
-				<button class="button large" data-reveal-id="requestInviteModal">Request</button>
-			</div>
-		</div>
-		<div class="row">
-			<h5>If you already have an account, click here to <%= link_to "Login", login_path %></h5>
-		</div>
-	</div>
-</div>
-<div class="row">
-	<!-- <div class="small-4 small-offset-8 columns">
-		<div id="requestInvite">
-			<h1 class="subheader">Request an Invitation</h1>
-			<%= link_to "Reserve Your Wedding Day", "#",class: 'button' %>
-		</div>
-	</div> --> 
-</div>
 
-
-<div id="requestInviteModal" class="reveal-modal small">
-	<div class="small-8 small-centered columns">
-		  <%= form_for(@access_request) do |f| %>
-				<h2>Invitation Request Form</h2>
-        <span class="subheader"> We'll be in touch soon</span>
+	<!-- Menu -->
+	<nav class="menu-left" id="theMenu">
+		<div class="menu-wrap">
+			<h1 class="logo"><a href="#home">Capstory</a></h1>
+			<i class="icon-remove menu-close-left"></i>
+			<a href="#home">Home</a>
+			<a href="#services">Features</a>
+			<a href="#process">Process</a>
+			<a href="#partners">Partners</a>
+			<a href="#contact">Contact</a>
+			<a href="#"><%= fa_icon "facebook" %></a>
+			<a href="#"><%= fa_icon "twitter" %></a>
+			<a href="#"><%= fa_icon "envelope" %></a>
+		</div>
+		
+		<!-- Menu button -->
+    <div id="menutog"><div id="menuToggleLeft"><%= image_tag("logo.png") %></div><a class="login-window" href="#login-box"><button>Request Your Invitation</button></a><button>LOG IN</button></div>
+	</nav>
+	<!-- Fullscreen slider -->
+	<div id="home"></div>
+        
+	<div id="slides">
+		<ul class="slides-container">
+			<li>
+				<!-- Slide -->
+				<div style="background-image: url('images/slider1.jpg');" class="fullscreen-image"></div>
+				<div class="header-center fade-in">
+					<h1 class="fittext white">In these moments, one lens is not enough.</h1>
+					<p class="uppercase white">Whether it’s 5 or 500 contributors, you’ll love every captured moment</p>
+					<p><a href="#login-box" class="button dark-bg login-window">Reserve your wedding date</a></p>
+				</div>
+			</li>
+			<li>
+				<!-- Slide -->
+				<div style="background-image: url('images/slider2.jpg');" class="fullscreen-image"></div>
+				<div class="header-center fade-in">
+					<h1 class="fittext white">Professional Editing</h1>
+					<p class="uppercase white">The best images are selected and post-processed for stunning results</p>
+					<p><a href="#login-box" class="button dark-bg login-window">Reserve your wedding date</a></p>
+				</div>
+			</li>
+			<li>
+				<!-- Slide -->
+				<div style="background-image: url('images/slider3.jpg');" class="fullscreen-image"></div>
+				<div class="header-center fade-in">
+					<h1 class="fittext white">YOU’RE IN CONTROL.</h1>
+					<p class="uppercase white">It’s your private capsule. Share, delete, and print images as you wish</p>
 					
-				<%= f.text_field :name, class: '', placeholder: 'Your Name' %>
-		
-				<%= f.text_field :email, class: '', placeholder: 'Your Email' %>
+						<p><a href="#login-box" class="button dark-bg login-window">Reserve your wedding date</a></p>
 				
-				<%= f.text_field :event_date, class: '', placeholder: 'Choose a Date' %>
-		
-				<%= f.submit "Send Request", class: 'button' %>
-			<% end %>
+				</div>
+			</li>
+		</ul>
+		<nav class="slides-navigation">
+			<a href="#" class="prev"><%= fa_icon "long-arrow-left" %></a>
+			<a href="#" class="next"><%= fa_icon "long-arrow-right" %></a>
+		</nav>
 	</div>
-  <a class="close-reveal-modal">&#215;</a>
+
+	<!-- Services -->
+	<section id="services" class="services">
+		
+	<div class="home_row">
+			<div class="ten columns offset-by-one title">
+				<h2>Capstory is the essential companion to your wedding photography package.</h2>
+				<br><h3> Guests capture images and video - we manage everything else. </h3>
+        <hr>
+        <img src="images/arrow-down.png">
+       </div>
+            
+		</div>
+ 
+		</section>
+	<!-- Process -->
+	<section id="process" class="process">
+		
+		<!-- Title -->
+		<div class="home_row">
+			<div class="ten columns offset-by-one title" style="width:857px">
+				<h2>Here’s what our services include</h2>
+				<hr>
+			</div>
+		</div>
+		
+		<!-- Process steps -->
+	<div class="home_row" style="width:1216px;">
+		
+			<!-- Process step -->
+			<div class="desktop-three columns tablet-six columns mobile-six columns">
+				<%= fa_icon "instagram", class: "process-icon" %>
+
+				<h3>Instagram Import</h3>
+				<p>Integration with Instagram to pull in your wedding hashtag.</p>
+			</div>
+			  <div class="desktop-three columns tablet-six columns mobile-six columns">
+				<%= fa_icon "play", class: "process-icon" %>
+				<h3>Pro Slideshow</h3>
+				<p>A professionally designed slideshow using media from your capsule.</p>
+			</div>
+			<div class="desktop-three columns tablet-six columns mobile-six columns">
+				<%= fa_icon "book", class: "process-icon" %>
+				<h3>Keepsake Book</h3>
+				<p>Two customized wedding keepsake books with all your favorite wedding images - shipping included.</p>
+			</div>
+			
+			<!-- Process step -->
+			<div class="desktop-three columns tablet-six columns mobile-six columns">
+				<%= fa_icon "picture-o", class: "process-icon" %>
+				<h3>Professional Editing</h3>
+				<p>The best images are selected and post-processed for stunning results.</p>
+			</div>
+          
+      <div class="desktop-three columns tablet-six columns mobile-six columns">
+				<%= fa_icon "th-list", class: "process-icon" %>
+				<h3>Multiple Capsules available</h3>
+				<p>Have private capsules for your gown fitting, bachlorette party or anything else before or after your wedding.</p>
+			</div>
+		</div>
+	</section>
+
+
+	<!-- Call to Action -->
+	<section class="introduction">
+		<div class="home_row">
+			<div class="twelve columns">
+				<h3>Now accepting reservations on an ongoing basis.</h3>
+				<p>
+					<a href="#login-box" class="button dark-bg login-window">Reserve your wedding date</a>
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Quotes -->
+	<section class="quote">
+		<div class="home_row">
+			<h2 class="color">In partnership with</h2>
+            <p>
+      <div class="three columns offset-by-one">
+				<img src="images/partners/engage13.png" alt="Engage13!">
+			</div>
+      <div class="three columns offset-by-one">
+         <img src="images/partners/toss_the_bouquet.png" alt="Toss The Bouquet">	
+			</div>
+      <div class="three columns offset-by-one">
+      	<img src="images/partners/isse.png" alt="ISSE">	
+			</div>
+		</div>
+	</section>
+
+
+	<!-- Contact -->
+	<section id="contact" class="contact">
+		<div class="header-inherited" style="background-image: url('images/contact.jpg'); align="bottom" ">
+			<div class="home_row">
+				<div class="eight columns offset-by-two">
+					<div id="contact-slider">
+						<ul>
+							<li>
+								<!-- Contact details -->
+								<!-- Add a data-rel='2' to the link below for the javascript action to kick in and show the contact form. -->
+								<h2><a href="#" class="contactLink">Send a message <%= fa_icon "long-arrow-right" %></a></h2>
+								
+								<a href="https://facebook.com/Capstory"><%= fa_icon "facebook", class: 'medium-icon white-border' %></a>
+								<a href="https://twitter.com/Capstory"><%= fa_icon "twitter", class: 'medium-icon white-border' %></a>
+								<a href="mailto:hello@capstory.me"><%= fa_icon "envelope", class: 'medium-icon white-border' %></a>
+							</li>
+							<li>
+								<!-- Contact form -->
+								<form class="contact-form" novalidate id="contactForm">
+									<div class="form-column">
+										<input type="text" id="contactName" name="name" placeholder="Name" class="text">
+										<input type="email" id="contactEmail" name="email" placeholder="E-Mail" class="email">
+										<input type="text" id="contactPhone" name="phonenumber" placeholder="Phone" class="text">
+									</div>
+									<div class="form-column">
+										<textarea id="contactMessage" placeholder="Message" name="message" class="textarea"></textarea>
+									</div>
+									<button class="button white-border">Send message</button>
+								</form>
+								<br class="clear">
+								<p class="script no-margin-top"><a data-rel="1" href="#" class="contactLink"><%= fa_icon "long-arrow-left" %> Return to contact details</a></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div id="modalOverlay" class="modal-overlay hide"></div>
+	<div id="modal" class="modal hide">
+		<h1 id="modalTitle">Thanks!</h1>
+		<p id="modalContent">We'll be in touch soon.</p>
+		<p id="modalClose" class="modal-close">(Close)</p>
+	</div>
+
+	<div id="loader">
+		<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABNVJREFUeNrcWt1x4jAQVjx5j1PBkQrCVRCnAqACoAJgknfgnRmgAisVYCrAqSBOBfgqOKeCOznz7bFZZGN+7dzO7CRYtrzf/mm18tXT05M6EbmGPcN1w/fst6TIcGL4Ff+H+H0QTSaTz7/OCQB0DC8M/zY8NHxjeGl4bPjW8JXggeE5nu3huQXmOZiuj9B+H4LEECwVsAaL1MDcIiHuDfE7YHM1MdcUc832tdIhFkkBrA0/GNZwjyGuDeFWkm4w9gYL+MwCCeb5abiFedf7Wmgfi9QhgAvhSesBBIiExers7wdiYonxHxkWCMEe3tXG3MmpLJJqZ8WES6lr+A4uFWFsyrQ+hbCcUms1MF8NrtaDBUbCDX9ifI25j7bICG5BGWfA/JxA9iCYtoznWdiD1ut4RwMKoszWhSVXmFcfCoT78lhojcxPY3rPWIvAM8w1xF8ptGayqKz3XO+wRAeaaQktTzE2hiDHkowNKbRm741EPOYC6UBDKYhH9qALjSnmw6ckio08MCvEZrIr2Clos0BEZwKhWDpuQXAfa4xiYAIsoDuzFmkiC0RXXYa6YB+JhIgW3k4ekD4sMhB+uLgwCG4BzZSrWDabsqXgCxAXcRGIzDDC2ECVQ2NYoCliKYLit4D0mUl5vAxxLSkJSAIwUwvAng1ID+VCItLs2JbuSnAxJeLiswh9fn7ucCB0w0wsePUTrROncrG2uDZHNaCusLFasCDiAf4uVvMyyUXdxVO/i7ru1mH7gbl4qHlA2XHuWAlF0NM1z4ELxSIOmshesaoWLbFf4ZQWlXUHcSCr1QfcUDWKLCV9eu3BgdDvYtCrQKbKAlKzuJzrsBs41QruKcqgmFtlMpmE5FqeiIV6iYtfUSBuVtEYi4wVqW9GjvpP6DsCqXHXNyWKmwUksWSGqgGJREyHDi56O1JcVcizLNKfycmhPJyX4ipEtsU77ZW9O7TEF1hBq0C2iuNz8SbXstUvjQrGBtWA3EI1ihHqJ3H3CizXyqYO5ErEZjAwq/u/GAlEeUzVcLNCe5FexlZjydPvUm03nF/UpudbNvXV5nTrS4/BWENzIFptH8zY9sllZaqh6OJsWcgR+19pgQGuuSW6lG9pgPiyx8CBzNSm1c+DPi7Rxah1OxJB3wS4xAYkgQV8YYEuHr60i/lQbEu4GXXkZ3lFo4YFpiKDUQ/WvzCIR6b19PeKKXdn9duC6TrCxcgyizPGTJpw3nJAUOs2KgKEjhOmAowGmCZe5p0hxb6pzRlJwkoQApF5MubkbPIpXmxg6JhhdQJA6fxrpNOWSLMjBkKrnGZh3tGbZpmD/9YA6gMEdVxe1KZLXqQcp9Pd2KJpD++lwnWsdnQ8dx2GktArFJYDmJxOrUZqc6LbVl9Pf1MBf4nKlc7daZV+FMA9zEHH4JRJ9S7NFDmeTl90hyB/g2uFzPQz9fVzjhB9MlckhTlTQiJSapvVdTHGKVsWaoQU3bNTAhgDEI8NWrBuIawLtxjCCjdMYA+gfczxh2XBgG3o5rB44W7Ovs0HDeu8Mgt1mOYpGdxCkBT4h2Wed4zRPXXM84r59z7KOOTrILLACC9vQMOh2nyDRV3ymLmhyzZC92rzxUMAC+hjUt/1kalTg/lHZz0mtKSQ7UDH6siPzjj9FWAA4gh/kLD8SJ0AAAAASUVORK5CYII=" alt="loader">
+	</div>
+
+	<!-- Credits and back to top button -->
+	<div class="contact-bottom">
+		<p class="credit">Capstory&trade; 2013 - All Rights Reserved.</p>
+		<a href="#home" class="back-to-top"><%= fa_icon "angle-up" %></a>
+	</div>
+	<!-- The end -->
+
+
+
+<div class="login-popup" id="login-box" style="display: none; margin-top: -113px; margin-left: -130px;">
+  <a class="close" href="#"><img alt="Close" title="Close Window" class="btn_close" src="images/close_pop.png"></a>
+	<%= form_for @access_request, html: { class: 'signin' } do |f| %>
+	<div class="textbox">
+		<div class="username">
+			<span>Name</span>
+			<%= f.text_field :name %>
+		</div>
+		<div class="username">
+			<span>Email</span>
+			<%= f.text_field :email %>
+		</div>
+		<div class="Date">
+			<span>Date of Wedding</span>
+			<%= f.text_field :event_date, class: 'date-pick' %>
+		</div>
+	
+		<%= f.submit "Send", class: 'button' %>
+		<span>We'll send you more information soon!</span>
+		</div>
+	<% end %>
+
 </div>
 

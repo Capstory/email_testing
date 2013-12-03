@@ -13,14 +13,17 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require_tree ./lib
 //= require masonry.pkgd.min
 //= require jquery.cycle.all
 //= require jquery.localscroll
 //= require jquery.maximage
 //= require jquery.scrollto
 //= require jquery.fullscreen
+//= require date
 //= require jquery.ui.datepicker
 //= require fancybox
+//= require main
 //= require_tree .
 
 $(function(){ 
@@ -45,6 +48,7 @@ $(function(){
   
   $("#enterFullScreen").click(function(){
     $("#maximage").fullscreen();
+    return false;
   });
   
   //   $("#start_jobs").click(function(){
@@ -100,5 +104,34 @@ $(function(){
   //   return false;
   // });
   
-  
+  $('a.login-window').click(function() {
+		
+		// Getting the variable's value from a link 
+		var loginBox = $(this).attr('href');
+
+		//Fade in the Popup and add close button
+		$(loginBox).fadeIn(300);
+		
+		//Set the center alignment padding + border
+		var popMargTop = ($(loginBox).height() + 24) / 2; 
+		var popMargLeft = ($(loginBox).width() + 24) / 2; 
+		
+		$(loginBox).css({ 
+			'margin-top' : -popMargTop,
+			'margin-left' : -popMargLeft
+		});
+		
+		// Add the mask to body
+		$('body').append('<div id="mask"></div>');
+		$('#mask').fadeIn(300);
+		
+		return false;
+	});
+	
+	// When clicking on the button close or the mask layer the popup closed
+	$('a.close, #mask').on('click', function() { 
+	  $('#mask , .login-popup').fadeOut(300);
+	  $("div").remove("#mask"); 
+		return false;
+		});
 });
