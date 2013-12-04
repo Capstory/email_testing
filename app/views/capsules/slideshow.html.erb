@@ -2,7 +2,7 @@
 	<div id="maximage">
 		<% @capsule.posts.each do |post| %>
 
-				<%= image_tag post.image.url %>
+				<%= image_tag post.image.url(:medium) %>
 
 		<% end %>
 	</div>
