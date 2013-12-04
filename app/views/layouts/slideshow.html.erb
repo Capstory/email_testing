@@ -22,11 +22,14 @@
   </head>
 
   <body>
-		<%= link_to "Back to Capsule", @capsule, class: 'button' %>
-		<a href="#" id="enterFullScreen" class="button">Full Screen</a>
+
 		<div class="row">
-			<div class="small-12 small-centered columns">
-    		<%= yield %>
+			<div class="small-7 small-centered columns">
+				<%= link_to "Back to Capsule", @capsule, class: 'button' %>
+				<a href="#" id="enterFullScreen" class="button">Full Screen</a>
+				<div id="maximage_container">
+		   		<%= yield %>
+				</div>
 			</div>
 		</div>
     

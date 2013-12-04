@@ -44,7 +44,10 @@ $(function(){
   });
   
   
-  $("#maximage").maximage();
+  $("#maximage").maximage({
+      fillElement: "#maximage_container",
+      backgroundSize: 'contain'
+    });
   
   $("#enterFullScreen").click(function(){
     $("#maximage").fullscreen();

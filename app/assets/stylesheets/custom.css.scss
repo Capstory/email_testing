@@ -105,3 +105,13 @@ div.mc-image {
 .mc-old-browser .mc-image {
 	overflow:hidden;
 }
+
+#maximage_container {
+	height: 500px;
+	overflow: hidden;
+	width: 500px;
+}
+
+#maximage {
+	position: relative !important;
+}
