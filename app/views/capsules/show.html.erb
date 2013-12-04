@@ -29,7 +29,9 @@
 		<% the_date = @capsule.event_date ? @capsule.event_date.to_s(:long) : "Not Available" %>
 		<h5 class="subheader" style="text-align:left;"><%= @capsule.name %> <br><small>Event Date: <%= @capsule.event_date.nil? ? "Not Available" : the_date %></small></h5>
 	</div>
-	
+	<div class="small-7 columns">
+		<h3 style='text-align:left;'>Send Photos to: <%= link_to @capsule.email, "mailto:#{@capsule.email}" %></h3>
+	</div>
 </div>
 
 

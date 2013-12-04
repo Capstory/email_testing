@@ -53,6 +53,7 @@ $(function(){
     $("#maximage").fullscreen();
     return false;
   });
+
   
   //   $("#start_jobs").click(function(){
   //  interval = setInterval(intervalRun, 30000);
