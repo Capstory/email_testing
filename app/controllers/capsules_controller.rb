@@ -27,7 +27,7 @@ class CapsulesController < ApplicationController
   end
   
   def show
-    @capsule = Capsule.find(params[:id])
+    @capsule = Capsule.find(params[:id].to_s.downcase)
     @post = Post.new
   end
   
