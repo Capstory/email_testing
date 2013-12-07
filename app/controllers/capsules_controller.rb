@@ -9,7 +9,6 @@ class CapsulesController < ApplicationController
     @capsule = Capsule.find(params[:capsule_id])
     @slides = @capsule.posts.order("created_at DESC")
     
-    # render json: @slides
   end
 
   def create
