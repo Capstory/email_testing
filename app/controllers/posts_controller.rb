@@ -42,28 +42,10 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    filepicker_urls = params[:post][:filepicker_url]
-    if filepicker_urls.include?(",")
-      filepicker_array = filepicker_urls.split(",")
-      filepicker_array.each { |url| url.strip! }
-    else
-      filepicker_array = []
-      filepicker_array << filepicker_urls 
-    end
-    filepicker_array.each do |url|
-      @post = Post.create do |post|
-        post.filepicker_url = url
-        post.capsule_id = params[:post][:capsule_id]
-        post.image = URI.parse(post.filepicker_url)
-      end 
-    end
-    if @post.save
-      flash[:success] = "Photo successfully uploaded"
-      redirect_to @post.capsule
-    else
-      flash[:error] = "Unable to upload photo"
-      redirect_to @post.capsule
-    end
+    Resque.enqueue(FilepickerUpload, params[:post][:filepicker_url], params[:post][:capsule_id])
+
+    flash[:success] = "Photo successfully submitted. It may take a moment to upload."
+    redirect_to :back
   end
 
   # PUT /posts/1
