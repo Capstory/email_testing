@@ -1,8 +1,4 @@
 
-	<div id="maximage">
-		<% @capsule.posts.each do |post| %>
-
-				<%= image_tag post.image.url %>
-
-		<% end %>
-	</div>
+	<%= content_tag :div, id: "maximage", data: { url: slides_url(capsule_id: @capsule.id), id: @slides.first.id } do %>
+			<%= render partial: "posts/slide", collection: @slides  %>
+	<% end %>

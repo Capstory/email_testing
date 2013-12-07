@@ -22,6 +22,7 @@ EmailTesting::Application.routes.draw do
   match "signout" => "sessions#destroy"
   
   resources :posts
+  match "slides" => "posts#slides"
   
   match "retrieve_emails" => "email_retrievers#activate"
 

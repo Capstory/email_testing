@@ -7,6 +7,13 @@ class PostsController < ApplicationController
     
     respond_to :js
   end
+  
+  def slides
+    @capsule = Capsule.find(params[:capsule_id])
+    @slides = @capsule.posts.where('id > ?', params[:after].to_i)
+    
+    respond_to :js
+  end
 
   # GET /posts/1
   # GET /posts/1.json
