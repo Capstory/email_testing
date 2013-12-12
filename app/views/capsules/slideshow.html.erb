@@ -1,6 +1,6 @@
 
-<%= content_tag :div, id: "slideshow", style: 'height:500px;', data: { url: slides_url(capsule_id: @capsule.id), id: @capsule.posts.first.id } do %>
-	
+<%= content_tag :div, id: "slideshow", data: { url: slides_url(capsule_id: @capsule.id), id: @capsule.posts.first.id } do %>
+	<img />
 <% end %>
 
 <%= content_tag :div, id: 'loading_div', style: 'display:none;' do %>

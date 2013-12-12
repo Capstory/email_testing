@@ -30,23 +30,24 @@
 function slideshow_setup (){
   var slideshow_array = [];
   var counter = 0;
-  var slideshow_length = slideshow_array.length - 1;
+
   return {
     start_slideshow: function () {
-      $("#slideshow").css('background-image', 'url(' + slideshow_array[counter] + ')');
+      var slideshow_length = slideshow_array.length - 1;
+      $("#slideshow img").attr('src', slideshow_array[counter]);
       window.setInterval(function () {
         if (counter === 0) {
-          $("#slideshow").css('background-image', "url(" + slideshow_array[counter] + ")");
+          $("#slideshow img").attr('src', slideshow_array[counter]);
           counter += 1;
           $("#loading_div").css('background-image', "url(" + slideshow_array[counter] + ")");
         }
-        else if (counter === slideshow_length) {
-          $("#slideshow").css('background-image', "url(" + slideshow_array[counter] + ")");
+        else if (counter >= slideshow_length) {        
+          $("#slideshow img").attr('src', slideshow_array[counter]);
           counter = 0;
           $("#loading_div").css('background-image', "url(" + slideshow_array[counter] + ")");
         }
         else {
-          $("#slideshow").css('background-image', "url(" + slideshow_array[counter] + ")");
+          $("#slideshow img").attr('src', slideshow_array[counter]);
           counter += 1;
           $("#loading_div").css('background-image', "url(" + slideshow_array[counter] + ")");
         }
@@ -87,10 +88,10 @@ $(function(){
   //     backgroundSize: 'contain'
   //   });
   // 
-  // $("#enterFullScreen").click(function(){
-  //   $("#maximage").fullscreen();
-  //   return false;
-  // });
+  $("#enterFullScreen").click(function(){
+    $("#slideshow").fullscreen();
+    return false;
+  });
 
 
   
