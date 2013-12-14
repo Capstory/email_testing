@@ -69,9 +69,6 @@ $(function(){
   
   $(document).foundation(); 
   
-  $('.imgLiquidFill').imgLiquid({
-    verticalAlign: '80%'
-  });
   
   // Masonry Related JS
   var $container = $("#original_container");
@@ -83,18 +80,10 @@ $(function(){
   });
   
   
-  // $("#maximage").maximage({
-  //     fillElement: "#maximage_container",
-  //     backgroundSize: 'contain'
-  //   });
-  // 
   $("#enterFullScreen").click(function(){
     $("#slideshow").fullscreen();
     return false;
   });
-
-
-  
 
 	
 	$(".sub-nav dd").click(function(){
