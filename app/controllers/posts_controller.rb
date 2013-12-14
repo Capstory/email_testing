@@ -10,7 +10,12 @@ class PostsController < ApplicationController
   
   def slides
     @capsule = Capsule.find(params[:capsule_id])
-    @slides = @capsule.posts.where('id > ?', params[:after].to_i)
+    @slides = []
+    posts = @capsule.posts.where('id > ?', params[:after].to_i)
+    unless posts.empty?
+      posts.each { |post| @slides << post.image.url }
+      @id = posts.last.id
+    end
     
     respond_to :js
   end

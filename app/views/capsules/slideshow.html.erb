@@ -1,5 +1,5 @@
 
-<%= content_tag :div, id: "slideshow", data: { url: slides_url(capsule_id: @capsule.id), id: @capsule.posts.first.id } do %>
+<%= content_tag :div, id: "slideshow", data: { url: slides_url(capsule_id: @capsule.id), id: @capsule.posts.last.id } do %>
 	<img />
 <% end %>
 

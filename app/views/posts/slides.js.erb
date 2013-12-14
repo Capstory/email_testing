@@ -1,25 +1,8 @@
-// <% if @slides.empty? %>
-//   var data_id = $("#maximage").attr('data-id');
-//   var data_int = Math.floor(data_id);
-//   data_int = data_int + 1;
-//   var new_data_id = data_int.toString();
-//   $("#maximage").attr('data-id', new_data_id);
-//   var beginning_of_div = '<div class="mc-image " style="background-image: url(';
-//   var end_of_div = '); position: absolute; top: 0px; left: 0px; display: none; z-index: 86; opacity: 0; width: 500px; height: 500px;" data-href=""></div>';
-//   $("#maximage").prepend(beginning_of_div + end_of_div);
-//   
-//   $("#maximage").maximage({
-//       fillElement: "#maximage_container",
-//       backgroundSize: 'contain'
-//     });
-// <% else %>
-//   <% @slides.each do |slide| %>
-//     slide_url = slide.image.url
-//     beginning_of_div = '<div class="mc-image " style="background-image: url('
-//     end_of_div = '); position: absolute; top: 0px; left: 0px; display: none; z-index: 86; opacity: 0; width: 500px; height: 500px;" data-href=""></div>'
-//     element_to_add = beginning_of_div + slide_url + end_of_div
-//     $("#maximage").prepend(element_to_add);
-//     $("#maximage").attr('data-id', @slides.first.id.to_s);
-//   <% end %>
-// <% end %>
-// SlideshowPoller.poll()
+<% unless @slides.empty? %>
+  <% @slides.each do |url| %>
+    capsule_slideshow.add_new_element("<%= url %>");
+  <% end %>
+  capsule_slideshow.change_data_id("<%= @id %>");
+<% end %>
+
+SlideshowPoller.poll()

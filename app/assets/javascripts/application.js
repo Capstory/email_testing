@@ -29,10 +29,10 @@
 function slideshow_setup (){
   var slideshow_array = [];
   var counter = 0;
-
+  var slideshow_length;
   return {
     start_slideshow: function () {
-      var slideshow_length = slideshow_array.length - 1;
+      capsule_slideshow.set_slideshow_length();
       $("#slideshow img").attr('src', slideshow_array[counter]);
       window.setInterval(function () {
         if (counter === 0) {
@@ -55,9 +55,23 @@ function slideshow_setup (){
     stop_slideshow: function (slideshow_variable) {
       clearInterval(slideshow_variable);
     },
+    set_slideshow_length: function() {
+      slideshow_length = slideshow_array.length - 1;
+    },
     set_slideshow_array: function (array_of_slides) {
       slideshow_array = array_of_slides;
       capsule_slideshow.start_slideshow();
+    },
+    add_new_element: function (new_item) {
+      slideshow_array.unshift(new_item);
+      counter += 1;
+      capsule_slideshow.set_slideshow_length();
+    },
+    change_data_id: function (new_id) {
+      $("#slideshow").attr('data-id', new_id);
+    },
+    show_slideshow_array: function() {
+      alert(slideshow_array);
     }
   };
 };
