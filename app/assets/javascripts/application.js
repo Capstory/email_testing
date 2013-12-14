@@ -17,7 +17,6 @@
 //= require masonry.pkgd.min
 //= require jquery.cycle.all
 //= require jquery.localscroll
-//= require jquery.maximage
 //= require jquery.scrollto
 //= require jquery.fullscreen
 //= require date
