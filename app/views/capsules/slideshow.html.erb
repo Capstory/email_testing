@@ -1,4 +1,14 @@
 
-	<%= content_tag :div, id: "maximage", data: { url: slides_url(capsule_id: @capsule.id), id: @slides.first.id } do %>
-			<%= render partial: "posts/slide", collection: @slides  %>
+<%= content_tag :div, id: "slideshow", data: { url: slides_url(capsule_id: @capsule.id), id: @capsule.posts.first.id } do %>
+	<img />
+<% end %>
+
+<%= content_tag :div, id: 'loading_div', style: 'display:none;' do %>
+	
+<% end %>
+
+<div id="slides_array" style="display:none;">
+	<% @slides.each do |slide| %>
+		<line_item><%= slide %></line_item>
 	<% end %>
+</div>

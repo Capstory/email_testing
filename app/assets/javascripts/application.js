@@ -26,6 +26,45 @@
 //= require main
 //= require_tree .
 
+
+function slideshow_setup (){
+  var slideshow_array = [];
+  var counter = 0;
+
+  return {
+    start_slideshow: function () {
+      var slideshow_length = slideshow_array.length - 1;
+      $("#slideshow img").attr('src', slideshow_array[counter]);
+      window.setInterval(function () {
+        if (counter === 0) {
+          $("#slideshow img").attr('src', slideshow_array[counter]);
+          counter += 1;
+          $("#loading_div").css('background-image', "url(" + slideshow_array[counter] + ")");
+        }
+        else if (counter >= slideshow_length) {        
+          $("#slideshow img").attr('src', slideshow_array[counter]);
+          counter = 0;
+          $("#loading_div").css('background-image', "url(" + slideshow_array[counter] + ")");
+        }
+        else {
+          $("#slideshow img").attr('src', slideshow_array[counter]);
+          counter += 1;
+          $("#loading_div").css('background-image', "url(" + slideshow_array[counter] + ")");
+        }
+      }, 5000);
+    },
+    stop_slideshow: function (slideshow_variable) {
+      clearInterval(slideshow_variable);
+    },
+    set_slideshow_array: function (array_of_slides) {
+      slideshow_array = array_of_slides;
+      capsule_slideshow.start_slideshow();
+    }
+  };
+};
+
+var capsule_slideshow = slideshow_setup();
+
 $(function(){ 
   
   $(document).foundation(); 
@@ -44,37 +83,19 @@ $(function(){
   });
   
   
-  $("#maximage").maximage({
-      fillElement: "#maximage_container",
-      backgroundSize: 'contain'
-    });
-  
+  // $("#maximage").maximage({
+  //     fillElement: "#maximage_container",
+  //     backgroundSize: 'contain'
+  //   });
+  // 
   $("#enterFullScreen").click(function(){
-    $("#maximage").fullscreen();
+    $("#slideshow").fullscreen();
     return false;
   });
 
+
   
-  //   $("#start_jobs").click(function(){
-  //  interval = setInterval(intervalRun, 30000);
-  //  $("#start_jobs").hide();
-  //  $("#stop_jobs").show();
-  // });
-  // 
-  // $("#stop_jobs").click(function(){
-  //  clearInterval(interval);
-  //  $("#stop_jobs").hide();
-  //  $("#start_jobs").show();
-  // });
-  // 
-  // function intervalRun(){
-  //    $("#reload_button").click();
-  //    $("#get_emails_button").click();
-  //  }
-		
-  // $(document).bind('cbox_open', function(){
-  //   $("#cboxClose").hide();
-  // });
+
 	
 	$(".sub-nav dd").click(function(){
 	  var item_id = $(this).attr('id');

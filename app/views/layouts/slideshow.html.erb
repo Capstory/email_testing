@@ -23,18 +23,17 @@
 
   <body>
 		<div class="slideshow_empty"></div>
-			<h3>Send Photos to: <%= link_to @capsule.email, "mailto:#{@capsule.email}" %></h3>
-		<div class="slideshow_empty"></div>
-		<div class="row">
-			<div class="small-7 small-centered columns">
 
-				<div id="maximage_container">
-		   		<%= yield %>
-				</div>
+		<div class="row">
+			<div class="small-10 small-centered columns">
+
+		   	<%= yield %>
 				<div id="slideshow_buttons">
 					<%= link_to "Back to Capsule", @capsule, class: 'button' %>
 					<a href="#" id="enterFullScreen" class="button">Full Screen</a>
 				</div>
+				<h3>Send Photos to: <%= link_to @capsule.email, "mailto:#{@capsule.email}" %></h3>
+				<div class="slideshow_empty"></div>
 			</div>
 		</div>
     

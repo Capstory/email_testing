@@ -13,12 +13,17 @@
     setTimeout @request, 5000
   
   request: ->
-    data_id = $("#maximage").attr('data-id')
-    $.get($("#maximage").data('url'), after: data_id)
+    data_id = $("#slideshow").attr('data-id')
+    $.get($("#slideshow").data('url'), after: data_id)
+
 
 jQuery ->
   if $("#original_container").length > 0
     PostPoller.poll()
     
-  if $("#maximage").length > 0
+  if $("#slideshow").length > 0
+    url_array = []
+    $("line_item").each ->
+      url_array.push($(this).html())
+    capsule_slideshow.set_slideshow_array(url_array)
     SlideshowPoller.poll()

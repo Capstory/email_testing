@@ -7,7 +7,8 @@ class CapsulesController < ApplicationController
   
   def slideshow
     @capsule = Capsule.find(params[:capsule_id])
-    @slides = @capsule.posts.order("created_at DESC")
+    @slides = []
+    @capsule.posts.order("created_at DESC").each { |post| @slides << post.image.url }
     
   end
 
