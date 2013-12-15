@@ -36,17 +36,23 @@ function slideshow_setup (){
       $("#slideshow img").attr('src', slideshow_array[counter]);
       window.setInterval(function () {
         if (counter === 0) {
-          $("#slideshow img").attr('src', slideshow_array[counter]);
+          $("#slideshow img").fadeOut('slow', function(){
+            $(this).attr('src', slideshow_array[counter]).fadeIn('slow');
+          });
           counter += 1;
           $("#loading_div").css('background-image', "url(" + slideshow_array[counter] + ")");
         }
         else if (counter >= slideshow_length) {        
-          $("#slideshow img").attr('src', slideshow_array[counter]);
+          $("#slideshow img").fadeOut('slow', function(){
+            $(this).attr('src', slideshow_array[counter]).fadeIn('slow');
+          });
           counter = 0;
           $("#loading_div").css('background-image', "url(" + slideshow_array[counter] + ")");
         }
         else {
-          $("#slideshow img").attr('src', slideshow_array[counter]);
+          $("#slideshow img").fadeOut('slow', function(){
+            $(this).attr('src', slideshow_array[counter]).fadeIn('slow');
+          });
           counter += 1;
           $("#loading_div").css('background-image', "url(" + slideshow_array[counter] + ")");
         }

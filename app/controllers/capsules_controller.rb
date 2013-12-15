@@ -8,7 +8,13 @@ class CapsulesController < ApplicationController
   def slideshow
     @capsule = Capsule.find(params[:capsule_id])
     @slides = []
-    @capsule.posts.order("created_at DESC").each { |post| @slides << post.image.url }
+    @capsule.posts.order("created_at DESC").each do |post|
+      if post.body.nil? || post.body.upcase == "NO MESSAGE" 
+        @slides << post.image.url
+      else
+        next
+      end
+    end
     
   end
 
