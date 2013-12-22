@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  zencoder_url: MyString
+  post_id: 1
+
+two:
+  zencoder_url: MyString
+  post_id: 1

@@ -51,6 +51,7 @@ gem 'rmagick'
 gem 'paperclip'
 gem 'aws-sdk'
 gem 'mail'
+gem 'zencoder'
 
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'

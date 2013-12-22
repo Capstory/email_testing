@@ -7,6 +7,9 @@
 				<% if current_user.admin? %>
 					<li><%= link_to fa_icon("edit", text: "Edit Capsule"), edit_capsule_path(@capsule) %></li>
 					<li><%= link_to fa_icon("user", text: "Add a Key Contributor"), new_contributor_path(capsule_id: @capsule.id) %></li>
+					<% if Rails.env.development? %>
+						<li><%= link_to "Get Email", retrieve_emails_path %></li>
+					<% end %>
 				<% end %>
 			</ul>
 		</div>

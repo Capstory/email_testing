@@ -53,4 +53,6 @@ EmailTesting::Application.configure do
       :secret_access_key => 'T0xFkMIUfoaMnehIPJ+PfKjFuAtgywx0V1nKPuUW'
     }
   }
+  
+  Zencoder.api_key = "29c63ba7456d50ed3a0a36176cf59b0d"
 end
