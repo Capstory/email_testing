@@ -161,6 +161,10 @@ $(function(){
 		return false;
 	});
 	
+	$("#menutog button.redirect_to_login").click(function(){
+	  document.location.href = "/login";
+	});
+	
 	// When clicking on the button close or the mask layer the popup closed
 	$('a.close, #mask').on('click', function() { 
 	  $('#mask , .login-popup').fadeOut(300);

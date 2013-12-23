@@ -6,6 +6,8 @@
   <body>
     <h4><%= @access_request.name %> has requested access to Capstory.me</h4>
     <p>His or her email is <%= @access_request.email %></p>
+		<p>Event Date: <%= @access_request.event_date %></p>
+		<p>What is the nature of the request? <%= @access_request.nature_of_request %></p>
 		
 		<p>Go to the <%= link_to "Access Requests Admin Page", @url %> in order to validate their request.</p>
   </body>

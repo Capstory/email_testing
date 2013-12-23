@@ -1,5 +1,5 @@
 class AccessRequest < ActiveRecord::Base
-  attr_accessible :email, :event_address, :name, :event_date, :request_status
+  attr_accessible :email, :event_address, :name, :event_date, :request_status, :source
   
   validates_presence_of :name
   validates_uniqueness_of :email
@@ -26,6 +26,19 @@ class AccessRequest < ActiveRecord::Base
       true
     else
       false
+    end
+  end
+  
+  def nature_of_request
+    case self.source
+    when "bride"
+      return "Bride/Groom"
+    when "vendor"
+      return "Industry Professional"
+    when "other"
+      return "Other"
+    else
+      return "N/A"
     end
   end
   

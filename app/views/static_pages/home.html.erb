@@ -15,7 +15,7 @@
 		</div>
 		
 		<!-- Menu button -->
-    <div id="menutog"><div id="menuToggleLeft"><%= image_tag("logo.png") %></div><a class="login-window" href="#login-box"><button>Request Your Invitation</button></a><button>LOG IN</button></div>
+    <div id="menutog"><div id="menuToggleLeft"><%= image_tag("logo.png") %></div><a class="login-window" href="#login-box"><button>Request Your Invitation</button></a><button class="redirect_to_login">LOGIN</button></div>
 	</nav>
 	<!-- Fullscreen slider -->
 	<div id="home"></div>
@@ -26,9 +26,9 @@
 				<!-- Slide -->
 				<div style="background-image: url('images/slider1.jpg');" class="fullscreen-image"></div>
 				<div class="header-center fade-in">
-					<h1 class="fittext white">In these moments, one lens is not enough.</h1>
+					<h1 class="fittext white">In these moments, <br />one lens is not enough</h1>
 					<p class="uppercase white">Whether it’s 5 or 500 contributors, you’ll love every captured moment</p>
-					<p><a href="#login-box" class="button dark-bg login-window">Reserve your wedding date</a></p>
+					<p><a href="#login-box" class="button dark-bg login-window">Reserve your event date</a></p>
 				</div>
 			</li>
 			<li>
@@ -37,17 +37,17 @@
 				<div class="header-center fade-in">
 					<h1 class="fittext white">Professional Editing</h1>
 					<p class="uppercase white">The best images are selected and post-processed for stunning results</p>
-					<p><a href="#login-box" class="button dark-bg login-window">Reserve your wedding date</a></p>
+					<p><a href="#login-box" class="button dark-bg login-window">Reserve your event date</a></p>
 				</div>
 			</li>
 			<li>
 				<!-- Slide -->
 				<div style="background-image: url('images/slider3.jpg');" class="fullscreen-image"></div>
 				<div class="header-center fade-in">
-					<h1 class="fittext white">YOU’RE IN CONTROL.</h1>
-					<p class="uppercase white">It’s your private capsule. Share, delete, and print images as you wish</p>
+					<h1 class="fittext white">YOU’RE IN CONTROL</h1>
+					<p class="uppercase white">It’s your private capsule <br /> Share, delete, and print images as you wish</p>
 					
-						<p><a href="#login-box" class="button dark-bg login-window">Reserve your wedding date</a></p>
+						<p><a href="#login-box" class="button dark-bg login-window">Reserve your event date</a></p>
 				
 				</div>
 			</li>
@@ -63,8 +63,8 @@
 		
 	<div class="home_row">
 			<div class="ten columns offset-by-one title">
-				<h2>Capstory is the essential companion to your wedding photography package.</h2>
-				<br><h3> Guests capture images and video - we manage everything else. </h3>
+				<h2>Capstory is the essential companion to your wedding photography package</h2>
+				<br><h3> Guests capture images and video - we manage everything else </h3>
         <hr>
         <img src="images/arrow-down.png">
        </div>
@@ -90,32 +90,31 @@
 			<div class="desktop-three columns tablet-six columns mobile-six columns">
 				<%= fa_icon "instagram", class: "process-icon" %>
 
-				<h3>Instagram Import</h3>
-				<p>Integration with Instagram to pull in your wedding hashtag.</p>
+				<h3>Crowdsourced Images</h3>
+				<p>Integration with Instagram to pull in your wedding hashtag</p>
 			</div>
-			  <div class="desktop-three columns tablet-six columns mobile-six columns">
-				<%= fa_icon "play", class: "process-icon" %>
-				<h3>Pro Slideshow</h3>
-				<p>A professionally designed slideshow using media from your capsule.</p>
-			</div>
-			<div class="desktop-three columns tablet-six columns mobile-six columns">
-				<%= fa_icon "book", class: "process-icon" %>
-				<h3>Keepsake Book</h3>
-				<p>Two customized wedding keepsake books with all your favorite wedding images - shipping included.</p>
-			</div>
-			
 			<!-- Process step -->
 			<div class="desktop-three columns tablet-six columns mobile-six columns">
 				<%= fa_icon "picture-o", class: "process-icon" %>
 				<h3>Professional Editing</h3>
-				<p>The best images are selected and post-processed for stunning results.</p>
+				<p>The best images are selected and post-processed for stunning results</p>
 			</div>
-          
-      <div class="desktop-three columns tablet-six columns mobile-six columns">
+			<div class="desktop-three columns tablet-six columns mobile-six columns">
 				<%= fa_icon "th-list", class: "process-icon" %>
 				<h3>Multiple Capsules available</h3>
-				<p>Have private capsules for your gown fitting, bachlorette party or anything else before or after your wedding.</p>
+				<p>Have private capsules for your gown fitting, bachlorette party or anything else before or after your wedding</p>
 			</div>
+			 <div class="desktop-three columns tablet-six columns mobile-six columns">
+				<%= fa_icon "play", class: "process-icon" %>
+				<h3>Pro Slideshow</h3>
+				<p>A professionally designed slideshow using media from your capsule</p>
+			</div>
+			<div class="desktop-three columns tablet-six columns mobile-six columns">
+				<%= fa_icon "book", class: "process-icon" %>
+				<h3>Keepsake Book</h3>
+				<p>Two customized wedding keepsake books with all your favorite wedding images - shipping included</p>
+			</div>
+			
 		</div>
 	</section>
 
@@ -124,9 +123,9 @@
 	<section class="introduction">
 		<div class="home_row">
 			<div class="twelve columns">
-				<h3>Now accepting reservations on an ongoing basis.</h3>
+				<h3>Now accepting reservations on an ongoing basis</h3>
 				<p>
-					<a href="#login-box" class="button dark-bg login-window">Reserve your wedding date</a>
+					<a href="#login-box" class="button dark-bg login-window">Reserve your event date</a>
 				</p>
 			</div>
 		</div>
@@ -162,8 +161,8 @@
 								<!-- Add a data-rel='2' to the link below for the javascript action to kick in and show the contact form. -->
 								<!-- <h2><a href="#" class="contactLink">Send a message <%= fa_icon "long-arrow-right" %></a></h2> -->
 								
-								<a href="https://facebook.com/Capstory"><%= fa_icon "facebook", class: 'medium-icon white-border' %></a>
-								<a href="https://twitter.com/Capstory"><%= fa_icon "twitter", class: 'medium-icon white-border' %></a>
+								<a href="https://facebook.com/Capstory" target="_blank"><%= fa_icon "facebook", class: 'medium-icon white-border' %></a>
+								<a href="https://twitter.com/Capstory" target="_blank"><%= fa_icon "twitter", class: 'medium-icon white-border' %></a>
 								<a href="mailto:hello@capstory.me"><%= fa_icon "envelope", class: 'medium-icon white-border' %></a>
 							</li>
 							<li>
@@ -192,7 +191,7 @@
 	<div id="modalOverlay" class="modal-overlay hide"></div>
 	<div id="modal" class="modal hide">
 		<h1 id="modalTitle">Thanks!</h1>
-		<p id="modalContent">We'll be in touch soon.</p>
+		<p id="modalContent">We'll be in touch soon</p>
 		<p id="modalClose" class="modal-close">(Close)</p>
 	</div>
 
@@ -202,7 +201,7 @@
 
 	<!-- Credits and back to top button -->
 	<div class="contact-bottom">
-		<p class="credit">Capstory&trade; 2013 - All Rights Reserved.</p>
+		<p class="credit">Capstory&trade; 2013 - All Rights Reserved</p>
 		<a href="#home" class="back-to-top"><%= fa_icon "angle-up" %></a>
 	</div>
 	<!-- The end -->
@@ -222,8 +221,20 @@
 			<%= f.text_field :email %>
 		</div>
 		<div class="Date">
-			<span>Date of Wedding</span>
+			<span>Event Date</span>
 			<%= f.text_field :event_date, class: 'date-pick' %>
+		</div>
+		<div>
+			<span>Please let us know who you are</span>
+			<%= f.radio_button :source, "bride" %>
+			<span class="newover">Bride/Groom</span>
+			<br>
+			<%= f.radio_button :source, "vendor" %>
+			<span class="newover">Industry Professional</span>
+			<br>
+			<%= f.radio_button :source, "other" %>
+			<span class="newover">Other</span>
+			<br>
 		</div>
 	
 		<%= f.submit "Send", class: 'button' %>
