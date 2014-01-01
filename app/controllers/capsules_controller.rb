@@ -55,6 +55,7 @@ class CapsulesController < ApplicationController
     named_url = params[:capsule][:email].nil? ? nil : params[:capsule][:email].split("@").first
     @capsule.email = params[:capsule][:email]
     @capsule.named_url = named_url
+    @capsule.response_message = params[:capsule][:response_message]
     if @capsule.save
       flash[:success] = "Capsule Updated"
       redirect_to @capsule

@@ -1,6 +1,9 @@
 <%= form_for(@capsule) do |f| %>
-	<%= f.label "Enter an email address for this capsule" %>
+	<%= f.label :email, "Enter an email address for this capsule" %>
 	<%= f.text_field :email %>
+	
+	<%= f.label :response_message, "Enter a response message that will be sent out to anyone who sent in a photo" %>
+	<%= f.text_area :response_message %>
 	
 	<%= f.submit "Save", class: 'button' %>
 <% end %>

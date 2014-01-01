@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131222232652) do
+ActiveRecord::Schema.define(:version => 20140101185949) do
 
   create_table "access_requests", :force => true do |t|
     t.string   "name"
@@ -36,11 +36,12 @@ ActiveRecord::Schema.define(:version => 20131222232652) do
 
   create_table "capsules", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.string   "email"
     t.date     "event_date"
     t.string   "named_url"
+    t.text     "response_message"
   end
 
   create_table "encapsulations", :force => true do |t|
