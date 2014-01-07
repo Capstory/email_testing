@@ -17,7 +17,11 @@ EmailTesting::Application.routes.draw do
   resources :admins
   resources :contributors
   
-  match "auth/:provider/callback" => "sessions#create"
+  match "auth/facebook/callback" => "authorizations#create"
+  match "delete_facebook_auth" => "authorizations#delete"
+  match "facebook_photo_push" => "facebook_actions#photo_push"
+  
+  match "auth/identity/callback" => "sessions#create"
   match "auth/failure" => "sessions#failure"
   match "signout" => "sessions#destroy"
   

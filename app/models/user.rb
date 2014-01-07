@@ -9,6 +9,31 @@ class User < ActiveRecord::Base
     create(:name => hash[:info][:name])
   end
   
+  def facebook_authorized?
+    providers = self.authorizations.pluck(:provider)
+    providers.include?("facebook")
+  end
+  
+  def fb_provider
+    "facebook"
+  end
+  
+  def facebook_token
+    # May need to adapt the 'first' call at the end of the line below
+    # I don't think this would be an issue because you can't register multiple facebook accounts
+    # However, there is always the possible of an edge case bug creeping in
+    fb_auth = self.authorizations.where(provider: "facebook").first
+    return fb_auth.oauth_token
+  end
+  
+  def facebook
+    @facebook ||= Koala::Facebook::API.new(self.facebook_token)
+  end
+  
+  def fb_uid
+    self.authorizations.find_by_provider("facebook").uid
+  end
+  
   # def self.from_omniauth(auth)
   #     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
   #       user.provider = auth.provider

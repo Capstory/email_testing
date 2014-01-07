@@ -25,6 +25,9 @@
 //= require main
 //= require_tree .
 
+function facebook_modal_show (){
+  $("#facebook_photo_push_modal").foundation("reveal", "open");
+}
 
 function slideshow_setup (){
   var slideshow_array = [];
@@ -132,10 +135,6 @@ $(function(){
     $(this).next("small").toggle('slow');
   });
   
-  // $("#show_capsule_controls").click(function(){
-  //   $(".capsule_controls").toggle('slow');
-  //   return false;
-  // });
   
   $('a.login-window').click(function() {
 		
@@ -170,5 +169,10 @@ $(function(){
 	  $('#mask , .login-popup').fadeOut(300);
 	  $("div").remove("#mask"); 
 		return false;
-		});
+	});
+	
+	$("#facebook_modal_engage").click(function(e){
+	  e.preventDefault();
+	  facebook_modal_show();
+	});
 });

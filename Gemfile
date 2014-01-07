@@ -53,9 +53,14 @@ gem 'aws-sdk'
 gem 'mail'
 gem 'zencoder'
 
+# For authentication -> at present only identity is the only one used for login to site
+# Facebook gem is used to log in to FB for photo push
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-identity'
+
+# Koala is used to interact with Facebook for pushing photos
+gem 'koala'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'

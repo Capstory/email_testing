@@ -1,6 +1,17 @@
 <% if current_user && (current_user.admin? || capsule_owner(current_user.id, @capsule.id)) %>
 	<div class="row">
-		<div class="small-3 small-offset-9 columns">
+		<div class="small-2 small-offset-8 columns">
+			<%= link_to fa_icon("facebook-square lg", text: "Facebook"), "#", class: "dropdown", data: { dropdown: "facebook_drop" } %>
+			<ul id="facebook_drop" data-dropdown-content class="f-dropdown">
+				<% if current_user.facebook_authorized? %>
+					<li><%= link_to "Post Photos", "#", id: "facebook_modal_engage" %></li>
+					<li><%= link_to "Logout", delete_facebook_auth_path(provider: current_user.fb_provider, uid: current_user.fb_uid), id: "facebook_deconnect" %></li>
+				<% else %>
+					<li><%= link_to "Login", "/auth/facebook" %></li>
+				<% end %>
+			</ul>
+		</div>
+		<div class="small-2 columns">
 			<%= link_to fa_icon("ellipsis-v lg", text: "Slideshow"), "#", class: "dropdown", data: { dropdown: "drop" } %>
 			<ul id="drop" data-dropdown-content class="f-dropdown">
 				<li><%= link_to fa_icon("picture-o", text: "Start Slideshow"), slideshow_path(capsule_id: @capsule.id) %></li>
@@ -12,26 +23,15 @@
 			</ul>
 		</div>
 	</div>
-	<div class="row capsule_controls">
-		
-		<div class="small-9 columns panel">
-			<ul class="inline-list">	
-				<li><%= link_to "Start Slideshow", slideshow_path(capsule_id: @capsule.id), class: 'button small' %></li>
-				<% if current_user.admin? %>
-					<li><%= link_to "Edit Capsule", edit_capsule_path(@capsule), class: 'button small' %></li>
-					<li><%= link_to "Add a Key Contributor", new_contributor_path(capsule_id: @capsule.id), class: 'button small' %></li>
-				<% end %>
-			</ul>
-		</div>
-	</div>
 <% end %>
+
 <div class="row">
-	<div class="small-5 columns">
+	<div class="small-4 columns">
 		<% the_date = @capsule.event_date ? @capsule.event_date.to_s(:long) : "Not Available" %>
 		<h5 class="subheader" style="text-align:left;"><%= @capsule.name %> <br><small>Event Date: <%= @capsule.event_date.nil? ? "Not Available" : the_date %></small></h5>
 	</div>
-	<div class="small-7 columns">
-		<h3 style='text-align:left;'>Send Photos to: <br><%= link_to @capsule.email, "mailto:#{@capsule.email}" %></h3>
+	<div class="small-8 columns">
+		<h4 style='text-align:left;'>Send Photos to: <br><%= link_to @capsule.email, "mailto:#{@capsule.email}" %></h4>
 	</div>
 </div>
 
@@ -66,6 +66,7 @@
 					<%= f.submit "Upload", class: 'button', id: 'filepicker_submit_button', style: "display:none;" %>
 
 				<% end %>
+
 			</div>
 		</div>
 
@@ -97,3 +98,18 @@
 	</div>
 </div>
 
+<div id="facebook_photo_push_modal" class="reveal-modal large" data-reveal>
+	<div class="small-12 small-centered columns">
+		<%= form_tag facebook_photo_push_path do %>
+			<% @capsule.posts.each do |post| %>
+				<%= hidden_field_tag :user_id, current_user.id %>
+				<% if post.body.nil? || post.body.upcase == "NO MESSAGE" %>
+					<%= image_tag(post.image.url(:thumb)) %>
+					<%= check_box_tag "photos[#{post.id}]", post.image.url(:medium) %>
+				<% end %>
+			<% end %>
+			<%= submit_tag "Submit" %>
+		<% end %>
+		<a class="close-reveal-modal">&#215;</a>
+	</div>
+</div>
