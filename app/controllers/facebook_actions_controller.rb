@@ -1,12 +1,10 @@
 class FacebookActionsController < ApplicationController
   def photo_push
-    user = User.find(params[:user_id])
-    fb_client = user.facebook
-    params[:photos].each_value do |photo_url|
-       fb_client.put_picture(photo_url)
-    end
-    flash[:success] = "Photos Successfully Posted!"
-    redirect_to :back
+    raise params[:photos].to_yaml
+    # Resque.enqueue(FacebookPhotoPush, params[:user_id], params[:photos])
+    # 
+    #     flash[:success] = "Photos Processing. They should be posted to your Facebook page within a couple of seconds."
+    #     redirect_to :back
   end
   
 

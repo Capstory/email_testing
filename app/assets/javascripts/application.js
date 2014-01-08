@@ -174,5 +174,18 @@ $(function(){
 	$("#facebook_modal_engage").click(function(e){
 	  e.preventDefault();
 	  facebook_modal_show();
+	  $("#facebook_photo_push_modal input[type=checkbox]").hide();
+	});
+	
+	$("#facebook_push_submit").click(function(e){
+	  e.preventDefault();
+	  $("#facebook_modal_submit_button").click();
+	});
+	
+	$(".modal_img").click(function(){
+	  photo_id = $(this).attr('id');
+	  photo_id = "#photos_" + photo_id;
+	  $(photo_id).trigger('click');
+	  $(this).toggleClass("modal_highlight");
 	});
 });
