@@ -7,5 +7,4 @@ class FacebookActionsController < ApplicationController
     redirect_to :back
   end
   
-
 end

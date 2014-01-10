@@ -25,6 +25,7 @@ class AdminsController < ApplicationController
   
   def show
     @admin = Admin.find(params[:id])
+    redirect_to @admin.capsules.first
   end
   
   # I need to refactor all of these method below

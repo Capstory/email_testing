@@ -6,6 +6,7 @@ class ClientsController < ApplicationController
   
   def show
     @client = Client.find(params[:id])
+    redirect_to @client.capsules.first
   end
   
   def create

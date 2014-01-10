@@ -98,31 +98,33 @@
 	</div>
 </div>
 
-<div id="facebook_photo_push_modal" class="reveal-modal large" data-reveal>
-	<div class="row">
-		<div class="small-8 columns">
-			<p style="text-align:left;">
-				Click on all of the photos that you would like to post on Facebook. 
-				<br>
-				Then, press the submit button. 
-				</p>
+<% if current_user %>
+	<div id="facebook_photo_push_modal" class="reveal-modal large" data-reveal>
+		<div class="row">
+			<div class="small-8 columns">
+				<p style="text-align:left;">
+					Click on all of the photos that you would like to post on Facebook. 
+					<br>
+					Then, press the submit button. 
+					</p>
+			</div>
+			<div class="small-4 columns">
+				<button id="facebook_push_submit">Submit</button>
+				<a class="close-reveal-modal">&#215;</a>
+			</div>
 		</div>
-		<div class="small-4 columns">
-			<button id="facebook_push_submit">Submit</button>
-			<a class="close-reveal-modal">&#215;</a>
-		</div>
-	</div>
-	<div class="small-12 small-centered columns">
-		<%= form_tag facebook_photo_push_path do %>
-			<% @capsule.posts.each do |post| %>
-				<%= hidden_field_tag :user_id, current_user.id %>
-				<% if post.body.nil? || post.body.upcase == "NO MESSAGE" %>
-					<%= image_tag(post.image.url(:thumb), class: 'modal_img', id: post.id) %>
-					<%= check_box_tag "photos[#{post.id}]", post.image.url(:medium) %>
+		<div class="small-12 small-centered columns">
+			<%= form_tag facebook_photo_push_path do %>
+				<% @capsule.posts.each do |post| %>
+					<%= hidden_field_tag :user_id, current_user.id %>
+					<% if post.body.nil? || post.body.upcase == "NO MESSAGE" %>
+						<%= image_tag(post.image.url(:thumb), class: 'modal_img', id: post.id) %>
+						<%= check_box_tag "photos[#{post.id}]", post.image.url(:medium) %>
+					<% end %>
 				<% end %>
+				<%= submit_tag "Submit", id: "facebook_modal_submit_button", style: "display:none;" %>
 			<% end %>
-			<%= submit_tag "Submit", id: "facebook_modal_submit_button", style: "display:none;" %>
-		<% end %>
 
+		</div>
 	</div>
-</div>
+<% end %>
