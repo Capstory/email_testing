@@ -30,6 +30,7 @@ group :assets do
   # gem 'foundation-rails'
   
   gem 'jquery-ui-rails'
+  gem 'angularjs-rails'
 end
 
 gem 'font-awesome-rails'

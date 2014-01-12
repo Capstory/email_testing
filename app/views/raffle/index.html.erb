@@ -1,0 +1,20 @@
+<h1>Raffle</h1>
+
+<div ng-controller="RaffleCtrl">
+	<form ng-submit="addEntry()">
+		<input type="text" ng-model="newEntry.name">
+		<input type="submit" value="Add" class="button">
+	</form>
+	<button ng-click="drawWinner()">Draw Winner</button>
+
+	<p>
+		{{newEntry.name}}
+	</p>
+	
+	<ul>
+		<li ng-repeat="entry in entries">
+			{{entry.name}}
+			<span ng-show="entry.winner" ng-class="{lastWinner: entry == lastWinner}" class="winner">Winner</span>
+		</li>
+	</ul>
+</div>

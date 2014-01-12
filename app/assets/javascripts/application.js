@@ -23,6 +23,8 @@
 //= require jquery.ui.datepicker
 //= require fancybox
 //= require main
+//= require angular
+//= require angular-resource
 //= require_tree .
 
 function facebook_modal_show (){

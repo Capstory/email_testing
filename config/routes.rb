@@ -6,6 +6,11 @@ end
 
 EmailTesting::Application.routes.draw do
   
+  resources :entries
+
+
+  match "raffle" => "raffle#index"
+
   match "create_client" => "clients#create"
   match "create_admin" => "admins#create"
   match "create_contributor" => "contributors#create"

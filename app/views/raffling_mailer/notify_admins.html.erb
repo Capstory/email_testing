@@ -1,0 +1,7 @@
+<p>The following two people are the raffle winners</p>
+<p>Capsule: <%= @capsule_email %></p>
+<% @winners_array.each_with_index do |winner, index| %>
+	<p>Text Address of Winner #<%= index + 1 %>: <%= winner %></p>
+<% end %>
+<p>-----------------------------------</p>
+<p>This email is for an administrative record of the raffle winners</p>

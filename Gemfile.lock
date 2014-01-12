@@ -29,6 +29,7 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     addressable (2.3.5)
+    angularjs-rails (1.2.7)
     arel (3.0.3)
     aws-sdk (1.27.0)
       json (~> 1.4)
@@ -203,6 +204,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  angularjs-rails
   aws-sdk
   bcrypt-ruby (~> 3.0.0)
   coffee-rails (~> 3.2.1)
