@@ -5,5 +5,5 @@ task :choose_winner, [:capsule_name] => [:environment] do |t, args|
   
   raffle.show_winners
   
-  # raffle.notifications
+  raffle.notifications
 end
