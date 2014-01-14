@@ -35,7 +35,7 @@ EmailTesting::Application.routes.draw do
   
   match "retrieve_emails" => "email_retrievers#activate"
 
-  resources :capsules
+  resources :capsules, except: :index
 
   match 'slideshow' => "capsules#slideshow"
   match 'reload' => "capsules#reload"
