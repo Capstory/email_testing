@@ -26,6 +26,21 @@ task :day_two_reminder => :environment do
   end
 end
 
+desc "Send out an Email after an event"
+task :post_event_blast, [:capsule_email] => [:environment] do |t, args|
+  @capsule = Capsule.find_by_email(args[:capsule_email])
+  if @capsule
+    senders = @capsule.posts.pluck(:email).compact.uniq
+    senders.each do |sender|
+      PostMailer.post_event_blast(sender, @capsule.email, @capsule.named_url).deliver
+      puts "Message sent to #{sender}"
+      puts "-------------------------"
+    end
+  else
+    raise "No such capsule. Please verify the name and try again."
+  end
+end
+
 desc "ISSE Post Day 1 SMS"
 task :isse_day_one => :environment do
   capsule = Capsule.find_by_email("isse@capstory.me")

@@ -9,6 +9,14 @@ class PostMailer < ActionMailer::Base
     mail(from: @capsule_email, reply_to: @capsule_email, to: @sender_email, subject: "Success!")
   end
   
+  def post_event_blast(sender, capsule_email, capsule_link)
+    @sender_email = sender
+    @capsule_email = capsule_email
+    @url = "http://www.capstory.me"
+    
+    mail(from: @capsule_email, reply_to: @capsule_email, to: @sender_email, subject: "Thank You!")
+  end
+  
   def day_two_reminder(sender, capsule_email, capsule_link)
     @sender_email = sender
     @capsule_email = capsule_email
