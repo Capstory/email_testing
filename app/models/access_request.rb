@@ -1,7 +1,8 @@
 class AccessRequest < ActiveRecord::Base
-  attr_accessible :email, :event_address, :name, :event_date, :request_status, :source
+  attr_accessible :email, :event_address, :name, :event_date, :request_status, :source, :partner_code
   
   validates_presence_of :name
+  validates_presence_of :source
   validates_uniqueness_of :email
   validates_format_of :email, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i
   

@@ -9,7 +9,7 @@ class AccessRequestsController < ApplicationController
   end
   
   def new
-    @access_request.new
+    @access_request = AccessRequest.new
   end
   
   def create
@@ -21,7 +21,7 @@ class AccessRequestsController < ApplicationController
       redirect_to thank_you_path(request_id: @access_request.id)
     else
       flash.now[:error] = "There was a problem trying to log your request. Please, try again."
-      render 'new'
+      render "new"
     end
   end
   

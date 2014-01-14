@@ -173,6 +173,15 @@ $(function(){
 		return false;
 	});
 	
+	$("#industry_professional").click(function(){
+	  $(".industry_explanation").show();
+	  $(".industry_explanation input[type=text]").focus();
+	});
+	
+	$(".non_industry").click(function(){
+	  $(".industry_explanation").hide();
+	});
+	
 	$("#facebook_modal_engage").click(function(e){
 	  e.preventDefault();
 	  facebook_modal_show();

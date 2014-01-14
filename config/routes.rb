@@ -53,7 +53,7 @@ EmailTesting::Application.routes.draw do
   match "login" => "static_pages#login"
   match "thank_you" => "static_pages#thank_you"
   
-  resources :access_requests, only: ["create", "index", "show"]
+  resources :access_requests, only: ["create", "index", "show", "new"]
   
   mount Resque::Server, at: "/resque"
   get '/:id' => "capsules#show"  

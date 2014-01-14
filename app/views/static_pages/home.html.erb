@@ -228,6 +228,7 @@
 		</div>
 		<div>
 			<span>Please let us know who you are</span>
+			<br>
 			<%= f.radio_button :source, "bride" %>
 			<span class="newover">Bride/Groom</span>
 			<br>
@@ -236,6 +237,13 @@
 			<br>
 			<%= f.radio_button :source, "other" %>
 			<span class="newover">Other</span>
+			<br>
+		</div>
+
+		<div class="username">
+			<span>Partner Code</span>
+			<%= f.text_field :partner_code %>
+			<span><small>If you received a code from a Capstory partner/vendor, enter it here</small></span>
 			<br>
 		</div>
 	

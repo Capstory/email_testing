@@ -55,9 +55,9 @@
 			<div class="small-12 columns">
 				<% flash.each do |key, value| %>
 					<% alert_class = key == :error ? :alert : key %>
-					<div class="alert-box <%= alert_class %>">
+					<div data-alert class="alert-box <%= alert_class %>">
 						<p class="subheader"><%= value %></p>
-						<a href class="close">x</a>
+						<a href="#" class="close">x</a>
 					</div>
 				<% end %>
 				
