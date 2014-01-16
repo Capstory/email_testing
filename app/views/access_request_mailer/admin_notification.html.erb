@@ -8,7 +8,11 @@
     <p>His or her email is <%= @access_request.email %></p>
 		<p>Event Date: <%= @access_request.event_date %></p>
 		<p>What is the nature of the request? <%= @access_request.nature_of_request %></p>
-		
+		<% if @access_request.industry_pro? %>
+			<p>Industry Role: <%= @access_request.industry_role %></p>
+		<% end %>
+		<p>Questions/Comment: <%= @access_request.questions_comments %></p>
+		<p>Partner Code: <%= @access_request.code %></p>
 		<p>Go to the <%= link_to "Access Requests Admin Page", @url %> in order to validate their request.</p>
   </body>
 </html>

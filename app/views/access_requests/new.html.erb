@@ -1,28 +1,63 @@
-<div class="small-8 small-centered columns">
-	<h2>Invitation Request Form</h2>
+<div class="row">
+	<div class="small-8 small-centered columns">
+		<h2>Invitation Request Form</h2>
+	  <%= form_for(@access_request) do |f| %>
+			<div class="error_messages">
+				<% if @access_request.errors.any? %>
+			      <h4 class="subheader"><%= pluralize(@access_request.errors.count, "error") %> prevented your request from being saved:</h4>
 
-  <%= form_for(@access_request) do |f| %>
-		<div class="error_messages">
-			<% if @access_request.errors.any? %>
-		      <h4 class="subheader"><%= pluralize(@access_request.errors.count, "error") %> prevented your request from being saved:</h4>
-
-		      <ul>
-		      <% @access_request.errors.full_messages.each do |msg| %>
-		        <li><%= msg %></li>
-		      <% end %>
-		      </ul>
-		    </div>
-		  <% end %>
-		</div>
+			      <ul>
+			      <% @access_request.errors.full_messages.each do |msg| %>
+			        <li><%= msg %></li>
+			      <% end %>
+			      </ul>
+			    </div>
+			  <% end %>
+			</div>
 	
-    <span class="subheader"> We'll be in touch soon to let you know if we can do your wedding!</span>
+	    <span class="subheader"> We'll be in touch soon to let you know if we can do your wedding!</span>
 			
-		<%= f.text_field :name, class: '', placeholder: 'Your Name' %>
+			<%= f.text_field :name, class: '', placeholder: 'Your Name' %>
 
-		<%= f.text_field :email, class: '', placeholder: 'Your Email' %>
+			<%= f.text_field :email, class: '', placeholder: 'Your Email' %>
 		
-		<%= f.text_field :event_date, class: '', placeholder: 'Choose a Date' %>
-
-		<%= f.submit "Send Request", class: 'button' %>
-	<% end %>
+			<%= f.text_field :event_date, class: 'date-pick', placeholder: 'Choose a Date' %>
+			<br>
+			<p>Please, tell us about yourself</p>
+			<div class="row">
+				<div class="small-6 columns">
+					<p>Bride</p>
+				</div>
+				<div class="small-6 columns">
+					<%= f.radio_button :source, "bride", class: 'non_industry' %>
+				</div>
+			</div>
+			<div class="row">
+				<div class="small-6 columns">
+					<p>Industry Professional</p>
+					<small class="industry_explanation" style="display:none;">What is your role within the industry?</small>
+				</div>
+				<div class="small-6 columns">
+					<%= f.radio_button :source, "vendor", id: 'industry_professional' %>
+					<div style="display:none;" class="industry_explanation">
+						<%= f.text_field :industry_role %>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="small-6 columns">
+					<p>Other</p>
+				</div>
+				<div class="small-6 columns">
+					<%= f.radio_button :source, "other", class: 'non_industry' %>
+				</div>
+			</div>
+			<br>
+			<p>Partner Code</p>
+			<%= f.text_field :partner_code %>
+			<p class="subheader">If you received a code from a Capstory partner/vendor, enter it here</p>
+			
+			<%= f.submit "Submit", class: 'button' %>
+		<% end %>
+	</div>
 </div>

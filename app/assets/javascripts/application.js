@@ -137,6 +137,9 @@ $(function(){
     $(this).next("small").toggle('slow');
   });
   
+  $("#second_reservation_button").click(function(){
+    $("a.login-window").click();
+  });
   
   $('a.login-window').click(function() {
 		
@@ -171,6 +174,20 @@ $(function(){
 	  $('#mask , .login-popup').fadeOut(300);
 	  $("div").remove("#mask"); 
 		return false;
+	});
+	
+	$("#industry_professional").click(function(){
+	  $(".industry_explanation").show('slow');
+	  $(".industry_explanation input[type=text]").focus();
+	});
+	
+	$(".non_industry").click(function(){
+	  $(".industry_explanation").hide('slow');
+	});
+	
+	$("#show_partner_code").click(function(){
+    // $(this).hide('slow');
+	  $("#partner_code").toggle('slow');
 	});
 	
 	$("#facebook_modal_engage").click(function(e){
