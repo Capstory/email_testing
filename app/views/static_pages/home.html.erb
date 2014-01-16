@@ -213,49 +213,53 @@
 <div class="login-popup" id="login-box" style="display: none; margin-top: -50px; margin-left: -130px;">
   <a class="close-login-popup" href="#"><img alt="Close" title="Close Window" class="btn_close" src="images/close_pop.png"></a>
 	<%= form_for @access_request, html: { class: 'signin' } do |f| %>
-	<div class="textbox">
-		<div class="username">
-			<span>Name</span>
-			<%= f.text_field :name %>
-		</div>
-		<div class="username">
-			<span>Email</span>
-			<%= f.text_field :email %>
-		</div>
-		<div class="Date">
-			<span>Event Date</span>
-			<%= f.text_field :event_date, class: 'date-pick' %>
-		</div>
-		<div>
-			<span>Tell us about yourself</span>
-			<br>
-			<%= f.radio_button :source, "bride", class: 'non_industry' %>
-			<span class="newover">Bride/Groom</span>
-			<br>
-			<%= f.radio_button :source, "vendor", id: 'industry_professional' %>
-			<span class="newover">Industry Professional</span>
-			<div style="display:none;" class="industry_explanation">
-				<%= f.text_field :industry_role %>
-				<span><small>What is your role in the industry?</small></span>
+		<div class="textbox">
+			<div class="username">
+				<span>Name</span>
+				<%= f.text_field :name %>
 			</div>
-			<br>
+			<div class="username">
+				<span>Email</span>
+				<%= f.text_field :email %>
+			</div>
+			<div class="Date">
+				<span>Event Date</span>
+				<%= f.text_field :event_date, class: 'date-pick' %>
+			</div>
+			<div>
+				<span>Tell us about yourself</span>
+				<br>
+				<%= f.radio_button :source, "bride", class: 'non_industry' %>
+				<span class="newover">Bride/Groom</span>
+				<br>
+				<%= f.radio_button :source, "vendor", id: 'industry_professional' %>
+				<span class="newover">Industry Professional</span>
+				<div style="display:none;" class="industry_explanation">
+					<%= f.text_field :industry_role %>
+					<span><small>What is your role in the industry?</small></span>
+				</div>
+				<br>
 
-			<%= f.radio_button :source, "other", class: 'non_industry' %>
-			<span class="newover">Other</span>
-			<br>
-		</div>
-		<div class="username" id="show_partner_code">
-			<span>Click if you have a partner code</span>
-		</div>
-		<div class="username" style="display:none;" id="partner_code">
-			<span>Partner Code</span>
-			<%= f.text_field :partner_code %>
-			<span style="max-width:200px;"><small>If you received a code from a Capstory partner/vendor, enter it here</small></span>
-			<br>
-		</div>
+				<%= f.radio_button :source, "other", class: 'non_industry' %>
+				<span class="newover">Other</span>
+				<br>
+			</div>
+			<div class="username">
+				<span>Questions/Comments?</span>
+				<%= f.text_area :questions %>
+			</div>
+			<div class="username" id="show_partner_code">
+				<span>Click if you have a partner code</span>
+			</div>
+			<div class="username" style="display:none;" id="partner_code">
+				<span>Partner Code</span>
+				<%= f.text_field :partner_code %>
+				<span style="max-width:200px;"><small>If you received a code from a Capstory partner/vendor, enter it here</small></span>
+				<br>
+			</div>
 	
-		<%= f.submit "Send", class: 'button' %>
-		<span>We'll send you more information soon!</span>
+			<%= f.submit "Send", class: 'button' %>
+			<span>We'll send you more information soon!</span>
 		</div>
 	<% end %>
 
