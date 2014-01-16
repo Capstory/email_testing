@@ -40,7 +40,7 @@
 				<div class="small-6 columns">
 					<%= f.radio_button :source, "vendor", id: 'industry_professional' %>
 					<div style="display:none;" class="industry_explanation">
-						<input type="text">
+						<%= f.text_field :industry_role %>
 					</div>
 				</div>
 			</div>
@@ -52,6 +52,7 @@
 					<%= f.radio_button :source, "other", class: 'non_industry' %>
 				</div>
 			</div>
+			<br>
 			<p>Partner Code</p>
 			<%= f.text_field :partner_code %>
 			<p class="subheader">If you received a code from a Capstory partner/vendor, enter it here</p>

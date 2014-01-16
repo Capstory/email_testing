@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140112210809) do
+ActiveRecord::Schema.define(:version => 20140116020355) do
 
   create_table "access_requests", :force => true do |t|
     t.string   "name"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20140112210809) do
     t.string   "request_status"
     t.string   "source"
     t.string   "partner_code"
+    t.string   "industry_role"
   end
 
   create_table "authorizations", :force => true do |t|

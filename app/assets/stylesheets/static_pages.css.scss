@@ -3275,8 +3275,8 @@ html.touch .header-inherited {
     font-size: 1.2em;
     left: 50%;
     padding: 10px;
-    position: fixed;
-    top: 50%;
+    position: relative;
+    top: 20%;
     z-index: 99999;
 		.button {
 			background: -moz-linear-gradient(center top , #F3F3F3, #DDDDDD) repeat scroll 0 0 rgba(0, 0, 0, 0);
@@ -3430,8 +3430,8 @@ form.signin .textbox textarea {
 	border: 2px solid #ddd;
 	float: left;
 	font-size: 1.2em;
-	position: fixed;
-	top: 50%; left: 50%;
+	position: absolute;
+	top: 10%; left: 50%;
 	z-index: 99999;
 	box-shadow: 0px 0px 20px #999;
 	-moz-box-shadow: 0px 0px 20px #999; /* Firefox */

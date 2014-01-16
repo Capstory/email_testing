@@ -127,7 +127,7 @@
 			<div class="twelve columns">
 				<h3>Now accepting reservations on an ongoing basis</h3>
 				<p>
-					<a href="#login-box" class="button dark-bg login-window">Reserve your event date</a>
+					<a href="#home" class="button dark-bg" id="second_reservation_button">Reserve your event date</a>
 				</p>
 			</div>
 		</div>
@@ -210,7 +210,7 @@
 
 
 
-<div class="login-popup" id="login-box" style="display: none; margin-top: -113px; margin-left: -130px;">
+<div class="login-popup" id="login-box" style="display: none; margin-top: -50px; margin-left: -130px;">
   <a class="close-login-popup" href="#"><img alt="Close" title="Close Window" class="btn_close" src="images/close_pop.png"></a>
 	<%= form_for @access_request, html: { class: 'signin' } do |f| %>
 	<div class="textbox">
@@ -227,23 +227,30 @@
 			<%= f.text_field :event_date, class: 'date-pick' %>
 		</div>
 		<div>
-			<span>Please let us know who you are</span>
+			<span>Tell us about yourself</span>
 			<br>
-			<%= f.radio_button :source, "bride" %>
+			<%= f.radio_button :source, "bride", class: 'non_industry' %>
 			<span class="newover">Bride/Groom</span>
 			<br>
-			<%= f.radio_button :source, "vendor" %>
+			<%= f.radio_button :source, "vendor", id: 'industry_professional' %>
 			<span class="newover">Industry Professional</span>
+			<div style="display:none;" class="industry_explanation">
+				<%= f.text_field :industry_role %>
+				<span><small>What is your role in the industry?</small></span>
+			</div>
 			<br>
-			<%= f.radio_button :source, "other" %>
+
+			<%= f.radio_button :source, "other", class: 'non_industry' %>
 			<span class="newover">Other</span>
 			<br>
 		</div>
-
-		<div class="username">
+		<div class="username" id="show_partner_code">
+			<span>Click if you have a partner code</span>
+		</div>
+		<div class="username" style="display:none;" id="partner_code">
 			<span>Partner Code</span>
 			<%= f.text_field :partner_code %>
-			<span><small>If you received a code from a Capstory partner/vendor, enter it here</small></span>
+			<span style="max-width:200px;"><small>If you received a code from a Capstory partner/vendor, enter it here</small></span>
 			<br>
 		</div>
 	
