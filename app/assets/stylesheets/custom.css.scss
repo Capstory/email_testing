@@ -136,6 +136,21 @@ div.mc-image {
 	opacity: 1;
 }
 
+.facebook_image {
+	position:relative;
+	width: 100%;
+}
+
+.facebook_photo_checkmark {
+	display: none;
+	color: #C69C56;
+	font-size: 45px;
+	position: absolute;
+	width: 100%;
+	top: -30px;
+	left: 20px;
+}
+
 .access_request_error {
 	max-width: 250px;
 }

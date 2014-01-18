@@ -112,7 +112,7 @@
 					Click on all of the photos that you would like to post on Facebook. 
 					<br>
 					Then, press the submit button. 
-					</p>
+				</p>
 			</div>
 			<div class="small-4 columns">
 				<button id="facebook_push_submit">Submit</button>
@@ -121,13 +121,18 @@
 		</div>
 		<div class="small-12 small-centered columns">
 			<%= form_tag facebook_photo_push_path do %>
+				<%= hidden_field_tag :user_id, current_user.id %>
 				<% @capsule.posts.each do |post| %>
-					<%= hidden_field_tag :user_id, current_user.id %>
 					<% if post.body.nil? || post.body.upcase == "NO MESSAGE" %>
-						<%= image_tag(post.image.url(:thumb), class: 'modal_img', id: post.id) %>
-						<%= check_box_tag "photos[#{post.id}]", post.image.url(:medium) %>
+						<span class="facebook_image">
+
+							<%= image_tag(post.image.url(:thumb), class: 'modal_img', id: post.id) %>
+							<%= check_box_tag "photos[#{post.id}]", post.image.url(:medium) %>
+							<span class="facebook_photo_checkmark" id="checkmark_<%= post.id %>">&#10004</span>
+						</span>
 					<% end %>
 				<% end %>
+
 				<%= submit_tag "Submit", id: "facebook_modal_submit_button", style: "display:none;" %>
 			<% end %>
 

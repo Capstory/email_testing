@@ -203,8 +203,10 @@ $(function(){
 	
 	$(".modal_img").click(function(){
 	  photo_id = $(this).attr('id');
+	  checkmark_id = "#checkmark_" + photo_id;
 	  photo_id = "#photos_" + photo_id;
 	  $(photo_id).trigger('click');
 	  $(this).toggleClass("modal_highlight");
+	  $(checkmark_id).toggle();
 	});
 });
