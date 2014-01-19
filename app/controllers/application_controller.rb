@@ -32,4 +32,13 @@ class ApplicationController < ActionController::Base
       session[:identity] = nil
     end
   end
+  
+  def pin_logged?(capsule_id)
+    auth_capsule = "authenticated_capsule_#{capsule_id}"
+    if session[auth_capsule.to_sym]
+      return true
+    else
+      return false
+    end
+  end
 end

@@ -1,0 +1,7 @@
+<%= form_tag pin_authentication_path do %>
+	<%= hidden_field_tag :capsule_id, params[:capsule_id] %>
+	<%= label_tag :pin_code,"Please Enter the PIN Code for this capsule" %>
+	<%= text_field_tag :pin_code %>
+	
+	<%= submit_tag "Submit" %>
+<% end %>

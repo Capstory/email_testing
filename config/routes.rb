@@ -36,7 +36,9 @@ EmailTesting::Application.routes.draw do
   match "retrieve_emails" => "email_retrievers#activate"
 
   resources :capsules, except: :index
-
+  
+  match 'verify_pin' => "capsules#verify_pin"
+  match 'pin_authentication' => "capsules#authenticate_pin"
   match 'slideshow' => "capsules#slideshow"
   match 'reload' => "capsules#reload"
   if Rails.env.production?

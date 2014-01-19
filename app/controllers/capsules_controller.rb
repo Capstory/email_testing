@@ -1,5 +1,6 @@
 class CapsulesController < ApplicationController
   layout :resolve_layout
+  before_filter :pin_code?, only: :show
   
   def index
     @capsules = Capsule.all
@@ -40,6 +41,23 @@ class CapsulesController < ApplicationController
     @post = Post.new
   end
   
+  def verify_pin
+  end
+  
+  def authenticate_pin
+    provided_pin_code = params[:pin_code]
+    capsule = Capsule.find(params[:capsule_id])
+    if provided_pin_code == capsule.pin_code
+      auth_capsule = "authenticated_capsule_#{capsule.id}"
+      session[auth_capsule.to_sym] = true
+      flash[:success] = "PIN Code Authenticated. Thank you."
+      redirect_to capsule
+    else
+      flash[:error] = "Sorry, that isn't the right PIN code"
+      redirect_to verify_pin_path(capsule_id: capsule.id)
+    end
+  end
+  
   def reload
     @new_capsule = Capsule.find(params[:id])
     
@@ -73,4 +91,14 @@ class CapsulesController < ApplicationController
       "application"
     end
   end
+  
+  private
+    def pin_code?
+      capsule = Capsule.find(params[:id].to_s.downcase)
+      if capsule.has_pin?
+        unless pin_logged?(capsule.id)
+          redirect_to verify_pin_path(capsule_id: capsule.id)
+        end
+      end
+    end
 end

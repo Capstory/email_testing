@@ -10,5 +10,11 @@ class Capsule < ActiveRecord::Base
   
   extend FriendlyId
   friendly_id :named_url
-  
+  def has_pin?
+    if self.pin_code.nil?
+      return false
+    else
+      return true
+    end
+  end
 end
