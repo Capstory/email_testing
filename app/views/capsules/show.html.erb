@@ -5,13 +5,16 @@
 			<ul id="facebook_drop" data-dropdown-content class="f-dropdown">
 				<!-- Need to change this back once I get the facebook options up and running -->
 				<!-- *********************** -->
-
+				<% if current_user.admin? %>
 					<% if current_user.facebook_authorized? %>
 						<li><%= link_to "Post Photos", "#", id: "facebook_modal_engage" %></li>
 						<li><%= link_to "Logout", delete_facebook_auth_path(provider: current_user.fb_provider, uid: current_user.fb_uid), id: "facebook_deconnect" %></li>
 					<% else %>
 						<li><%= link_to "Login", "/auth/facebook" %></li>
 					<% end %>
+				<% else %>
+					<li>Coming Soon</li>
+				<% end %>
 			</ul>
 		</div>
 		<div class="small-2 columns">
