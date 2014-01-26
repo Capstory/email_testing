@@ -209,4 +209,8 @@ $(function(){
 	  $(this).toggleClass("modal_highlight");
 	  $(checkmark_id).toggle();
 	});
+	
+	$("#stripe_engage").click(function(){
+	  $("#stripe_launch").click();
+	});
 });

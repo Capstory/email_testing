@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+		<style>
+			ul {
+				list-style-type:none;
+			}
+		</style>
+  </head>
+  <body>
+    <h1><%= @customer[:billing_name] %> has paid for a wedding capsule</h1>
+		<hr>
+		<p>Email: <%= @customer[:email] %></p>
+		<p>Billed To:</p>
+		<ul>
+			<li><%= @customer[:billing_name] %></li>
+			<li><%= @customer[:billing_address_1] %></li>
+			<li><%= @customer[:billing_address_2] %></li>
+			<li><%= @customer[:billing_city] %>, <%= @customer[:billing_state] %> <%= @customer[:billing_zip] %></li>
+			<li><%= @customer[:billing_country] %></li>
+		</ul>
+		<p>Shipping:</p>
+		<ul>
+			<li><%= @customer[:shipping_name] %></li>
+			<li><%= @customer[:shipping_address_1] %></li>
+			<li><%= @customer[:shipping_address_2] %></li>
+			<li><%= @customer[:shipping_city] %>, <%= @customer[:shipping_state] %> <%= @customer[:shipping_zip] %></li>
+			<li><%= @customer[:shipping_country] %></li>
+		</ul>
+    <p>Credit Card:</p>
+		<ul>
+			<li>Number: ...<%= @customer[:last_4] %></li>
+			<li>Type: <%= @customer[:card_type] %></li>
+		</ul>
+		<p>Amount: $495.00</p>
+		<hr>
+    <p>They have received an email receipt and informed that we will reach out to them very soon.</p>
+  </body>
+</html>

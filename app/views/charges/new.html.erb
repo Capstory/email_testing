@@ -1,0 +1,19 @@
+<%= form_tag charges_path do %>
+  <article>
+    <label class="amount">
+      <span>Amount: $495.00</span>
+    </label>
+  </article>
+	<button class="button" id="stripe_engage">Confirm My Capsule</button>
+	<div style="display:none;">
+  	<script src="https://checkout.stripe.com/checkout.js" class="stripe-button" id="stripe_launch"
+					data-image="<%= asset_path('square_logo.png') %>"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="Your Wedding Capsule"
+          data-amount="49500"
+					data-panel-label="Order Capsule"
+					data-billing-address=true
+					data-shipping-address=true
+					data-label="Confirm My Capsule"></script>
+	</div>
+<% end %>

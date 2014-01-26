@@ -1,0 +1,9 @@
+<% @charges.each do |charge| %>	
+	<div class="panel">
+		<p><%= charge.name %></p>
+		<p><%= charge.email %></p>
+		<small>Charge Created @ <%= time_ago_in_words charge.created_at %> ago</small>
+		<p><%= charge.customer_hash %></p>
+		<p><%= charge.error_hash %></p>
+	</div>
+<% end %>

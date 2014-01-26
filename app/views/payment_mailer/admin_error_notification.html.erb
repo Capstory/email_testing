@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+		<style>
+			ul {
+				list-style-type:none;
+			}
+			h1 {
+				color:red;
+			}
+		</style>
+  </head>
+  <body>
+    <h1>
+			<%= @customer[:billing_name] %> has paid for a wedding capsule. But, some sort of issue occurred.
+			Problem: <%= @problem %>
+		</h1>
+		<hr>
+		<p>Errors</p>
+		<% if @error_hash.nil? %>
+			<p>No error hash present</p>
+		<% else %>
+			<ul>
+				<% @error_hash.each do |k, v| %>
+					<li>Error Type: <%= k.to_s %></li>
+					<li>Value: <%= v %></li>
+					<li>---------------</li>
+				<% end %>
+			</ul>
+		<% end %>
+		<hr>
+		<h3>Below is the customer information</h3>
+		<p>Email: <%= @customer[:email] %></p>
+		<p>Billed To:</p>
+		<ul>
+			<li><%= @customer[:billing_name] %></li>
+			<li><%= @customer[:billing_address_1] %></li>
+			<li><%= @customer[:billing_address_2] %></li>
+			<li><%= @customer[:billing_city] %>, <%= @customer[:billing_state] %> <%= @customer[:billing_zip] %></li>
+			<li><%= @customer[:billing_country] %></li>
+		</ul>
+		<p>Shipping:</p>
+		<ul>
+			<li><%= @customer[:shipping_name] %></li>
+			<li><%= @customer[:shipping_address_1] %></li>
+			<li><%= @customer[:shipping_address_2] %></li>
+			<li><%= @customer[:shipping_city] %>, <%= @customer[:shipping_state] %> <%= @customer[:shipping_zip] %></li>
+			<li><%= @customer[:shipping_country] %></li>
+		</ul>
+    <p>Credit Card:</p>
+		<ul>
+			<li>Number: ...<%= @customer[:last_4] %></li>
+			<li>Type: <%= @customer[:card_type] %></li>
+		</ul>
+		<p>Amount: $495.00</p>
+  </body>
+</html>

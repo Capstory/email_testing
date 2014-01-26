@@ -57,6 +57,11 @@ EmailTesting::Application.routes.draw do
   
   resources :access_requests, only: ["create", "index", "show", "new"]
   
+  match 'payment' => 'charges#new'
+  match 'payment_thank_you' => "charges#thank_you"
+  match 'payment_error' => "charges#payment_error"
+  resources :charges
+  
   mount Resque::Server, at: "/resque"
   get '/:id' => "capsules#show"  
   # The priority is based upon order of creation:
