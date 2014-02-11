@@ -34,6 +34,10 @@ class User < ActiveRecord::Base
     self.authorizations.find_by_provider("facebook").uid
   end
   
+  def identity_auth
+    return self.authorizations.where(provider: "identity").first
+  end
+  
   # def self.from_omniauth(auth)
   #     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
   #       user.provider = auth.provider

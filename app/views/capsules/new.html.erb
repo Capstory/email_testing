@@ -1,0 +1,18 @@
+<%= form_for(@capsule) do |f| %>
+	<%= f.label :name, "Capsule Name" %>
+	<p><small>The default name is: A Wedding Capsule for...<em>client's name here</em></small></p>
+	<%= f.text_field :name %>
+	
+	<%= f.label :email, "Capsule Email Address" %>
+	<p><small>At present, write out the full email address (e.g. myweddingcapsule@capstory.me)</small></p>
+	<%= f.text_field :email %>
+	
+	<%= f.label :event_date, "Event Date" %>
+	<%= f.text_field :event_date, class: 'date-pick' %>
+	
+	<%= f.label :response_message, "Enter a Customized Response Message" %>
+	<p><small>This is the message that will be sent out by text message to everyone who submits a picture</small></p>
+	<%= f.text_area :response_message %>
+	
+	<%= f.submit "Create Capsule", class: 'button' %>
+<% end %>

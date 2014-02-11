@@ -1,0 +1,38 @@
+<div class="row">
+	<div class="small-6 columns">
+		<h4 class="subheader">
+			All Users<br>
+			<small>
+				Below are all the Users in the system. You can create a new one if you need to by clicking
+				on the button to the right.
+			</small>
+		</h4>
+	</div>	
+	<div class="small-6 columns">
+		<%= link_to "Add a New User", "#", class: "disabled button" %>
+	</div>
+</div>
+<table>
+	<thead>
+		<tr>
+			<th width="200">Name</th>
+			<th>Email</th>
+			<th>Type</th>
+			<th></th>
+			<th></th>
+			<th></th>			
+		</tr>
+	</thead>
+	<tbody>
+		<% users.each do |user| %>
+			<tr>
+				<td><%= user.name %></td>
+				<td><%= user.email %></td>
+				<td><%= user.type %></td>
+				<td>|</td>
+				<td><%= link_to "Edit", "#" %></td>
+				<td><%= link_to "Delete", "#" %></td>				
+			</tr>
+		<% end %>
+	</tbody>
+</table>

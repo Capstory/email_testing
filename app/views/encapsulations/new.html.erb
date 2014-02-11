@@ -1,0 +1,19 @@
+<div class="row">
+	<%= form_for(@encap) do |f| %>
+		<div class="small-4 columns">	
+			<%= f.label :user_id, "Please Select a User" %>
+			<% user_array = @users.map { |user| [user.name, user.id] }%>
+			<%= f.select :user_id, options_for_select(user_array) %>
+		</div>
+		<div class="small-4 columns">
+			<%= f.label :capsule_id, "Please Select a Capsule" %>
+			<% capsule_array = @capsules.map { |cap| [cap.name, cap.id] } %>
+			<%= f.select :capsule_id, options_for_select(capsule_array) %>
+		</div>
+		<div class="small-4 columns">
+			<%= f.label :owner, "Is this person the owner of the capsule?" %>
+			<%= f.select :owner, options_for_select([["Yes", true],["No", false]]) %>
+		</div>
+		<%= f.submit "Create Connection", class: "button" %>
+	<% end %>
+</div>

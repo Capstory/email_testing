@@ -1,0 +1,46 @@
+<div class="row">
+	<div class="small-6 columns">
+		<h4 class="subheader">
+			Clients<br>
+			<small>
+				Below are all the Clients in the system. You can create a new one if you need to by clicking
+				on the button to the right.
+			</small>
+		</h4>
+	</div>	
+	<div class="small-6 columns">
+		<%= link_to "Add a New Client", new_client_path, class: "button" %>
+	</div>
+</div>
+<table>
+	<thead>
+		<tr>
+			<th width="200">Name</th>
+			<th>Email</th>
+			<th>Date Created</th>
+			<th>Capsule</th>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th></th>			
+		</tr>
+	</thead>
+	<tbody>
+		<% clients.each do |client| %>
+			<tr>
+				<td><%= link_to client.name, client %></td>
+				<td><%= client.email %></td>
+				<td><%= client.created_at.to_formatted_s(:short) %></td>
+				<td><%= link_to "Capsule", "#" %></td>
+				<td>|</td>
+				<% unless client.authorizations.empty?  %>
+					<td><%= link_to "Change Password", edit_authorization_path(client.identity_auth) %></td>
+				<% else %>
+					<td><%= link_to "Generate Login", new_authorization_path(id: client.id) %></td>
+				<% end %>
+				<td><%= link_to "Edit", edit_client_path(client) %></td>
+				<td><%= link_to "Delete", client, method: :delete, data: { confirm: "Are you sure?" } %></td>				
+			</tr>
+		<% end %>
+	</tbody>
+</table>

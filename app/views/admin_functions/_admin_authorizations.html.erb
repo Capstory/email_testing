@@ -1,0 +1,43 @@
+<div class="row">
+	<div class="small-6 columns">
+		<h4 class="subheader">
+			Authorizations<br>
+			<small>
+				Below are all the authorizations in the system. You can create a new one if you need to by clicking
+				on the button to the right.
+			</small>
+		</h4>
+	</div>	
+	<div class="small-6 columns">
+		<%= link_to "Add an Authorization", new_authorization_path, class: "button" %>
+	</div>
+</div>
+<table>
+	<thead>
+		<tr>
+			<th width="200">User</th>
+			<th><small>Auth ID</small></th>
+			<th>UID</th>
+			<th>Provider</th>
+			<th>Date Created</th>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% authorizations.each do |authorization| %>
+			<tr>
+				<% user_name = authorization.user.nil? ? "Not Available" : authorization.user.name %>
+				<td><%= link_to user_name, authorization.user %></td>
+				<td><%= authorization.id %></td>
+				<td><%= authorization.uid %></td>
+				<td><small><%= authorization.provider %></small></td>
+				<td><%= authorization.created_at.to_formatted_s(:short) %></td>
+				<td>|</td>
+				<td><%= link_to "Edit", edit_authorization_path(authorization) %></td>
+				<td><%= link_to "Delete", authorization, method: :delete, data: { confirm: "Are you sure?" } %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

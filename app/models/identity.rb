@@ -1,5 +1,7 @@
 class Identity < OmniAuth::Identity::Models::ActiveRecord
-  attr_accessible :email, :name, :password, :password_confirmation, :genre, :event_date
+  attr_accessible :email, :name, :password, :password_confirmation, :user_id
+  # Need to go back and remove the event_date and genre columns from the Identity table after verifying the new
+  # authentication system works
   
   validates_presence_of :name
   validates_uniqueness_of :email

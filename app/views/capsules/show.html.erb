@@ -3,17 +3,11 @@
 		<div class="small-2 small-offset-8 columns">
 			<%= link_to fa_icon("facebook-square lg", text: "Facebook"), "#", class: "dropdown", data: { dropdown: "facebook_drop" } %>
 			<ul id="facebook_drop" data-dropdown-content class="f-dropdown">
-				<!-- Need to change this back once I get the facebook options up and running -->
-				<!-- *********************** -->
-				<% if current_user.admin? %>
-					<% if current_user.facebook_authorized? %>
-						<li><%= link_to "Post Photos", "#", id: "facebook_modal_engage" %></li>
-						<li><%= link_to "Logout", delete_facebook_auth_path(provider: current_user.fb_provider, uid: current_user.fb_uid), id: "facebook_deconnect" %></li>
-					<% else %>
-						<li><%= link_to "Login", "/auth/facebook" %></li>
-					<% end %>
+				<% if current_user.facebook_authorized? %>
+					<li><%= link_to "Post Photos", "#", id: "facebook_modal_engage" %></li>
+					<li><%= link_to "Logout", delete_facebook_auth_path(provider: current_user.fb_provider, uid: current_user.fb_uid), id: "facebook_deconnect" %></li>
 				<% else %>
-					<li>Coming Soon</li>
+					<li><%= link_to "Login", "/auth/facebook" %></li>
 				<% end %>
 			</ul>
 		</div>

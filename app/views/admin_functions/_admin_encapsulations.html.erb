@@ -1,0 +1,40 @@
+<div class="row">
+	<div class="small-6 columns">
+		<h4 class="subheader">
+			encapsulations<br>
+			<small>
+				Below are all the Encapsulations in the system. You can create a new one if you need to by clicking
+				on the button to the right.
+			</small>
+		</h4>
+	</div>	
+	<div class="small-6 columns">
+		<%= link_to "Add an Encapsulation", new_encapsulation_path, class: "button" %>
+	</div>
+</div>
+<table>
+	<thead>
+		<tr>
+			<th width="200">User</th>
+			<th>Capsule</th>
+			<th>Owner?</th>
+			<th>Date Created</th>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% encapsulations.each do |encapsulation| %>
+			<tr>
+				<td><%= link_to encapsulation.user.name, encapsulation.user %></td>
+				<td><%= link_to encapsulation.capsule.name, encapsulation.capsule %></td>
+				<td><%= encapsulation.owner  %></td>
+				<td><%= encapsulation.created_at.to_formatted_s(:short) %></td>
+				<td>|</td>
+				<td><%= link_to "Edit", edit_encapsulation_path(encapsulation) %></td>
+				<td><%= link_to "Delete", encapsulation, method: :delete, data: { confirm: "Are you sure?" } %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

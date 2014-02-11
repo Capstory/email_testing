@@ -1,22 +1,26 @@
 class AdminsController < ApplicationController
-
+  
+  # =====================================
+  # Begin standard controller actions
+  # =====================================
+  
   def new
-    @user = params[:id] ? User.find(params[:id]) : nil
+    # @user = params[:id] ? User.find(params[:id]) : nil
     @admin = Admin.new
   end
   
   def create
-    @admin = Admin.new
-    @admin.name = params[:admin][:name]
-    @admin.email = params[:admin][:email]
-    @user_id = params[:admin][:user_id]
+    @admin = Admin.create(params[:admin])
+    # @admin.name = params[:admin][:name]
+    # @admin.email = params[:admin][:email]
+    # @user_id = params[:admin][:user_id]
     if @admin.save
-      transfer_capsule(@user_id, @admin.id)
-      transfer_authorization(@user_id, @admin.id)
-      relogin(@admin.id) if current_user.id = @user_id
-      delete_old_user(@user_id)
+      # transfer_capsule(@user_id, @admin.id)
+      # transfer_authorization(@user_id, @admin.id)
+      # relogin(@admin.id) if current_user.id = @user_id
+      # delete_old_user(@user_id)
       flash[:success] = "Admin successfully created"
-      redirect_to users_path
+      redirect_to dashboard_path
     else
       flash[:error] = "Unable to create admin"
       render 'new'
@@ -25,8 +29,35 @@ class AdminsController < ApplicationController
   
   def show
     @admin = Admin.find(params[:id])
-    redirect_to @admin.capsules.first
   end
+  
+  def edit
+    @admin = Admin.find(params[:id])
+  end
+  
+  def update
+    @admin = Admin.find(params[:id])
+    @admin.name = params[:admin][:name]
+    @admin.email = params[:admin][:email]
+    if @admin.save
+      flash[:success] = "Admin Account Updated"
+      redirect_to dashboard_path
+    else
+      flash[:error] = "Unable to update Admin"
+      render "edit"
+    end
+  end
+  
+  def destroy
+    admin = Admin.find(params[:id])
+    admin.destroy
+    flash[:success] = "Admin Successfully Deleted"
+    redirect_to :back
+  end
+  
+  # =====================================
+  # Begin non-standard controller actions
+  # =====================================  
   
   # I need to refactor all of these method below
   # The delete old user method is nothing other than a call to users#destroy

@@ -1,0 +1,39 @@
+<div class="row">
+	<div class="small-6 columns">
+		<h4 class="subheader">
+			Access Requests<br>
+			<small>
+				Below are all the Access Requests in the system. Creating new requests is currently not enable as a function.
+			</small>
+		</h4>
+	</div>	
+	<div class="small-6 columns">
+		<%= link_to "New Access Request", "#", class: "button disabled" %>
+	</div>
+</div>
+<table>
+	<thead>
+		<tr>
+			<th width="200">Name</th>
+			<th>Email</th>
+			<th>Event Date</th>
+			<th>Source</th>
+			<th></th>
+			<th></th>
+			<th></th>			
+		</tr>
+	</thead>
+	<tbody>
+		<% access_requests.each do |request| %>
+			<tr>
+				<td><%= request.name %></td>
+				<td><%= request.email %></td>
+				<td><%= request.event_date %></td>
+				<td><%= request.source %></td>
+				<td>|</td>
+				<td><%= link_to "Edit", "#" %></td>
+				<td><%= link_to "Delete", "#" %></td>				
+			</tr>
+		<% end %>
+	</tbody>
+</table>

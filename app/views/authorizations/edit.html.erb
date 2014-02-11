@@ -1,0 +1,10 @@
+<p>Change your password or email address</p>
+<%= form_for(@authorization) do |f| %>
+	<%= f.label :password %>
+	<%= f.password_field :password %>
+	
+	<%= f.label :password_confirmation %>
+	<%= f.password_field :password_confirmation %>
+	
+	<%= f.submit "Save New Password", class: 'button' %>
+<% end %>

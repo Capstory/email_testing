@@ -6,25 +6,33 @@ end
 
 EmailTesting::Application.routes.draw do
   
+  match "dashboard" => "admin_functions#dashboard"
+
+  # ===================================================
+  # AngularJS Play Routes 
+  # ===================================================
   resources :entries
-
-
   match "raffle" => "raffle#index"
-
+  # ===================================================
+  # End AngularJS Play Routes
+  # ===================================================
+  
   match "create_client" => "clients#create"
   match "create_admin" => "admins#create"
   match "create_contributor" => "contributors#create"
   
   match "access_request_to_client" => "clients#access_request_redirect_to_client"
-
+  
   resources :users
   resources :clients
   resources :admins
   resources :contributors
   
-  match "auth/facebook/callback" => "authorizations#create"
-  match "delete_facebook_auth" => "authorizations#delete"
+  match "auth/facebook/callback" => "authorizations#fb_create"
+  match "delete_facebook_auth" => "authorizations#fb_delete"
   match "facebook_photo_push" => "facebook_actions#photo_push"
+  
+  resources :authorizations
   
   match "auth/identity/callback" => "sessions#create"
   match "auth/failure" => "sessions#failure"
@@ -34,7 +42,8 @@ EmailTesting::Application.routes.draw do
   match "slides" => "posts#slides"
   
   match "retrieve_emails" => "email_retrievers#activate"
-
+  
+  resources :encapsulations
   resources :capsules, except: :index
   
   match 'verify_pin' => "capsules#verify_pin"
@@ -63,7 +72,13 @@ EmailTesting::Application.routes.draw do
   resources :charges
   
   mount Resque::Server, at: "/resque"
-  get '/:id' => "capsules#show"  
+  
+  # ==============================
+  # Default routes for Capsules based on their id number
+  # Must be kept at the bottom of the page so the named-url is the first route that is found and followed
+  # ==============================
+  get '/:id' => "capsules#show" 
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

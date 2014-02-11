@@ -1,0 +1,36 @@
+<blockquote>Amateurs sit and wait for inspiration, the rest of us just get up and go to work.<cite>Stephen King</cite></blockquote>
+<hr>
+<div class="small-3 columns">
+	<ul>
+		<li><%= link_to "Capsules", "#", class: "admin_links", id: "show_capsules" %></li>
+		<li><%= link_to "Encapsulations", "#", class: "admin_links", id: "show_encapsulations" %></li>
+		<li><%= link_to "Clients", "#", class: "admin_links", id: "show_clients" %></li>
+		<li><%= link_to "Admins", "#", class: "admin_links", id: "show_admins" %></li>
+		<li><%= link_to "All Users", "#", class: "admin_links", id: "show_users" %></li>
+		<li><%= link_to "Access Request", "#", class: "admin_links", id: "show_access_requests" %></li>
+		<li><%= link_to "Authorizations", "#", class: "admin_links", id: "show_authorizations" %></li>
+	</ul>
+</div>
+<div class="small-9 columns">
+	<div id="show_capsules_data" class="data_partial">
+		<%= render "admin_capsules", capsules: @capsules %>
+	</div>
+	<div id="show_clients_data" style="display:none;" class="data_partial">
+		<%= render "admin_clients", clients: @clients %>
+	</div>	
+	<div id="show_users_data" style="display:none;" class="data_partial">
+		<%= render "admin_users", users: @users %>
+	</div>
+	<div id="show_admins_data" style="display:none;" class="data_partial">
+		<%= render "admin_admins", admins: @admins %>
+	</div>
+	<div id="show_access_requests_data" style="display:none;" class="data_partial">
+		<%= render "admin_access_requests", access_requests: @access_requests %>
+	</div>
+	<div id="show_authorizations_data" style="display:none;" class="data_partial">
+		<%= render "admin_authorizations", authorizations: @authorizations %>
+	</div>
+	<div id="show_encapsulations_data" style="display:none;" class="data_partial">
+		<%= render "admin_encapsulations", encapsulations: @encapsulations %>
+	</div>
+</div>

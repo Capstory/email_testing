@@ -5,14 +5,23 @@ class SessionsController < ApplicationController
     unless @auth = Authorization.find_from_hash(auth)
       if auth[:provider] = "identity"
         @identity = Identity.find(auth[:uid])
-        case @identity.genre
-        when "client"
-          redirect_to create_client_path(name: auth[:info][:name], email: auth[:info][:email], event_date: @identity.event_date,  uid: auth[:uid], provider: auth[:provider], oauth_token: auth[:credentials][:token])
-        when "admin"
-          redirect_to create_admin_path(name: auth[:info][:name], email: auth[:info][:email], uid: auth[:uid], provider: auth[:provider], oauth_token: auth[:credentials][:token])
-        when "contributor"
-          redirect_to create_contributor_path(name: auth[:info][:name], email: auth[:info][:email], uid: auth[:uid], provider: auth[:provider], oauth_token: auth[:credentials][:token])
+        @authorization = Authorization.create(provider: auth[:provider], uid: auth[:uid], user_id: @identity.user_id)
+        if @authorization.save
+          flash[:success] = "Authorization Successfully Created"
+          redirect_to dashboard_path
+        else
+          flash[:error] = "Unable to create authorization"
+          redirect_to dashboard_path
         end
+        
+        # case @identity.genre
+        # when "client"
+        #   redirect_to create_client_path(name: auth[:info][:name], email: auth[:info][:email], event_date: @identity.event_date,  uid: auth[:uid], provider: auth[:provider], oauth_token: auth[:credentials][:token])
+        # when "admin"
+        #   redirect_to create_admin_path(name: auth[:info][:name], email: auth[:info][:email], uid: auth[:uid], provider: auth[:provider], oauth_token: auth[:credentials][:token])
+        # when "contributor"
+        #   redirect_to create_contributor_path(name: auth[:info][:name], email: auth[:info][:email], uid: auth[:uid], provider: auth[:provider], oauth_token: auth[:credentials][:token])
+        # end
       else
        # @auth = Authorization.create_from_hash(auth)
        flash[:error] = "Unable to complete request at this time"

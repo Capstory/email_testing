@@ -17,4 +17,22 @@ class Capsule < ActiveRecord::Base
       return true
     end
   end
+  
+  def owners_name
+    owner = self.encapsulations.where(owner: true)
+    if owner.empty?
+      return "N/A"
+    else
+      return owner.first.user.name
+    end
+  end
+  
+  def owner
+    owner = self.encapsulations.where(owner: true)
+    if owner.empty?
+      return "N/A"
+    else
+      return owner.first.user
+    end
+  end
 end

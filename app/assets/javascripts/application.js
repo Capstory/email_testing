@@ -25,6 +25,7 @@
 //= require main
 //= require angular
 //= require angular-resource
+//= require angular-route
 //= require_tree .
 
 function facebook_modal_show (){
@@ -108,7 +109,7 @@ $(function(){
     $("#slideshow").fullscreen();
     return false;
   });
-
+  
 	
 	$(".sub-nav dd").click(function(){
 	  var item_id = $(this).attr('id');
@@ -213,4 +214,19 @@ $(function(){
 	$("#stripe_engage").click(function(){
 	  $("#stripe_launch").click();
 	});
+	
+	//
+	// ======================================
+	// Admin Dashboard JS
+  // ======================================
+  //
+  
+  $(".admin_links").click(function (event) {
+    var partial_id = $(this).attr('id');
+    new_partial = "#" + partial_id + "_data";
+    $(".data_partial").hide();
+    $(new_partial).show();
+    event.preventDefault();
+  });
+  
 });

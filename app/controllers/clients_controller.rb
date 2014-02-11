@@ -1,43 +1,84 @@
 class ClientsController < ApplicationController
   
+  # =====================================
+  # Begin standard controller actions
+  # =====================================
+  
   def index
     @clients = Client.all
   end
   
-  def show
-    @client = Client.find(params[:id])
-    redirect_to @client.capsules.first
+  def new
+    @client = Client.new
   end
   
   def create
     @client = Client.create do |client|
-      client.name = params[:name]
-      client.email = params[:email]
+      client.name = params[:client][:name]
+      client.email = params[:client][:email]
     end
     if @client.save
       
       # Change the access request status to show that it is validated
-      access_request = AccessRequest.find_by_name_and_email_and_event_date(params[:name], params[:email], params[:event_date])
-      access_request.request_status = "validated"
-      access_request.save
+      
+      # ***************************************
+      # This will likely need to change since the workflow is no longer a question of going to an access request to a client and capsule creation
+      
+      # access_request = AccessRequest.find_by_name_and_email_and_event_date(params[:name], params[:email], params[:event_date])
+      # access_request.request_status = "validated"
+      # access_request.save
       
       # Create an Authorization to hold the authentication and login information
-      Authorization.create do |auth|
-        auth.user_id = @client.id
-        auth.uid = params[:uid]
-        auth.provider = params[:provider]
-        auth.oauth_token = params[:oauth_token]
-        auth.save!
-      end
+      # Authorization.create do |auth|
+      #   auth.user_id = @client.id
+      #   auth.uid = params[:uid]
+      #   auth.provider = params[:provider]
+      #   auth.oauth_token = params[:oauth_token]
+      #   auth.save!
+      # end
       
       # Automatically create a capsule for the new client
-      create_client_capsule(@client, params[:event_date])
+      # create_client_capsule(@client, params[:event_date])
+      
+      flash[:success] = "Successfully Created New Client"
+      redirect_to dashboard_path
     else
-      flash[:error] = "Unable to create client or capsule"
-      redirect_to :back
+      flash[:error] = "Unable to create client"
+      render "new"
     end
   end
   
+  def show
+    @client = Client.find(params[:id])
+  end
+  
+  def edit
+    @client = Client.find(params[:id])
+  end
+  
+  def update
+    @client = Client.find(params[:id])
+    @client.name = params[:client][:name]
+    @client.email = params[:client][:email]
+    if @client.save
+      flash[:success] = "Client Successfullly Updated"
+      redirect_to dashboard_path
+    else
+      flash[:error] = "Unable to Update Client"
+      render "edit"
+    end
+  end
+  
+  def destroy
+    client = Client.find(params[:id])
+    client.destroy
+    flash[:success] = "Client Successfully Deleted"
+    redirect_to :back
+  end
+
+  # =====================================
+  # Begin non-standard controller actions
+  # =====================================
   
   def create_client_capsule(client, event_date)
     capsule_name = client.name

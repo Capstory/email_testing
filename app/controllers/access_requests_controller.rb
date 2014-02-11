@@ -2,6 +2,10 @@ class AccessRequestsController < ApplicationController
   #before_filter :admin_authentication
   after_filter :clear_identity_session, only: :index
   
+  # =====================================
+  # Begin standard controller actions
+  # =====================================
+  
   def index
     @access_requests = AccessRequest.all
     @client = Client.new
