@@ -16,6 +16,7 @@
   	<title><%= content_for?(:title) ? yield(:title) : "Capstory | In these moments, one lens is not enough." %></title>
 
   	<%= stylesheet_link_tag    "application" %>
+		<%= stylesheet_link_tag params[:controller] %>
   	<%= javascript_include_tag "vendor/custom.modernizr" %>
     <%= csrf_meta_tags %>
   </head>
@@ -23,9 +24,9 @@
   <body class="body-push business auto-close-menu">
 
     	<%= yield %>
-		
     
     <%= javascript_include_tag "application" %>
+		<%= javascript_include_tag params[:controller] %>
 		<%= render 'layouts/ga' if Rails.env.production? %>
   </body>
 </html>

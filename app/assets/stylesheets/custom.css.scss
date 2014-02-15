@@ -158,3 +158,34 @@ div.mc-image {
 #show_partner_code {
 	cursor: pointer;
 }
+
+#notice {
+  color: green;
+}
+
+.field_with_errors {
+  margin: 2px;
+	padding: 2px;
+  background-color: lighten(red, 40%);
+
+}
+
+#error_explanation {
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  h5 {
+    text-align: left;
+    padding: 5px 5px 5px 15px;
+
+    margin: -7px;
+    margin-bottom: 10px;
+    background-color: lighten(red, 20%);
+    color: #fff;
+  }
+  ul li {
+		margin-left: 20px;
+    font-size: 16px;
+    list-style: circle;
+  }
+}

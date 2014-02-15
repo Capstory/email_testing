@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Capstory Payment Page</title>
+
+  	<%= stylesheet_link_tag    "application" %>
+		<%= stylesheet_link_tag params[:controller] %>
+  	<%= javascript_include_tag "vendor/custom.modernizr" %>
+    <%= csrf_meta_tags %>
+
+</head>
+
+<body>
+	<%= yield %>
+
+    <footer>
+        <div class="bootstrap_container">
+            <div class="bootstrap_row">
+                <div class="col-lg-12">
+ 										<%= link_to "Home", root_url, class: "text-muted small" %>
+                    <p class="copyright text-muted small">Copyright &copy; Capstory 2014. All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+		<%= javascript_include_tag "application" %>
+
+</body>
+
+</html>

@@ -211,8 +211,9 @@ $(function(){
 	  $(checkmark_id).toggle();
 	});
 	
-	$("#stripe_engage").click(function(){
-	  $("#stripe_launch").click();
+	$("#stripe_engage").click(function (event){
+	  $(".stripe-button-el").click();
+	  event.preventDefault();
 	});
 	
 	//

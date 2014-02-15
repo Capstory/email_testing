@@ -16,6 +16,7 @@
   	<title><%= content_for?(:title) ? yield(:title) : "Weddings @ Capstory || Collect Every Moment" %></title>
 
   	<%= stylesheet_link_tag    "application" %>
+		<%= stylesheet_link_tag "static_pages" %>
   	<%= javascript_include_tag "vendor/custom.modernizr" %>
     <%= csrf_meta_tags %>
 		<script type="text/javascript">if (window.location.hash == '#_=_')window.location.hash = '';</script>
@@ -28,12 +29,12 @@
 			<div class="small-12 small-centered columns">
 
 		   	<%= yield %>
-				<div id="slideshow_buttons">
-					<%= link_to "Back to Capsule", @capsule, class: 'button' %>
-					<a href="#" id="enterFullScreen" class="button">Full Screen</a>
-				</div>
-				<h3>Send Photos to: <%= link_to @capsule.email, "mailto:#{@capsule.email}" %></h3>
-				<div class="slideshow_empty"></div>
+						<div id="slideshow_buttons">
+							<%= link_to "Back to Capsule", @capsule, class: 'button' %>
+							<a href="#" id="enterFullScreen" class="button">Full Screen</a>
+						</div>
+						<h3 class="subheader">Send Photos to: <%= link_to @capsule.email, "mailto:#{@capsule.email}" %></h3>
+						<div class="slideshow_empty"></div>
 			</div>
 		</div>
     
