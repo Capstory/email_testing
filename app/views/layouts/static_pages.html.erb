@@ -26,7 +26,6 @@
     	<%= yield %>
     
     <%= javascript_include_tag "application" %>
-		<%= javascript_include_tag params[:controller] %>
 		<%= render 'layouts/ga' if Rails.env.production? %>
   </body>
 </html>
