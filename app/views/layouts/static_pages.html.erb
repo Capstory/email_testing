@@ -16,7 +16,7 @@
   	<title><%= content_for?(:title) ? yield(:title) : "Capstory | In these moments, one lens is not enough." %></title>
 
   	<%= stylesheet_link_tag    "application" %>
-		<%= stylesheet_link_tag params[:controller] %>
+		<%= stylesheet_link_tag "static" %>
   	<%= javascript_include_tag "vendor/custom.modernizr" %>
     <%= csrf_meta_tags %>
   </head>
