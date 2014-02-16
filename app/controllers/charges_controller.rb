@@ -1,5 +1,6 @@
 class ChargesController < ApplicationController
   before_filter :admin_authentication, only: :index
+  force_ssl if: :in_production?, only: [:new, :create]
   
   def index
     @charges = Charge.all
@@ -84,5 +85,9 @@ class ChargesController < ApplicationController
   
   def payment_error
     @customer_email = params[:customer_email]
+  end
+  
+  def in_production?
+    Rails.env.production?
   end
 end
