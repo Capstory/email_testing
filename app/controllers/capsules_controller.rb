@@ -102,7 +102,7 @@ class CapsulesController < ApplicationController
     when "slideshow"
       "slideshow"
     else
-      "application"
+      "capsules"
     end
   end
   

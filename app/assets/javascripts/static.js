@@ -1,0 +1,1 @@
+//= require_tree ./static_pages
