@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+		<style>
+			ul {
+				list-style-type:none;
+			}
+		</style>
+  </head>
+  <body>
+    <h1>Someone has filled out the contact form on a vendor page</h1>
+		<hr>
+		<p>Email: <%= @contact_info.email %></p>
+		<ul>
+			<li>Name: <%= @contact_info.name %></li>
+			<li>Address Line 1: <%= @contact_info.address_1 %></li>
+			<li>Address Line 2: <%= @contact_info.address_2 %></li>
+			<li>Phone: <%= @contact_info.phone %></li>
+			<li>Vendor: <%= @contact_info.vendor.name %></li>
+			<li>Message: <%= @contact_info.message %></li>
+		</ul>
+  </body>
+</html>

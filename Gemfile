@@ -34,7 +34,7 @@ group :assets do
 end
 
 gem 'font-awesome-rails'
-gem 'friendly_id'
+gem 'friendly_id', '~> 4.0.10.1'
 
 # private_pub is a websockets gem created by Ryan Bates. While I think it is a great idea, 
 # I couldn't get if functioning with our current set up. Thus, I have excluded it. 

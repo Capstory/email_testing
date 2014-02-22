@@ -5,7 +5,8 @@ class SiteConstraints
 end
 
 EmailTesting::Application.routes.draw do
-  
+
+
   match "dashboard" => "admin_functions#dashboard"
 
   # ===================================================
@@ -70,6 +71,9 @@ EmailTesting::Application.routes.draw do
   match 'payment_thank_you' => "charges#thank_you"
   match 'payment_error' => "charges#payment_error"
   resources :charges
+  
+  resources :vendors
+  resources :vendor_contacts
   
   mount Resque::Server, at: "/resque"
   

@@ -1,0 +1,2 @@
+module VendorContactsHelper
+end

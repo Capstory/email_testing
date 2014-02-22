@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140209184702) do
+ActiveRecord::Schema.define(:version => 20140222034942) do
 
   create_table "access_requests", :force => true do |t|
     t.string   "name"
@@ -104,6 +104,29 @@ ActiveRecord::Schema.define(:version => 20140209184702) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "type"
+  end
+
+  create_table "vendor_contacts", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "vendor_code"
+    t.string   "address_1"
+    t.string   "address_2"
+    t.string   "phone"
+    t.text     "message"
+    t.integer  "vendor_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "vendors", :force => true do |t|
+    t.string   "name"
+    t.string   "partner_code"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "named_url"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "videos", :force => true do |t|

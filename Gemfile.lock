@@ -222,7 +222,7 @@ DEPENDENCIES
   fancybox2-rails
   filepicker-rails
   font-awesome-rails
-  friendly_id
+  friendly_id (~> 4.0.10.1)
   jquery-rails
   jquery-ui-rails
   koala
