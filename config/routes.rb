@@ -136,7 +136,7 @@ EmailTesting::Application.routes.draw do
     root :to => "users#welcome"
   end
     
-  root :to => 'static_pages#home'
+  root :to => 'homepages#landing'
 
   # See how all your routes lay out with "rake routes"
 

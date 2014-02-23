@@ -1,0 +1,505 @@
+<nav class="pushy pushy-left">
+  <ul>
+    <li><a href="#intro" data-link-type="scroll">Intro</a></li>
+    <li><a href="#what_you_get" data-link-type="scroll">What You Get</a></li>
+    <li><a href="#how_it_works" data-link-type="scroll">How It Works</a></li>
+    <!-- <li><a href="#what_to_expect" data-link-type="scroll">What To Expect</a></li> -->
+    <!-- <li><a href="#testimonials" data-link-type="scroll">Testimonials</a></li> -->
+    <li><a href="#pricing" data-link-type="scroll">Pricing</a></li>
+    <li><a href="#site_footer" class="contact" data-link-type="scroll">Contact</a></li>
+    <li><%= link_to "Login", login_path, class: "login" %></li>
+  </ul>
+</nav>
+
+<div id="container">
+
+  <header class="site_header">
+    <div class="video-wrapper" id="intro">
+      <div class="video-elem">
+        <video id="vid1" class="video-js vjs-default-skin" preload="auto" poster="" autoplay loop data-setup='{}'>
+          <source src="https://dl.dropboxusercontent.com/s/ct7oqdqqlrrwaxs/CAPSTORY%20ROUGH%2002.mp4" type="video/mp4">
+        </video>
+
+        <div class="introcontent">
+          <div class="intro">
+            <h2>
+              Guests capture images and video at all your wedding events, Capstory makes sure you get to enjoy them.
+            </h2>
+              <div class="promo_group">
+						    <button class="btn btn_primary promo_group_btn" data-reveal-id="get_capstory_modal">Get Capstory</button>
+						    <!-- <a class="tell_friend promo_group_link" href="#">Tell your engaged friend about Capstory</a> -->
+						  </div> <!-- /promo_group -->
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <nav class="top-bar">
+
+      <div class="menu-btn">
+        <span>&nbsp;</span>
+        <span>&nbsp;</span>
+        <span>&nbsp;</span>
+      </div>
+
+      <section class="top-bar-section">
+        <a href="#intro" class="logo" data-link-type="scroll">
+					<%= image_tag("homepage/svg/logo.svg", alt: "Capstory") %>
+
+        </a>
+        <ul class="nav-bar right">
+          <li><a href="#intro" data-link-type="scroll">Intro</a></li>
+          <li><a href="#what_you_get" data-link-type="scroll">What You Get</a></li>
+          <li><a href="#how_it_works" data-link-type="scroll">How It Works</a></li>
+          <!-- <li><a href="#what_to_expect" data-link-type="scroll">What To Expect</a></li> -->
+          <!-- <li><a href="#testimonials" data-link-type="scroll">Testimonials</a></li> -->
+          <li><a href="#pricing" data-link-type="scroll">Pricing</a></li>
+          <li><a href="#site_footer" class="contact" data-link-type="scroll">Contact</a></li>
+          <li><%= link_to "Login", login_path, class: "login" %></li>
+        </ul>
+      </section>
+    </nav>
+    <!-- /stickycont -->
+  </header>
+
+    <section class="main-content">
+      <section id="what_you_get" class="what_you_get content_section" data-magellan-destination="what_you_get">
+      <header class="section_header">
+        <h2>What You Get</h2>
+        <hr>
+        <h3>Your Capstory package is all-inclusive</h3>
+      </header>
+
+      <section class="package_icons">
+          <section class="package_item">
+            <a href="#" data-reveal-id="welcome_kit_modal">
+            <i class="icon_welcome_kit package_icon"></i>
+            Welcome Kit
+            </a>
+          </section><!--/package_item-->
+          <section class="package_item">
+            <a href="#" data-reveal-id="capsule_modal">
+            <i class="icon_capsule package_icon"></i>
+            Custom Capsule
+            </a>
+          </section><!--/package_item-->
+          <section class="package_item">
+            <a href="#" data-reveal-id="live_slideshow_modal">
+            <i class="icon_live_slideshow package_icon"></i>
+            Live Slideshow
+            </a>
+          </section><!--/package_item-->
+          <section class="package_item">
+            <a href="#" data-reveal-id="photo_book_modal">
+            <i class="icon_book package_icon"></i>
+            Photo Books
+            </a>
+          </section><!--/package_item-->
+          <section class="package_item">
+            <a href="#" data-reveal-id="live_video_modal">
+            <i class="icon_video package_icon"></i>
+            Pro Video<br />Slideshow
+            </a>
+          </section><!--/package_item-->
+      </section><!--/package_icons-->
+
+
+      <section class="package_description">
+        <p data-desc-id="welcome_kit">
+            <strong>Welcome Kit:</strong> Custom designed stationery (guest instruction cards) and a few extra surprises from us!
+        </p>
+        <p data-desc-id="capsule">
+            <strong>Custom Capsule:</strong> Your capsule is created and ready for it’s first images! Text in engagement photos and use your Capstory capsule for all your pre-wedding events.
+        </p>
+        <p data-desc-id="live_slideshow">
+            <strong>Live Slideshow:</strong> Your venue becomes one large Photo Booth – guests take pictures and see them immediately on the big screen. That’s entertainment!
+        </p>
+        <p data-desc-id="photo_book">
+            <strong>Photo Books:</strong> After we professionally edit the best of your capsule images, we will create high quality photo books for you. Keep one and share one!
+        </p>
+        <p data-desc-id="live_video">
+            <strong>Pro Video Slideshow:</strong> Your best images are include in a beautiful professional slideshow. Download to keep forever, and share via social media!
+        </p>
+      </section><!--package_description-->
+
+    <footer class="section_footer">
+        <div class="promo_group">
+    <button class="btn btn_primary promo_group_btn" data-reveal-id="get_capstory_modal">Get Capstory</button>
+    <!-- <a class="tell_friend promo_group_link" href="#">Tell your engaged friend about Capstory</a> -->
+  </div> <!-- /promo_group -->
+
+
+    </footer>
+
+    <!--/Modals-->
+    <div id="welcome_kit_modal" class="reveal-modal medium" data-reveal>
+      <header class="section_header">
+        <h2>Welcome Kit</h2>
+        <hr>
+        <h3>Your Capstory package is all-inclusive</h3>
+      </header>
+      <p><strong>Welcome Kit:</strong> Custom designed stationery (guest instruction cards) and a few extra surprises from us!</p>
+      <a class="close-reveal-modal">&#215;</a>
+    </div>
+    <div id="capsule_modal" class="reveal-modal medium" data-reveal>
+      <header class="section_header">
+        <h2>Custom Capsule</h2>
+        <hr>
+        <h3>Your Capstory package is all-inclusive</h3>
+      </header>
+      <p><strong>Custom Capsule:</strong> Your capsule is created and ready for it’s first images! Text in engagement photos and use your Capstory capsule for all your pre-wedding events.</p>
+      <a class="close-reveal-modal">&#215;</a>
+    </div>
+    <div id="live_slideshow_modal" class="reveal-modal medium" data-reveal>
+      <header class="section_header">
+        <h2>Live Slideshow</h2>
+        <hr>
+        <h3>Your Capstory package is all-inclusive</h3>
+      </header>
+      <p><strong>Live Slideshow:</strong> Your venue becomes one large Photo Booth – guests take pictures and see them immediately on the big screen. That’s entertainment!</p>
+      <a class="close-reveal-modal">&#215;</a>
+    </div>
+    <div id="photo_book_modal" class="reveal-modal medium" data-reveal>
+      <header class="section_header">
+        <h2>Photo Books</h2>
+        <hr>
+        <h3>Your Capstory package is all-inclusive</h3>
+      </header>
+      <p><strong>Photo Books:</strong> After we professionally edit the best of your capsule images, we will create high quality photo books for you. Keep one and share one!</p>
+      <a class="close-reveal-modal">&#215;</a>
+    </div>
+    <div id="live_video_modal" class="reveal-modal medium" data-reveal>
+      <header class="section_header">
+        <h2>Pro Video Slideshow</h2>
+        <hr>
+        <h3>Your Capstory package is all-inclusive</h3>
+      </header>
+      <p><strong>Pro Video Slideshow:</strong> Your best images are include in a beautiful professional slideshow. Download to keep forever, and share via social media!</p>
+      <a class="close-reveal-modal">&#215;</a>
+    </div>
+	   <div id="get_capstory_modal" class="reveal-modal medium" data-reveal>
+	      <header class="section_header">
+	        <h2>Get Capstory</h2>
+	        <hr>
+	        <h3>Reserve Your Event Date</h3>
+	      </header>
+				<%= form_for @access_request, html: { class: 'signin' } do |f| %>
+							<p>Name</p>
+							<%= f.text_field :name %>
+							
+							<p>Email</p>
+							<%= f.text_field :email %>
+
+							<p>Event Date</p>
+							<%= f.text_field :event_date, class: 'date-pick' %>
+							<div class="panel">
+								<p>Tell us about yourself</p>
+								<%= f.radio_button :source, "bride", class: 'non_industry' %>
+								<%= f.label :source, "Bride/Groom" %>
+								
+								<%= f.radio_button :source, "vendor", id: 'industry_professional' %>
+								<%= f.label :source, "Industry Professional" %>
+								<div style="display:none;" class="industry_explanation">
+									<%= f.text_field :industry_role %>
+									<p><small>What is your role in the industry?</small></p>
+								</div>
+								
+								<%= f.radio_button :source, "other", class: 'non_industry' %>
+								<%= f.label :source, "Other" %>
+							</div>
+							<p>Questions/Comments?</p>
+							<%= f.text_area :questions %>
+						<div id="show_partner_code">
+							<p style="text-align:center" class="subheader">Click if you have a partner code</p>
+						</div>
+						<div style="display:none;" id="partner_code">
+							<p>Partner Code</p>
+							<%= f.text_field :partner_code %>
+							<p><small>If you received a code from a Capstory partner/vendor, enter it here</small></p>
+							<br>
+						</div>
+
+						<%= f.submit "Send", class: 'button' %>
+						<p style="text-align:center" class="subheader">We'll send you more information soon!</p>
+				<% end %>
+	      <a class="close-reveal-modal">&#215;</a>
+	    </div>
+    </section>
+</section><!-- /main-content -->
+
+<section class="photobreak" id="first_photobreak"></section>
+<section class="main-content">
+  <section class="how_it_works content_section" id="how_it_works">
+    <header class="section_header">
+      <h2>How it Works</h2>
+      <hr />
+      <h3>Curating your wedding photos has never been easier</h3>
+    </header> <!-- /section_header -->
+    <span class="arrow"></span>
+    <ol class="how_it_works_experience">
+      <li class="take_pictures">
+        <header class="experience_header">
+          <div class="number">
+          <span>1</span>
+          </div>
+          <div class="text">
+            <h4>Take Some Pictures</h4>
+            <h5>Images are captured throughout all your wedding events by friends and family, Capstory makes them easy to access and cherish forever.</h5>
+          </div>
+        </header> <!-- /experience_header -->
+				<%= image_tag("homepage/img-take-pictures.png") %>
+      </li> <!-- /take_pictures -->
+      <li class="text_capstory">
+				<%= image_tag("homepage/img-text-capstory.png") %>
+        <header class="experience_header">
+          <div class="number">
+            <span>2</span>
+          </div>
+          <div class="text">
+            <h4>Text Them To Capstory</h4>
+            <h5>Guests text images to your custom capsule,and you’ll enjoy every guests’ perspective. No downloading anything, it’s simple!</h5>
+          </div>
+        </header> <!-- /experience_header -->
+      </li> <!-- /text_capstory -->
+      <li class="make_capsule">
+        <header class="experience_header">
+          <div class="number">
+          <span>3</span>
+          </div>
+          <div class="text">
+            <h4>We Make The Capsule</h4>
+            <h5>Like magic! All your guest generated images are in your Capstory capsule instantaneously!</h5>
+          </div>
+        </header> <!-- /experience_header -->
+				<%= image_tag("homepage/img-make-capsule.png") %>
+      </li> <!-- /make_capsule -->
+    </ol> <!-- /how-it-works-experience -->
+    <span class="arrow_alt"></span>
+    <footer class="section_footer">
+        <div class="promo_group">
+    <button class="btn btn_primary promo_group_btn" data-reveal-id="get_capstory_modal">Get Capstory</button>
+    <!-- <a class="tell_friend promo_group_link" href="#">Tell your engaged friend about Capstory</a> -->
+  </div> <!-- /promo_group -->
+
+
+    </footer>
+  </section> <!-- /how_it_works -->
+</section><!-- /main-content -->
+
+<!-- <section class="photobreak" id="second_photobreak"></section>
+<section class="main-content" id="testimonials">
+  <section class="content_section">
+    <header class="section_header">
+      <h2>Testimonials</h2>
+      <hr />
+      <h3>What people are saying about Capstory</h3>
+    </header>
+    <section class="single_testimonial first">
+        <div class="testimonial_copy">
+            <q>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras egestas consequat placerat. Sed in metus felis. 
+            </q>
+            <small class="author">– Lorem Ipsum</small>            
+        </div>
+    </section>
+    <section class="single_testimonial second">
+        <div class="testimonial_copy">
+            <q>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras egestas consequat placerat. Sed in metus felis. 
+            </q>
+            <small class="author">– Lorem Ipsum</small>            
+        </div>
+    </section>
+    <section class="single_testimonial third">
+        <div class="testimonial_copy">
+            <q>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras egestas consequat placerat. Sed in metus felis. 
+            </q>
+            <small class="author">– Lorem Ipsum</small>            
+        </div>
+    </section>        
+  </section>
+</section>
+
+<footer class="section_footer">
+    <div class="promo_group">
+    <button class="btn btn_primary promo_group_btn">Get Capstory</button>
+    <a class="tell_friend promo_group_link" href="#">Tell your engaged friend about Capstory</a>
+  </div> /promo_group
+
+
+</footer> -->
+
+<section class="photobreak" id="third_photobreak"></section>
+<section class="main-content">
+  <section class="pricing content_section" id="pricing">
+    <header class="section_header">
+      <h2>Pricing</h2>
+      <hr />
+      <!-- <h3>Harum asperiores fuga accusamus sed rerum</h3> -->
+    </header>
+    <div class="price">
+      <sup>$</sup><span class="price_number">495</span><span class="tax">tax &#43; shipping<br /> included</span>
+    </div> <!-- /price -->
+    <div class="pricing_features">
+      <ul class="pricing_features_list">
+        
+        
+          <li>Custom Capsule</li>
+        
+          <li>Easy Text-in Platform</li>
+        
+          <li>Custom Guest Instruction Cards</li>
+        
+          <li>Live Slideshow Capability</li>
+        
+      </ul> <!-- /pricing_featuers_list -->
+      <ul class="pricing_features_list">
+        
+      
+        
+          <li>Professional Image Editing</li>
+        
+          <li>2 Keepsake Photo Books</li>
+        
+          <li>Pro-slideshow Download</li>
+        
+          <li>Priority Customer Support</li>
+        
+      </ul> <!-- /pricing_featuers_list -->
+    </div> <!-- /pricing_features -->
+    <footer class="section_footer">
+        <div class="promo_group">
+    <button class="btn btn_primary promo_group_btn" data-reveal-id="get_capstory_modal">Get Capstory</button>
+    <!-- <a class="tell_friend promo_group_link" href="#">Tell your engaged friend about Capstory</a> -->
+  </div> <!-- /promo_group -->
+
+
+    </footer>
+  </section> <!-- /pricing -->
+</section> <!-- /main-content -->
+
+<!--<section id="reminder">
+    <section class="main-content">
+      <section class="content_section">
+        <header class="section_header">
+          <h2>Remind Me Later</h2>
+          <hr />
+          <h3>Tell us when you want us to send you a reminder email</h3>
+        </header>
+
+          <form id="reminder_form">
+            <ul>
+                <li class="reminder_email_group">
+                <label for="reminder_name">Email</label>
+                <input type="email" id="reminder_email" placeholder="you@domain.com" />
+                </li>
+                <li class="reminder_date_group">
+                <label for="reminder_date">When should we email you?</label>
+                <input type="date" id="reminder_date" />
+                </li>
+                <li class="reminder_submit_group">
+                <label>&nbsp;</label>
+                <button class="btn btn_secondary" action="submit">Submit</button>
+                </li>
+            </ul>
+          </form>        
+
+      </section>
+    </section>
+</section> -->
+
+  <footer id="site_footer" class="site_footer content_section">
+  <section class="footer_content footer_contact">
+    <header class="section_header">
+      <h2>Customer Service</h2>
+      <hr />
+      <h3>We're always here to answer your questions</h3>
+    </header> <!-- /section-header -->
+    <div class="contact_info">
+      <dl class="contact_details">
+        <dt>Phone</dt>
+        <dd>614-416-8010</dd>
+        <dt>Email</dt>
+        <dd><a href="mailto:contact@capstory.me">hello@capstory.me</a></dd>
+        <dt class="address_term">Address</dt>
+        <dd class="address_def">
+          81 Mill Street<br />
+					Suite 300<br />
+          Columbus, OH 45321
+          <a class="show_map" href="#footer_map">Show on map</a>
+        </dd>
+      </dl> <!-- /contact-details -->
+    </div> <!-- /contact_info -->
+    <!--<div class="footer_contact_form">
+      <form>
+        <label for="contact_name">Name</label>
+        <input type="text" id="contact_name" />
+        <label for="contact_email">Email</label>
+        <input type="email" id="contact_email" />
+        <label for="contact_message">Messages</label>
+        <textarea id="contact_message"></textarea>
+        <button class="btn btn_secondary" action="submit">Send</button>
+      </form>
+    </div> --><!-- /footer-contact-form --> 
+  </section> <!-- /footer_contact -->
+  <section class="footer_map">
+    <div id="footer_map"></div>
+  </section> <!-- /footer-map -->
+  <section class="footer_content">
+    <a class="footer_brand" href="/"><%= image_tag("homepage/img-logo-rev.png") %></a>
+    <div class="footer_links">
+      <ul class="link_list">
+        
+      
+        <li><a href="#what_you_get" data-link-type="scroll">What You Get</a></li>
+      
+        <li><a href="#how_it_works" data-link-type="scroll">How it Works</a></li>
+      
+        <!-- <li><a href="/">What to Expect</a></li> -->
+      
+        <li><a href="#pricing" data-link-type="scroll">Pricing</a></li>
+      
+        <li><a href="#site_footer" class="contact" data-link-type="scroll">Support</a></li>
+      
+      </ul>
+      <ul class="link_list">
+        
+      
+        <!-- <li><a href="/">FAQs</a></li>
+      
+        <li><a href="/">Vendors</a></li>
+      
+        <li><a href="/">Terms of Service</a></li>
+      
+        <li><a href="/">Privacy Policy</a></li> -->
+      
+        <li><%= link_to "Login", login_path %></li>
+      
+      </ul>
+    </div> <!-- /footer_links -->
+    <div class="footer_meta">
+      <ul class="social_links">
+        
+      
+        <li class="twitter"><a href="http://twitter.com/capstory">Twitter</a></li>
+      
+        <li class="facebook"><a href="http://www.facebook.com/capstory">Facebook</a></li>
+      
+        <li class="instagram"><a href="http://instagram.com/capstoryweddings">Instagram</a></li>
+      
+        <!-- <li class="vimeo"><a href="/">Vimeo</a></li> -->
+      
+        <li class="pinterest"><a href="http://www.pinterest.com/capstory/">Pinterest</a></li>
+      
+      </ul> <!-- /social_links -->
+      <div class="copyright">
+        <p>Copyright 2014</p>
+        <p>All Rights Reserved</p>
+      </div> <!-- /copyright -->
+    </div> <!-- /footer_meta -->
+  </section> <!-- /footer_content -->
+</footer> <!-- /site-footer -->
+
+</div><!-- end container -->
+
