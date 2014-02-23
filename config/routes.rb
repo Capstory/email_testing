@@ -71,7 +71,8 @@ EmailTesting::Application.routes.draw do
   match 'payment_thank_you' => "charges#thank_you"
   match 'payment_error' => "charges#payment_error"
   resources :charges
-  
+	
+  match 'partners/:id' => "vendors#show"  
   resources :vendors
   resources :vendor_contacts
   
