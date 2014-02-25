@@ -1,0 +1,8 @@
+<% @reminders.each do |reminder| %>
+	<div class="panel">
+		<p>Email: <%= reminder.email %></p>
+		<p>Date: <%= reminder.date %></p>
+		<%= link_to "Edit", edit_reminder_path(reminder) %> |
+		<%= link_to "Delete", reminder_path(reminder), method: :delete, data: { confirm: "Are you sure?" } %> 
+	</div>
+<% end %>

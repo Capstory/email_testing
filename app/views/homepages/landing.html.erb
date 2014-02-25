@@ -379,7 +379,7 @@
   </section> <!-- /pricing -->
 </section> <!-- /main-content -->
 
-<!--<section id="reminder">
+<section id="reminder">
     <section class="main-content">
       <section class="content_section">
         <header class="section_header">
@@ -387,27 +387,30 @@
           <hr />
           <h3>Tell us when you want us to send you a reminder email</h3>
         </header>
-
-          <form id="reminder_form">
+					
+          <%= form_for @reminder, html: { id: "reminder_form" } do |f| %>
             <ul>
-                <li class="reminder_email_group">
-                <label for="reminder_name">Email</label>
-                <input type="email" id="reminder_email" placeholder="you@domain.com" />
-                </li>
-                <li class="reminder_date_group">
-                <label for="reminder_date">When should we email you?</label>
-                <input type="date" id="reminder_date" />
-                </li>
-                <li class="reminder_submit_group">
-                <label>&nbsp;</label>
-                <button class="btn btn_secondary" action="submit">Submit</button>
-                </li>
+	            <li class="reminder_email_group">
+								<%= f.label :email %>
+
+								<%= f.text_field :email, id:'reminder_email', placeholder: "you@domain.com" %>
+	            </li>
+	            <li class="reminder_date_group">
+								<%= f.label :date, "When should we email you?" %>
+
+								<%= f.text_field :date, id: 'reminder_date', type: 'date' %>
+			        </li>
+			        <li class="reminder_submit_group">
+								<label><br></label>
+								<button class="btn btn_secondary" id="email_reminder_engage">Submit</button>
+								<% f.submit "Submit", class: 'btn btn_secondary', id: "email_reminder_submit_button" %>
+			        </li>
             </ul>
-          </form>        
+          <% end %>        
 
       </section>
     </section>
-</section> -->
+</section>
 
   <footer id="site_footer" class="site_footer content_section">
   <section class="footer_content footer_contact">

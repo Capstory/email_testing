@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140222034942) do
+ActiveRecord::Schema.define(:version => 20140223221000) do
 
   create_table "access_requests", :force => true do |t|
     t.string   "name"
@@ -96,6 +96,13 @@ ActiveRecord::Schema.define(:version => 20140222034942) do
     t.datetime "image_updated_at"
     t.integer  "capsule_id"
     t.string   "filepicker_url"
+  end
+
+  create_table "reminders", :force => true do |t|
+    t.string   "email"
+    t.datetime "date"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

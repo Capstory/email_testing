@@ -7,6 +7,7 @@ end
 EmailTesting::Application.routes.draw do
 
 
+
   match "dashboard" => "admin_functions#dashboard"
 
   # ===================================================
@@ -75,6 +76,9 @@ EmailTesting::Application.routes.draw do
   match 'partners/:id' => "vendors#show"  
   resources :vendors
   resources :vendor_contacts
+  
+  match "reminder_thank_you" => "reminders#thank_you"
+  resources :reminders
   
   mount Resque::Server, at: "/resque"
   

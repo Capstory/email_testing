@@ -1,0 +1,9 @@
+<%= form_for(@reminder) do |f| %>
+	<%= f.label :email %>
+	<%= f.text_field :email %>
+	
+	<%= f.label :date, "Date to Email Reminder" %>
+	<%= f.text_field :date, type: 'date' %>
+	
+	<%= f.submit "Submit", class: "button" %>
+<% end %>
