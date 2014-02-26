@@ -434,17 +434,20 @@
         </dd>
       </dl> <!-- /contact-details -->
     </div> <!-- /contact_info -->
-    <!--<div class="footer_contact_form">
-      <form>
-        <label for="contact_name">Name</label>
-        <input type="text" id="contact_name" />
-        <label for="contact_email">Email</label>
-        <input type="email" id="contact_email" />
-        <label for="contact_message">Messages</label>
-        <textarea id="contact_message"></textarea>
-        <button class="btn btn_secondary" action="submit">Send</button>
-      </form>
-    </div> --><!-- /footer-contact-form --> 
+    <div class="footer_contact_form">
+			<%= form_for(@contact_form) do |f| %>
+				<%= f.label :name %>
+				<%= f.text_field :name, id: "contact_name" %>
+				
+				<%= f.label :email %>
+				<%= f.text_field :email, type: "email", id: "contact_email" %>
+				
+				<%= f.label :message %>
+				<%= f.text_area :message, id: "contact_message" %>
+				
+				<button class="btn btn_secondary" action="submit">Send</button>
+			<% end %>
+    </div>
   </section> <!-- /footer_contact -->
   <section class="footer_map">
     <div id="footer_map"></div>
@@ -454,7 +457,6 @@
     <div class="footer_links">
       <ul class="link_list">
         
-      
         <li><a href="#what_you_get" data-link-type="scroll">What You Get</a></li>
       
         <li><a href="#how_it_works" data-link-type="scroll">How it Works</a></li>

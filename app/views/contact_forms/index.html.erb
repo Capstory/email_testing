@@ -1,0 +1,7 @@
+<% @contact_forms.each do |contact| %>
+	<div class="panel">
+		<p>Email: <%= contact.email %></p>
+		<p>Name: <%= contact.name %></p>
+		<p>Message: <%= contact.message %></p>
+	</div>
+<% end %>

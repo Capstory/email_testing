@@ -1,0 +1,12 @@
+<%= form_for(@contact_form) do |f| %>
+	<%= f.label :name %>
+	<%= f.text_field :name, id: "contact_name" %>
+	
+	<%= f.label :email %>
+	<%= f.text_field :email, type: "email", id: "contact_email" %>
+	
+	<%= f.label :message %>
+	<%= f.text_area :message, id: "contact_message" %>
+	
+	<button class="btn btn_secondary" action="submit">Send</button>
+<% end %>
