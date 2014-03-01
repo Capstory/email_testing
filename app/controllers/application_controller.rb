@@ -1,10 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  force_ssl if: :in_production?
+  # force_ssl if: :in_production?
   
-  def in_production?
-    Rails.env.production?
-  end
+  # def in_production?
+  #   Rails.env.production?
+  # end
   
   private
   
