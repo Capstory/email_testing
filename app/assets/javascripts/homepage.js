@@ -19,3 +19,9 @@ $(".date-pick").datepicker({
   dateFormat: "yy-mm-dd",
   autoFocusNextInput: true
 });
+
+$(".menu-btn").click(function () {
+  $("#container").toggleClass("container-push");
+  $("nav.pushy").toggleClass("pushy-left");
+  $("nav.pushy").toggleClass("pushy-open");
+});
