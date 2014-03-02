@@ -25,3 +25,9 @@ $(".menu-btn").click(function () {
   $("nav.pushy").toggleClass("pushy-left");
   $("nav.pushy").toggleClass("pushy-open");
 });
+
+$("nav.pushy a").click(function () {
+  $("#container").toggleClass("container-push");
+  $("nav.pushy").toggleClass("pushy-left");
+  $("nav.pushy").toggleClass("pushy-open");
+});
