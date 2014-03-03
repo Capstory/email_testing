@@ -1,0 +1,66 @@
+  <div id="opt_in_modal" class="reveal-modal xlarge" data-reveal>
+
+  <header class="section_header">
+    <h2>Get Capstory</h2>
+    <hr>
+    <h3>Reserve your event date</h3>
+  </header>
+    
+    <div class="opt_in_form">
+			<%= form_for access_request do |f| %>
+        <div class="opt_in_left">
+					<%= f.label :name %>
+					<%= f.text_field :name, id: "contact_name" %>
+
+					<%= f.label :email %>
+					<%= f.text_field :email, id: "contact_email" %>
+					
+					<%= f.label :event_date %>
+					<%= f.text_field :event_date, id: "wedding_date" %>
+           <!--  <label for="wedding_date">Event Date</label>
+            <input type="date" id="wedding_date" /> -->
+            
+						<div class="tell_us_more">
+            	<label class="top_label">Tell us about yourself</label>
+							<%= f.radio_button :source, "bride", class: 'non_industry' %>
+							<%= f.label :source, "Bride/Groom" %>
+
+							<%= f.radio_button :source, "vendor", id: 'industry_professional' %>
+							<%= f.label :source, "Industry Professional" %>
+							
+							<%= f.radio_button :source, "other", class: 'non_industry' %>
+							<%= f.label :source, "Other" %>
+							
+							<div style="display:none;" class="industry_explanation">
+								<%= f.label :industry_role, "What is your role in the industry?" %>
+								<%= f.text_field :industry_role %>
+							</div>
+
+                <!-- <input id="industry_professional" name="access_request[source]" type="radio" value="vendor">
+                <label for="access_request_source">Industry Professional</label>                
+                <input class="non_industry" id="access_request_source_other" name="access_request[source]" type="radio" value="other">
+                <label for="access_request_source" class="other_label">Other</label>
+                <div style="display:none;" class="industry_explanation">
+                    <label for="access_request_industry_role">What is your role in the industry?</label>
+                    <input id="access_request_industry_role" name="access_request[industry_role]" size="30" type="text">
+                </div> -->
+            </div>
+        </div>
+        <div class="opt_in_right">
+					<%= f.label :questions, "Questions/Comments" %>
+					<%= f.text_area :questions %>
+            <div id="show_partner_code">
+                <p class="partner_code">Click if you have a partner code</p>
+            </div>
+            <div id="partner_code" style="display: none;">
+                <label for="access_request_partner_code">Partner Code</label>
+								<%= f.text_field :partner_code %>
+                <small>If you received a code from a Capstory partner/vendor, enter it here</small>
+            </div>
+            <button class="btn btn_secondary btn_submit" action="submit">Send</button>
+        </div>
+				<% end %>
+    </div> <!-- /opt-in-form -->
+
+  <a class="close-reveal-modal">&#215;</a>
+</div>

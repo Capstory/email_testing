@@ -3,7 +3,7 @@
     <li><a href="#intro" data-link-type="scroll">Intro</a></li>
     <li><a href="#what_you_get" data-link-type="scroll">What You Get</a></li>
     <li><a href="#how_it_works" data-link-type="scroll">How It Works</a></li>
-    <!-- <li><a href="#what_to_expect" data-link-type="scroll">What To Expect</a></li> -->
+    <li><a href="#timeline" data-link-type="scroll">What To Expect</a></li>
     <!-- <li><a href="#testimonials" data-link-type="scroll">Testimonials</a></li> -->
     <li><a href="#pricing" data-link-type="scroll">Pricing</a></li>
     <li><a href="#site_footer" class="contact" data-link-type="scroll">Contact</a></li>
@@ -26,7 +26,7 @@
               Guests capture images and video at all your wedding events, Capstory makes sure you get to enjoy them.
             </h2>
               <div class="promo_group">
-						    <button class="btn btn_primary promo_group_btn" data-reveal-id="get_capstory_modal">Get Capstory</button>
+						    <button class="btn btn_primary promo_group_btn" data-reveal-id="opt_in_modal">Get Capstory</button>
 						    <!-- <a class="tell_friend promo_group_link" href="#">Tell your engaged friend about Capstory</a> -->
 						  </div> <!-- /promo_group -->
 
@@ -54,7 +54,7 @@
           <li><a href="#intro" data-link-type="scroll">Intro</a></li>
           <li><a href="#what_you_get" data-link-type="scroll">What You Get</a></li>
           <li><a href="#how_it_works" data-link-type="scroll">How It Works</a></li>
-          <!-- <li><a href="#what_to_expect" data-link-type="scroll">What To Expect</a></li> -->
+          <li><a href="#timeline" data-link-type="scroll">What To Expect</a></li>
           <!-- <li><a href="#testimonials" data-link-type="scroll">Testimonials</a></li> -->
           <li><a href="#pricing" data-link-type="scroll">Pricing</a></li>
           <li><a href="#site_footer" class="contact" data-link-type="scroll">Contact</a></li>
@@ -127,7 +127,7 @@
 
     <footer class="section_footer">
         <div class="promo_group">
-    <button class="btn btn_primary promo_group_btn" data-reveal-id="get_capstory_modal">Get Capstory</button>
+    <button class="btn btn_primary promo_group_btn" data-reveal-id="opt_in_modal">Get Capstory</button>
     <!-- <a class="tell_friend promo_group_link" href="#">Tell your engaged friend about Capstory</a> -->
   </div> <!-- /promo_group -->
 
@@ -180,53 +180,6 @@
       <p><strong>Pro Video Slideshow:</strong> Your best images are include in a beautiful professional slideshow. Download to keep forever, and share via social media!</p>
       <a class="close-reveal-modal">&#215;</a>
     </div>
-	   <div id="get_capstory_modal" class="reveal-modal medium" data-reveal>
-	      <header class="section_header">
-	        <h2>Get Capstory</h2>
-	        <hr>
-	        <h3>Reserve Your Event Date</h3>
-	      </header>
-				<%= form_for @access_request, html: { class: 'signin' } do |f| %>
-							<p>Name</p>
-							<%= f.text_field :name %>
-							
-							<p>Email</p>
-							<%= f.text_field :email %>
-
-							<p>Event Date</p>
-							<%= f.text_field :event_date, class: 'date-pick' %>
-							<div class="panel">
-								<p>Tell us about yourself</p>
-								<%= f.radio_button :source, "bride", class: 'non_industry' %>
-								<%= f.label :source, "Bride/Groom" %>
-								
-								<%= f.radio_button :source, "vendor", id: 'industry_professional' %>
-								<%= f.label :source, "Industry Professional" %>
-								<div style="display:none;" class="industry_explanation">
-									<%= f.text_field :industry_role %>
-									<p><small>What is your role in the industry?</small></p>
-								</div>
-								
-								<%= f.radio_button :source, "other", class: 'non_industry' %>
-								<%= f.label :source, "Other" %>
-							</div>
-							<p>Questions/Comments?</p>
-							<%= f.text_area :questions %>
-						<div id="show_partner_code">
-							<p style="text-align:center" class="subheader">Click if you have a partner code</p>
-						</div>
-						<div style="display:none;" id="partner_code">
-							<p>Partner Code</p>
-							<%= f.text_field :partner_code %>
-							<p><small>If you received a code from a Capstory partner/vendor, enter it here</small></p>
-							<br>
-						</div>
-
-						<%= f.submit "Send", class: 'button' %>
-						<p style="text-align:center" class="subheader">We'll send you more information soon!</p>
-				<% end %>
-	      <a class="close-reveal-modal">&#215;</a>
-	    </div>
     </section>
 </section><!-- /main-content -->
 
@@ -280,7 +233,7 @@
     <span class="arrow_alt"></span>
     <footer class="section_footer">
         <div class="promo_group">
-    <button class="btn btn_primary promo_group_btn" data-reveal-id="get_capstory_modal">Get Capstory</button>
+    <button class="btn btn_primary promo_group_btn" data-reveal-id="opt_in_modal">Get Capstory</button>
     <!-- <a class="tell_friend promo_group_link" href="#">Tell your engaged friend about Capstory</a> -->
   </div> <!-- /promo_group -->
 
@@ -288,6 +241,111 @@
     </footer>
   </section> <!-- /how_it_works -->
 </section><!-- /main-content -->
+
+<section class="photobreak" id="second_photobreak" data-stellar-background-ratio=".5"></section>
+<section class="main-content">
+  <section class="timeline_section content_section" id="timeline">
+    <header class="section_header">
+      <h2>Timeline</h2>
+      <hr />
+      <h3>What to expect when you sign-up</h3>
+    </header> <!-- /section_header -->
+    <div class="timeline">
+      
+      
+        <div class="timeline_item secure">
+        <header class="timeline_header">
+          <span class="timeline_number">1</span>
+          <h4>Secure Capstory</h4>
+        </header> <!-- /timeline_header -->
+        <div class="timeline_body">
+          <p>Congratulations! You are now the owner of all the media that is captured throughout all your wedding events. Now you won’t miss a single thing!</p>
+        </div> <!-- /timeline_body -->
+      </div>
+      
+        <div class="timeline_item capsule">
+        <header class="timeline_header">
+          <span class="timeline_number">2</span>
+          <h4>Wedding Capsule Created</h4>
+        </header> <!-- /timeline_header -->
+        <div class="timeline_body">
+          <p>We create a custom capsule for you with a unique address (ex: bride&groom@capstory.me) and URL (capstory.me/bride&groom). Guests can text images directly or upload to your capsule.</p>
+        </div> <!-- /timeline_body -->
+      </div>
+      
+        <div class="timeline_item key">
+        <header class="timeline_header">
+          <span class="timeline_number">3</span>
+          <h4>Key Contributors</h4>
+        </header> <!-- /timeline_header -->
+        <div class="timeline_body">
+          <p>Select and notify friends and family that love using their 'fancy' digital camera to be your Key Contributors. After your wedding events they can upload their hi-res images easily.</p>
+        </div> <!-- /timeline_body -->
+      </div>
+      
+        <div class="timeline_item pre">
+        <header class="timeline_header">
+          <span class="timeline_number">4</span>
+          <h4>Pre-Wedding Events</h4>
+        </header> <!-- /timeline_header -->
+        <div class="timeline_body">
+          <p>Capstory is useful throughout your entire engagement and on your wedding day. Encourage submissions at every event and enjoy every captured moment.</p>
+        </div> <!-- /timeline_body -->
+      </div>
+      
+        <div class="timeline_item planning">
+        <header class="timeline_header">
+          <span class="timeline_number">5</span>
+          <h4>Planning Process</h4>
+        </header> <!-- /timeline_header -->
+        <div class="timeline_body">
+          <p>Be sure to let your venue know that you’d like to project a live slideshow from your Capstory capsule at your reception. They can assist you in having everything prepared.</p>
+        </div> <!-- /timeline_body -->
+      </div>
+      
+        <div class="timeline_item wedding">
+        <header class="timeline_header">
+          <span class="timeline_number">6</span>
+          <h4>Wedding Day</h4>
+        </header> <!-- /timeline_header -->
+        <div class="timeline_body">
+          <p>Guests are provided with custom instruction cards so they know how to submit to your capsule. Every guests' perspective of your love story will be captured and submitted.</p>
+        </div> <!-- /timeline_body -->
+      </div>
+      
+        <div class="timeline_item editing">
+        <header class="timeline_header">
+          <span class="timeline_number">7</span>
+          <h4>Editing</h4>
+        </header> <!-- /timeline_header -->
+        <div class="timeline_body">
+          <p>Professionals will edit and polish your best capsule images, create unique photo keepsake books, and pro-slideshows for you after your wedding day.</p>
+        </div> <!-- /timeline_body -->
+      </div>
+      
+        <div class="timeline_item social">
+        <header class="timeline_header">
+          <span class="timeline_number">8</span>
+          <h4>Social Media Sharing</h4>
+        </header> <!-- /timeline_header -->
+        <div class="timeline_body">
+          <p>With Capstory, it’s up to you what images get shared with the world, and when. Until then, they remain private in your capsule.</p>
+        </div> <!-- /timeline_body -->
+      </div>
+      
+    </div> <!-- /timeline -->
+
+  </section> <!-- /content_section -->
+  <footer class="section_footer">
+      <div class="promo_group">
+    <button class="btn btn_primary promo_group_btn" data-reveal-id="opt_in_modal">Get Capstory</button>
+    <!-- <a class="tell_friend promo_group_link" href="#">Tell your engaged friend about Capstory</a> -->
+  </div> <!-- /promo_group -->
+
+
+  </footer>
+</section> <!-- /main-content -->
+
 
 <!-- <section class="photobreak" id="second_photobreak"></section>
 <section class="main-content" id="testimonials">
@@ -370,7 +428,7 @@
     </div> <!-- /pricing_features -->
     <footer class="section_footer">
         <div class="promo_group">
-    <button class="btn btn_primary promo_group_btn" data-reveal-id="get_capstory_modal">Get Capstory</button>
+    <button class="btn btn_primary promo_group_btn" data-reveal-id="opt_in_modal">Get Capstory</button>
     <!-- <a class="tell_friend promo_group_link" href="#">Tell your engaged friend about Capstory</a> -->
   </div> <!-- /promo_group -->
 
@@ -388,7 +446,7 @@
           <h3>Tell us when you want us to send you a reminder email</h3>
         </header>
 					
-          <%= form_for @reminder, html: { id: "reminder_form" } do |f| %>
+          <%= form_for @reminder, html: { id: "reminder_form", class: "custom" } do |f| %>
             <ul>
 	            <li class="reminder_email_group">
 								<%= f.label :email %>
@@ -398,7 +456,7 @@
 	            <li class="reminder_date_group">
 								<%= f.label :date, "When should we email you?" %>
 
-								<%= f.text_field :date, id: 'reminder_date', type: 'date' %>
+								<%= f.select :date, options_for_select([["in 3 days", "3_days"], ["in 1 week", "1_week"], ["in 2 weeks", "2_weeks"], ["in 1 month", "1_month"], ["in 2 months", "2_months"]]), id: 'reminder_date' %>
 			        </li>
 			        <li class="reminder_submit_group">
 								<label><br></label>
@@ -508,3 +566,4 @@
 
 </div><!-- end container -->
 
+<%= render "opt_in_modal", access_request: @access_request %>
