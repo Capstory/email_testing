@@ -6,7 +6,7 @@
   <body>
     <h4>Thank you for scheduling a reminder.</h4>
     <p>
-      We will write the date down on our calendar and send you a quick note on <%= @reminder.date.to_formatted_s(:long) %> to say hello.<br/>
+      We will write the date down on our calendar and send you a quick note on <%= @reminder.date_to_remind.to_formatted_s(:long) %> to say hello.<br/>
     </p>
     <p>Have a great day!</p>
 		<p>If you have any questions please contact us at <a href="mailto:hello@capstory.me">hello@capstory.me</a></p>
