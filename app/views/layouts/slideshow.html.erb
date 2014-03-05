@@ -15,7 +15,7 @@
 
   	<title><%= content_for?(:title) ? yield(:title) : "Weddings @ Capstory || Collect Every Moment" %></title>
 
-  	<%= stylesheet_link_tag    "application" %>
+  	<%= stylesheet_link_tag "application" %>
 		<%= stylesheet_link_tag "static" %>
   	<%= javascript_include_tag "vendor/custom.modernizr" %>
     <%= csrf_meta_tags %>
@@ -29,6 +29,7 @@
 			<div class="small-12 small-centered columns">
 
 		   	<%= yield %>
+		
 						<div id="slideshow_buttons">
 							<%= link_to "Back to Capsule", @capsule, class: 'button' %>
 							<a href="#" id="enterFullScreen" class="button">Full Screen</a>

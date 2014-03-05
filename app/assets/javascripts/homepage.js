@@ -10,10 +10,10 @@ $(".non_industry").click(function(){
   $(".industry_explanation").hide('slow');
 });
 
-$("#show_partner_code").click(function(){
-  // $(this).hide('slow');
-  $("#partner_code").toggle('slow');
-});
+// $("#show_partner_code").click(function(){
+//   $(this).hide('slow');
+//   $("#partner_code").toggle('slow');
+// });
 
 $(".date-pick").datepicker({
   dateFormat: "yy-mm-dd",
