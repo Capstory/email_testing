@@ -5,6 +5,12 @@ class ReminderMailer < ActionMailer::Base
   def reminder_confirmation(reminder)
     @reminder = reminder
     
-    mail(to: @reminder.email, subject: "We've Schedule Your Reminder")
+    mail(to: @reminder.email, subject: "We've Scheduled Your Reminder")
+  end
+  
+  def send_reminder(reminder)
+    @reminder = reminder
+    
+    mail(to: @reminder.email, subject: "A Quick Reminder from Capstory.me")
   end
 end

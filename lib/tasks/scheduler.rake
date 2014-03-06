@@ -3,6 +3,33 @@ task :get_new_emails => :environment do
   Resque.enqueue(EmailEngine)
 end
 
+desc "Send Out Reminder Emails"
+task :send_reminders => :environment do
+  reminders = Reminder.all
+  num_sent = 0
+  reminders.each do |reminder|
+    if reminder.reminder_sent == false && reminder.date_to_remind.to_date == Date.today
+      ReminderMailer.send_reminder(reminder).deliver
+      reminder.reminder_sent = true
+      reminder.save
+      num_sent += 1
+    end
+  end
+  puts "#{num_sent} reminders were sent"
+end
+
+desc "One-time update to all the reminders on the system"
+task :set_reminders_to_false => :environment do
+  reminders = Reminder.all
+  reminders.each do |reminder|
+    if reminder.reminder_sent.nil?
+      reminder.reminder_sent = false
+      reminder.save
+    end
+  end
+end
+
+
 desc "Send Emails to Submitters after 48hrs"
 task :day_two_reminder => :environment do
   @capsules = Capsule.all

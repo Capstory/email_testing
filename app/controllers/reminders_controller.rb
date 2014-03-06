@@ -11,6 +11,7 @@ class RemindersController < ApplicationController
 
   def create
     @reminder = Reminder.create(params[:reminder])
+    @reminder.reminder_sent = false
     if @reminder.save
       ReminderMailer.reminder_confirmation(@reminder).deliver
       redirect_to reminder_thank_you_path(email: @reminder.email)

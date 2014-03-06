@@ -1,5 +1,5 @@
 class Reminder < ActiveRecord::Base
-  attr_accessible :date, :email
+  attr_accessible :date, :email, :reminder_sent
   
   validates_presence_of :date
   validates_presence_of :email
