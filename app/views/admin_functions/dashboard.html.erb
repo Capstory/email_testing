@@ -34,12 +34,3 @@
 		<%= render "admin_encapsulations", encapsulations: @encapsulations %>
 	</div>
 </div>
-
-<div class="row">
-	<div class="large-12 columns">
-		<p><%= request.env["HTTP_REFERER"] %></p>
-		<p><%= request.env["PATH_INFO"] %></p>
-		<p><%= request.env["REQUEST_URI"] %></p>
-		<p><%= request.env["HTTP_HOST"] %></p>
-	</div>
-</div>
