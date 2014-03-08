@@ -10,7 +10,7 @@ class EmailEngine
     else
       if @@notification_count[Date.today.to_s].blank?
         ResqueErrorMailer.send_notification.deliver
-        @@notification_count[Date.today.to_s] += 1
+        @@notification_count[Date.today.to_s] = 1
       end
     end
   end
