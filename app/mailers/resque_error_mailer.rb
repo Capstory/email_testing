@@ -1,5 +1,5 @@
 class ResqueErrorMailer < ActionMailer::Base
-  default to: ["brad@prudl.com", "suprasanna@capstory.me", "dustin@capstory.me"],
+  default to: "brad@prudl.com",
           from: "admin@capstory.me"
           
   def send_notification
