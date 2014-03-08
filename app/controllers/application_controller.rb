@@ -44,6 +44,8 @@ class ApplicationController < ActionController::Base
   end
   
   def resolve_url
-    redirect_to "http://www.capstory.me#{request.env["REQUEST_URI"]}" if request.env["HTTP_HOST"] == "capstory.me"
+    if Rails.env.production?
+      redirect_to "http://www.capstory.me#{request.env["REQUEST_URI"]}" if request.env["HTTP_HOST"] == "capstory.me"
+    end
   end
 end
