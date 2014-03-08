@@ -1,4 +1,5 @@
-class EmailEngine 
+class EmailEngine
+  @@notification_count = {}
   @queue = :email_retrievers_queue
   
   def self.perform
@@ -7,7 +8,10 @@ class EmailEngine
       email.start
       # puts "I'm checking the email right now!"
     else
-      ResqueErrorMailer.send_notification.deliver
+      if @@notification_count[Date.today.to_s].blank?
+        ResqueErrorMailer.send_notification.deliver
+        @@notification_count[Date.today.to_s] += 1
+      end
     end
   end
 end
