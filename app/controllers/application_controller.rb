@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_filter :resolve_url
   
   private
   
@@ -40,5 +41,9 @@ class ApplicationController < ActionController::Base
     else
       return false
     end
+  end
+  
+  def resolve_url
+    redirect_to "http://www.capstory.me#{request.env["REQUEST_URI"]}" if request.env["HTTP_HOST"] == "capstory.me"
   end
 end
