@@ -3,7 +3,7 @@ class EmailEngine
   @queue = :email_retrievers_queue
   
   def self.before_enqueue
-    puts "Hello World"
+    # puts "Hello World"
 
     if Resque.info[:pending] >= 15 && @@notification_count[Date.today.to_s].blank?
       ResqueErrorMailer.send_notification.deliver
