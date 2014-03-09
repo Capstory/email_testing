@@ -7217,6 +7217,11 @@ body.home .how_it_works_experience, #reminder #reminder_form ul, .site_footer .l
 html {
   font-size: 100%; }
 
+html, body {
+	overflow-x: hidden;
+	width: 100%;
+}
+
 /* line 21, /Users/bradarner/Documents/Programming Related/Middleman/capstory-homepage/source/stylesheets/core/_base.scss */
 body {
   background: white;
@@ -7533,7 +7538,8 @@ a.promo_group_link {
   -webkit-perspective: 0;
   width: 100%;
   left: 0;
-  position: absolute;
+  /*position: absolute;*/
+	position: relative;
   -webkit-transform: none;
   -moz-transform: none;
   -ms-transform: none;
@@ -7541,12 +7547,12 @@ a.promo_group_link {
   transform: none; }
 
 /* line 13, /Users/bradarner/Documents/Programming Related/Middleman/capstory-homepage/source/stylesheets/modules/_pushy-overwrites.scss */
-#container {
+/*#container {
   -webkit-transition: none;
   -moz-transition: none;
   -o-transition: none;
   transition: none; }
-
+*/
 /* line 17, /Users/bradarner/Documents/Programming Related/Middleman/capstory-homepage/source/stylesheets/modules/_pushy-overwrites.scss */
 .container-push {
   -webkit-transform: none;
@@ -8018,7 +8024,9 @@ body.home .top-bar {
   right: 0;
   bottom: 0;
   top: auto;
-  z-index: 9; }
+  z-index: 9; 
+	width: 100%;
+}
 /* line 248, /Users/bradarner/Documents/Programming Related/Middleman/capstory-homepage/source/stylesheets/pages/_home.scss */
 body.home .top-bar-fixed-bottom {
   position: fixed;
