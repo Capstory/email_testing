@@ -1,10 +1,15 @@
 class VendorsController < ApplicationController
   def index
+    
   end
 
   def show
     @vendor = Vendor.find(params[:id].to_s.downcase)
     @vendor_contact = VendorContact.new
+  end
+  
+  def employee_index
+    @vendor = Vendor.find(params[:vendor_id])
   end
 
   def new
@@ -21,7 +26,7 @@ class VendorsController < ApplicationController
     end
     if @vendor.save
       flash[:success] = "Vendor Page successfully created"
-      redirect_to @vendor
+      redirect_to new_vendor_employee_path(vendor_id: @vendor.id)
     else
       flash[:error] = "Unable to create Vendor Page. Try again."
       render "new"
@@ -29,13 +34,24 @@ class VendorsController < ApplicationController
   end
 
   def edit
+    @vendor = Vendor.find(params[:id])
   end
   
   def update
-    
+    @vendor = Vendor.find(params[:id])
+    if @vendor.update_attributes(params[:vendor])
+      flash[:success] = "Vendor Successfully Updated"
+      redirect_to dashboard_path
+    else
+      flash[:error] = "Unable to update Vendor"
+      render "edit"
+    end
   end
   
   def destroy
-    
+    vendor = Vendor.find(params[:id])
+    vendor.delete
+    flash[:success] = "Vendor Successfully Deleted"
+    redirect_to :back
   end
 end

@@ -1,0 +1,41 @@
+<div class="row">
+	<div class="small-6 columns">
+		<h4 class="subheader">
+			All Users<br>
+			<small>
+				Below are all the Users in the system. You can create a new one if you need to by clicking
+				on the button to the right.
+			</small>
+		</h4>
+	</div>	
+	<div class="small-6 columns">
+		<%= link_to "Add a New Vendor", new_vendor_path, class: "button" %>
+	</div>
+</div>
+<table>
+	<thead>
+		<tr>
+			<th width="200">Name</th>
+			<th>Email</th>
+			<th>Partner Code</th>
+			<th>Salespeople</th>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% vendors.each do |vendor| %>
+			<tr>
+				<td><%= link_to vendor.name, vendor %></td>
+				<td><%= vendor.email %></td>
+				<td><%= vendor.partner_code %></td>
+				<td><%= link_to vendor.vendor_employees.count, employee_index_path(vendor_id: vendor.id) %></td>
+				<td><%= link_to "Add Salesperson", new_vendor_employee_path(vendor_id: vendor.id) %></td>
+				<td>|</td>
+				<td><%= link_to "Edit", edit_vendor_path(vendor) %></td>
+				<td><%= link_to "Delete", vendor_path(vendor), method: :delete, data: { confirm: "Are you sure?" } %></td>				
+			</tr>
+		<% end %>
+	</tbody>
+</table>

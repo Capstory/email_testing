@@ -8,5 +8,6 @@ class AdminFunctionsController < ApplicationController
     @access_requests = AccessRequest.all
     @authorizations = Authorization.all
     @encapsulations = Encapsulation.all
+    @vendors = Vendor.all
   end
 end

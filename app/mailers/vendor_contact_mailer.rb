@@ -4,6 +4,6 @@ class VendorContactMailer < ActionMailer::Base
           
   def vendor_contact_form(vendor_contact)
     @contact_info = vendor_contact
-    mail(subject: "Someone has a question")
+    mail(subject: "Contact from Vendor Page: Someone has a question")
   end
 end

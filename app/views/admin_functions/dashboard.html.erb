@@ -9,6 +9,7 @@
 		<li><%= link_to "All Users", "#", class: "admin_links", id: "show_users" %></li>
 		<li><%= link_to "Access Request", "#", class: "admin_links", id: "show_access_requests" %></li>
 		<li><%= link_to "Authorizations", "#", class: "admin_links", id: "show_authorizations" %></li>
+		<li><%= link_to "Vendor", "#", class: "admin_links", id: "show_vendors" %></li>
 	</ul>
 </div>
 <div class="small-9 columns">
@@ -32,5 +33,8 @@
 	</div>
 	<div id="show_encapsulations_data" style="display:none;" class="data_partial">
 		<%= render "admin_encapsulations", encapsulations: @encapsulations %>
+	</div>
+	<div id="show_vendors_data" style="display:none;" class="data_partial">
+		<%= render "admin_vendors", vendors: @vendors %>
 	</div>
 </div>

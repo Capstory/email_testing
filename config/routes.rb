@@ -4,8 +4,19 @@ class SiteConstraints
   end
 end
 
-EmailTesting::Application.routes.draw do
+class VendorConstraints
+  def matches?(request)
+    url = request.env["REQUEST_URI"]
+    request_parts = url.split("/")
+    if request_parts.last.include? "-"
+      return false
+    else
+      return true
+    end
+  end
+end
 
+EmailTesting::Application.routes.draw do
 
   match "dashboard" => "admin_functions#dashboard"
 
@@ -71,10 +82,20 @@ EmailTesting::Application.routes.draw do
   match 'payment_thank_you' => "charges#thank_you"
   match 'payment_error' => "charges#payment_error"
   resources :charges
-	
-  match 'partners/:id' => "vendors#show"  
+  
+	# ==========================
+	# Note the constraints on the partners/:id route. It is the same path as the vendor_employees#show route
+	# ==========================
+  match 'partners/:id' => "vendors#show", constraints: VendorConstraints.new
+  match 'employee_index' => "vendors#employee_index"
   resources :vendors
   resources :vendor_contacts
+  
+  # ==========================
+  # Note that this is the same path as the vendors#show route above. Thus, must be placed below the contrained route.
+  # ==========================
+  match 'partners/:id' => "vendor_employees#show"
+  resources :vendor_employees
   
   match "reminder_thank_you" => "reminders#thank_you"
   resources :reminders
@@ -139,9 +160,7 @@ EmailTesting::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  constraints(SiteConstraints.new) do
-    root :to => "users#welcome"
-  end
+  root :to => "users#welcome", constraints: SiteConstraints.new
     
   root :to => 'homepages#landing'
 

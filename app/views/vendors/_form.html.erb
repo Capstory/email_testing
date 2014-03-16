@@ -1,0 +1,11 @@
+<%= form_for(vendor) do |f| %>
+	<%= f.text_field :name, class: '', placeholder: "Vendor Name" %>
+
+	<%= f.text_field :email, class: '', placeholder: "Vendor Email" %>
+
+	<%= f.text_field :phone, class: '', placeholder: "Vendor Phone" %>
+
+	<%= f.text_field :partner_code, class: '', placeholder: "Create a Partner Code" %>
+
+	<%= f.submit "#{action} Vendor" %>
+<% end %>
