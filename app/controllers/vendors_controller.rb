@@ -20,7 +20,11 @@ class VendorsController < ApplicationController
     @vendor = Vendor.create do |v| 
       v.name = params[:vendor][:name]
       v.email = params[:vendor][:email]
-      v.named_url = params[:vendor][:name].split(' ').join('').downcase
+      
+      named_url = params[:vendor][:name].split(' ').join('').downcase
+      url = named_url.include?("-") ? named_url.split('-').join('') : named_url
+      
+      v.named_url = url
       v.partner_code = params[:vendor][:partner_code]
       v.phone = params[:vendor][:phone]
     end

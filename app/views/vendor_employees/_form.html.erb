@@ -23,5 +23,7 @@
 	
 	<%= f.hidden_field :vendor_id, value: vendor.id %>
 	
+	<%= link_to "Go to Vendor", vendor, class: 'button' %>
+	<%= link_to "Back to Dashboard", dashboard_path, class: 'button' %>
 	<%= f.submit "Submit", class: 'button' %>
 <% end %>
