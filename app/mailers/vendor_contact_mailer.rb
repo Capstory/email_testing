@@ -1,6 +1,6 @@
 class VendorContactMailer < ActionMailer::Base
   default from: "hello@capstory.me",
-          to: ["suprasanna@capstory.me", "dustin@capstory.me", "jocelyn@capstory.me", "brad@capstory.me"]
+          to: "dustin@capstory.me"
           
   def vendor_contact_form(vendor_contact)
     @contact_info = vendor_contact
