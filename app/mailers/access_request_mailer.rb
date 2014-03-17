@@ -9,6 +9,6 @@ class AccessRequestMailer < ActionMailer::Base
   def admin_notification(access_request)
     @access_request = access_request
     @url = "http://www.capstory.me/access_requests"
-    mail(to: 'dustin@capstory.me', subject: "#{@access_request.name} has requested access to Capstory.me")
+    mail(to: 'hello@capstory.me', subject: "#{@access_request.name} has requested access to Capstory.me")
   end
 end

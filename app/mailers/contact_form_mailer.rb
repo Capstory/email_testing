@@ -1,5 +1,5 @@
 class ContactFormMailer < ActionMailer::Base
-  default to: "dustin@capstory.me",
+  default to: "hello@capstory.me",
           from: "hello@capstory.me"
           
   def admin_notification(contact_form)

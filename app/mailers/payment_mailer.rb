@@ -9,7 +9,7 @@ class PaymentMailer < ActionMailer::Base
   
   def admin_payment_confirmation(customer)
     @customer = customer
-    mail(to: ["dustin@capstory.me", "suprasanna@capstory.me", "jocelyn@capstory.me", "brad@capstory.me"], subject: "Customer Payment Confirmation")
+    mail(to: "hello@capstory.me", subject: "Customer Payment Confirmation")
   end
   
   def admin_error_notification(customer, problem, error_hash = nil)
