@@ -3,3 +3,24 @@
  *= require jquery.ui.datepicker
  *= require ./homepage/homepages
  */
+
+#partners {
+	background-color:#333333;
+}
+
+#partners h2 {
+	color: white;
+}
+
+#partners hr {
+	border-color: #c49a55;
+}
+
+ul.partners_list {
+	text-align:center;
+}
+
+ul.partners_list li {
+	display: inline-block;
+	margin: 20px;
+}
