@@ -72,7 +72,7 @@ EmailTesting::Application.routes.draw do
   end
 
   # Static Page Routes
-  match "home" => "static_pages#home"
+  # match "home" => "static_pages#home"
   match "login" => "static_pages#login"
   match "thank_you" => "static_pages#thank_you"
   
