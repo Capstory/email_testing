@@ -42,3 +42,7 @@ $("#engaged_contact_copy_launch").click(function () {
     $("#engaged_contact_copy_launch p i").removeClass("fa-caret-right").addClass("fa-caret-down");
   }
 });
+
+$("#button_to_what_you_get").click(function () {
+  $("#link_to_what_you_get").click();
+});
