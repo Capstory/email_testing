@@ -2,6 +2,7 @@
  *= require ./homepage/application
  *= require jquery.ui.datepicker
  *= require ./homepage/homepages
+ *= require font-awesome
  */
 
 #partners {
@@ -23,4 +24,33 @@ ul.partners_list {
 ul.partners_list li {
 	display: inline-block;
 	margin: 20px;
+}
+
+#engaged_contact_copy_launch {
+	float:left;
+}
+
+#engaged_contact_copy_show {
+	float: left;
+	margin-top:20px;
+}
+
+.new_engaged_contact {
+	width: 80%;
+	margin: auto;
+}
+
+.clear_engaged_contact {
+	float: left;
+	margin:50px;
+	height:10px;
+}
+
+#thank_you_logo {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	a, a:hover, a:visited {
+		background: none;
+		text-decoration: none;
+	}
 }

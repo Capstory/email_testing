@@ -5,6 +5,7 @@ class HomepagesController < ApplicationController
     @access_request = AccessRequest.new
     @reminder = Reminder.new
     @contact_form = ContactForm.new
+    @engaged_contact = EngagedContact.new
   end
   
   def in_production?

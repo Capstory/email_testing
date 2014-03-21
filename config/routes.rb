@@ -103,6 +103,9 @@ EmailTesting::Application.routes.draw do
   match "contact_thank_you" => "contact_forms#thank_you"
   resources :contact_forms, only: ["index", "create", "new"]
   
+  match "engaged_contact_thank_you" => "engaged_contacts#thank_you"
+  resources :engaged_contacts, only: ["new", "create"]
+  
   mount Resque::Server, at: "/resque"
   
   # ==============================

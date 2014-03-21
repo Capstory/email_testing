@@ -1,4 +1,5 @@
 //= require ./homepage/public
+//= require angular
 //= require jquery.ui.datepicker
 
 $("#industry_professional").click(function(){
@@ -30,4 +31,14 @@ $("nav.pushy a").click(function () {
   $("#container").toggleClass("container-push");
   $("nav.pushy").toggleClass("pushy-left");
   $("nav.pushy").toggleClass("pushy-open");
+});
+
+$("#engaged_contact_copy_launch").click(function () {
+  $("#engaged_contact_copy_show").toggle();
+  var caret_is_down = $("#engaged_contact_copy_launch p i").hasClass("fa-caret-down");
+  if ( caret_is_down ) {
+    $("#engaged_contact_copy_launch p i").removeClass("fa-caret-down").addClass("fa-caret-right");
+  } else {
+    $("#engaged_contact_copy_launch p i").removeClass("fa-caret-right").addClass("fa-caret-down");
+  }
 });
