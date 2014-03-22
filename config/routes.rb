@@ -76,7 +76,7 @@ EmailTesting::Application.routes.draw do
   match "login" => "static_pages#login"
   match "thank_you" => "static_pages#thank_you"
   
-  resources :access_requests, only: ["create", "index", "show", "new"]
+  resources :access_requests, only: ["create", "new"]
   
   match 'payment' => 'charges#new'
   match 'payment_thank_you' => "charges#thank_you"
