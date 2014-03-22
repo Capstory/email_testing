@@ -1,4 +1,5 @@
 class AdminFunctionsController < ApplicationController
+  before_filter :admin_authentication
   
   def dashboard
     @capsules = Capsule.all
