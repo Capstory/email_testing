@@ -1,1 +1,1 @@
-//= require_tree ./static_pages
+//= require ./static_pages/static_pages

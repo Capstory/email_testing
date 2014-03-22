@@ -17,7 +17,7 @@ class RemindersController < ApplicationController
       redirect_to reminder_thank_you_path(email: @reminder.email)
     else
       flash[:error] = "Sorry there was a problem. Please, try again."
-      redirect_to new_reminder_path
+      render "new"
     end
   end
   

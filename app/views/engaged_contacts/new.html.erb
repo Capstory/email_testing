@@ -2,14 +2,13 @@
 <div class="new_engaged_contact">
 	<div class="opt_in_modal">
 	  <header class="section_header">
-	    <h2>Tell an Engaged Friend</h2>
-	    <hr>
-	    <h3>Your Capstory package is all-inclusive</h3>
+	    <h2 style="font-size:2.2em">Tell an Engaged Friend</h2>
+			<hr>
 	  </header>
 		<br>
 		<div class="opt_in_form">
 	 		<%= form_for(@engaged_contact) do |f| %>
-				<div style="border-radius:5px;background-color:#FFCCCC;padding:10px;margin:10px;">
+				<div style="border-radius:5px;background-color:#FFCCCC;padding:10px;margin:10px;margin-bottom:30px;">
 					<% if @engaged_contact.errors.any? %>
 				      <h4 class="subheader"><%= pluralize(@engaged_contact.errors.count, "error") %> prevented your request from being saved:</h4>
 				      <ul style="list-style-type:none;margin-left:20px;">

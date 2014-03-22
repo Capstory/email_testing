@@ -6,7 +6,17 @@
         </header>
 					
           <%= form_for @reminder, html: { id: "reminder_form", class: "custom" } do |f| %>
-            <ul>
+						<div style="border-radius:5px;background-color:#FFCCCC;padding:10px;margin:10px;margin-bottom:30px;">
+							<% if @reminder.errors.any? %>
+						      <h4 class="subheader"><%= pluralize(@reminder.errors.count, "error") %> prevented your request from being saved:</h4>
+						      <ul style="list-style-type:none;margin-left:20px;">
+							      <% @reminder.errors.full_messages.each do |msg| %>
+							        <li><%= msg %></li>
+							      <% end %>
+						      </ul>
+						  <% end %>
+						</div>
+						<ul>
 	            <li class="reminder_email_group">
 								<%= f.label :email %>
 

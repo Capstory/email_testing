@@ -1,4 +1,6 @@
 class EngagedContactsController < ApplicationController
+  layout "homepage_blank"
+  
   def new
     @engaged_contact = EngagedContact.new
   end

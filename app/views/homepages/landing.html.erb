@@ -28,7 +28,7 @@
               <div class="promo_group">
 								<a href="#what_you_get" data-link-type="scroll" id="link_to_what_you_get" style="display:none;"></a>
 						    <button class="btn btn_primary promo_group_btn" id="button_to_what_you_get">Learn More</button>
-						    <a class="tell_friend promo_group_link" href="#" data-reveal-id="tell_an_engaged_friend_modal">Tell your engaged friend about Capstory</a>
+						    <a class="tell_friend promo_group_link" href="#" data-reveal-id="tell_an_engaged_friend_modal">Tell an engaged friend about Capstory</a>
 						  </div> <!-- /promo_group -->
 
 
@@ -129,74 +129,15 @@
     <footer class="section_footer">
         <div class="promo_group">
     <button class="btn btn_primary promo_group_btn" data-reveal-id="opt_in_modal">Get Capstory</button>
-    <a class="tell_friend promo_group_link" href="#" data-reveal-id="tell_an_engaged_friend_modal">Tell your engaged friend about Capstory</a>
+    <a class="tell_friend promo_group_link" href="#" data-reveal-id="tell_an_engaged_friend_modal">Tell an engaged friend about Capstory</a>
   </div> <!-- /promo_group -->
 
 
     </footer>
 
     <!--/Modals-->
-		<div id="tell_an_engaged_friend_modal" class="reveal-modal medium opt_in_modal" data-reveal>
-      <header class="section_header">
-        <h2>Tell an Engaged Friend</h2>
-        <hr>
-        <h3>Your Capstory package is all-inclusive</h3>
-      </header>
-			<br>
-			<div class="opt_in_form">
-     		<%= form_for(@engaged_contact) do |f| %>
-					<div class="opt_in_left">
-						<%= f.label :name, "Your Name" %>
-						<%= f.text_field :name, "ng-model" => "engaged_contact.name" %>
-			
-						<%= f.label :email, "Your Email" %>
-						<%= f.text_field :email, "ng-model" => "engaged_contact.email" %>
-					</div>
-					<div class="opt_in_right">
-						<%= f.label :engaged_name, "Their Name" %>
-						<%= f.text_field :engaged_name, "ng-model" => "engaged_contact.engaged_name" %>
-			
-						<%= f.label :engaged_email, "Their Email" %>
-						<%= f.text_field :engaged_email, "ng-model" => "engaged_contact.engaged_email" %>
-			
-						<button class="btn btn_secondary btn_submit" action="submit">Send</button>
-					</div>
-				<% end %>
-			</div>
-			<div id="engaged_contact_copy_launch" style="margin-top:40px;">
-				<p><%= fa_icon "caret-right" %>&nbsp; Click to see what we'll send</p>
-			</div>
-			<div id="engaged_contact_copy_show" style="display:none;">
-				<p>Fill in the form above and see below is the exact message that will be sent:</p>
-				<br>
-				<p>Subject: {{ engaged_contact.name }} wants to help you remember your wedding!</p>
-				<p>From: {{ engaged_contact.email}}</p>
-				<p>To: {{ engaged_contact.engaged_email }}</p>
-				<br>
-				<p>Dear {{ engaged_contact.engaged_name }},</p>
-
-				<p>Congratulations on your engagement! Your friend, {{ engaged_contact.name }}, told us the big news!</p>
-
-				<p>
-					There are going to be so many exciting days coming up and we want to help you collect all the precious moments 
-					you can! Capstory is the best way to enjoy the photographs and videos your guests capture. Guests can upload 
-					their photos and videos via email and text message so you can enjoy them during the reception in a live slideshow. 
-					We then use these images to compile a keepsake book and a video slideshow for you to treasure.
-				</p>
-
-				<p>
-					We would love to tell you more about Capstory at www.capstory.me and look forward to helping you to remember every 
-					beautiful moment of your big day and days ahead. After all, in these moments one lens is not enough!
-				</p>
-
-				<p>
-					Sincerely, <br>
-					Your friends at Capstory <br>
-					Makenzie, Dustin, & Super
-				</p>
-			</div>
-      <a class="close-reveal-modal">&#215;</a>
-    </div>
+		<%= render 'tell_an_engaged_friend_modal', engaged_contact: @engaged_contact %>
+		
     <div id="welcome_kit_modal" class="reveal-modal medium" data-reveal>
       <header class="section_header">
         <h2>Welcome Kit</h2>
@@ -303,7 +244,7 @@
     <footer class="section_footer">
         <div class="promo_group">
     <button class="btn btn_primary promo_group_btn" data-reveal-id="opt_in_modal">Get Capstory</button>
-    <a class="tell_friend promo_group_link" href="#" data-reveal-id="tell_an_engaged_friend_modal">Tell your engaged friend about Capstory</a>
+    <a class="tell_friend promo_group_link" href="#" data-reveal-id="tell_an_engaged_friend_modal">Tell an engaged friend about Capstory</a>
   </div> <!-- /promo_group -->
 
 
@@ -408,7 +349,7 @@
   <footer class="section_footer">
       <div class="promo_group">
     <button class="btn btn_primary promo_group_btn" data-reveal-id="opt_in_modal">Get Capstory</button>
-    <a class="tell_friend promo_group_link" href="#" data-reveal-id="tell_an_engaged_friend_modal">Tell your engaged friend about Capstory</a>
+    <a class="tell_friend promo_group_link" href="#" data-reveal-id="tell_an_engaged_friend_modal">Tell an engaged friend about Capstory</a>
   </div> <!-- /promo_group -->
 
 
@@ -498,7 +439,7 @@
     <footer class="section_footer">
         <div class="promo_group">
     <button class="btn btn_primary promo_group_btn" data-reveal-id="opt_in_modal">Get Capstory</button>
-    <a class="tell_friend promo_group_link" href="#" data-reveal-id="tell_an_engaged_friend_modal">Tell your engaged friend about Capstory</a>
+    <a class="tell_friend promo_group_link" href="#" data-reveal-id="tell_an_engaged_friend_modal">Tell an engaged friend about Capstory</a>
   </div> <!-- /promo_group -->
 
 
@@ -515,25 +456,7 @@
           <h3>Tell us when you want us to send you a reminder email</h3>
         </header>
 					
-          <%= form_for @reminder, html: { id: "reminder_form", class: "custom" } do |f| %>
-            <ul>
-	            <li class="reminder_email_group">
-								<%= f.label :email %>
-
-								<%= f.text_field :email, id:'reminder_email', placeholder: "you@domain.com" %>
-	            </li>
-	            <li class="reminder_date_group">
-								<%= f.label :date, "When should we email you?" %>
-
-								<%= f.select :date, options_for_select([["in 3 days", "3_days"], ["in 1 week", "1_week"], ["in 2 weeks", "2_weeks"], ["in 1 month", "1_month"], ["in 2 months", "2_months"]]), id: 'reminder_date' %>
-			        </li>
-			        <li class="reminder_submit_group">
-								<label><br></label>
-								<button class="btn btn_secondary" id="email_reminder_engage">Submit</button>
-								<% f.submit "Submit", class: 'btn btn_secondary', id: "email_reminder_submit_button" %>
-			        </li>
-            </ul>
-          <% end %>        
+      	<%= render "reminder_form", reminder: @reminder %>
 
       </section>
     </section>

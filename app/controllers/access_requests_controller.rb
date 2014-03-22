@@ -1,5 +1,6 @@
 class AccessRequestsController < ApplicationController
   #before_filter :admin_authentication
+  layout :resolve_layout
   after_filter :clear_identity_session, only: :index
   
   # =====================================
@@ -37,5 +38,23 @@ class AccessRequestsController < ApplicationController
     access_request = AccessRequest.find(params[:access_request_id])
     access_request.delete
     redirect_to :back
+  end
+  
+  # =====================================
+  # Begin non-standard controller actions
+  # =====================================  
+  
+  def thank_you
+    @access_request = AccessRequest.find(params[:request_id])
+  end
+  
+  private
+  def resolve_layout
+    case action_name
+    when "thank_you"
+      "homepage_blank"
+    else
+      "application"
+    end
   end
 end

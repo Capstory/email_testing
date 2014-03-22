@@ -74,8 +74,8 @@ EmailTesting::Application.routes.draw do
   # Static Page Routes
   # match "home" => "static_pages#home"
   match "login" => "static_pages#login"
-  match "thank_you" => "static_pages#thank_you"
-  
+
+  match "thank_you" => "access_requests#thank_you"
   resources :access_requests, only: ["create", "new"]
   
   match 'payment' => 'charges#new'

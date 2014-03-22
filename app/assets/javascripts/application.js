@@ -13,9 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require jquery.cycle.all
-//= require jquery.localscroll
-//= require jquery.scrollto
 //= require date
 //= require jquery.ui.datepicker
 //= require angular
@@ -43,41 +40,7 @@ $(function(){
   $("#second_reservation_button").click(function(){
     $("a.login-window").click();
   });
-  
-  $('a.login-window').click(function() {
-		
-		// Getting the variable's value from a link 
-		var loginBox = $(this).attr('href');
-
-		//Fade in the Popup and add close button
-		$(loginBox).fadeIn(300);
-		
-		//Set the center alignment padding + border
-		var popMargTop = ($(loginBox).height() + 24) / 2; 
-		var popMargLeft = ($(loginBox).width() + 24) / 2; 
-		
-		$(loginBox).css({ 
-			'margin-top' : -popMargTop,
-			'margin-left' : -popMargLeft
-		});
-		
-		// Add the mask to body
-		$('body').append('<div id="mask"></div>');
-		$('#mask').fadeIn(300);
-		
-		return false;
-	});
 	
-	$("#menutog button.redirect_to_login").click(function(){
-	  document.location.href = "/login";
-	});
-	
-	// When clicking on the button close or the mask layer the popup closed
-	$('a.close-login-popup, #mask').on('click', function() { 
-	  $('#mask , .login-popup').fadeOut(300);
-	  $("div").remove("#mask"); 
-		return false;
-	});
 	
 	$("#industry_professional").click(function(){
 	  $(".industry_explanation").show('slow');
