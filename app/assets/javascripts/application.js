@@ -19,11 +19,23 @@
 //= require angular-resource
 //= require angular-route
 
+function checkForErrors () {
+  var alert_array = []
+  
+  if ( $(".error").length > 0 ) {
+    $(".error").each(function() {
+      if ( $(this).children().prop("tagName") == "INPUT" ) {
+        $(this).children('input').after("<small>Invalid</small>");
+      }
+    });
+  }
+}
 
 $(function(){ 
   
   $(document).foundation(); 
   
+	checkForErrors();
 	
 	$(".sub-nav dd").click(function(){
 	  var item_id = $(this).attr('id');
@@ -75,5 +87,11 @@ $(function(){
     $(new_partial).show();
     event.preventDefault();
   });
+  
+  $(".date-pick").datepicker({
+    dateFormat: "yy-mm-dd",
+    autoFocusNextInput: true
+  });
+  
   
 });

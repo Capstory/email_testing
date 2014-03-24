@@ -1,63 +1,67 @@
+<%= form_for(@access_request) do |f| %>
 <div class="row">
 	<div class="small-8 small-centered columns">
-		<h2>Invitation Request Form</h2>
-	  <%= form_for(@access_request) do |f| %>
 			<div class="error_messages">
 				<% if @access_request.errors.any? %>
-			      <h4 class="subheader"><%= pluralize(@access_request.errors.count, "error") %> prevented your request from being saved:</h4>
-
-			      <ul>
+			     <h4 class="subheader"><%= pluralize(@access_request.errors.count, "error") %> prevented your request from being saved:</h4>
+		      <ul>
 			      <% @access_request.errors.full_messages.each do |msg| %>
 			        <li><%= msg %></li>
 			      <% end %>
-			      </ul>
-			    </div>
+		      </ul>
 			  <% end %>
 			</div>
-	
-	    <span class="subheader"> We'll be in touch soon to let you know if we can do your wedding!</span>
-			
-			<%= f.text_field :name, class: '', placeholder: 'Your Name' %>
-
-			<%= f.text_field :email, class: '', placeholder: 'Your Email' %>
-		
-			<%= f.text_field :event_date, class: 'date-pick', placeholder: 'Choose a Date' %>
-			<br>
-			<p>Please, tell us about yourself</p>
-			<div class="row">
-				<div class="small-6 columns">
-					<p>Bride</p>
-				</div>
-				<div class="small-6 columns">
-					<%= f.radio_button :source, "bride", class: 'non_industry' %>
-				</div>
-			</div>
-			<div class="row">
-				<div class="small-6 columns">
-					<p>Industry Professional</p>
-					<small class="industry_explanation" style="display:none;">What is your role within the industry?</small>
-				</div>
-				<div class="small-6 columns">
-					<%= f.radio_button :source, "vendor", id: 'industry_professional' %>
-					<div style="display:none;" class="industry_explanation">
-						<%= f.text_field :industry_role %>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="small-6 columns">
-					<p>Other</p>
-				</div>
-				<div class="small-6 columns">
-					<%= f.radio_button :source, "other", class: 'non_industry' %>
-				</div>
-			</div>
-			<br>
-			<p>Partner Code</p>
-			<%= f.text_field :partner_code, class: '' , placeholder: 'Enter Partner Code...' %>
-			<p class="subheader">If you received a code from a Capstory partner/vendor, enter it here</p>
-			
-			<%= f.submit "Submit", class: 'button' %>
-		<% end %>
 	</div>
 </div>
+
+<div class="row">
+	<div class="small-12 columns">
+		<h2 class="subheader">Invitation Request Form</h2>
+	</div>
+</div>
+<div class="row">
+	<div class="small-6 columns">
+			<%= f.label :name %>
+			<%= f.text_field :name, class: '', placeholder: 'Your Name' %>
+
+			<%= f.label :email %>
+			<%= f.text_field :email, class: '', placeholder: 'Your Email' %>
+		
+			<%= f.label :event_date %>
+			<%= f.text_field :event_date, class: 'date-pick', placeholder: 'Choose a Date' %>
+			
+			<p class="subheader">Tell Us About Yourself</p>
+			<ul class="inline-list">
+				<li>
+					<%= f.radio_button :source, "bride", class: 'non_industry' %>
+					<%= f.label :source, "Bride/Groom" %>
+				</li>
+				<li>
+					<%= f.radio_button :source, "vendor", id: 'industry_professional' %>
+					<%= f.label :source, "Industry Professional" %>
+				</li>
+				<li>
+					<%= f.radio_button :source, "other", class: 'non_industry' %>
+					<%= f.label :source, "Other" %>
+				</li>
+			</ul>
+			<div style="display:none;" class="industry_explanation">
+				<%= f.label :industry_role, "What is your role in the industry?" %>
+				<%= f.text_field :industry_role %>
+			</div>
+	</div>
+	<div class="small-6 columns">
+			<%= f.label :questions %>
+			<%= f.text_area :questions, rows: "10" %>
+
+			<%= f.label :partner_code %>
+			<%= f.text_field :partner_code, class: '' , placeholder: 'Enter Partner Code...' %>
+			<p class="subheader">If you received a code from a Capstory partner/vendor, enter it here</p>
+	</div>
+</div>
+<div class="row">
+	<div class="small-12 columns">
+		<%= f.submit "Submit", class: 'button pull-right' %>
+	</div>
+</div>
+<% end %>

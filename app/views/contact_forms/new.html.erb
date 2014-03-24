@@ -1,12 +1,34 @@
 <%= form_for(@contact_form) do |f| %>
-	<%= f.label :name %>
-	<%= f.text_field :name, id: "contact_name" %>
+	<div class="row">
+		<div class="small-8 small-centered columns">
+				<div class="error_messages">
+					<% if @contact_form.errors.any? %>
+				     <h4 class="subheader"><%= pluralize(@contact_form.errors.count, "error") %> prevented your request from being saved:</h4>
+			      <ul>
+				      <% @contact_form.errors.full_messages.each do |msg| %>
+				        <li><%= msg %></li>
+				      <% end %>
+			      </ul>
+				  <% end %>
+				</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-6 columns">
+			<%= f.label :name %>
+			<%= f.text_field :name, id: "contact_name" %>
 	
-	<%= f.label :email %>
-	<%= f.text_field :email, type: "email", id: "contact_email" %>
-	
-	<%= f.label :message %>
-	<%= f.text_area :message, id: "contact_message" %>
-	
-	<button class="btn btn_secondary" action="submit">Send</button>
+			<%= f.label :email %>
+			<%= f.text_field :email, type: "email", id: "contact_email" %>
+		</div>
+		<div class="small-6 columns">
+			<%= f.label :message %>
+			<%= f.text_area :message, rows: "10", id: "contact_message" %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 columns">
+			<%= f.submit "Send", class: "button pull-right" %>
+		</div>
+	</div>
 <% end %>

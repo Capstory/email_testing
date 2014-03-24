@@ -1,7 +1,22 @@
-<div class="small-8 small-centered columns">
-	<h3 class="subheader"><%= @admin.name %></h3>
-	<h5>Admin</h5>
-	<% @admin.capsules.each do |capsule| %>
-		<h5>Go to <%= link_to capsule.name, capsule %></h5>
-	<% end %>
+<div class="row">
+	<div class="small-6 columns">
+		<h3 class="subheader"><%= @admin.name %></h3>
+	</div>
+</div>
+<div class="row">
+	<div class="small-6 columns">
+
+		<h5>Admin</h5>
+		<% @admin.capsules.each do |capsule| %>
+			<span data-tooltip class="has-tip tip-bottom" title="Go to <%= capsule.name %>">
+				<%= link_to fa_icon("picture-o 4x"), capsule %>
+			</span>
+		<% end %>
+	</div>
+	<div class="small-6 columns">
+		<h5>Pages</h5>
+		<span data-tooltip class="has-tip tip-bottom" title="Go to the Admin Dashboard">
+			<%= link_to fa_icon("dashboard 4x"), dashboard_path %>
+		</span>
+	</div>
 </div>

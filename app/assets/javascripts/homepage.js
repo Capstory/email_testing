@@ -16,6 +16,18 @@ $(".non_industry").click(function(){
 //   $("#partner_code").toggle('slow');
 // });
 
+function checkForErrors () {
+  if ( $(".error").length > 0 ) {
+    $(".error").each(function() {
+      if ( $(this).children().prop("tagName") == "INPUT" ) {
+        $(this).children('input').after("<small>Invalid</small>");
+      }
+    });
+  }
+}
+
+checkForErrors();
+
 $(".date-pick").datepicker({
   dateFormat: "yy-mm-dd",
   autoFocusNextInput: true

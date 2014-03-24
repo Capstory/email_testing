@@ -10,13 +10,13 @@ class ContactFormsController < ApplicationController
   end
   
   def create
-    @contact = ContactForm.create(params[:contact_form])
-    if @contact.save
-      ContactFormMailer.admin_notification(@contact).deliver
-      redirect_to contact_thank_you_path(email: @contact.email)
+    @contact_form = ContactForm.create(params[:contact_form])
+    if @contact_form.save
+      ContactFormMailer.admin_notification(@contact_form).deliver
+      redirect_to contact_thank_you_path(email: @contact_form.email)
     else
       flash[:error] = "Unable to send message. Please, try again."
-      redirect_to new_contact_form_path
+      render "new"
     end
   end
   

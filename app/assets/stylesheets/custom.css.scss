@@ -1,3 +1,7 @@
+textarea {
+	height: auto;
+}
+
 h5.title-text {
 	padding-top: 4px;
 	padding-left: 25px;
@@ -159,10 +163,6 @@ div.mc-image {
 	max-width: 250px;
 }
 
-#show_partner_code {
-	cursor: pointer;
-}
-
 #notice {
   color: green;
 }
@@ -192,4 +192,14 @@ div.mc-image {
     font-size: 16px;
     list-style: circle;
   }
+}
+
+.user_nav_link {
+	margin:10px;
+}
+
+.empty_row {
+	height: 10px;
+	clear: both;
+	margin: 20px;
 }
