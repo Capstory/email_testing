@@ -42,6 +42,8 @@ class CapsulesController < ApplicationController
     @capsule.email = params[:capsule][:email]
     @capsule.named_url = named_url
     @capsule.response_message = params[:capsule][:response_message]
+    @capsule.name = params[:capsule][:name]
+    @capsule.event_date = params[:capsule][:event_date]
     if @capsule.save
       flash[:success] = "Capsule Updated"
       redirect_to @capsule
