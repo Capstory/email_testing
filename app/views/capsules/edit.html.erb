@@ -1,9 +1,22 @@
 <%= form_for(@capsule) do |f| %>
-	<%= f.label :email, "Enter an email address for this capsule" %>
-	<%= f.text_field :email %>
+	<div class="row">
+		<div class="small-6 columns">
+			<%= f.label :name %>
+			<%= f.text_field :name %>
 	
-	<%= f.label :response_message, "Enter a response message that will be sent out to anyone who sent in a photo" %>
-	<%= f.text_area :response_message %>
+			<%= f.label :event_date %>
+			<%= f.text_field :event_date, class: "date-pick" %>
+
+			<%= f.label :email, "Enter an email address for this capsule" %>
+			<%= f.text_field :email %>
+			
+			<%= link_to "Back to Dashboard", dashboard_path, class: 'button' %>
+		</div>
+		<div class="small-6 columns">
+			<%= f.label :response_message, "Enter a response message that will be sent out to anyone who sent in a photo" %>
+			<%= f.text_area :response_message, rows: "8" %>
 	
-	<%= f.submit "Save", class: 'button' %>
+			<%= f.submit "Save", class: 'button pull-right' %>
+		</div>
+	</div>
 <% end %>
