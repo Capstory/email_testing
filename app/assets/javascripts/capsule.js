@@ -79,6 +79,11 @@ $(function (){
       else {
         this.title = $elementTitle;
       }
+    },
+    helpers: {
+      overlay: {
+        locked: false
+      }
     }
   });
   
