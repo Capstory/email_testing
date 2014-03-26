@@ -55,6 +55,9 @@ class CapsulesController < ApplicationController
   
   def destroy
     capsule = Capsule.find(params[:id])
+    capsule.encapsulations.each do |encap|
+      encap.destroy
+    end
     capsule.destroy
     flash[:success] = "Capsule Successfully Deleted"
     redirect_to :back
