@@ -3,7 +3,6 @@ require 'zip'
 class DownloadManagersController < ApplicationController
   after_filter :clean_up_temp_files, only: :download
   
-  @@temp_dirs = []
   @@temp_files = []
   
   def index
@@ -17,9 +16,7 @@ class DownloadManagersController < ApplicationController
   def download
     temp_dir = Dir.mktmpdir
     zip_path = File.join(temp_dir, "image_download_#{Time.now}.zip")
-    @@temp_dirs << zip_path
     # zip_path = "#{Rails.root}/public/image_downloads/image_download_#{Date.today.to_s}.zip"
-    images = []
     
     Zip::File.open(zip_path, Zip::File::CREATE) do |zipfile|
       params[:photos].keys.each_with_index do |photo_id, index|
