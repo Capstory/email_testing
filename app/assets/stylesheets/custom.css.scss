@@ -203,3 +203,21 @@ div.mc-image {
 	clear: both;
 	margin: 20px;
 }
+
+.download_image {
+	position:relative;
+	width: 100%;
+	input[type='checkbox'] {
+		display: none;
+	}
+}
+
+.download_photo_checkmark {
+	display: none;
+	color: #C69C56;
+	font-size: 45px;
+	position: absolute;
+	width: 100%;
+	top: -30px;
+	left: 20px;
+}

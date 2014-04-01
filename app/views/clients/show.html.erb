@@ -18,11 +18,11 @@
 				<li>
 					<div class="row">
 						<div class="small-6 columns">
-							<h4 class="subheader">Key Contributor</h4>
+							<h4 class="subheader">Export</h4>
 						</div>
 						<div class="small-6 columns" style="text-align:center;">
-							<span data-tooltip class="has-tip tip-bottom" title="Add a Key Contributor">
-								<%= link_to fa_icon("user 4x"), capsule, class: "user_nav_link" %>
+							<span data-tooltip class="has-tip tip-bottom" title="Download any photos that you would like from your capsule">
+								<%= link_to fa_icon("cloud-download 4x"), download_path(klass: "Capsule", element_id: capsule.id), class: "user_nav_link" %>
 							</span>
 						</div>
 					</div>

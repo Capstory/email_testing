@@ -1,0 +1,36 @@
+<%= form_tag package_download_path do %>
+	<div class="row">
+		<div class="small-6 columns">
+			<p class="subheader">
+				Click on the pictures you would like to download and then press the "Submit" button to start the compilation.
+				You will be presented a link from which you can download a .zip file containing your selection.
+			</p>
+		</div>
+		<div class="small-6 columns">
+			<%= submit_tag "Submit", class: "button expand", id: "download_submit_button" %>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="small-12 columns">
+			<% @elements.posts.each do |post| %>
+				<% if post.body.nil? || post.body.upcase == "NO MESSAGE" %>
+					<span class="download_image">
+						<%= image_tag(post.image.url(:thumb), class: 'modal_img', id: post.id) %>
+						<%= check_box_tag "photos[#{post.id}]", post.image.url(:medium) %>
+						<span class="download_photo_checkmark" id="checkmark_<%= post.id %>">&#10004</span>
+					</span>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+<% end %>
+
+<div id="download_modal" class="reveal-modal small" data-reveal>
+	<div class="small-5 small-centered columns">
+		<h4 class="subheader">compiling your selections...</h4>
+		<p class="subheader">thank you for your patience</p>
+		<br>
+		<%= fa_icon "spinner 4x spin" %>
+	</div>
+</div>

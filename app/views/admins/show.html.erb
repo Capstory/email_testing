@@ -1,22 +1,63 @@
+
 <div class="row">
 	<div class="small-6 columns">
 		<h3 class="subheader"><%= @admin.name %></h3>
-	</div>
-</div>
-<div class="row">
-	<div class="small-6 columns">
-
-		<h5>Admin</h5>
 		<% @admin.capsules.each do |capsule| %>
-			<span data-tooltip class="has-tip tip-bottom" title="Go to <%= capsule.name %>">
-				<%= link_to fa_icon("picture-o 4x"), capsule %>
-			</span>
+			<ul class="no-bullet">
+				<li>
+					<div class="row">
+						<div class="small-6 columns">
+							<h4 class="subheader">Capsule</h4>
+						</div>
+						<div class="small-6 columns" style="text-align:center;">
+							<span data-tooltip class="has-tip tip-bottom" title="Go to <%= capsule.name %>">
+								<%= link_to fa_icon("picture-o 4x"), capsule, class: "user_nav_link" %>
+							</span>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="row">
+						<div class="small-6 columns">
+							<h4 class="subheader">Export</h4>
+						</div>
+						<div class="small-6 columns" style="text-align:center;">
+							<span data-tooltip class="has-tip tip-bottom" title="Download any photos that you would like from your capsule">
+								<%= link_to fa_icon("cloud-download 4x"), download_path(klass: "Capsule", element_id: capsule.id), class: "user_nav_link" %>
+							</span>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="row">
+						<div class="small-6 columns">
+							<h4 class="subheader">Settings</h4>
+						</div>
+						<div class="small-6 columns" style="text-align:center;">
+							<span data-tooltip class="has-tip tip-bottom" title="Changes Capsule Settings">
+								<%= link_to fa_icon("cog 4x"), capsule, class: "user_nav_link" %>
+							</span>
+						</div>
+					</div>
+				</li>
+			</ul>
 		<% end %>
 	</div>
 	<div class="small-6 columns">
-		<h5>Pages</h5>
-		<span data-tooltip class="has-tip tip-bottom" title="Go to the Admin Dashboard">
-			<%= link_to fa_icon("dashboard 4x"), dashboard_path %>
-		</span>
+		<h3 class="subheader">Admin Pages</h3>
+		<ul class="no-bullet">
+			<li>
+				<div class="row">
+					<div class="small-6 columns">
+						<h4 class="subheader">Dashboard</h4>
+					</div>
+					<div class="small-6 columns" style="text-align:center;">
+						<span data-tooltip class="has-tip tip-bottom" title="Go to the Admin Dashboard">
+							<%= link_to fa_icon("dashboard 4x"), dashboard_path %>
+						</span>
+					</div>
+				</div>
+			</li>
+		</ul>
 	</div>
 </div>

@@ -106,6 +106,11 @@ EmailTesting::Application.routes.draw do
   match "engaged_contact_thank_you" => "engaged_contacts#thank_you"
   resources :engaged_contacts, only: ["new", "create"]
   
+  match "download" => "download_managers#index"
+  match "package_download" => "download_managers#download"
+  match "zip_download" => "download_managers#zip_download"
+  resources :download_managers, only: ["index"]
+  
   mount Resque::Server, at: "/resque"
   
   # ==============================

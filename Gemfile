@@ -77,6 +77,9 @@ gem 'resque-scheduler', require: "resque_scheduler"
 # Stripe gem for controller credit card usage and billing
 gem 'stripe', git: 'https://github.com/stripe/stripe-ruby'
 
+# Zip gem for compressing bulk image downloads
+gem 'rubyzip'
+
 # gem 'clockwork'
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

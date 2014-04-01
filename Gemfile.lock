@@ -173,6 +173,7 @@ GEM
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rmagick (2.13.2)
+    rubyzip (1.0.0)
     rufus-scheduler (2.0.24)
       tzinfo (>= 0.3.22)
     sass (3.2.12)
@@ -237,6 +238,7 @@ DEPENDENCIES
   resque
   resque-scheduler
   rmagick
+  rubyzip
   sass-rails (~> 3.2.3)
   sqlite3
   stripe!

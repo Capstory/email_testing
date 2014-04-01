@@ -55,4 +55,5 @@ EmailTesting::Application.configure do
   }
   
   Zencoder.api_key = "29c63ba7456d50ed3a0a36176cf59b0d"
+  
 end

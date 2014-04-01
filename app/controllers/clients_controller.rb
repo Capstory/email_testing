@@ -1,5 +1,4 @@
 class ClientsController < ApplicationController
-  
   # =====================================
   # Begin standard controller actions
   # =====================================

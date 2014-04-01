@@ -1,0 +1,9 @@
+<div class="row">
+	<div class="small-6 columns">
+		<p class="subheader">Click the button in order to download a .zip file containing your chosen photos.</p>
+	</div>
+	<div class="small-6 columns">
+		<%= link_to "Back to Profile", current_user, class: "button expand", id: "post_download", style: "display:none;" %>
+		<%= link_to "Download", zip_download_path(file_path: @file_path), class: 'button expand', id: "download_engage" %>
+	</div>
+</div>
