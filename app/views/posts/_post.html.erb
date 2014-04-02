@@ -7,9 +7,9 @@
 				<% @title = "No Title" %>
 			<% end %>
 			<% if post.video %>
-				<%= link_to image_tag(post.image.url(:medium)), post.video.zencoder_url, class: 'grouped_elements', rel: 'group1', data: { fancybox_type: 'iframe', title: @title } %>
+				<%= link_to image_tag(post.image.url(:thumb), width: '100%'), post.video.zencoder_url, class: 'grouped_elements', rel: 'group1', data: { fancybox_type: 'iframe', title: @title } %>
 			<% else %>
-				<%= link_to image_tag(post.image.url(:medium)), post.image.url, class: 'grouped_elements', rel: 'group1', data: { fancybox_type: "image", title: @title } %>
+				<%= link_to image_tag(post.image.url(:thumb), width: '100%'), post.image.url(:medium), class: 'grouped_elements', rel: 'group1', data: { fancybox_type: "image", title: @title } %>
 			<% end %>
 		<% else %>
 			<% if current_user && ( current_user.admin? || capsule_owner(current_user.id, @capsule.id) ) %>
