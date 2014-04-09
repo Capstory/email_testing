@@ -71,9 +71,7 @@
 			</div>
 		</div>
 
-			<%= content_tag :div, id: "original_container", data: { url: posts_url(capsule_id: @capsule.id) } do %>
-					<%= render @capsule.posts.order("created_at DESC") %>
-			<% end %>
+
 	</div>
 	<!-- <div class="small-3 columns">
 		<h6 class="subheader">Key Contributors</h6>
@@ -89,6 +87,9 @@
 	</div> -->
 </div>
 
+<%= content_tag :div, id: "original_container", data: { url: posts_url(capsule_id: @capsule.id) } do %>
+		<%= render @capsule.posts.order("created_at DESC") %>
+<% end %>
 
 <div id="filepicker_modal" class="reveal-modal small" data-reveal>
 	<div class="small-3 small-centered columns">
