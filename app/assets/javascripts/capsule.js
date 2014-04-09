@@ -117,7 +117,7 @@ $(function (){
   $(window).bind('load', function(){
     $container.masonry({  
       itemSelector: '.masonry-brick',
-      columnWidth: 342
+      columnWidth: 150
     });
   });
 });
