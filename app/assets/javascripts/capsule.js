@@ -80,6 +80,16 @@ $(function (){
         this.title = $elementTitle;
       }
     },
+    beforeShow: function () {
+      var newWidth = this.width * 2;
+      var newHeight = this.height * 2;
+      $(".fancybox-image").css({
+        "width": newWidth,
+        "height": newHeight
+      });
+      this.width = newWidth;
+      this.height = newHeight;
+    },
     helpers: {
       overlay: {
         locked: false
@@ -117,7 +127,7 @@ $(function (){
   $(window).bind('load', function(){
     $container.masonry({  
       itemSelector: '.masonry-brick',
-      columnWidth: 150
+      columnWidth: 342
     });
   });
 });
