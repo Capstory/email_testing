@@ -69,6 +69,9 @@ GEM
       rails (>= 3.2)
     font-awesome-rails (4.0.3.0)
       railties (>= 3.2, < 5.0)
+    foundation-rails (5.0.2.0)
+      railties (>= 3.1.0)
+      sass (>= 3.2.0)
     friendly_id (4.0.10.1)
       activerecord (>= 3.0, < 4.0)
     hashie (2.0.5)
@@ -209,8 +212,6 @@ GEM
       rack (>= 1.0.0)
     zencoder (2.4.4)
       multi_json
-    zurb-foundation (4.3.2)
-      sass (>= 3.2.0)
 
 PLATFORMS
   ruby
@@ -223,6 +224,7 @@ DEPENDENCIES
   fancybox2-rails
   filepicker-rails
   font-awesome-rails
+  foundation-rails
   friendly_id (~> 4.0.10.1)
   jquery-rails
   jquery-ui-rails
@@ -245,4 +247,3 @@ DEPENDENCIES
   thin
   uglifier (>= 1.0.3)
   zencoder
-  zurb-foundation

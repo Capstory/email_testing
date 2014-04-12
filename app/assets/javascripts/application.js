@@ -115,3 +115,5 @@ $(function(){
 	});
 	
 });
+
+$(function(){ $(document).foundation(); });

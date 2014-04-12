@@ -23,11 +23,11 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
-  gem 'zurb-foundation'
+  # gem 'zurb-foundation'
   
   # foundation-rails is Foundation version 5. However, I had problems implementing the new version. It would not deploy properly.
   # Thus, I will need to revisit it sometime in the near future.
-  # gem 'foundation-rails'
+  gem 'foundation-rails'
   
   gem 'jquery-ui-rails'
   gem 'angularjs-rails'
