@@ -1,3 +1,4 @@
+<!--
 <% if current_user && (current_user.admin? || capsule_owner(current_user.id, @capsule.id)) %>
 	<div class="row">
 		<div class="small-2 small-offset-8 columns">
@@ -25,26 +26,25 @@
 		</div>
 	</div>
 <% end %>
+-->
 
 <div class="row">
-	<div class="small-4 columns">
+	<div class="small-6 columns">
 		<% the_date = @capsule.event_date ? @capsule.event_date.to_s(:long) : "Not Available" %>
-		<h5 class="subheader" style="text-align:left;"><%= @capsule.name %> <br><small>Event Date: <%= @capsule.event_date.nil? ? "Not Available" : the_date %></small></h5>
+		<h3 class="subheader" style="text-align:left;">
+		<%= @capsule.name %> 
+		<!--<small>Event Date: <%= @capsule.event_date.nil? ? "Not Available" : the_date %></small> -->
+		</h3>
 	</div>
-	<div class="small-8 columns">
-		<h4 style='text-align:left;' class="subheader">Send Photos to: <br><%= link_to @capsule.email, "mailto:#{@capsule.email}" %></h4>
+	<div class="small-6 columns">
+		<h3 style='text-align:left;' class="subheader">
+			Send Photos to: <%= link_to @capsule.email, "mailto:#{@capsule.email}" %>
+		</h3>
 	</div>
 </div>
+<br>
 
-
-<div class="row">
-	<div class="small-12 columns">
-		<div class="row">
-			<!-- <div class="small-2 columns">
-				<h6 class="subheader">Pictures</h6>
-				
-			</div> -->
-			<div class="small-2 columns">
+		<div style="display:none;">
 				<%= form_for(@post) do |f| %>
 				  <% if @post.errors.any? %>
 				    <div id="error_explanation">
@@ -59,7 +59,7 @@
 				  <% end %>
 					<%= f.hidden_field :capsule_id, value: @capsule.id %>
 
-				 	<%= f.filepicker_field :filepicker_url, multiple: true, services: "COMPUTER, DROPBOX, FACEBOOK, FLICKR, INSTAGRAM", onchange: 'onImageUpload()', button_text: "Upload A Photo", class: 'button tiny pick_file' %>
+				 	<%= f.filepicker_field :filepicker_url, multiple: true, services: "COMPUTER, DROPBOX, FACEBOOK, FLICKR, INSTAGRAM", onchange: 'onImageUpload()', button_text: "Upload A Photo", class: 'pick_file' %>
 
 					<!-- <div id="after_filepicker_upload" class="alert-box success" style="display:none;">
 						<p class='subheader'>Image processing finished. Click the button to complete the upload.</p>
@@ -67,25 +67,7 @@
 					<%= f.submit "Upload", class: 'button', id: 'filepicker_submit_button', style: "display:none;" %>
 
 				<% end %>
-
-			</div>
 		</div>
-
-
-	</div>
-	<!-- <div class="small-3 columns">
-		<h6 class="subheader">Key Contributors</h6>
-		<% if current_user && ( current_user.admin? || capsule_owner(current_user.id, @capsule.id) ) %>
-			<% @capsule.users.where(type: "Contributor").each do |contributor| %>
-				<div class="panel">
-					<p><%= link_to contributor.name, contributor %></p>
-				</div>
-			<% end %>
-		<% else %>
-			<p><%= @capsule.users.where(type: "Contributor").count %></p>
-		<% end %>
-	</div> -->
-</div>
 
 <%= content_tag :div, id: "original_container", data: { url: posts_url(capsule_id: @capsule.id) } do %>
 		<%= render @capsule.posts.order("created_at DESC") %>

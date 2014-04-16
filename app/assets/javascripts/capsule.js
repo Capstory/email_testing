@@ -121,6 +121,10 @@ $(function (){
   $(".show_delete").click(function(){
     $(this).next("small").toggle('slow');
   });
+  
+  $('#activate_filepicker').click(function () {
+    $('.pick_file').click();
+  });
 
   // Masonry Related JS
   var $container = $("#original_container");
