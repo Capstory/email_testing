@@ -42,25 +42,26 @@
 						<li><%= link_to "Login", login_path %></li>
 					<% end %>
 		    </ul>
-			<% if current_user && (current_user.admin? || capsule_owner(current_user.id, @capsule.id)) %>
+
 				<ul class="left" style="margin-left:100px;">
 					<li><%= link_to "UPLOAD A PHOTO", "#", id: "activate_filepicker" %></li>
 					
-					<li class="has-dropdown not-click">
-						<%= link_to "FACEBOOK", "#" %>
-						
-						<ul class="dropdown">
-							<% if current_user.facebook_authorized? %>
-								<li><%= link_to "Post Photos", "#", id: "facebook_modal_engage" %></li>
-								<li><%= link_to "Logout", delete_facebook_auth_path(provider: current_user.fb_provider, uid: current_user.fb_uid), id: "facebook_deconnect" %></li>
-							<% else %>
-								<li><%= link_to "Send Photos to Facebook", "/auth/facebook" %></li>
-							<% end %>
-						</ul>
-					</li>
+					<% if current_user && (current_user.admin? || capsule_owner(current_user.id, @capsule.id)) %>					
+						<li class="has-dropdown not-click">
+							<%= link_to "FACEBOOK", "#" %>
 					
-          <li class="has-dropdown not-click">
-		        <%= link_to "SLIDESHOW", "#" %>
+							<ul class="dropdown">
+								<% if current_user.facebook_authorized? %>
+									<li><%= link_to "Post Photos", "#", id: "facebook_modal_engage" %></li>
+									<li><%= link_to "Logout", delete_facebook_auth_path(provider: current_user.fb_provider, uid: current_user.fb_uid), id: "facebook_deconnect" %></li>
+								<% else %>
+									<li><%= link_to "Send Photos to Facebook", "/auth/facebook" %></li>
+								<% end %>
+							</ul>
+						</li>
+				
+						<li class="has-dropdown not-click">
+			        <%= link_to "SLIDESHOW", "#" %>
 
 	            <ul class="dropdown">
 								<li><%= link_to fa_icon("picture-o", text: "Start Slideshow"), slideshow_path(capsule_id: @capsule.id) %></li>
@@ -71,9 +72,9 @@
 									<li><%= link_to fa_icon("inbox", text: "Get Email"), retrieve_emails_path %></li>
 								<% end %>
 	            </ul>
-			      </li>
-					</ul>
-				<% end %>
+						</li>
+					<% end %>
+				</ul>
 		  </section>
 		</nav>
 		<div class="row">
