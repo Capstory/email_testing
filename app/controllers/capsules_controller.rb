@@ -29,6 +29,7 @@ class CapsulesController < ApplicationController
   
   def show
     @capsule = Capsule.find(params[:id].to_s.downcase)
+    @posts = @capsule.posts.order("created_at DESC").page(params[:page]).per_page(10)
     @post = Post.new
   end
   

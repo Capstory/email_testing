@@ -128,10 +128,24 @@ $(function (){
 
   // Masonry Related JS
   var $container = $("#original_container");
-  $(window).bind('load', function(){
+  $container.imagesLoaded(function () {
     $container.masonry({  
       itemSelector: '.masonry-brick',
       columnWidth: 320
     });
   });
+  
+  $container.infinitescroll({
+    navSelector: '.pagination',
+    nextSelector: '.pagination a.next_page',
+    itemSelector: '.masonry-brick'
+    },
+    function ( newElements ) {
+      var $newElems = $(newElements).css({ opacity: 0 });
+      $newElems.imagesLoaded(function () {
+        $newElems.animate({ opacity: 1 });
+        $container.masonry( "appended", $newElems, true);
+      });
+    }
+  );
 });

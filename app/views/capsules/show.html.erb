@@ -69,9 +69,12 @@
 				<% end %>
 		</div>
 
+
 <%= content_tag :div, id: "original_container", data: { url: posts_url(capsule_id: @capsule.id) } do %>
-		<%= render @capsule.posts.order("created_at DESC") %>
+		<%= render @posts %>
 <% end %>
+
+<%= will_paginate @posts %>
 
 <div id="filepicker_modal" class="reveal-modal small" data-reveal>
 	<div class="small-3 small-centered columns">

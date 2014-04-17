@@ -34,6 +34,7 @@ group :assets do
   
 end
 
+gem 'will_paginate', '~> 3.0'
 gem 'font-awesome-rails'
 gem 'friendly_id', '~> 4.0.10.1'
 
