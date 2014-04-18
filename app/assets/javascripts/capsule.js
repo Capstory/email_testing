@@ -137,9 +137,13 @@ $(function (){
   });
   
   $container.infinitescroll({
+    loading: {
+      msgText: "",
+      finishedMsg: "",
+    },
     navSelector: '.pagination',
     nextSelector: '.pagination a.next_page',
-    itemSelector: '.masonry-brick'
+    itemSelector: '.masonry-brick',
     },
     function ( newElements ) {
       var $newElems = $(newElements).css({ opacity: 0 });

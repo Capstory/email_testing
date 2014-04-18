@@ -28,22 +28,17 @@
 		  <ul class="title-area">
 		    <li class="name">
 					<span id="application_logo">
-		     		<%= link_to image_tag("logo.png", width: '210px', height: '25px'), root_url, style: "padding-right:20px;" %>
+		     		<%= link_to image_tag("logo.png", width: '275px', height: '30px'), root_url, style: "padding-right:10px;" %>
 					</span>
 		    </li>
 		  </ul>
 		  <section class="top-bar-section">
-		    <ul class="right">
-					<% if current_user %>
-						<% user_name = !current_user.name.blank? ? current_user.name : "Mr. No Name" %>
-						<li><%= link_to "Signed In as #{user_name}", current_user %></li>
-						<li><%= link_to "Sign Out", signout_path %></li>
-					<% else %>
-						<li><%= link_to "Login", login_path %></li>
-					<% end %>
-		    </ul>
 
-				<ul class="left" style="margin-left:100px;">
+				<ul class="left" style="margin-left:10px;">
+					<% if params[:action] == "show" %>
+						<li class="active"><%= link_to @capsule.name.upcase, @capsule %></li>
+					<% end %>
+					
 					<li><%= link_to "UPLOAD A PHOTO", "#", id: "activate_filepicker" %></li>
 					
 					<% if current_user && (current_user.admin? || capsule_owner(current_user.id, @capsule.id)) %>					
@@ -75,6 +70,21 @@
 						</li>
 					<% end %>
 				</ul>
+				
+				<ul class="right">
+					<% if current_user %>
+						<% user_name = !current_user.name.blank? ? current_user.name : "Mr. No Name" %>
+						<li class="has-dropdown not-click">
+							<%= link_to "Signed In as #{user_name}", current_user %>
+							
+							<ul class="dropdown">
+								<li><%= link_to "Sign Out", signout_path %></li>
+							</ul>
+						</li>
+					<% else %>
+						<li><%= link_to "Login", login_path %></li>
+					<% end %>
+		    </ul>
 		  </section>
 		</nav>
 		<div class="row">

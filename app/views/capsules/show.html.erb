@@ -29,17 +29,17 @@
 -->
 
 <div class="row">
-	<div class="small-6 columns">
+	<!-- <div class="small-6 columns">
 		<% the_date = @capsule.event_date ? @capsule.event_date.to_s(:long) : "Not Available" %>
 		<h3 class="subheader" style="text-align:left;">
-		<%= @capsule.name %> 
-		<!--<small>Event Date: <%= @capsule.event_date.nil? ? "Not Available" : the_date %></small> -->
+		<%= @capsule.name %>
+		<small>Event Date: <%= @capsule.event_date.nil? ? "Not Available" : the_date %></small>
 		</h3>
-	</div>
-	<div class="small-6 columns">
-		<h3 style='text-align:left;' class="subheader">
+	</div> -->
+	<div class="small-12 columns">
+		<h4 style='text-align:left;' class="subheader">
 			Send Photos to: <%= link_to @capsule.email, "mailto:#{@capsule.email}" %>
-		</h3>
+		</h4>
 	</div>
 </div>
 <br>
