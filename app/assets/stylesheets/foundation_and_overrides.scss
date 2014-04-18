@@ -961,8 +961,8 @@ $topbar-link-color-active: #C69C56;
 // $topbar-link-font-size: rem-calc(13);
 $topbar-link-hover-lightness: -10%; // Darken by 10%
 $topbar-link-bg-hover: darken($topbar-bg, 10%);
-$topbar-link-bg-active: darken(white, 10%);
-$topbar-link-bg-active-hover: darken($topbar-bg, 5%);
+$topbar-link-bg-active: darken($topbar-bg, 5%);
+$topbar-link-bg-active-hover: darken($topbar-bg, 10%);
 // $topbar-link-font-family: $body-font-family;
 
 // $topbar-button-font-size: 0.75rem;
