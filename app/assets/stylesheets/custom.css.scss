@@ -20,8 +20,13 @@ h5.title-text a:hover {
 	display: none;
 }
 
-.top-bar {
+.top-bar-section li a:not(.button) {
+	padding-left: 10px;
+	padding-right: 10px;
+}
 
+.top-bar-section .has-dropdown > a {
+	padding-right: 10px !important;
 }
 
 .masonry-brick { 

@@ -949,7 +949,7 @@ $topbar-margin-bottom: rem-calc(30px);
 $topbar-dropdown-bg: lighten(#f1f1f1, 8%);
 $topbar-dropdown-link-color: #C69C56;
 $topbar-dropdown-link-bg: darken($topbar-bg, 5%);
-// $topbar-dropdown-toggle-size: 5px;
+$topbar-dropdown-toggle-size: 0px;
 // $topbar-dropdown-toggle-color: #fff;
 // $topbar-dropdown-toggle-alpha: 0.4;
 
