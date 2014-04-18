@@ -128,6 +128,7 @@ $(function (){
 
   // Masonry Related JS
   var $container = $("#original_container");
+  
   $container.imagesLoaded(function () {
     $container.masonry({  
       itemSelector: '.masonry-brick',

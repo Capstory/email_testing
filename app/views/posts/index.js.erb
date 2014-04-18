@@ -1,16 +1,15 @@
 <% if !@posts.empty? %>
-  var $newElement = $("<%= j render @posts.order('created_at DESC') %>").css({ opacity: 0 });
+  var $newElement = $("<%= j render @posts.order('created_at DESC') %>");
 
-  // $("#original_container").imagesLoaded(function () {
-  //   $newElement.animate({ opacity: 1 });
-  //   $("#original_container").masonry('prepended', $newElement, true);
-  // });
+
+  $("#original_container").prepend($newElement).fadeIn('slow');
+
   $("#original_container").masonry('destroy');
   $("#original_container").masonry({
     itemSelector: '.masonry-brick',
     columnWidth: 320
   });
-  
+
   setTimeout(function(){
     $("#original_container").masonry('destroy');
     $("#original_container").masonry({
