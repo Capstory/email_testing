@@ -33,43 +33,44 @@
 		    </li>
 		  </ul>
 		  <section class="top-bar-section">
-
-				<ul class="left" style="margin-left:20px;">
-					<% if params[:action] == "show" %>
-						<li class="active"><%= link_to @capsule.name.upcase, @capsule %></li>
-					<% end %>
+				<% unless params[:action] == "verify_pin" %>
+					<ul class="left" style="margin-left:20px;">
+						<% if params[:action] == "show" %>
+							<li class="active"><%= link_to @capsule.name.upcase, @capsule %></li>
+						<% end %>
 					
-					<li><%= link_to "UPLOAD A PHOTO", "#", id: "activate_filepicker" %></li>
+						<li><%= link_to "UPLOAD A PHOTO", "#", id: "activate_filepicker" %></li>
 					
-					<% if current_user && (current_user.admin? || capsule_owner(current_user.id, @capsule.id)) %>					
-						<li class="has-dropdown not-click">
-							<%= link_to "FACEBOOK", "#" %>
+						<% if current_user && (current_user.admin? || capsule_owner(current_user.id, @capsule.id)) %>					
+							<li class="has-dropdown not-click">
+								<%= link_to "FACEBOOK", "#" %>
 					
-							<ul class="dropdown">
-								<% if current_user.facebook_authorized? %>
-									<li><%= link_to "Post Photos", "#", id: "facebook_modal_engage" %></li>
-									<li><%= link_to "Logout", delete_facebook_auth_path(provider: current_user.fb_provider, uid: current_user.fb_uid), id: "facebook_deconnect" %></li>
-								<% else %>
-									<li><%= link_to "Send Photos to Facebook", "/auth/facebook" %></li>
-								<% end %>
-							</ul>
-						</li>
+								<ul class="dropdown">
+									<% if current_user.facebook_authorized? %>
+										<li><%= link_to "Post Photos", "#", id: "facebook_modal_engage" %></li>
+										<li><%= link_to "Logout", delete_facebook_auth_path(provider: current_user.fb_provider, uid: current_user.fb_uid), id: "facebook_deconnect" %></li>
+									<% else %>
+										<li><%= link_to "Send Photos to Facebook", "/auth/facebook" %></li>
+									<% end %>
+								</ul>
+							</li>
 				
-						<li class="has-dropdown not-click">
-			        <%= link_to "SLIDESHOW", "#" %>
+							<li class="has-dropdown not-click">
+				        <%= link_to "SLIDESHOW", "#" %>
 
-	            <ul class="dropdown">
-								<li><%= link_to fa_icon("picture-o", text: "Start Slideshow"), slideshow_path(capsule_id: @capsule.id) %></li>
-								<% if current_user.admin? %>
-									<li><%= link_to fa_icon("edit", text: "Edit Capsule"), edit_capsule_path(@capsule) %></li>
-									<li><%= link_to fa_icon("user", text: "Add a Key Contributor"), new_contributor_path(capsule_id: @capsule.id) %></li>
-									<li><%= link_to fa_icon("cloud-download", text: "Download Photos"), download_path(klass: "Capsule", element_id: @capsule.id) %></li>
-									<li><%= link_to fa_icon("inbox", text: "Get Email"), retrieve_emails_path %></li>
-								<% end %>
-	            </ul>
-						</li>
-					<% end %>
-				</ul>
+		            <ul class="dropdown">
+									<li><%= link_to fa_icon("picture-o", text: "Start Slideshow"), slideshow_path(capsule_id: @capsule.id) %></li>
+									<% if current_user.admin? %>
+										<li><%= link_to fa_icon("edit", text: "Edit Capsule"), edit_capsule_path(@capsule) %></li>
+										<li><%= link_to fa_icon("user", text: "Add a Key Contributor"), new_contributor_path(capsule_id: @capsule.id) %></li>
+										<li><%= link_to fa_icon("cloud-download", text: "Download Photos"), download_path(klass: "Capsule", element_id: @capsule.id) %></li>
+										<li><%= link_to fa_icon("inbox", text: "Get Email"), retrieve_emails_path %></li>
+									<% end %>
+		            </ul>
+							</li>
+						<% end %>
+					</ul>
+				<% end %>
 				
 				<ul class="right">
 					<% if current_user %>

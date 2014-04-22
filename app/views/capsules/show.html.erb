@@ -76,6 +76,13 @@
 
 <%= will_paginate @posts %>
 
+<div class="row">
+	<div class="small-1 small-centered columns" id="spinner"><%= fa_icon "spinner 4x spin" %></div>
+	<div class="small-3 small-centered columns" id="finished_text" style="display:none;">
+		<h3 class="subheader">end of capsule</h3>
+	</div>
+</div>
+
 <div id="filepicker_modal" class="reveal-modal small" data-reveal>
 	<div class="small-3 small-centered columns">
 		<h4 class="subheader">Processing...</h4>
