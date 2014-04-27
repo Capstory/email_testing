@@ -54,3 +54,18 @@ ul.partners_list li {
 		text-decoration: none;
 	}
 }
+
+.photo-book-large {
+	width: 100%;
+	height: 400px;
+}
+
+.photo-book-medium {
+	width: 100%;
+	height: 400px;
+}
+
+.photo-book-small {
+	width: 100%;
+	height: 250px;
+}
