@@ -48,28 +48,34 @@ class EmailRetriever
       	
       	if message.multipart? && message.has_attachments?
           message.attachments.each do |attachment|
-            @upload_file = AttachmentFile.new("blank.jpg")
-            @upload_file.binmode
-            @upload_file.write attachment.body.decoded
-            @upload_file.flush
-            @upload_file.original_filename = attachment.filename
-            @upload_file.content_type = attachment.mime_type
-            
-            post_body = File.extname(attachment.filename) == ".txt" ? attachment.body.decoded : "No message"
-            
-            if EmailRetriever.video_formats.include?(File.extname(attachment.filename))
-              Video.generate_file(@upload_file, { body: post_body, email: @sender_email, capsule_id: @capsule_id })
-              # Post.create!(body: post_body, email: @sender_email, image: '#', capsule_id: @capsule_id)
+            if attachment.mime_type.split("/").first == "image" && attachment.body.decoded.length < 10000
+              next
             else
-              Post.create!(body: post_body, email: @sender_email, image: @upload_file, capsule_id: @capsule_id)
+              @upload_file = AttachmentFile.new("blank.jpg")
+              @upload_file.binmode
+              @upload_file.write attachment.body.decoded
+              @upload_file.flush
+              @upload_file.original_filename = attachment.filename
+              @upload_file.content_type = attachment.mime_type
+            
+              post_body = File.extname(attachment.filename) == ".txt" ? attachment.body.decoded : "No message"
+            
+              if EmailRetriever.video_formats.include?(File.extname(attachment.filename))
+                Video.generate_file(@upload_file, { body: post_body, email: @sender_email, capsule_id: @capsule_id })
+                # Post.create!(body: post_body, email: @sender_email, image: '#', capsule_id: @capsule_id)
+              elsif File.extname(attachment.filename) == ".txt"
+                Post.create!(body: post_body, email: @sender_email, capsule_id: @capsule_id)
+              else
+                Post.create!(body: post_body, email: @sender_email, image: @upload_file, capsule_id: @capsule_id)
+              end
+              @upload_file.close
+              @upload_file.unlink
             end
-            @upload_file.close
-            @upload_file.unlink
           end
         else
           plain_body = message.body.decoded
           
-          Post.create!(body: plain_body, email: @sender_email, image: nil, capsule_id: @capsule_id)
+          Post.create!(body: plain_body, email: @sender_email, capsule_id: @capsule_id)
         end
         
     	#mark message as deleted to remove duplicates in fetching
@@ -83,7 +89,6 @@ class EmailRetriever
        
       PostMailer.new_post_response(@sender_email, @capsule_email, @capsule_link, @capsule_message).deliver
       
-
     end
     imap.expunge()
     #logout and close imap connection
