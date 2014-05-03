@@ -27,7 +27,7 @@ group :assets do
   
   # foundation-rails is Foundation version 5. However, I had problems implementing the new version. It would not deploy properly.
   # Thus, I will need to revisit it sometime in the near future.
-  gem 'foundation-rails'
+  gem 'foundation-rails', '5.0.2.0'
   
   gem 'jquery-ui-rails'
   gem 'angularjs-rails'
@@ -51,7 +51,7 @@ gem 'fancybox2-rails'
 gem 'filepicker-rails'
 
 gem 'rmagick'
-gem 'paperclip'
+gem 'paperclip', '3.5.2'
 gem 'aws-sdk'
 gem 'mail'
 gem 'zencoder'
