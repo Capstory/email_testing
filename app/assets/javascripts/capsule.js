@@ -136,7 +136,7 @@ $(function (){
     });
   });
   
-  if ($(".next_page").length > 0 ) {
+  if ( $(".next_page").length > 0 ) {
     $container.infinitescroll({
       loading: {
         msgText: "<em>Loading the next set of photos...</em>",
@@ -159,6 +159,9 @@ $(function (){
         });
       }
     );
+  }
+  else if ( $(".post").length > 0 ) {
+    $("#spinner").hide();
   }
   else {
     $("#spinner").hide();
