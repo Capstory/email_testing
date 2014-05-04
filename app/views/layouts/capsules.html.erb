@@ -33,7 +33,7 @@
 		    </li>
 		  </ul>
 		  <section class="top-bar-section">
-				<% unless params[:action] == "verify_pin" %>
+				<% unless params[:action] == "verify_pin" || params[:action] == "new" %>
 					<ul class="left" style="margin-left:20px;">
 						<% if params[:action] == "show" %>
 							<li class="active"><%= link_to @capsule.name.upcase, @capsule %></li>

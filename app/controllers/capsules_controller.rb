@@ -15,8 +15,9 @@ class CapsulesController < ApplicationController
   end
 
   def create
-    @capsule = Capsule.create(name: params[:capsule][:name], email: params[:capsule][:email], response_message: params[:capsule][:response_message])
-    named_url = params[:capsule][:email].nil? ? nil : params[:capsule][:email].split("@").first    
+    email = params[:capsule][:email].nil? ? nil : "#{params[:capsule][:email].strip}@capstory.me"
+    @capsule = Capsule.create(name: params[:capsule][:name], email: email, response_message: params[:capsule][:response_message])
+    named_url = params[:capsule][:email].nil? ? nil : params[:capsule][:email]
     @capsule.named_url = named_url
     if @capsule.save
       flash[:success] = "Successfully created new capsule"

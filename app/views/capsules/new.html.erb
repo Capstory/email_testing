@@ -7,9 +7,16 @@
 			</span>
 
 			<%= f.label :email, "Capsule Email Address" %>
-			<span data-tooltip class="has-tip tip-top" title="At present, write out the full email address (e.g. myweddingcapsule@capstory.me)">
-				<%= f.text_field :email %>
-			</span>
+			<div class="row">
+				<span data-tooltip class="has-tip tip-top" title="Enter the first portion of the email address (e.g. myweddingcapsule will become myweddingcapsule@capstory.me)">
+					<div class="small-6 columns">
+						<%= f.text_field :email %>
+					</div>
+					<div class="small-6 columns">
+						<h4>@capstory.me</h4>
+					</div>
+				</span>
+			</div>
 		</div>
 		<div class="small-6 columns">
 			<%= f.label :event_date, "Event Date" %>
@@ -17,7 +24,7 @@
 
 			<%= f.label :response_message, "Enter a Customized Response Message" %>
 			<span data-tooltip class="has-tip tip-top" title="This is the message that will be sent out by text message to everyone who submits a picture">
-				<%= f.text_area :response_message %>
+				<%= f.text_area :response_message, rows: 7 %>
 			</span>
 		</div>
 	</div>
