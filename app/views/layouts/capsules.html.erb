@@ -68,6 +68,15 @@
 									<% end %>
 		            </ul>
 							</li>
+							
+						<% else %>
+							<li class="has-dropdown not-click">
+				        <%= link_to "SLIDESHOW", "#" %>
+
+		            <ul class="dropdown">
+									<li><%= link_to fa_icon("picture-o", text: "Start Slideshow"), slideshow_path(capsule_id: @capsule.id) %></li>
+		            </ul>
+							</li>
 						<% end %>
 					</ul>
 				<% end %>
