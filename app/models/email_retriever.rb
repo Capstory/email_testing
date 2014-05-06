@@ -50,6 +50,8 @@ class EmailRetriever
           message.attachments.each do |attachment|
             if attachment.mime_type.split("/").first == "image" && attachment.body.decoded.length < 10000
               next
+            elsif attachment.mime_type == "text/html"
+              next
             else
               @upload_file = AttachmentFile.new("blank.jpg")
               @upload_file.binmode
