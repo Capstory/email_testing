@@ -21,6 +21,13 @@ class EncapsulationsController < ApplicationController
     end
   end
   
+  def destroy
+    encap = Encapsulation.find(params[:id])
+    encap.delete
+    flash[:success] = "Encapsulation successfully deleted"
+    redirect_to :back
+  end
+  
   
   # =====================================
   # Begin non-standard controller actions

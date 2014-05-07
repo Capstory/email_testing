@@ -6,7 +6,10 @@
 				<li>
 					<div class="row">
 						<div class="small-6 columns">
-							<h4 class="subheader">Capsule</h4>
+							<h4 class="subheader">
+								Capsule </br>
+								<small><%= capsule.name %></small>
+							</h4>
 						</div>
 						<div class="small-6 columns" style="text-align:center;">
 							<%= link_to fa_icon("picture-o 4x"), capsule, class: "user_nav_link" %>
@@ -34,6 +37,7 @@
 					</div>
 				</li>
 			</ul>
+			<div class="empty_capsule_name_div"></div>
 		<% end %>
 	</div>
 	<div class="small-6 columns">
