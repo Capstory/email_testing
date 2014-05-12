@@ -9,7 +9,7 @@ class EmailRetriever
   def initialize
     @host = 'secure.emailsrvr.com'
     @port = 993
-    @username = Rails.env.production? ? "submit@capstory.me" : "testing@capstory.me"
+    @username = Rails.env.production? ? "submit@capstory.me" : "submit@capstory-testing.com"
     @password = "foobar"
   end
 
@@ -29,7 +29,11 @@ class EmailRetriever
 
       	#fetch to and from email address.. you can fetch other mail headers too in same manner.
       	@sender_email = header_portion.sender[0].mailbox + "@" + header_portion.sender[0].host
-      	@capsule_email = header_portion.to[0].mailbox + "@capstory.me"
+      	if Rails.env.production?
+      	  @capsule_email = header_portion.to[0].mailbox + "@capstory.me"
+    	  else
+    	    @capsule_email = header_portion.to[0].mailbox + "@capstory-testing.com"
+  	    end
       	
       	default_capsule_id = Rails.env.production? ? 12 : 3
       	@capsule_id = Capsule.exists?(email: @capsule_email) ? Capsule.find_by_email(@capsule_email).id : default_capsule_id
@@ -88,8 +92,10 @@ class EmailRetriever
       @capsule_link = @cap.named_url.nil? ? @capsule_id : @cap.named_url
       
       @capsule_message = @cap.response_message.nil? ? EmailRetriever.default_message : @cap.response_message
-       
-      PostMailer.new_post_response(@sender_email, @capsule_email, @capsule_link, @capsule_message).deliver
+      
+      if Rails.env.production?
+        PostMailer.new_post_response(@sender_email, @capsule_email, @capsule_link, @capsule_message).deliver
+      end
       
     end
     imap.expunge()

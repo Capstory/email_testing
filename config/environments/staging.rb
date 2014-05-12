@@ -69,7 +69,7 @@ EmailTesting::Application.configure do
     tls: true,
     address: 'secure.emailsrvr.com',
     port: 465,
-    user_name: 'hello@capstory.me',
+    user_name: 'submit@capstory-testing.com',
     password: 'foobar',
     authentication: :login,
   }
@@ -78,7 +78,7 @@ EmailTesting::Application.configure do
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
-      :bucket => 'email_testing',
+      :bucket => 'capstory_staging',
       :access_key_id => 'AKIAI32PTERUQJYBQUDA',
       :secret_access_key => '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'
     }

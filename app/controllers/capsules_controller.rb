@@ -15,7 +15,11 @@ class CapsulesController < ApplicationController
   end
 
   def create
-    email = params[:capsule][:email].nil? ? nil : "#{params[:capsule][:email].strip}@capstory.me"
+    if Rails.env.production?
+      email = params[:capsule][:email].nil? ? nil : "#{params[:capsule][:email].strip}@capstory.me"
+    else
+      email = params[:capsule][:email].nil? ? nil : "#{params[:capsule][:email].strip}@capstory-testing.com"
+    end
     @capsule = Capsule.create(name: params[:capsule][:name], email: email, response_message: params[:capsule][:response_message])
     named_url = params[:capsule][:email].nil? ? nil : params[:capsule][:email]
     @capsule.named_url = named_url
