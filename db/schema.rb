@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140319021346) do
+ActiveRecord::Schema.define(:version => 20140513234441) do
 
   create_table "access_requests", :force => true do |t|
     t.string   "name"
@@ -52,9 +52,10 @@ ActiveRecord::Schema.define(:version => 20140319021346) do
     t.string   "name"
     t.string   "email"
     t.text     "customer_hash"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.text     "error_hash"
+    t.boolean  "is_test",       :default => false
   end
 
   create_table "contact_forms", :force => true do |t|

@@ -1,9 +1,19 @@
-<% @charges.each do |charge| %>	
-	<div class="panel">
-		<p><%= charge.name %></p>
-		<p><%= charge.email %></p>
-		<small>Charge Created @ <%= time_ago_in_words charge.created_at %> ago</small>
-		<p><%= charge.customer_hash %></p>
-		<p><%= charge.error_hash %></p>
+<% @charges.each do |charge| %>
+	<div class="row">
+		<div class="small-12 columns">
+			<% if !charge.error_hash.nil? %>
+				<div class="panel callout">
+					<p><%= charge.error_hash %></p>
+			<% else %>
+				<div class="panel">
+			<% end %>
+				<h4><%= charge.is_test ? "Test Charge" : "Live Charge" %></h4>
+		
+				<p><%= charge.name %></p>
+				<p><%= charge.email %></p>
+				<small>Charge Created @ <%= time_ago_in_words charge.created_at %> ago</small>
+				<p><%= charge.customer_hash %></p>
+			</div>
+		</div>
 	</div>
 <% end %>

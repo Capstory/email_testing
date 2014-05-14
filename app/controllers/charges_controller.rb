@@ -41,7 +41,7 @@ class ChargesController < ApplicationController
       stripe_charge = Stripe::Charge.create(
         customer: client.id,
         amount: amount,
-        description: 'Testing Charges with Stripe',
+        description: 'Charges with Stripe',
         currency: 'usd'
       )
     rescue Stripe::CardError => e
@@ -60,20 +60,38 @@ class ChargesController < ApplicationController
     customer[:card_type] = stripe_charge["card"]["type"]
     customer[:success] = stripe_charge["paid"]
     
+    
     if error_hash.empty?
-      PaymentMailer.admin_payment_confirmation(customer).deliver
-      PaymentMailer.client_payment_confirmation(customer).deliver
-      charge = Charge.create(name: customer[:billing_name], email: customer[:email], customer_hash: customer)
-      unless charge.save
-        problem = "The payment was made but the charge wasn't saved to the database"
-        PaymentMailer.admin_error_notification(customer, problem).deliver
+      if Rails.env.production?
+        charge = Charge.create(name: customer[:billing_name], email: customer[:email], customer_hash: customer)
+        PaymentMailer.admin_payment_confirmation(customer).deliver
+        PaymentMailer.client_payment_confirmation(customer).deliver
+        
+        unless charge.save
+          problem = "The payment was made but the charge wasn't saved to the database"
+          PaymentMailer.admin_error_notification(customer, problem).deliver
+        end
+      else
+        charge = Charge.create(name: customer[:billing_name], email: customer[:email], customer_hash: customer, is_test: true)
+        unless charge.save
+          raise "The payment went through fine but there was an error somewhere else"
+        end
       end
+      
       flash[:success] = "Transaction Successful"
       redirect_to payment_thank_you_path(customer_email: customer[:email])
     else
-      charge = Charge.create(name: customer[:billing_name], email: customer[:email], customer_hash: customer, error_hash: error_hash)
-      problem = charge.save ? "There was an issue with the payment." : "There was an issue with the payment and the charge was not properly saved in the database."
-      PaymentMailer.admin_error_notification(customer, problem, error_hash).deliver
+      if Rails.env.production?
+        charge = Charge.create(name: customer[:billing_name], email: customer[:email], customer_hash: customer, error_hash: error_hash)
+        problem = charge.save ? "There was an issue with the payment." : "There was an issue with the payment and the charge was not properly saved in the database."
+        PaymentMailer.admin_error_notification(customer, problem, error_hash).deliver
+      else
+        charge = Charge.create(name: customer[:billing_name], email: customer[:email], customer_hash: customer, error_hash: error_hash, is_test: true)
+        unless charge.save
+          raise "There was an issue with both the payment and saving the charge"
+        end
+      end
+      
       flash[:error] = "Unable to process the payment."
       redirect_to payment_error_path(customer_email: customer[:email])
     end
