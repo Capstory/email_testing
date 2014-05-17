@@ -2,8 +2,8 @@ class VendorEmployeesController < ApplicationController
   layout "vendor_pages"
   
   def show
-    @vendor_employee = VendorEmployee.find(params[:id].to_s.downcase)
-    @vendor_contact = VendorContact.new
+    @vendor = VendorEmployee.find(params[:id].to_s.downcase)
+    @vendor_contact = @vendor.vendor_contacts.new
   end
   
   def new
@@ -24,6 +24,7 @@ class VendorEmployeesController < ApplicationController
       v.phone = params[:vendor_employee][:phone]
       v.vendor_page_id = params[:vendor_employee][:vendor_page_id]
     end
+    
     if @vendor_employee.save
       flash[:success] = "Vendor Salesperson Successfully Created"
       redirect_to dashboard_path
@@ -54,4 +55,5 @@ class VendorEmployeesController < ApplicationController
     flash[:success] = "Salesperson Successfully Deleted"
     redirect_to :back
   end
+  
 end

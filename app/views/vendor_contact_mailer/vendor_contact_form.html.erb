@@ -17,7 +17,7 @@
 			<li>Address Line 1: <%= @contact_info.address_1 %></li>
 			<li>Address Line 2: <%= @contact_info.address_2 %></li>
 			<li>Phone: <%= @contact_info.phone %></li>
-			<li>Vendor: <%= @contact_info.vendor.name %></li>
+			<li>Vendor: <%= @contact_info.get_vendor.name %></li>
 			<li>Message: <%= @contact_info.message %></li>
 		</ul>
   </body>

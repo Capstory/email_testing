@@ -6,8 +6,8 @@ class VendorPagesController < ApplicationController
   end
 
   def show
-    @vendor_page = VendorPage.find(params[:id].to_s.downcase)
-    @vendor_contact = VendorContact.new
+    @vendor = VendorPage.find(params[:id].to_s.downcase)
+    @vendor_contact = @vendor.vendor_contacts.new
   end
   
   def employee_index

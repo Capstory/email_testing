@@ -57,7 +57,7 @@
 	<div class="large-3 columns"></div>
   <div class="large-9 columns">
     <h1 id="top" data-magellan-destination="top">Capstory Preferred Partner Kit</h1>
-		<p class="subheader">Prepared for <%= @vendor_page.name %></p>
+		<p class="subheader">Prepared for <%= @vendor.name %></p>
 		<div class="row">
 			<div class="large-7 columns">
 				<%= link_to image_tag("recent_work.png", width: "100%"), "http://www.capstory.me/reynoldslovestory" %>
@@ -132,7 +132,7 @@
 							
 							<%= f.text_field :email, class: '', placeholder: "Email" %>
 							
-							<%= f.text_field :vendor_code, class: '', value: @vendor_page.partner_code %>
+							<%= f.text_field :vendor_code, class: '', value: @vendor.partner_code %>
 							
 							<%= f.text_field :address_1, class: '', placeholder: "Address Line 1" %>
 							
@@ -142,7 +142,8 @@
 							
 							<%= f.text_area :message, class: '', placeholder: "Your Message..." %>
 							
-							<%= f.hidden_field :vendor_id, value: @vendor_page.id %>
+							<%= f.hidden_field :vendor_id, value: @vendor_contact.vendor_contactable_id %>
+							<%= f.hidden_field :vendor_type, value: @vendor_contact.vendor_contactable_type %>
 							
 							<%= f.submit "Send", class: "button" %>
 						<% end %>
