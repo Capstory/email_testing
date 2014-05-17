@@ -1,5 +1,5 @@
 class VendorEmployeesController < ApplicationController
-  layout "vendors"
+  layout "vendor_pages"
   
   def show
     @vendor_employee = VendorEmployee.find(params[:id].to_s.downcase)
@@ -7,7 +7,7 @@ class VendorEmployeesController < ApplicationController
   end
   
   def new
-    @vendor = Vendor.find(params[:vendor_id])
+    @vendor_page = VendorPage.find(params[:vendor_page_id])
     @vendor_employee = VendorEmployee.new
   end
   
@@ -16,13 +16,13 @@ class VendorEmployeesController < ApplicationController
       v.name = params[:vendor_employee][:name]
       v.email = params[:vendor_employee][:email]
       
-      vendor_name = Vendor.find(params[:vendor_employee][:vendor_id]).named_url
+      vendor_name = VendorPage.find(params[:vendor_employee][:vendor_page_id]).named_url
       named_url = params[:vendor_employee][:name].split(' ').join('').downcase
       
       v.named_url = "#{vendor_name}-#{named_url}"
       v.partner_code = params[:vendor_employee][:partner_code]
       v.phone = params[:vendor_employee][:phone]
-      v.vendor_id = params[:vendor_employee][:vendor_id]
+      v.vendor_page_id = params[:vendor_employee][:vendor_page_id]
     end
     if @vendor_employee.save
       flash[:success] = "Vendor Salesperson Successfully Created"

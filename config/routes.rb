@@ -4,7 +4,7 @@ class SiteConstraints
   end
 end
 
-class VendorConstraints
+class VendorPagesConstraints
   def matches?(request)
     url = request.env["REQUEST_URI"]
     request_parts = url.split("/")
@@ -86,13 +86,13 @@ EmailTesting::Application.routes.draw do
 	# ==========================
 	# Note the constraints on the partners/:id route. It is the same path as the vendor_employees#show route
 	# ==========================
-  match 'partners/:id' => "vendors#show", constraints: VendorConstraints.new
-  match 'employee_index' => "vendors#employee_index"
-  resources :vendors
+  match 'partners/:id' => "vendor_pages#show", constraints: VendorPagesConstraints.new
+  match 'employee_index' => "vendor_pages#employee_index"
+  resources :vendor_pages
   resources :vendor_contacts
   
   # ==========================
-  # Note that this is the same path as the vendors#show route above. Thus, must be placed below the contrained route.
+  # Note that this is the same path as the vendors#show route above. Thus, must be placed below the constrained route.
   # ==========================
   match 'partners/:id' => "vendor_employees#show"
   resources :vendor_employees

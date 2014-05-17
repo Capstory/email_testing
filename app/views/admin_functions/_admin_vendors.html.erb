@@ -9,7 +9,7 @@
 		</h4>
 	</div>	
 	<div class="small-6 columns">
-		<%= link_to "Add a New Vendor", new_vendor_path, class: "button" %>
+		<%= link_to "Add a New Vendor", new_vendor_page_path, class: "button" %>
 	</div>
 </div>
 <table>
@@ -25,16 +25,16 @@
 		</tr>
 	</thead>
 	<tbody>
-		<% vendors.each do |vendor| %>
+		<% vendor_pages.each do |vendor_page| %>
 			<tr>
-				<td><%= link_to vendor.name, vendor %></td>
-				<td><%= vendor.email %></td>
-				<td><%= vendor.partner_code %></td>
-				<td><%= link_to vendor.vendor_employees.count, employee_index_path(vendor_id: vendor.id) %></td>
-				<td><%= link_to "Add Salesperson", new_vendor_employee_path(vendor_id: vendor.id) %></td>
+				<td><%= link_to vendor_page.name, vendor_page %></td>
+				<td><%= vendor_page.email %></td>
+				<td><%= vendor_page.partner_code %></td>
+				<td><%= link_to vendor_page.vendor_employees.count, employee_index_path(vendor_page_id: vendor_page.id) %></td>
+				<td><%= link_to "Add Salesperson", new_vendor_employee_path(vendor_page_id: vendor_page.id) %></td>
 				<td>|</td>
-				<td><%= link_to "Edit", edit_vendor_path(vendor) %></td>
-				<td><%= link_to "Delete", vendor_path(vendor), method: :delete, data: { confirm: "Are you sure?" } %></td>				
+				<td><%= link_to "Edit", edit_vendor_page_path(vendor_page) %></td>
+				<td><%= link_to "Delete", vendor_page_path(vendor_page), method: :delete, data: { confirm: "Are you sure?" } %></td>				
 			</tr>
 		<% end %>
 	</tbody>
