@@ -69,7 +69,7 @@ EmailTesting::Application.configure do
     tls: true,
     address: 'secure.emailsrvr.com',
     port: 465,
-    user_name: 'submit@capstory-testing.com',
+    user_name: 'hello@capstory-testing.com',
     password: 'foobar',
     authentication: :login,
   }

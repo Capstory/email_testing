@@ -95,6 +95,8 @@ class EmailRetriever
       
       if Rails.env.production?
         PostMailer.new_post_response(@sender_email, @capsule_email, @capsule_link, @capsule_message).deliver
+      else
+        PostMailer.new_post_response(@sender_email, @capsule_email, @capsule_link, @capsule_message).deliver
       end
       
     end
