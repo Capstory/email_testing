@@ -1,109 +1,91 @@
+require 'net/http'
+require 'net/imap'
+   
+# This is the key portion of the script
+# It is here that the attachments are parsed out and uploaded
+# The key tutorials on how to do this I found at the sites listed below
+# http://steve.dynedge.co.uk/2010/12/09/receiving-and-saving-incoming-email-images-and-attachments-with-paperclip-and-rails-3/
+# https://github.com/thoughtbot/paperclip
+# https://github.com/mikel/mail
+# Initially, I was hoping to simply use paperclip to upload the pictures
+# In reality, I needed to have a temporary file to store the picture in and then transfer it to S3
+
+# S3 integration was handled here:
+# https://devcenter.heroku.com/articles/paperclip-s3
+
+
 class EmailRetriever
-  require 'net/http'
-  require 'net/imap'
-  
-  class AttachmentFile < Tempfile
-    attr_accessor :original_filename, :content_type
-  end
+  attr_accessor :host, :port, :username, :password, :imap, :default_capsule_id
 
   def initialize
     @host = 'secure.emailsrvr.com'
     @port = 993
     @username = Rails.env.production? ? "submit@capstory.me" : "submit@capstory-testing.com"
     @password = "foobar"
+    @imap = self.imap_connection
+    @default_capsule_id = Rails.env.production? ? 12 : 3
   end
 
-  def start
+  def imap_connection
     #create imap instance and authenticate application
-    imap = Net::IMAP.new(@host, @port, true)
-    imap.login(@username, @password)
+    imap = Net::IMAP.new(self.host, self.port, true)
+    return imap
+  end
 
-    #select inbox of gmail for message fetching
-    imap.select('INBOX')
+  def imap_login
+    self.imap.login(self.username, self.password)
+  end
 
-    #fetch all messages that has not been marked deleted
-    imap.uid_search(["NOT", "SEEN"]).each do |mail|
+  def select_mailbox(mailbox='INBOX')
+    # For the moment, I'm manually setting the mailbox choice to INBOX but I want to allow for that to change in the future
+    self.imap.select(mailbox)
+  end
 
-      	message = Mail.new(imap.uid_fetch(mail, "RFC822")[0].attr["RFC822"])
-        header_portion = imap.uid_fetch(mail, "ENVELOPE")[0].attr["ENVELOPE"]
+  def get_new_emails
+    new_emails_array = self.imap.uid_search(["NOT", "SEEN"])
+    return new_emails_array
+  end
 
-      	#fetch to and from email address.. you can fetch other mail headers too in same manner.
-      	@sender_email = header_portion.sender[0].mailbox + "@" + header_portion.sender[0].host
-      	if Rails.env.production?
-      	  @capsule_email = header_portion.to[0].mailbox + "@capstory.me"
-    	  else
-    	    @capsule_email = header_portion.to[0].mailbox + "@capstory-testing.com"
-  	    end
-      	
-      	default_capsule_id = Rails.env.production? ? 12 : 3
-      	@capsule_id = Capsule.exists?(email: @capsule_email) ? Capsule.find_by_email(@capsule_email).id : default_capsule_id
-      	
-      	# This is the key portion of the script
-      	# It is here that the attachments are parsed out and uploaded
-      	# The key tutorials on how to do this I found at the sites listed below
-      	# http://steve.dynedge.co.uk/2010/12/09/receiving-and-saving-incoming-email-images-and-attachments-with-paperclip-and-rails-3/
-      	# https://github.com/thoughtbot/paperclip
-      	# https://github.com/mikel/mail
-      	# Initially, I was hoping to simply use paperclip to upload the pictures
-      	# In reality, I needed to have a temporary file to store the picture in and then transfer it to S3
-      	
-      	# S3 integration was handled here:
-      	# https://devcenter.heroku.com/articles/paperclip-s3
-      	
-      	if message.multipart? && message.has_attachments?
-          message.attachments.each do |attachment|
-            if attachment.mime_type.split("/").first == "image" && attachment.body.decoded.length < 10000
-              next
-            elsif attachment.mime_type == "text/html"
-              next
-            else
-              @upload_file = AttachmentFile.new("blank.jpg")
-              @upload_file.binmode
-              @upload_file.write attachment.body.decoded
-              @upload_file.flush
-              @upload_file.original_filename = attachment.filename
-              @upload_file.content_type = attachment.mime_type
-            
-              post_body = File.extname(attachment.filename) == ".txt" ? attachment.body.decoded : "No message"
-            
-              if EmailRetriever.video_formats.include?(File.extname(attachment.filename))
-                Video.generate_file(@upload_file, { body: post_body, email: @sender_email, capsule_id: @capsule_id })
-                # Post.create!(body: post_body, email: @sender_email, image: '#', capsule_id: @capsule_id)
-              elsif File.extname(attachment.filename) == ".txt"
-                Post.create!(body: post_body, email: @sender_email, capsule_id: @capsule_id)
-              else
-                Post.create!(body: post_body, email: @sender_email, image: @upload_file, capsule_id: @capsule_id)
-              end
-              @upload_file.close
-              @upload_file.unlink
-            end
-          end
-        else
-          plain_body = message.body.decoded
-          
-          Post.create!(body: plain_body, email: @sender_email, capsule_id: @capsule_id)
-        end
-        
-    	#mark message as deleted to remove duplicates in fetching
-    	imap.store(mail, "+FLAGS", [:Seen])
-      
-      # Send a response to the sender
-      @cap = Capsule.find(@capsule_id)
-      @capsule_link = @cap.named_url.nil? ? @capsule_id : @cap.named_url
-      
-      @capsule_message = @cap.response_message.nil? ? EmailRetriever.default_message : @cap.response_message
-      
-      if Rails.env.production?
-        PostMailer.new_post_response(@sender_email, @capsule_email, @capsule_link, @capsule_message).deliver
+  def get_email_data(uid)
+    return Mail.new(self.imap.uid_fetch(uid, "RFC822")[0].attr["RFC822"])
+  end
+
+  def get_email_header(uid)
+    return self.imap.uid_fetch(uid, "ENVELOPE")[0].attr["ENVELOPE"]
+  end
+
+  def imap_notify(uid)
+    self.imap.store(uid, "+FLAGS", [:Seen])    
+  end
+
+  def imap_close_out
+    self.imap.expunge()
+    self.imap.logout()
+    self.imap.disconnect()
+  end
+
+  def process
+    # Login to mailbox
+    self.imap_login
+    # Select Inbox
+    self.select_mailbox
+
+    self.get_new_emails.each do |mail|
+    
+      email = Email.new(self.get_email_data(mail), self.get_email_header(mail), self.default_capsule_id)
+    	
+      if email.has_attachments?
+        email.process_attachments
       else
-        PostMailer.new_post_response(@sender_email, @capsule_email, @capsule_link, @capsule_message).deliver
+        email.proccess_body
       end
       
+      self.imap_notify(mail)
+      
+      email.notify_sender
     end
-    imap.expunge()
-    #logout and close imap connection
-    imap.logout()
-    imap.disconnect()
+
+    self.imap_close_out
     
     return true
   end
@@ -115,5 +97,96 @@ class EmailRetriever
   
   def self.default_message
     return "Perfect! We received the images, thanks for sharing!\nPlease continue sending them in."
+  end
+end
+
+class AttachmentFile < Tempfile
+  attr_accessor :original_filename, :content_type
+end
+
+class Email
+  attr_accessor :data, :header, :capsule_id
+
+  def initialize(data, header, default_capsule_id)
+    @data = data
+    @header = header
+    @capsule_id = self.set_capsule_id(default_capsule_id)
+  end
+
+  def set_capsule_id(default_capsule_id)
+    capsule_id = Capsule.exists?(email: self.capsule_email) ? Capsule.find_by_email(self.capsule_email).id : default_capsule_id
+    return capsule_id
+  end
+
+  def sender_email
+    sender_email = self.header.sender[0].mailbox + "@" + self.header.sender[0].host
+    return sender_email
+  end
+
+  def capsule_email
+    if Rails.env.production?
+      capsule_email = self.header.to[0].mailbox + "@capstory.me"
+    else
+      capsule_email = self.header.to[0].mailbox + "@capstory-testing.com"
+    end
+    return capsule_email
+  end
+
+  def has_attachments?
+    if self.data.multipart? && self.data.has_attachments?
+      return true
+    else
+      return false
+    end
+  end
+
+  def process_attachments
+    self.data.attachments.each do |attachment|
+      if attachment.mime_type.split("/").first == "image" && attachment.body.decoded.length < 10000
+        next
+      elsif attachment.mime_type == "text/html"
+        next
+      else
+        @upload_file = AttachmentFile.new("blank.jpg")
+        @upload_file.binmode
+        @upload_file.write attachment.body.decoded
+        @upload_file.flush
+        @upload_file.original_filename = attachment.filename
+        @upload_file.content_type = attachment.mime_type
+      
+        post_body = File.extname(attachment.filename) == ".txt" ? attachment.body.decoded : "No message"
+      
+        if EmailRetriever.video_formats.include?(File.extname(attachment.filename))
+          Video.generate_file(@upload_file, { body: post_body, email: self.sender_email, capsule_id: self.capsule_id })
+          # Post.create!(body: post_body, email: @sender_email, image: '#', capsule_id: @capsule_id)
+        elsif File.extname(attachment.filename) == ".txt"
+          Post.create!(body: post_body, email: self.sender_email, capsule_id: self.capsule_id)
+        else
+          Post.create!(body: post_body, email: self.sender_email, image: @upload_file, capsule_id: self.capsule_id)
+        end
+        @upload_file.close
+        @upload_file.unlink
+      end
+    end
+  end
+
+  def process_body
+    plain_body = self.data.body.decoded
+          
+    Post.create!(body: plain_body, email: self.sender_email, capsule_id: self.capsule_id)
+  end
+
+  def notify_sender
+    # Send a response to the sender
+    cap = Capsule.find(self.capsule_id)
+    capsule_link = cap.named_url.nil? ? self.capsule_id : cap.named_url
+    
+    capsule_message = cap.response_message.nil? ? EmailRetriever.default_message : cap.response_message
+    
+    if Rails.env.production?
+      PostMailer.new_post_response(self.sender_email, self.capsule_email, capsule_link, capsule_message).deliver
+    else
+      PostMailer.new_post_response(self.sender_email, self.capsule_email, capsule_link, capsule_message).deliver
+    end  
   end
 end
