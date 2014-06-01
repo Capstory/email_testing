@@ -1,0 +1,274 @@
+<style type="text/css">
+
+body.home .background_wrapper {
+  width: 100%;
+  background: black url(<%= asset_path 'homepage/desiree_header_reversed.jpg' %>) no-repeat center;
+  background-size: cover;
+  position: relative;
+  min-height: 285px;
+  height: 469px; 
+}
+body.home .background_wrapper:after {
+  content: "&nbsp;";
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+  opacity: 0.5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: black;
+  z-index: 8;
+  min-height: 285px; 
+}
+
+body.home .background_wrapper .introcontent {
+	position: relative;
+	z-index: 9; 
+}
+
+body.home .background_wrapper .introcontent .intro {
+	padding-top: 10%;
+}
+
+/*body.home .background_wrapper .introcontent .intro {
+  width: 100%;
+  float: left;
+  margin-left: 1.5873%;
+  display: inline; 
+}
+
+@media only screen and (min-width: 400px) {
+	body.home .background_wrapper .introcontent .intro {
+	  margin-top: 5%; 
+	} 
+}
+
+html.lt-ie9 body.home .background_wrapper .introcontent .intro {
+  margin-top: 5%; 
+}
+
+@media only screen and (min-width: 600px) {
+  body.home .background_wrapper .introcontent .intro {
+    width: 61.90476%;
+    float: left;
+    *margin-left: -1.25em;
+    display: inline; 
+  } 
+}
+
+html.lt-ie9 body.home .background_wrapper .introcontent .intro {
+  width: 61.90476%;
+  float: left;
+  *margin-left: -1.25em;
+  display: inline; 
+}
+
+@media only screen and (min-width: 1000px) {
+  body.home .background_wrapper .introcontent .intro {
+    margin-top: 15%;
+    width: 23.80952%;
+    float: left;
+    *margin-left: -1.25em;
+    display: inline; 
+  } 
+}
+
+html.lt-ie9 body.home .background_wrapper .introcontent .intro {
+  margin-top: 15%;
+  width: 23.80952%;
+  float: left;
+  *margin-left: -1.25em;
+  display: inline; 
+}
+
+@media only screen and (min-width: 1300px) {
+  body.home .background_wrapper .introcontent .intro {
+    margin-top: 35%; 
+  } 
+}
+
+html.lt-ie9 body.home .background_wrapper .introcontent .intro {
+  margin-top: 35%; 
+} */
+.content_section {
+  padding: 3.75em 0 3.75em;
+  overflow: hidden;
+  *zoom: 1; 
+}
+
+body.home .background_wrapper .introcontent .intro h1 {
+  color: white;
+  font-weight: 300;
+  font-style: normal;
+  padding-bottom: 20px; 
+}
+
+body.home .background_wrapper .introcontent .intro .btn {
+  color: white;
+  border-color: white;
+  display: block;
+  text-align: center;
+  margin-bottom: 10px;
+  background-color: #c49a55;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out; 
+}
+
+body.home .background_wrapper .introcontent .intro .btn:hover {
+  background: white;
+  color: #c49a55;
+  border: 1px solid #c49a55; 
+}
+
+.section_header {
+  text-align: center;
+  margin-bottom: 4em; 
+}
+
+.section_header h2, .section_header h3 {
+  text-transform: uppercase; 
+}
+
+.section_header h2 {
+  color: #c49a55;
+  font-size: 2em; 
+}
+
+@media only screen and (min-width: 480px) {
+  .section_header h2 {
+    font-size: 2em; 
+  } 
+}
+
+html.lt-ie9 .section_header h2 {
+  font-size: 3.75em; 
+}
+
+.section_header h3 {
+  font-size: 1.125em;
+  margin-bottom: 0.88889em;
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  text-transform: uppercase; 
+}
+
+.section_header hr {
+  border-color: #000;
+  width: 35%;
+  margin: 0px auto 1em auto; 
+}
+
+.snapshots p {
+	margin-top: 15px;
+	text-align: center;
+}
+
+#snapshots_section {
+	padding-top: 0em;
+	padding-bottom: 6em;
+}
+</style>
+
+<div id="container">
+	<header class="site_header">
+
+		<div class="background_wrapper">
+			<div class="introcontent">
+<!-- 	      <div class="intro">
+	        <h2>
+	          Guests capture images and video at all your wedding events, Capstory makes sure you get to enjoy them
+	        </h2>
+	         <div class="promo_group">
+						<a href="#what_you_get" data-link-type="scroll" id="link_to_what_you_get" style="display:none;"></a>
+				    <button class="btn btn_primary promo_group_btn" id="button_to_what_you_get">Learn More</button>
+				  </div> 
+	      </div> -->
+	      <div class="intro">
+
+	      	<div class="small-6 small-offset-10 columns">
+	      		<h1>
+	          	<!-- Guests capture images and video at all your wedding events, Capstory makes sure you get to enjoy them -->
+	          	The most reliable way to collect and live stream guest photos at your wedding
+	        	</h1>
+	      		<a href="#what_you_get" data-link-type="scroll" id="link_to_what_you_get" style="display:none;"></a>
+				    <button class="btn btn_primary promo_group_btn" id="button_to_what_you_get">Learn More</button>
+	      	</div>
+	      </div>
+	    </div>
+    </div>
+		<nav class="top-bar">
+
+		  <div class="menu-btn">
+		    <span>&nbsp;</span>
+		    <span>&nbsp;</span>
+		    <span>&nbsp;</span>
+		  </div>
+
+		  <section class="top-bar-section">
+		    <a href="#intro" class="logo">
+					<%= image_tag("homepage/svg/logo.svg", alt: "Capstory") %>
+		    </a>
+		    <ul class="nav-bar right">
+		    	<li><%= link_to "Questions? 614-416-8010", "#" %></li>
+		      <li><%= link_to "Login", login_path, class: "login" %></li>
+		    </ul>
+		  </section>
+		</nav>
+	</header>	
+</div>
+
+<section class="main-content">
+	<div class="content_section">
+		<header class="section_header">
+		  <h2>“Every bride should have Capstory at their wedding!”</h2>
+		 	<hr>
+		  <h3 class="subheader">Desiree Hartsock, Star of ABC's <em>The Bachelorette</em></h3>
+		</header>
+	</div>
+</section>
+<section class="main-content">
+	<div class="content_section" id="snapshots_section">
+		<header class="section_header">
+			<h3>Capstory lets your wedding guests instantly share the photos they take just by sending a text-message</h3>
+		</header>
+		<div class="row">
+			<div class="small-4 columns snapshots">
+				<%= image_tag("homepage/demo_card_front.png", height: '157px', width: '220px' ) %>
+				<p class="subheader">Guests can easily take and text message photos</p>
+			</div>
+			<div class="small-4 columns snapshots">
+				<%= image_tag("homepage/desiree_second.jpg", height: '157px', width: '220px' ) %>
+				<p class="subheader">Live photo stream at the reception</p>
+			</div>
+			<div class="small-4 columns snapshots">
+				<%= image_tag("homepage/capsule_screen_shot.png", height: '157px', width: '220px' ) %>
+				<p class="subheader">All of your guest photos in one place</p>
+			</div>
+			<div class="small-4 columns snapshots">
+				<%= image_tag("homepage/photobook_sample.jpg", height: '157px', width: '220px' ) %>
+				<p class="subheader">Beautiful keepsakes from your guest photos</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="photobreak" id="first_photobreak"></section>
+
+<section class="main-content">
+	<div class="content_section">
+		<header class="section_header">
+		  <h2>Your Photos, Your Capsule</h2>
+		 	<hr>
+		  <h3>The capsule is your personal photo album. It holds all your guests’ photos and updates with new photos automatically as they are sent in. All the photos are yours.</h3>
+		</header>
+		<div class="row">
+			<div class="small-9 small-centered columns">
+				<%= image_tag "homepage/capsule_screen_shot.png" %>
+			</div>
+		</div>
+	</div>
+</section>

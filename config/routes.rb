@@ -18,6 +18,10 @@ end
 
 EmailTesting::Application.routes.draw do
 
+  match "first_homepage" => "homepages#first_test_landing"
+  match "second_homepage" => "homepages#second_test_landing"
+  match "third_homepage" => "homepages#third_test_landing"
+
   match "dashboard" => "admin_functions#dashboard"
 
   # ===================================================
@@ -119,6 +123,7 @@ EmailTesting::Application.routes.draw do
   # ==============================
   get '/:id' => "capsules#show" 
   
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -169,7 +174,7 @@ EmailTesting::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   root :to => "users#welcome", constraints: SiteConstraints.new
-    
+  
   root :to => 'homepages#landing'
 
   # See how all your routes lay out with "rake routes"

@@ -79,8 +79,8 @@ EmailTesting::Application.configure do
     :storage => :s3,
     :s3_credentials => {
       :bucket => 'email_testing',
-      :access_key_id => 'AKIAI32PTERUQJYBQUDA',
-      :secret_access_key => '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'
+      :access_key_id => 'AKIAJYSOEVAPM7VVU76A',
+      :secret_access_key => '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'
     }
   }
   
