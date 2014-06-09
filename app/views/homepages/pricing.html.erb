@@ -1,0 +1,90 @@
+<div class="row">
+	<div class="small-8 small-centered columns" id="thank_you_logo">
+		<%= link_to image_tag("logo.png", width: '650px', height: '60px'), self.send(resolve_logo_route) %>
+	</div>
+</div>
+<div class="row">
+	<div class="small-8 small-centered columns">
+		<ul class="pricing-table">
+		  <!-- <li class="title">Premium</li> -->
+		  <li class="price">$1,000 <small class="subheader">USD</small></li>
+		  <li class="description">Let Everyone Be a Part of the Wedding<br>-<br>Your Guests Text in Photos and You Get to Keep Them Forever</li>
+		  <li class="bullet-item">Premium Event Cards</li>
+		  <li class="bullet-item">Live Slideshow</li>
+		  <li class="bullet-item">Professional Editing</li>
+		  <li class="bullet-item">3 Photo Books</li>
+		  <li class="bullet-item">Unlimited Photos</li>	  
+		  <li class="cta-button"><button class="btn btn_primary promo_group_btn buy_now">Buy Now</button></li>
+		</ul>
+	</div>
+</div>
+<div class="row" style="margin-top:40px;margin-bottom:60px;">
+	<div class="small-12 small-centered columns">
+		<p style="text-align:center;">Every capsule comes with 24/7 concierge service and a money-back guarantee. If you aren't happy with the product, we will refund your money no questions asked.</p>
+	</div>
+</div>
+ 
+<footer id="site_footer" class="site_footer content_section">
+  <section class="footer_content footer_contact">
+    <header class="section_header">
+      <h2>Customer Service</h2>
+      <hr />
+      <h3>We're always here to answer your questions</h3>
+    </header> <!-- /section-header -->
+    <div class="contact_info">
+      <dl class="contact_details">
+        <dt>Phone</dt>
+        <dd>614-416-8010</dd>
+        <dt>Email</dt>
+        <dd><a href="mailto:contact@capstory.me">hello@capstory.me</a></dd>
+        <dt class="address_term">Address</dt>
+        <dd class="address_def">
+			Columbus Office<br />
+          	81 Mill Street<br />
+			Suite 300<br />
+          	Columbus, OH 45321
+        </dd>
+      </dl> <!-- /contact-details -->
+    </div> <!-- /contact_info -->
+    <div class="footer_contact_form">
+		<%= form_for(@contact_form) do |f| %>
+			<%= f.label :name %>
+			<%= f.text_field :name, id: "contact_name" %>
+			
+			<%= f.label :email %>
+			<%= f.text_field :email, type: "email", id: "contact_email" %>
+			
+			<%= f.label :message %>
+			<%= f.text_area :message, id: "contact_message" %>
+			
+			<button class="btn btn_secondary" action="submit">Send</button>
+		<% end %>
+    </div>
+  </section> <!-- /footer_contact -->
+
+  <section class="footer_content">
+	  <div class="row">
+	  	<div class="small-6 columns">
+		  	<div class="copyright">
+		      <p><small>© 2012-2014 Capstory All rights reserved.</small></p>
+		    </div> <!-- /copyright -->
+	  	</div>
+	  	<div class="small-6 columns">
+	      <ul class="social_links">
+	        
+	      
+	        <li class="twitter"><a href="http://twitter.com/capstory">Twitter</a></li>
+	      
+	        <li class="facebook"><a href="http://www.facebook.com/capstory">Facebook</a></li>
+	      
+	        <li class="instagram"><a href="http://instagram.com/capstoryweddings">Instagram</a></li>
+	      
+	        <!-- <li class="vimeo"><a href="/">Vimeo</a></li> -->
+	      
+	        <li class="pinterest"><a href="http://www.pinterest.com/capstory/">Pinterest</a></li>
+	      
+	      </ul> <!-- /social_links -->  		
+	  	</div>
+	  </div>
+  </section> <!-- /footer_content -->
+</footer> <!-- /site-footer -->

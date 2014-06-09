@@ -1,0 +1,725 @@
+<style type="text/css">
+
+body.home .background_wrapper {
+  width: 100%;
+  background: black url(<%= asset_path 'homepage/desiree_header_reversed.jpg' %>) no-repeat center;
+  background-size: cover;
+  position: relative;
+  min-height: 285px;
+  height: 469px; 
+}
+body.home .background_wrapper:after {
+  content: "&nbsp;";
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
+  opacity: 0.3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: black;
+  z-index: 8;
+  min-height: 285px; 
+}
+
+body.home .background_wrapper .introcontent {
+	position: relative;
+	z-index: 9; 
+}
+
+body.home .background_wrapper .introcontent .intro {
+	padding-top: 10%;
+}
+
+/*body.home .background_wrapper .introcontent .intro {
+  width: 100%;
+  float: left;
+  margin-left: 1.5873%;
+  display: inline; 
+}
+
+@media only screen and (min-width: 400px) {
+	body.home .background_wrapper .introcontent .intro {
+	  margin-top: 5%; 
+	} 
+}
+
+html.lt-ie9 body.home .background_wrapper .introcontent .intro {
+  margin-top: 5%; 
+}
+
+@media only screen and (min-width: 600px) {
+  body.home .background_wrapper .introcontent .intro {
+    width: 61.90476%;
+    float: left;
+    *margin-left: -1.25em;
+    display: inline; 
+  } 
+}
+
+html.lt-ie9 body.home .background_wrapper .introcontent .intro {
+  width: 61.90476%;
+  float: left;
+  *margin-left: -1.25em;
+  display: inline; 
+}
+
+@media only screen and (min-width: 1000px) {
+  body.home .background_wrapper .introcontent .intro {
+    margin-top: 15%;
+    width: 23.80952%;
+    float: left;
+    *margin-left: -1.25em;
+    display: inline; 
+  } 
+}
+
+html.lt-ie9 body.home .background_wrapper .introcontent .intro {
+  margin-top: 15%;
+  width: 23.80952%;
+  float: left;
+  *margin-left: -1.25em;
+  display: inline; 
+}
+
+@media only screen and (min-width: 1300px) {
+  body.home .background_wrapper .introcontent .intro {
+    margin-top: 35%; 
+  } 
+}
+
+html.lt-ie9 body.home .background_wrapper .introcontent .intro {
+  margin-top: 35%; 
+} */
+.content_section {
+  padding: 3.75em 0 3.75em;
+  overflow: hidden;
+  *zoom: 1; 
+}
+
+body.home .background_wrapper .introcontent .intro h1 {
+  color: white;
+  font-weight: 300;
+  font-style: normal;
+  padding-bottom: 20px; 
+}
+
+body.home .background_wrapper .introcontent .intro .btn {
+  color: white;
+  border-color: white;
+  display: block;
+  text-align: center;
+  margin-bottom: 10px;
+  background-color: #c49a55;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out; 
+}
+
+body.home .background_wrapper .introcontent .intro .btn:hover {
+  background: white;
+  color: #c49a55;
+  border: 1px solid #c49a55; 
+}
+
+.section_header {
+  text-align: center;
+  margin-bottom: 4em; 
+}
+
+.section_header h2, .section_header h3 {
+  text-transform: uppercase; 
+}
+
+.section_header h2 {
+  color: #c49a55;
+  font-size: 2em; 
+}
+
+@media only screen and (min-width: 480px) {
+  .section_header h2 {
+    font-size: 2em; 
+  } 
+}
+
+html.lt-ie9 .section_header h2 {
+  font-size: 3.75em; 
+}
+
+.section_header h3 {
+  font-size: 1.125em;
+  margin-bottom: 0.88889em;
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  text-transform: uppercase; 
+}
+
+.section_header hr {
+  border-color: #000;
+  width: 35%;
+  margin: 0px auto 1em auto; 
+}
+
+.snapshots p {
+	margin-top: 15px;
+	text-align: center;
+}
+
+#snapshots_section {
+	padding-top: 0em;
+	padding-bottom: 6em;
+}
+
+.faq_questions {
+	display: none;
+}
+
+.faq_answers {
+	margin-top: 10px;
+	padding-left: 15px;
+	padding-right: 10px;
+	background-color: white;
+	border-radius: 3px;
+}
+
+.site_footer .social_links {
+	padding-left: 15px;
+}
+
+.copyright {
+	padding-top: 20px;
+}
+
+</style>
+
+<div id="container">
+	<header class="site_header">
+
+		<div class="background_wrapper">
+			<div class="introcontent">
+<!-- 	      <div class="intro">
+	        <h2>
+	          Guests capture images and video at all your wedding events, Capstory makes sure you get to enjoy them
+	        </h2>
+	         <div class="promo_group">
+						<a href="#what_you_get" data-link-type="scroll" id="link_to_what_you_get" style="display:none;"></a>
+				    <button class="btn btn_primary promo_group_btn" id="button_to_what_you_get">Learn More</button>
+				  </div> 
+	      </div> -->
+	      <div class="intro">
+
+	      	<div class="small-6 small-offset-10 columns">
+	      		<h1>
+	          	<!-- Guests capture images and video at all your wedding events, Capstory makes sure you get to enjoy them -->
+	          	The most reliable way to collect and live stream guest photos at your wedding
+	        	</h1>
+	      		<a href="#what_you_get" data-link-type="scroll" id="link_to_what_you_get" style="display:none;"></a>
+				    <button class="btn btn_primary promo_group_btn get_capstory">Get Capstory</button>
+	      	</div>
+	      </div>
+	    </div>
+    </div>
+		<nav class="top-bar">
+
+		  <div class="menu-btn">
+		    <span>&nbsp;</span>
+		    <span>&nbsp;</span>
+		    <span>&nbsp;</span>
+		  </div>
+
+		  <section class="top-bar-section">
+		    <a href="#intro" class="logo" data-link-type="scroll">
+					<%= image_tag("homepage/svg/logo.svg", alt: "Capstory") %>
+		    </a>
+		    <ul class="nav-bar right">
+		    
+		    	<li><%= link_to "Questions? 614-416-8010", "#site_footer", id: "contact_link_nav_question", data: { link_type: "scroll" } %></li>
+		      <li><%= link_to "Login", login_path, class: "login" %></li>
+		    </ul>
+		  </section>
+		</nav>
+	</header>	
+</div>
+
+<section class="main-content" id="intro">
+	<div class="content_section">
+		<header class="section_header">
+		  <h2>“Every bride should have Capstory at their wedding!”</h2>
+		 	<hr>
+		  <h3 class="subheader">Desiree Hartsock, Star of ABC's <em>The Bachelorette</em></h3>
+		</header>
+	</div>
+</section>
+<section class="main-content">
+	<div class="content_section" id="snapshots_section">
+		<header class="section_header">
+			<h3>Capstory lets your wedding guests instantly share the photos they take just by sending a text-message</h3>
+		</header>
+		<div class="row">
+			<div class="small-4 columns snapshots">
+				<%= image_tag("homepage/demo_card_front.png", height: '157px', width: '220px' ) %>
+				<p class="subheader">Guests can easily take and text message photos</p>
+			</div>
+			<div class="small-4 columns snapshots">
+				<%= image_tag("homepage/desiree_second.jpg", height: '157px', width: '220px' ) %>
+				<p class="subheader">Live photo stream at the reception</p>
+			</div>
+			<div class="small-4 columns snapshots">
+				<%= image_tag("homepage/capsule_screen_shot.png", height: '157px', width: '220px' ) %>
+				<p class="subheader">All of your guest photos in one place</p>
+			</div>
+			<div class="small-4 columns snapshots">
+				<%= image_tag("homepage/photobook_sample.jpg", height: '157px', width: '220px' ) %>
+				<p class="subheader">Beautiful keepsakes from your guest photos</p>
+			</div>
+		</div>
+	</div>
+	<div class="row" style="margin-bottom:40px;">
+		<div class="small-6 small-centered columns">
+			<button class="btn btn_primary promo_group_btn get_capstory">Get Capstory</button>
+		</div>
+	</div>
+</section>
+
+<section class="photobreak" id="first_photobreak"></section>
+
+<section class="main-content">
+	<div class="content_section">
+		<header class="section_header">
+		  <h2>Your Photos, Your Capsule</h2>
+		 	<hr>
+		  <h3>The capsule is your personal photo album. It holds all your guests’ photos and updates with new photos automatically as they are sent in. All the photos are yours.</h3>
+		</header>
+		<div class="row">
+			<div class="small-12 small-centered columns">
+				<%= image_tag "homepage/large_capsule_screen_shot.png" %>
+			</div>
+		</div>
+	</div>
+	<div class="row" style="margin-bottom:40px;">
+		<div class="small-6 small-centered columns">
+			<button class="btn btn_primary promo_group_btn get_capstory">Get Capstory</button>
+		</div>
+	</div>
+</section>
+<section id="reminder">
+    <section class="main-content">
+      <section class="content_section">
+        <header class="section_header">
+          <h2>FAQ's</h2>
+          <hr />
+          <h3>Click one of the categories below for common questions and answers</h3>
+        </header>
+        
+      	<div class="row">
+        	<ul class="inline-list" style="margin-left:5px;">
+	        	<li class="faq_answers" data-answer="live_slideshow"><a>Live Slideshow</a></li>
+	        	<li class="faq_answers" data-answer="your_capsule"><a>Your Capsule</a></li>
+	        	<li class="faq_answers" data-answer="texting_in_media"><a>Texting In Media</a></li>
+	        	<li class="faq_answers" data-answer="after_the_wedding"><a>After the Wedding</a></li>
+	        	<li class="faq_answers" data-answer="photo_books"><a>Photo Books</a></li>
+	        	<li class="faq_answers" data-answer="video_slideshow"><a>Video Slideshow</a></li>
+	        </ul>
+      	</div>
+      	<br>
+
+				<div class="faq_questions" id="live_slideshow">
+					<div class="row">
+						<div class="small-12 columns">
+							<h2>Live Slideshow</h2>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="small-4 columns">
+							<p>Do I have to have a screen to project this onto?</p>
+						</div>
+						<div class="small-8 columns">
+							<p>The live slideshow can be pulled up any laptop or computer that has internet access. You can then plug it into a TV, projector or monitor to show it at your reception! Ask your venue for help - they almost always have a screen available for you to use. </p>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="small-4 columns">
+							<p>How do I set it up at my event?</p>
+						</div>
+						<div class="small-8 columns">
+							<p>Simply open your browser and go to your capsule address (ex. capstory.me/joeyandheather). From there, log in with your username and password we gave you via email when you paid. Then click the 'slideshow' button up top! That's it. You'll see photos filtering in live and they will automatically load and show new photos as they are texted in. </p>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="small-4 columns">
+							<p>If I don't set up the live slideshow, will the photos still send in/be collected?</p>
+						</div>
+						<div class="small-8 columns">
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo sem, ornare eget eros nec, volutpat pharetra arcu. Fusce at aliquam quam. Nullam tincidunt magna non elit consectetur volutpat. Mauris porttitor, neque tincidunt dapibus elementum, erat purus sagittis dui, vitae tincidunt diam libero non risus. Sed placerat ante vitae erat sollicitudin viverra. Nam dapibus leo eget ullamcorper egestas. Fusce congue quam eget nisl venenatis fermentum.</p>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="small-4 columns">
+							<p>If I don't have internet at the venue, will Capstory still work?</p>
+						</div>
+						<div class="small-8 columns">
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo sem, ornare eget eros nec, volutpat pharetra arcu. Fusce at aliquam quam. Nullam tincidunt magna non elit consectetur volutpat. Mauris porttitor, neque tincidunt dapibus elementum, erat purus sagittis dui, vitae tincidunt diam libero non risus. Sed placerat ante vitae erat sollicitudin viverra. Nam dapibus leo eget ullamcorper egestas. Fusce congue quam eget nisl venenatis fermentum.</p>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="faq_questions" id="your_capsule">
+					<div class="row">
+						<div class="small-12 columns">
+							<h2>Your Capsule</h2>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="small-4 columns">
+							<p>Can I use my capsule before my wedding date? Will I be able to see those pictures online? </p>
+						</div>
+						<div class="small-8 columns">
+							<p>Your capsule is created within 48 hours of us receiving your payment - usually sooner. As soon as it is setup, it is ready to go! This means you can submit content from cake tastings, dress fittings and more right into your capsule once it's created. You will be able to instantly view all these photos, at anytime from anywhere, at your capsule address we give to you. </p>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="small-4 columns">
+							<p>When does the capsule shut down?</p>
+						</div>
+						<div class="small-8 columns">
+							<p>The capsule will always be available at your unique address for you and your guests to view. We keep your memories safe forever! Right now, you can submit photos into your capsule at any time after the wedding. We encourage you and your guests to submit any other photos within a week following your event so we can include those memories in your professional video slideshow! </p>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="faq_questions" id="texting_in_media">
+					<div class="row">
+						<div class="small-12 columns">
+							<h2>Texting in media</h2>
+						</div>
+					</div>
+					<br>				
+					<div class="row">
+						<div class="small-4 columns">
+							<p>How does texting in photos work? </p>
+						</div>
+						<div class="small-8 columns">
+							<p>Each capsule has its own unique address to accept messages. You'll get yours when your capsule is created (ex. joeyandheather@capstory.me). This address works just like a phone number and you (and your guests) can just text photos, quotes and videos right to it from their phone just like they would any other text. No emailing required! </p>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="small-4 columns">
+							<p>Will it work on any phone? </p>
+						</div>
+						<div class="small-8 columns">
+							<p>We built our system to work on any phone on any carrier! We currently support all carriers in the United States and all phones that can send a text.</p>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="small-4 columns">
+							<p>Do my guests have to sign up beforehand? </p>
+						</div>
+						<div class="small-8 columns">
+							<p>Nope. They can start sending in photos as soon as you give them your unique address. </p>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="small-4 columns">
+							<p>Are the photos high quality?</p>
+						</div>
+						<div class="small-8 columns">
+							<p>Yes. Assuming the photo came from a good camera, the full resolution image will show up in your capsule and be available for download. It is not shrunk or distorted in any way. </p>
+						</div>
+					</div>				
+					<br>
+					<div class="row">
+						<div class="small-4 columns">
+							<p>Does it require a smartphone or data plan? </p>
+						</div>
+						<div class="small-8 columns">
+							<p>No. Texting in to Capstory works on any phone that can send a text with a photo! You don't even need a data connection or data plan to use it. </p>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="small-4 columns">
+							<p>Can guests email photos in to the address?</p>
+						</div>
+						<div class="small-8 columns">
+							<p>Yes. In addition to texting, they can email photos to your capsule address. </p>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="small-4 columns">
+							<p>What quality will the photos be? </p>
+						</div>
+						<div class="small-8 columns">
+							<p>The great thing about Capstory is that no images submitted via text get downsized, we receive the full resolution image from the phone to ensure your final products are of excellent quality. This means you can later take the photos and, for newer phone cameras, take them to print up to poster size! </p>
+						</div>
+					</div>
+				</div>
+
+				<div class="faq_questions" id="after_the_wedding">
+					<div class="row">
+						<div class="small-12 columns">
+							<h2>After the Wedding</h2>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="small-4 columns">
+							<p>How many of the photos do I get to keep?</p>
+						</div>
+						<div class="small-8 columns">
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo sem, ornare eget eros nec, volutpat pharetra arcu. Fusce at aliquam quam. Nullam tincidunt magna non elit consectetur volutpat. Mauris porttitor, neque tincidunt dapibus elementum, erat purus sagittis dui, vitae tincidunt diam libero non risus. Sed placerat ante vitae erat sollicitudin viverra. Nam dapibus leo eget ullamcorper egestas. Fusce congue quam eget nisl venenatis fermentum.</p>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="small-4 columns">
+							<p>When do I get access to my photos? </p>
+						</div>
+						<div class="small-8 columns">
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo sem, ornare eget eros nec, volutpat pharetra arcu. Fusce at aliquam quam. Nullam tincidunt magna non elit consectetur volutpat. Mauris porttitor, neque tincidunt dapibus elementum, erat purus sagittis dui, vitae tincidunt diam libero non risus. Sed placerat ante vitae erat sollicitudin viverra. Nam dapibus leo eget ullamcorper egestas. Fusce congue quam eget nisl venenatis fermentum.</p>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="small-4 columns">
+							<p>Who owns the photo rights?</p>
+						</div>
+						<div class="small-8 columns">
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo sem, ornare eget eros nec, volutpat pharetra arcu. Fusce at aliquam quam. Nullam tincidunt magna non elit consectetur volutpat. Mauris porttitor, neque tincidunt dapibus elementum, erat purus sagittis dui, vitae tincidunt diam libero non risus. Sed placerat ante vitae erat sollicitudin viverra. Nam dapibus leo eget ullamcorper egestas. Fusce congue quam eget nisl venenatis fermentum.</p>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="faq_questions" id="photo_books">
+					<div class="row">
+						<div class="small-12 columns">
+							<h2>Photo Books</h2>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="small-4 columns">
+							<p>What size are the photo books? </p>
+						</div>
+						<div class="small-8 columns">
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo sem, ornare eget eros nec, volutpat pharetra arcu. Fusce at aliquam quam. Nullam tincidunt magna non elit consectetur volutpat. Mauris porttitor, neque tincidunt dapibus elementum, erat purus sagittis dui, vitae tincidunt diam libero non risus. Sed placerat ante vitae erat sollicitudin viverra. Nam dapibus leo eget ullamcorper egestas. Fusce congue quam eget nisl venenatis fermentum.</p>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="small-4 columns">
+							<p>What quality are the photo books? </p>
+						</div>
+						<div class="small-8 columns">
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo sem, ornare eget eros nec, volutpat pharetra arcu. Fusce at aliquam quam. Nullam tincidunt magna non elit consectetur volutpat. Mauris porttitor, neque tincidunt dapibus elementum, erat purus sagittis dui, vitae tincidunt diam libero non risus. Sed placerat ante vitae erat sollicitudin viverra. Nam dapibus leo eget ullamcorper egestas. Fusce congue quam eget nisl venenatis fermentum.</p>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="small-4 columns">
+							<p>How do you pick the pictures for the book?</p>
+						</div>
+						<div class="small-8 columns">
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo sem, ornare eget eros nec, volutpat pharetra arcu. Fusce at aliquam quam. Nullam tincidunt magna non elit consectetur volutpat. Mauris porttitor, neque tincidunt dapibus elementum, erat purus sagittis dui, vitae tincidunt diam libero non risus. Sed placerat ante vitae erat sollicitudin viverra. Nam dapibus leo eget ullamcorper egestas. Fusce congue quam eget nisl venenatis fermentum.</p>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="small-4 columns">
+							<p>What if I don't like what you picked for the photo book?</p>
+						</div>
+						<div class="small-8 columns">
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo sem, ornare eget eros nec, volutpat pharetra arcu. Fusce at aliquam quam. Nullam tincidunt magna non elit consectetur volutpat. Mauris porttitor, neque tincidunt dapibus elementum, erat purus sagittis dui, vitae tincidunt diam libero non risus. Sed placerat ante vitae erat sollicitudin viverra. Nam dapibus leo eget ullamcorper egestas. Fusce congue quam eget nisl venenatis fermentum.</p>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="small-4 columns">
+							<p>What order are the photos in the book in?</p>
+						</div>
+						<div class="small-8 columns">
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo sem, ornare eget eros nec, volutpat pharetra arcu. Fusce at aliquam quam. Nullam tincidunt magna non elit consectetur volutpat. Mauris porttitor, neque tincidunt dapibus elementum, erat purus sagittis dui, vitae tincidunt diam libero non risus. Sed placerat ante vitae erat sollicitudin viverra. Nam dapibus leo eget ullamcorper egestas. Fusce congue quam eget nisl venenatis fermentum.</p>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="faq_questions" id="video_slideshow">
+					<div class="row">
+						<div class="small-12 columns">
+							<h2>Video Slideshow</h2>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="small-4 columns">
+							<p>How long will my video slideshow be?</p>
+						</div>
+						<div class="small-8 columns">
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo sem, ornare eget eros nec, volutpat pharetra arcu. Fusce at aliquam quam. Nullam tincidunt magna non elit consectetur volutpat. Mauris porttitor, neque tincidunt dapibus elementum, erat purus sagittis dui, vitae tincidunt diam libero non risus. Sed placerat ante vitae erat sollicitudin viverra. Nam dapibus leo eget ullamcorper egestas. Fusce congue quam eget nisl venenatis fermentum.</p>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="small-4 columns">
+							<p>When do I get my slideshow? </p>
+						</div>
+						<div class="small-8 columns">
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo sem, ornare eget eros nec, volutpat pharetra arcu. Fusce at aliquam quam. Nullam tincidunt magna non elit consectetur volutpat. Mauris porttitor, neque tincidunt dapibus elementum, erat purus sagittis dui, vitae tincidunt diam libero non risus. Sed placerat ante vitae erat sollicitudin viverra. Nam dapibus leo eget ullamcorper egestas. Fusce congue quam eget nisl venenatis fermentum.</p>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="small-4 columns">
+							<p>Can I share my video slideshow with others? </p>
+						</div>
+						<div class="small-8 columns">
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo sem, ornare eget eros nec, volutpat pharetra arcu. Fusce at aliquam quam. Nullam tincidunt magna non elit consectetur volutpat. Mauris porttitor, neque tincidunt dapibus elementum, erat purus sagittis dui, vitae tincidunt diam libero non risus. Sed placerat ante vitae erat sollicitudin viverra. Nam dapibus leo eget ullamcorper egestas. Fusce congue quam eget nisl venenatis fermentum.</p>
+						</div>
+					</div>
+				</div>
+				<div class="row" style="margin-top:40px;">
+					<div class="small-6 small-centered columns">
+						<button class="btn btn_primary promo_group_btn get_capstory">Get Capstory</button>
+					</div>
+				</div>
+
+      </section>
+    </section>
+</section>
+
+<section class="photobreak" id="second_photobreak"></section>
+
+<section class="main-content">
+	<div class="content_section">
+		<header class="section_header">
+		  <h2>Testimonials</h2>
+		 	<hr>
+		  <h3>Here's what our clients are saying</h3>
+		</header>
+		<div class="row">
+			<div class="small-4 columns snapshots">
+				<%= image_tag("homepage/amanda_alex_testimonial.png", width: '220px' ) %>
+				
+				<blockquote>
+					Our guests couldn't get enough of Capstory at our wedding. The live photo stream really helped pull the whole event together, and the photobook is full of great memories that we wouldn't have captured otherwise!
+					<cite>
+						Amanda Renaud, Bride
+					</cite>
+				</blockquote>
+			</div>
+			<div class="small-4 columns snapshots">
+				<%= image_tag("homepage/mark_testimonial.jpg", width: '220px' ) %>
+				<blockquote>
+					We really were pleased to have Capstory at our daughter's wedding. We got some great pictures from different folks including photos from friends who are excellent photographers. Everything was really easy for anyone to upload pictures.
+					<cite>
+						Mark Evans, Father of the Bride
+					</cite>
+				</blockquote>
+			</div>
+			<div class="small-4 columns snapshots">
+				<%= image_tag("homepage/sanjeet_angela_testimonial.jpg", width: '220px' ) %>
+				<blockquote>
+					It was awesome having Capstory at our reception. Guests loved using it all night and I got to see the wedding and all the photos the very next day!
+					<cite>
+						Sanjeet Grewal, Groom
+					</cite>
+				</blockquote>				
+			</div>
+			<div class="small-4 columns snapshots">
+				<%= image_tag("homepage/chris_des_testimonial.jpg", width: '220px' ) %>
+				<blockquote>
+					When your maid of honor snaps photos of you getting ready, laughing, crying, hugging family, and enjoying your special day, you will want to see those moments. That is why Capstory is such a great tool to use for your wedding day.
+					<cite>
+						Desiree Hartsock, ABC’s Bachelorette
+					</cite>
+				</blockquote>
+			</div>			
+		</div>
+	</div>
+	<div class="row" style="margin-bottom:40px;">
+		<div class="small-6 small-centered columns">
+			<button class="btn btn_primary promo_group_btn get_capstory">Get Capstory</button>
+		</div>
+	</div>
+</section>
+
+<section class="photobreak" id="third_photobreak"></section>
+<footer id="site_footer" class="site_footer content_section">
+  <section class="footer_content footer_contact">
+    <header class="section_header">
+      <h2>Customer Service</h2>
+      <hr />
+      <h3>We're always here to answer your questions</h3>
+    </header> <!-- /section-header -->
+    <div class="contact_info">
+      <dl class="contact_details">
+        <dt>Phone</dt>
+        <dd>614-416-8010</dd>
+        <dt>Email</dt>
+        <dd><a href="mailto:contact@capstory.me">hello@capstory.me</a></dd>
+        <dt class="address_term">Address</dt>
+        <dd class="address_def">
+					Columbus Office<br />
+          81 Mill Street<br />
+					Suite 300<br />
+          Columbus, OH 45321
+        </dd>
+      </dl> <!-- /contact-details -->
+    </div> <!-- /contact_info -->
+    <div class="footer_contact_form">
+			<%= form_for(@contact_form) do |f| %>
+				<%= f.label :name %>
+				<%= f.text_field :name, id: "contact_name" %>
+				
+				<%= f.label :email %>
+				<%= f.text_field :email, type: "email", id: "contact_email" %>
+				
+				<%= f.label :message %>
+				<%= f.text_area :message, id: "contact_message" %>
+				
+				<button class="btn btn_secondary" action="submit">Send</button>
+			<% end %>
+    </div>
+  </section> <!-- /footer_contact -->
+
+  <section class="footer_content">
+	  <div class="row">
+	  	<div class="small-6 columns">
+		  	<div class="copyright">
+		      <p><small>© 2012-2014 Capstory All rights reserved.</small></p>
+		    </div> <!-- /copyright -->
+	  	</div>
+	  	<div class="small-6 columns">
+	      <ul class="social_links">
+	        
+	      
+	        <li class="twitter"><a href="http://twitter.com/capstory">Twitter</a></li>
+	      
+	        <li class="facebook"><a href="http://www.facebook.com/capstory">Facebook</a></li>
+	      
+	        <li class="instagram"><a href="http://instagram.com/capstoryweddings">Instagram</a></li>
+	      
+	        <!-- <li class="vimeo"><a href="/">Vimeo</a></li> -->
+	      
+	        <li class="pinterest"><a href="http://www.pinterest.com/capstory/">Pinterest</a></li>
+	      
+	      </ul> <!-- /social_links -->  		
+	  	</div>
+	  </div>
+  </section> <!-- /footer_content -->
+</footer> <!-- /site-footer -->

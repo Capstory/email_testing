@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140516015457) do
+ActiveRecord::Schema.define(:version => 20140607170718) do
 
   create_table "access_requests", :force => true do |t|
     t.string   "name"
@@ -122,6 +122,16 @@ ActiveRecord::Schema.define(:version => 20140516015457) do
     t.datetime "updated_at",    :null => false
     t.string   "date"
     t.boolean  "reminder_sent"
+  end
+
+  create_table "test_program_visits", :force => true do |t|
+    t.string   "ip_address"
+    t.string   "test_version"
+    t.boolean  "phaseline_one"
+    t.boolean  "phaseline_two"
+    t.boolean  "phaseline_three"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "users", :force => true do |t|

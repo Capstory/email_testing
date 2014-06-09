@@ -18,9 +18,14 @@ end
 
 EmailTesting::Application.routes.draw do
 
-  match "first_homepage" => "homepages#first_test_landing"
-  match "second_homepage" => "homepages#second_test_landing"
-  match "third_homepage" => "homepages#third_test_landing"
+  match "a" => "homepages#first_test_landing"
+  match "b" => "homepages#second_test_landing"
+  match "c" => "homepages#third_test_landing"
+  match "pricing" => "homepages#pricing"
+  match "purchase" => "homepages#buy"
+
+  match "test_program/:test_version" => "test_program_visits#create"
+  match "update_test_program_visit" => "test_program_visits#update"
 
   match "dashboard" => "admin_functions#dashboard"
 

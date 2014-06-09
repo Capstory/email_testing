@@ -1,18 +1,21 @@
 class ChargesController < ApplicationController
   before_filter :admin_authentication, only: :index
   force_ssl if: :in_production?, only: [:new, :create]
+  layout "homepages"
   
   def index
     @charges = Charge.all
   end
   
   def new
+    @contact_form = ContactForm.new
+    @test_program_visit = params[:test_program_visit] ? true : false
   end
   
   
   def create
     # Charge amount in cents
-    amount = 49500
+    amount = 100000
     error_hash = {}
     customer = {}
     customer[:amount] = amount    

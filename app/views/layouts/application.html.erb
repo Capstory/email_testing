@@ -28,19 +28,19 @@
 		  <ul class="title-area">
 		    <li class="name">
 					<span id="application_logo">
-		     		<%= link_to image_tag("logo.png", width: '275px', height: '30px'), root_url, style: "padding-right:20px;" %>
+		     		<%= link_to image_tag("logo.png", width: '275px', height: '30px'), self.send(resolve_logo_route), style: "padding-right:20px;" %>
 					</span>
 		    </li>
 		  </ul>
 		  <section class="top-bar-section">
 		    <ul class="right">
-					<% if current_user %>
-						<% user_name = !current_user.name.blank? ? current_user.name : "Mr. No Name" %>
-						<li><%= link_to "Signed In as #{user_name}", current_user %></li>
-						<li><%= link_to "Sign Out", signout_path %></li>
-					<% else %>
-						<li><%= link_to "Login", login_path %></li>
-					<% end %>
+				<% if current_user %>
+					<% user_name = !current_user.name.blank? ? current_user.name : "Mr. No Name" %>
+					<li><%= link_to "Signed In as #{user_name}", current_user %></li>
+					<li><%= link_to "Sign Out", signout_path %></li>
+				<% else %>
+					<li><%= link_to "Login", login_path %></li>
+				<% end %>
 		    </ul>
 		  </div>
 		</nav>

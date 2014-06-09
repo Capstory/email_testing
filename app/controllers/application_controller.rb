@@ -50,4 +50,24 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+
+  def resolve_logo_route
+    if cookies[:test_program_visit]
+      cookie_value = JSON.parse(cookies[:test_program_visit])
+      test_visit = TestProgramVisit.find_by_ip_address_and_id(cookie_value.first, cookie_value.last)
+      case test_visit.test_version
+      when "1"
+        logo_route = "a_path"
+      when "2"
+        logo_route = "b_path"
+      when "3"
+        logo_route = "c_path"
+      end
+    else
+      logo_route = "root_url"
+    end    
+
+    return logo_route
+  end
+  helper_method :resolve_logo_route
 end

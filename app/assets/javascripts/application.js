@@ -32,10 +32,10 @@ function checkForErrors () {
 }
 
 
+
 $(function(){ 
   
   $(document).foundation(); 
-  
 	checkForErrors();
 	
 	$(".sub-nav dd").click(function(){
@@ -69,11 +69,9 @@ $(function(){
 	  $("#partner_code").toggle('slow');
 	});
 	
-	
-	$("#stripe_engage").click(function (event){
-	  $(".stripe-button-el").click();
-	  event.preventDefault();
-	});
+	// $("#stripe_engage").click(function (){
+	//   $(".stripe-button-el").click();
+	// });
 	
 	//
 	// ======================================

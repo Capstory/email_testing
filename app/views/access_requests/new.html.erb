@@ -61,6 +61,11 @@
 </div>
 <div class="row">
 	<div class="small-12 columns">
+
+		<% if params[:access_request][:test_program_phaseline] %>
+			<%= f.hidden_field :test_program_phaseline, value: params[:access_request][:test_program_phaseline] %>
+		<% end %>
+	
 		<%= f.submit "Submit", class: 'button pull-right' %>
 	</div>
 </div>

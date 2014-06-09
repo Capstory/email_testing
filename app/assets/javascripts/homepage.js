@@ -16,6 +16,12 @@ $(".non_industry").click(function(){
 //   $("#partner_code").toggle('slow');
 // });
 
+function engageStripe() {
+  if ( $(".stripe_test_program_indicator").length > 0 ) {
+    $(".stripe-button-el").click();
+  }
+}
+
 function checkForErrors () {
   if ( $(".error").length > 0 ) {
     $(".error").each(function() {
@@ -26,7 +32,6 @@ function checkForErrors () {
   }
 }
 
-checkForErrors();
 
 $(".date-pick").datepicker({
   dateFormat: "yy-mm-dd",
@@ -58,3 +63,23 @@ $("#engaged_contact_copy_launch").click(function () {
 $("#button_to_what_you_get").click(function () {
   $("#link_to_what_you_get").click();
 });
+
+$(".faq_answers").click(function(e) {
+  $(".faq_questions.open").removeClass("open").hide();
+  $answer_id = $(this).attr("data-answer");
+  $("#" + $answer_id).addClass("open").fadeToggle("slow");
+  e.preventDefault();
+});
+
+$("#live_slideshow").addClass("open").show();
+
+$(".get_capstory").click(function(){
+  window.location = "/update_test_program_visit?phaseline=1"
+});
+
+$(".buy_now").click(function(){
+  window.location = "/update_test_program_visit?phaseline=2"
+})
+
+checkForErrors();
+engageStripe();

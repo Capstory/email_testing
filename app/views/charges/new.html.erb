@@ -1,91 +1,292 @@
+<style type="text/css">
+    h1 {
+        font-size: 3em;
+    }
 
-<div class="intro-header">
+    body.home .background_wrapper {
+      width: 100%;
+      background: black url(<%= asset_path 'intro-bg.jpg' %>) no-repeat center;
+      background-size: cover;
+      position: relative;
+      min-height: 285px;
+      height: 640px; 
+    }
+    body.home .background_wrapper:after {
+      content: "&nbsp;";
+      width: 100%;
+      height: 100%;
+      display: block;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
+      opacity: 0.3;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: black;
+      z-index: 8;
+      min-height: 285px; 
+    }
 
+    body.home .background_wrapper .introcontent {
+        position: relative;
+        z-index: 9; 
+    }
 
+    body.home .background_wrapper .introcontent .intro {
+        padding-top: 10%;
+    }
 
-        <div class="row">
-            <div class="large-12 large-centered columns">
-                <div class="intro-message">
-                    <h1>Thank you for choosing Capstory</h1>
-                    <h3>$495 includes our full service and all shipping, handling and taxes</h3>
-                    <hr>
-                    <ul class="list-inline intro-social-buttons">
-                        <li>
-													<%= form_tag charges_path do %>
-														<a href="#" class="btn btn-default btn-lg" id="stripe_engage"><i class="fa fa-caret-right fa-fw"></i> <span class="network-name">Pay here</span></a>
-														<div style="display:none;">
-													  	<script src="https://checkout.stripe.com/checkout.js" class="stripe-button" id="stripe_launch"
-																		data-image="<%= asset_path('square_logo.png') %>"
-													          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-													          data-description="Your Wedding Capsule"
-													          data-amount="49500"
-																		data-panel-label="Order Capsule"
-																		data-billing-address=true
-																		data-shipping-address=true
-																		data-label="Confirm My Capsule"></script>
-														</div>
-													<% end %>
-													
-                        </li>
-                    </ul>
+    /*body.home .background_wrapper .introcontent .intro {
+      width: 100%;
+      float: left;
+      margin-left: 1.5873%;
+      display: inline; 
+    }
+
+    @media only screen and (min-width: 400px) {
+        body.home .background_wrapper .introcontent .intro {
+          margin-top: 5%; 
+        } 
+    }
+
+    html.lt-ie9 body.home .background_wrapper .introcontent .intro {
+      margin-top: 5%; 
+    }
+
+    @media only screen and (min-width: 600px) {
+      body.home .background_wrapper .introcontent .intro {
+        width: 61.90476%;
+        float: left;
+        *margin-left: -1.25em;
+        display: inline; 
+      } 
+    }
+
+    html.lt-ie9 body.home .background_wrapper .introcontent .intro {
+      width: 61.90476%;
+      float: left;
+      *margin-left: -1.25em;
+      display: inline; 
+    }
+
+    @media only screen and (min-width: 1000px) {
+      body.home .background_wrapper .introcontent .intro {
+        margin-top: 15%;
+        width: 23.80952%;
+        float: left;
+        *margin-left: -1.25em;
+        display: inline; 
+      } 
+    }
+
+    html.lt-ie9 body.home .background_wrapper .introcontent .intro {
+      margin-top: 15%;
+      width: 23.80952%;
+      float: left;
+      *margin-left: -1.25em;
+      display: inline; 
+    }
+
+    @media only screen and (min-width: 1300px) {
+      body.home .background_wrapper .introcontent .intro {
+        margin-top: 35%; 
+      } 
+    }
+
+    html.lt-ie9 body.home .background_wrapper .introcontent .intro {
+      margin-top: 35%; 
+    } */
+    .content_section {
+      padding: 3.75em 0 3.75em;
+      overflow: hidden;
+      *zoom: 1; 
+    }
+
+    body.home .background_wrapper .introcontent .intro h1 {
+      color: white;
+      font-weight: 300;
+      font-style: normal;
+      padding-bottom: 20px; 
+    }
+
+    body.home .background_wrapper .introcontent .intro .btn {
+      color: white;
+      border-color: white;
+      display: block;
+      text-align: center;
+      margin-bottom: 10px;
+      background-color: #c49a55;
+      -webkit-transition: all 0.3s ease-in-out;
+      -moz-transition: all 0.3s ease-in-out;
+      -o-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out; 
+    }
+
+    body.home .background_wrapper .introcontent .intro .btn:hover {
+      background: white;
+      color: #c49a55;
+      border: 1px solid #c49a55; 
+    }
+
+    .section_header {
+      text-align: center;
+      margin-bottom: 4em; 
+    }
+
+    .section_header h2, .section_header h3 {
+      text-transform: uppercase; 
+    }
+
+    .section_header h2 {
+      color: #c49a55;
+      font-size: 2em; 
+    }
+
+    @media only screen and (min-width: 480px) {
+      .section_header h2 {
+        font-size: 2em; 
+      } 
+    }
+
+    html.lt-ie9 .section_header h2 {
+      font-size: 3.75em; 
+    }
+
+    .section_header h3 {
+      font-size: 1.125em;
+      margin-bottom: 0.88889em;
+      font-family: "proxima-nova", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+      font-weight: 500;
+      text-transform: uppercase; 
+    }
+
+    .section_header hr {
+      border-color: #000;
+      width: 35%;
+      margin: 0px auto 1em auto; 
+    }
+
+    .snapshots p {
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    #snapshots_section {
+        padding-top: 0em;
+        padding-bottom: 6em;
+    }
+
+    .faq_questions {
+        display: none;
+    }
+
+    .faq_answers {
+        margin-top: 10px;
+        padding-left: 15px;
+        padding-right: 10px;
+        background-color: white;
+        border-radius: 3px;
+    }
+
+    .site_footer .social_links {
+        padding-left: 15px;
+    }
+
+    .copyright {
+        padding-top: 20px;
+    }
+
+</style>
+<div id="container">
+    <header class="site_header">
+        <div class="background_wrapper">
+            <div class="introcontent">
+                <div class="intro">
+                    <div class="small-6 small-centered columns">
+                        <h1 style="text-align:center;">Thank You for Choosing Capstory</h1>
+                        <% if @test_program_visit %>
+                            <span class="stripe_test_program_indicator"></span>
+                        <% end %>
+                        <%= form_tag charges_path do %>
+                            <button class="btn btn_primary promo_group_btn" id="stripe_engage"><span class="network-name">Enter Payment Details</span></button>
+                            <div style="display:none;">
+                                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" id="stripe_launch"
+                                                data-image="<%= asset_path('square_logo.png') %>"
+                                      data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                                      data-description="Your Payment Information"
+                                      data-amount="100000"
+                                                data-panel-label="Order Capsule"
+                                                data-billing-address=true
+                                                data-shipping-address=true
+                                                data-label="Confirm My Capsule"></script>
+                            </div>
+                        <% end %>    
+                    </div>
                 </div>
             </div>
         </div>
-
-
-    <!-- /.container -->
-
+    </header>   
 </div>
-<!-- /.intro-header -->
-
-<div class="content-section-a">
-
-    <div class="container">
-
-        <div class="row">
-            <div class="large-6 columns">
-                <hr class="section-heading-spacer">
-                <div class="clearfix"></div>
-                <h2 class="section-heading">What's included:</h2>
-                <ul>
-	                <li> Your custom capsule and address</li>
-	                <li> 2 Custom printed keepsake books</li>
-	                <li> Professional Video Slideshow</li>
-	                <li> Profesional Editing</li>
-	                <li> Digital Camera Support </li>
-	                <li> Custom Guest Instruction Cards </li>
-	                <li> Live Reception Slideshow View </li>
-	                <li> Priority Phone and Email Support</li>
-	                <li> And much more!</li>
-								</ul>
-            </div>
-            <div class="large-6 columns">
-                <img class="img-responsive" src="<%= asset_path 'pricing.png' %>" alt="">
-            </div>
-        </div>
-
+<footer id="site_footer" class="site_footer content_section">
+  <section class="footer_content footer_contact">
+    <header class="section_header">
+      <h2>Customer Service</h2>
+      <hr />
+      <h3>We're always here to answer your questions</h3>
+    </header> <!-- /section-header -->
+    <div class="contact_info">
+      <dl class="contact_details">
+        <dt>Phone</dt>
+        <dd>614-416-8010</dd>
+        <dt>Email</dt>
+        <dd><a href="mailto:contact@capstory.me">hello@capstory.me</a></dd>
+        <dt class="address_term">Address</dt>
+        <dd class="address_def">
+                    Columbus Office<br />
+          81 Mill Street<br />
+                    Suite 300<br />
+          Columbus, OH 45321
+        </dd>
+      </dl> <!-- /contact-details -->
+    </div> <!-- /contact_info -->
+    <div class="footer_contact_form">
+            <%= form_for(@contact_form) do |f| %>
+                <%= f.label :name %>
+                <%= f.text_field :name, id: "contact_name" %>
+                
+                <%= f.label :email %>
+                <%= f.text_field :email, type: "email", id: "contact_email" %>
+                
+                <%= f.label :message %>
+                <%= f.text_area :message, id: "contact_message" %>
+                
+                <button class="btn btn_secondary" action="submit">Send</button>
+            <% end %>
     </div>
-    <!-- /.container -->
+  </section> <!-- /footer_contact -->
 
-</div>
-
-<div class="banner">
-
-        <div class="row">
-            <div class="large-5 columns">
-                <h2>Customer Service:</h2>
-            </div>
-            <div class="large-7 columns">
-                <ul class="inline-list banner-social-buttons">
-                    <li><a href="https://twitter.com/capstory" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
-                    </li>
-                    <li><a href="mailto:hello@capstory.me" class="btn btn-default btn-lg"><i class="fa fa-envelope-o fa-fw"></i> <span class="network-name">Email</span></a>
-                    </li>
-                    <li><a href="" class="btn btn-default btn-lg"><i class="fa fa-phone fa-fw"></i> <span class="network-name">614-416-8010</span></a>
-                    </li>
-                </ul>
-            </div>
+  <section class="footer_content">
+      <div class="row">
+        <div class="small-6 columns">
+            <div class="copyright">
+              <p><small>© 2012-2014 Capstory All rights reserved.</small></p>
+            </div> <!-- /copyright -->
         </div>
-
-</div>
-<!-- /.banner -->
+        <div class="small-6 columns">
+          <ul class="social_links">
+            
+          
+            <li class="twitter"><a href="http://twitter.com/capstory">Twitter</a></li>
+          
+            <li class="facebook"><a href="http://www.facebook.com/capstory">Facebook</a></li>
+          
+            <li class="instagram"><a href="http://instagram.com/capstoryweddings">Instagram</a></li>
+          
+            <!-- <li class="vimeo"><a href="/">Vimeo</a></li> -->
+          
+            <li class="pinterest"><a href="http://www.pinterest.com/capstory/">Pinterest</a></li>
+          
+          </ul> <!-- /social_links -->          
+        </div>
+      </div>
+  </section> <!-- /footer_content -->
+</footer> <!-- /site-footer -->

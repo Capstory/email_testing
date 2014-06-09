@@ -18,12 +18,25 @@ class AccessRequestsController < ApplicationController
   end
   
   def create
-    @access_request = AccessRequest.create(params[:access_request])
-    @access_request.request_status = "pending"
+    @access_request = AccessRequest.create do |ar|
+      ar.name = params[:access_request][:name]
+      ar.email = params[:access_request][:email]
+      ar.event_date = params[:access_request][:event_date]
+      ar.source = params[:access_request][:source]
+      ar.industry_role = params[:access_request][:industry_role]
+      ar.questions = params[:access_request][:questions]
+      ar.partner_code = params[:access_request][:partner_code]
+      ar.request_status = "pending"
+    end
+
     if @access_request.save
       AccessRequestMailer.welcome_email(@access_request).deliver
       AccessRequestMailer.admin_notification(@access_request).deliver
-      redirect_to thank_you_path(request_id: @access_request.id)
+      if params[:access_request][:test_program_phaseline]
+        redirect_to update_test_program_visit_path(phaseline: params[:access_request][:test_program_phaseline])
+      else
+        redirect_to thank_you_path(request_id: @access_request.id)
+      end
     else
       flash.now[:error] = "There was a problem trying to log your request. Please, try again."
       render "new"

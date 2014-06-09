@@ -1,6 +1,6 @@
 <div class="row" id="loginPage">
 	<div class="small-8 small-centered columns" id="login_logo" style="text-align:center;">
-		<%= link_to image_tag("logo.png", width: '600px'), root_url %>
+		<%= link_to image_tag("logo.png", width: '600px'), self.send(resolve_logo_route) %>
 	</div>
 	<% flash.each do |key, value| %>
 		<% alert_class = key == :error ? :alert : key %>

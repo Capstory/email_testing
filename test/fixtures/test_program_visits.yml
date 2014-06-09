@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  ip_address: MyString
+  test_version: MyString
+  phaseline_one: false
+  phaseline_two: false
+  phaseline_three: false
+
+two:
+  ip_address: MyString
+  test_version: MyString
+  phaseline_one: false
+  phaseline_two: false
+  phaseline_three: false
