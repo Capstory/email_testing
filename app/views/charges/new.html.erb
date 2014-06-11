@@ -203,9 +203,7 @@
                 <div class="intro">
                     <div class="small-6 small-centered columns">
                         <h1 style="text-align:center;">Thank You for Choosing Capstory</h1>
-                        <% if @test_program_visit %>
-                            <span class="stripe_test_program_indicator"></span>
-                        <% end %>
+                        <span class="stripe_test_program_indicator"></span>
                         <%= form_tag charges_path do %>
                             <button class="btn btn_primary promo_group_btn" id="stripe_engage"><span class="network-name">Enter Payment Details</span></button>
                             <div style="display:none;">

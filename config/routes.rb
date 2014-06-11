@@ -26,6 +26,7 @@ EmailTesting::Application.routes.draw do
 
   match "test_program/:test_version" => "test_program_visits#create"
   match "update_test_program_visit" => "test_program_visits#update"
+  match "reset_cookie" => "test_program_visits#admin_reset_cookie"
 
   match "dashboard" => "admin_functions#dashboard"
 
@@ -180,7 +181,7 @@ EmailTesting::Application.routes.draw do
   # just remember to delete public/index.html.
   root :to => "users#welcome", constraints: SiteConstraints.new
   
-  root :to => 'homepages#landing'
+  root :to => 'homepages#first_test_landing'
 
   # See how all your routes lay out with "rake routes"
 
