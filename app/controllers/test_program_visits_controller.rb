@@ -1,5 +1,9 @@
 class TestProgramVisitsController < ApplicationController
 
+	def index
+		@visits = TestProgramVisit.all
+	end
+
 	def create
 		unless cookies[:test_program_visit]
 			test = TestProgramVisit.create do |v|

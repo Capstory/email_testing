@@ -27,6 +27,8 @@ EmailTesting::Application.routes.draw do
   match "test_program/:test_version" => "test_program_visits#create"
   match "update_test_program_visit" => "test_program_visits#update"
   match "reset_cookie" => "test_program_visits#admin_reset_cookie"
+  match "test_program_stats" => "test_program_visits#index"
+
 
   match "dashboard" => "admin_functions#dashboard"
 

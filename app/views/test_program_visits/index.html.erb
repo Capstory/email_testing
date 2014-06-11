@@ -1,0 +1,111 @@
+<div class="row">
+	<div class="small-3 columns">
+		<h4>Total Visits<br> <small>All Versions</small></h4>
+		<p><%= @visits.length %></p>
+		<h5>Percentage</h5>
+		<p><%= number_to_percentage(@visits.length/@visits.length.to_f*100, precision: 0) %></p>
+	</div>
+	<div class="small-3 columns">
+		<h4>Phaseline 1 Totals<br> <small>Pricing Page</small></h4>
+		<p><%= phaseline_filter(@visits, 1).length %></p>
+		<h5>Percentage</h5>
+		<p><%= number_to_percentage(phaseline_filter(@visits, 1).length/@visits.length.to_f*100, precision: 0) %></p>		
+	</div>
+	<div class="small-3 columns">
+		<h4>Phaseline 2 Totals<br> <small>Purchase Page</small></h4>
+		<p><%= phaseline_filter(@visits, 2).length %></p>
+		<h5>Percentage</h5>
+		<p><%= number_to_percentage(phaseline_filter(@visits, 2).length/@visits.length.to_f*100, precision: 0) %></p>
+	</div>
+	<div class="small-3 columns">
+		<h4>Phaseline 3 Totals<br> <small>Payment Page</small></h4>
+		<p><%= phaseline_filter(@visits, 3).length %></p>
+		<h5>Percentage</h5>
+		<p><%= number_to_percentage(phaseline_filter(@visits, 3).length/@visits.length.to_f*100, precision: 0) %></p>
+	</div>		
+</div>
+<hr>
+<div class="row">
+	<div class="small-3 columns">
+		<h4>Version 1 Visits</h4>
+		<% version_one = 1 %>
+		<p><%= version_filter(@visits, version_one).length %></p>
+		<h5>Percentage</h5>
+		<p><%= number_to_percentage(version_filter(@visits, version_one).length/version_filter(@visits, version_one).length.to_f*100, precision: 0) %></p>
+	</div>
+	<div class="small-3 columns">
+		<h4>Phaseline 1 Totals<br> <small>Pricing Page</small></h4>
+		<p><%= phaseline_filter(version_filter(@visits, version_one), 1).length %></p>
+		<h5>Percentage</h5>
+		<p><%= number_to_percentage(phaseline_filter(version_filter(@visits, version_one), 1).length/version_filter(@visits, version_one).length.to_f*100, precision: 0) %></p>		
+	</div>
+	<div class="small-3 columns">
+		<h4>Phaseline 2 Totals<br> <small>Purchase Page</small></h4>
+		<p><%= phaseline_filter(version_filter(@visits, version_one), 2).length %></p>
+		<h5>Percentage</h5>
+		<p><%= number_to_percentage(phaseline_filter(version_filter(@visits, version_one), 2).length/version_filter(@visits, version_one).length.to_f*100, precision: 0) %></p>
+	</div>
+	<div class="small-3 columns">
+		<h4>Phaseline 3 Totals<br> <small>Payment Page</small></h4>
+		<p><%= phaseline_filter(version_filter(@visits, version_one), 3).length %></p>
+		<h5>Percentage</h5>
+		<p><%= number_to_percentage(phaseline_filter(version_filter(@visits, version_one), 3).length/version_filter(@visits, version_one).length.to_f*100, precision: 0) %></p>
+	</div>	
+</div>
+<hr>
+<div class="row">
+	<div class="small-3 columns">
+		<h4>Version 2 Visits</h4>
+		<% version_two = 2 %>
+		<p><%= version_filter(@visits, version_two).length %></p>		
+		<h5>Percentage</h5>
+		<p><%= number_to_percentage(version_filter(@visits, version_two).length/version_filter(@visits, version_two).length.to_f*100, precision: 0) %></p>	
+	</div>
+	<div class="small-3 columns">
+		<h4>Phaseline 1 Totals<br> <small>Pricing Page</small></h4>
+		<p><%= phaseline_filter(version_filter(@visits, version_two), 1).length %></p>
+		<h5>Percentage</h5>
+		<p><%= number_to_percentage(phaseline_filter(version_filter(@visits, version_two), 1).length/version_filter(@visits, version_two).length.to_f*100, precision: 0) %></p>		
+	</div>
+	<div class="small-3 columns">
+		<h4>Phaseline 2 Totals<br> <small>Purchase Page</small></h4>
+		<p><%= phaseline_filter(version_filter(@visits, version_two), 2).length %></p>
+		<h5>Percentage</h5>
+		<p><%= number_to_percentage(phaseline_filter(version_filter(@visits, version_two), 2).length/version_filter(@visits, version_two).length.to_f*100, precision: 0) %></p>
+	</div>
+	<div class="small-3 columns">
+		<h4>Phaseline 3 Totals<br> <small>Payment Page</small></h4>
+		<p><%= phaseline_filter(version_filter(@visits, version_two), 3).length %></p>
+		<h5>Percentage</h5>
+		<p><%= number_to_percentage(phaseline_filter(version_filter(@visits, version_two), 3).length/version_filter(@visits, version_two).length.to_f*100, precision: 0) %></p>
+	</div>	
+</div>
+<hr>
+<div class="row">
+	<div class="small-3 columns">
+		<h4>Version 3 Visits</h4>
+		<% version_three = 3 %>
+		<p><%= version_filter(@visits, version_three).length %></p>
+		<h5>Percentage</h5>
+		<p><%= number_to_percentage(version_filter(@visits, version_three).length/version_filter(@visits, version_three).length.to_f*100, precision: 0) %></p>			
+	</div>
+	<div class="small-3 columns">
+		<h4>Phaseline 1 Totals<br> <small>Pricing Page</small></h4>
+		<p><%= phaseline_filter(version_filter(@visits, version_three), 1).length %></p>
+		<h5>Percentage</h5>
+		<p><%= number_to_percentage(phaseline_filter(version_filter(@visits, version_three), 1).length/version_filter(@visits, version_three).length.to_f*100, precision: 0) %></p>		
+	</div>
+	<div class="small-3 columns">
+		<h4>Phaseline 2 Totals<br> <small>Purchase Page</small></h4>
+		<p><%= phaseline_filter(version_filter(@visits, version_three), 2).length %></p>
+		<h5>Percentage</h5>
+		<p><%= number_to_percentage(phaseline_filter(version_filter(@visits, version_three), 2).length/version_filter(@visits, version_three).length.to_f*100, precision: 0) %></p>
+	</div>
+	<div class="small-3 columns">
+		<h4>Phaseline 3 Totals<br> <small>Payment Page</small></h4>
+		<p><%= phaseline_filter(version_filter(@visits, 3), 3).length %></p>
+		<h5>Percentage</h5>
+		<p><%= number_to_percentage(phaseline_filter(version_filter(@visits, version_three), 3).length/version_filter(@visits, version_three).length.to_f*100, precision: 0) %></p>
+	</div>	
+</div>
+<br>
