@@ -11,6 +11,7 @@ class DownloadManagersController < ApplicationController
     else
       @elements = Capsule.find(params[:element_id])
     end
+    @back_url = request.env["HTTP_REFERER"]
   end
   
   def download
