@@ -112,4 +112,9 @@ $(function(){
     });
 	});
 	
+	$("#download_select_all").click(function(event){
+		$(".modal_img").click();
+		$("#download_submit_button").click();
+		event.preventDefault();
+	});	
 });
