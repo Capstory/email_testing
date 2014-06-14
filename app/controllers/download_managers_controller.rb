@@ -15,6 +15,10 @@ class DownloadManagersController < ApplicationController
   end
   
   def download
+    s3 = AWS::S3.new
+    bucket = s3.buckets["download_manager_files"]
+    # bucket.exists?
+
     temp_dir = Dir.mktmpdir
     zip_path = File.join(temp_dir, "image_download_#{Time.now}.zip")
     # zip_path = "#{Rails.root}/public/image_downloads/image_download_#{Date.today.to_s}.zip"
@@ -40,15 +44,24 @@ class DownloadManagersController < ApplicationController
         zipfile.add(title, temp_file.path)
       end
     end
+
+    # basename = File.basename(zip_path)
+    date_component = Date.today.to_formatted_s(:rfc822).split
+    capsule_id = params[:capsule_id]
+    basename = "capstory_download_#{capsule_id}_#{date_component.join('_')}.zip"
+    object = bucket.objects[basename]
+    object.write(file: zip_path)
     
-    @file_path = zip_path
+    # @file_path = zip_path
+    @file_path = object.url_for(:read, expires_in: 60.minutes, use_ssl: true, response_content_disposition: "attachment/zip")
     
     # send_file zip_path, x_sendfile: true, type: "application/zip", disposition: "attachment", filename: "image_download.zip"
     
   end
   
   def zip_download
-    send_file params[:file_path], x_sendfile: true, type: "application/zip", disposition: "attachment", filename: "image_download.zip"
+    # send_data params[:file_path], x_sendfile: true, type: "application/zip", disposition: "attachment", filename: "image_download.zip"
+    redirect_to params[:file_path]
   end
   
   private
