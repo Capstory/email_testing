@@ -183,7 +183,7 @@ EmailTesting::Application.routes.draw do
   # just remember to delete public/index.html.
   root :to => "users#welcome", constraints: SiteConstraints.new
   
-  root :to => 'homepages#first_test_landing'
+  root :to => 'homepages#landing'
 
   # See how all your routes lay out with "rake routes"
 
