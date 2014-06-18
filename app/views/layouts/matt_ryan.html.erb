@@ -13,12 +13,13 @@
   	<!-- Set the viewport width to device width for mobile -->
   	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  	<title><%= content_for?(:title) ? yield(:title) : "Capstory | In these moments, one lens is not enough." %></title>
+  	<title><%= content_for?(:title) ? yield(:title) : "Capstory Preferred Partner Page" %></title>
 
-  	<%= stylesheet_link_tag    "application" %>
-		<%= stylesheet_link_tag "vendor" %>
+	<%= stylesheet_link_tag "matt_ryan" %>
   	<%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700%7CCardo:400,400italic%7CPathway+Gothic+One' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASm3CwaK9qtcZEWYa-iQwHaGi3gcosAJc&amp;sensor=false"></script>    
   </head>
 
   <body>
@@ -27,23 +28,9 @@
 
 			<!-- Footer -->
 
-	    <footer class="row">
-	      <div class="large-12 columns"><hr>
-	          <div class="row">
-	            <div class="large-6 columns">
-	            	<span class="pull-left">For Capstory Preferred Vendors Only</span>
-	            </div>
-	            <div class="large-6 small-12 columns">
-	                <ul class="inline-list right">
-	                  <li><%= link_to "Capstory © 2014", self.send(resolve_logo_route) %></li>
-	                </ul>
-	            </div>
-	          </div>
-	      </div>
-	    </footer>
+
     
-    <%= javascript_include_tag "application" %>
-		<%= javascript_include_tag "vendor" %>
+		<%= javascript_include_tag "matt_ryan" %>
 		<%= render 'layouts/ga' if Rails.env.production? %>
 		<%= render 'layouts/crazy_egg' if Rails.env.production? %>
   </body>

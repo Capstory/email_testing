@@ -16,7 +16,20 @@ class VendorPagesConstraints
   end
 end
 
+class MattRyanConstraints
+  def matches?(request)
+    subdomain = request.subdomain
+    if subdomain == "mattryan"
+      return true
+    else
+      return false
+    end
+  end
+end
+
 EmailTesting::Application.routes.draw do
+
+  match "/" => "vendor_pages#matt_ryan", constraints: MattRyanConstraints.new
 
   match "a" => "homepages#first_test_landing"
   match "b" => "homepages#second_test_landing"

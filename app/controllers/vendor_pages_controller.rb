@@ -1,5 +1,5 @@
 class VendorPagesController < ApplicationController
-  layout "vendor_pages"
+  layout :resolve_layout
   
   def index
     
@@ -59,5 +59,21 @@ class VendorPagesController < ApplicationController
     vendor_page.delete
     flash[:success] = "Vendor Successfully Deleted"
     redirect_to :back
+  end
+
+  ########################################
+  ########################################
+
+  def matt_ryan
+  end
+
+  private
+  def resolve_layout
+    case action_name
+    when "matt_ryan"
+      "matt_ryan"
+    else
+      "vendor_pages"
+    end
   end
 end
