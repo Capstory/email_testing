@@ -5,7 +5,7 @@
 	.mobile-toggle{ display: block; cursor: pointer; font-size: 40px; top: 15px; color: #444; z-index: 200; }
 	.menu{ margin: 0px; }
 	.menu li{ float: none; margin: 0px 0px 11px 0px; }
-	#navigation{ position: fixed !important; background: #rgba(255,255,255,0.9) !important; top: 0px; padding-top: 73px; max-height: 50px;  }
+	#navigation{ position: fixed !important; background: rgba(255,255,255,0.9) !important; top: 0px; padding-top: 73px; max-height: 50px;  }
 	#navigation .text-center{ text-align: left !important; }
 	#logo{ display: none; }
 	.headline{ margin-bottom: 11px; }
