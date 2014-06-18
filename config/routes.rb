@@ -29,7 +29,7 @@ end
 
 EmailTesting::Application.routes.draw do
 
-  match "/" => "vendor_pages#matt_ryan", constraints: MattRyanConstraints.new
+  match "" => "vendor_pages#matt_ryan", constraints: MattRyanConstraints.new
 
   match "a" => "homepages#first_test_landing"
   match "b" => "homepages#second_test_landing"
