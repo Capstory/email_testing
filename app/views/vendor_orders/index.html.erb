@@ -1,0 +1,17 @@
+<div class="row">
+	<div class="small-10 small-centered columns">
+		<% @orders.each do |order| %>
+			<div class="panel">
+				<div class="row">
+					<div class="small-6 columns">
+						<p><%= link_to "Order #: #{order.id}", order %></p>							
+					</div>
+					<div class="small-6 columns">
+						<p>Event Date: <%= order.event_date.to_formatted_s(:long) %></p>
+					</div>
+				</div>
+				<h3><%= order.client_names %></h3>
+			</div>
+		<% end %>
+	</div>
+</div>

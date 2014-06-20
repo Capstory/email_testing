@@ -19,7 +19,7 @@ end
 class MattRyanConstraints
   def matches?(request)
     subdomain = request.subdomain
-    if subdomain == "mattryan"
+    if subdomain == "mattryandj"
       return true
     else
       return false
@@ -115,7 +115,11 @@ EmailTesting::Application.routes.draw do
   match 'employee_index' => "vendor_pages#employee_index"
   resources :vendor_pages
   resources :vendor_contacts
-  
+	
+	match "submit_order" => "vendor_orders#new"
+	match "order_confirmation" => "vendor_orders#order_thank_you"
+	resources :vendor_orders, only: [:new, :index, :create, :show]
+
   # ==========================
   # Note that this is the same path as the vendors#show route above. Thus, must be placed below the constrained route.
   # ==========================
@@ -183,24 +187,9 @@ EmailTesting::Application.routes.draw do
   #     resources :sales do
   #       get 'recent', :on => :collection
   #     end
-  #   end
 
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
   root :to => "users#welcome", constraints: SiteConstraints.new
   
   root :to => 'homepages#landing'
 
-  # See how all your routes lay out with "rake routes"
-
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
 end

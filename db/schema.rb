@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140607170718) do
+ActiveRecord::Schema.define(:version => 20140619022836) do
 
   create_table "access_requests", :force => true do |t|
     t.string   "name"
@@ -165,6 +165,22 @@ ActiveRecord::Schema.define(:version => 20140607170718) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
     t.integer  "vendor_page_id"
+  end
+
+  create_table "vendor_orders", :force => true do |t|
+    t.integer  "vendor_id"
+    t.string   "requested_address"
+    t.string   "email"
+    t.date     "event_date"
+    t.text     "requested_upgrades"
+    t.string   "shipping_1"
+    t.string   "shipping_2"
+    t.string   "shipping_city"
+    t.string   "shipping_state"
+    t.string   "shipping_zip"
+    t.string   "client_names"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "vendor_pages", :force => true do |t|
