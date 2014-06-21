@@ -2,8 +2,8 @@ class VendorOrdersController < ApplicationController
 	USERS = {	"admin" => "capstory2014" }
 	VENDORS = { "mattryandj" => "djevents2014" }
 
-	# before_filter :admin_authenticate, only: :index
-	# before_filter :vendor_authenticate, only: :new
+ before_filter :admin_authenticate, only: :index
+ before_filter :vendor_authenticate, only: :new
 
 	def	index
 		@orders = VendorOrder.all
