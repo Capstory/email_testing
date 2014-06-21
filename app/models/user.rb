@@ -49,4 +49,35 @@ class User < ActiveRecord::Base
   #     end
   #   end
   
+	def admin?
+		if self.class == Admin
+			return true
+		else
+			return false
+		end
+	end
+
+	def client?
+		if self.class == Client
+			return true
+		else
+			return false
+		end
+	end
+
+	def contributor?
+		if self.class == Contributor
+			return true
+		else
+			return false
+		end
+	end
+
+	def vendor?
+		if self.class == Vendor
+			return true
+		else
+			return false
+		end
+	end
 end

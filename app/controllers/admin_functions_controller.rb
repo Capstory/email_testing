@@ -10,5 +10,6 @@ class AdminFunctionsController < ApplicationController
     @authorizations = Authorization.all
     @encapsulations = Encapsulation.all
     @vendor_pages = VendorPage.all
+		@vendors = Vendor.all
   end
 end

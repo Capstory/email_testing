@@ -1,15 +1,14 @@
 <div class="row">
 	<div class="small-6 columns">
 		<h4 class="subheader">
-			All Users<br>
+			All Vendors<br>
 			<small>
-				Below are all the Users in the system. You can create a new one if you need to by clicking
-				on the button to the right.
+				Below are all the active vendors in the system. You can create a new one if you need to by clicking on the button on the right. 
 			</small>
 		</h4>
 	</div>	
 	<div class="small-6 columns">
-		<%= link_to "Add a New Vendor", new_vendor_page_path, class: "button" %>
+		<%= link_to "Add a New Vendor", new_vendor_path, class: "button" %>
 	</div>
 </div>
 <table>
@@ -17,24 +16,19 @@
 		<tr>
 			<th width="200">Name</th>
 			<th>Email</th>
-			<th>Partner Code</th>
-			<th>Salespeople</th>
 			<th></th>
 			<th></th>
 			<th></th>
 		</tr>
 	</thead>
 	<tbody>
-		<% vendor_pages.each do |vendor_page| %>
+		<% vendors.each do |vendor| %>
 			<tr>
-				<td><%= link_to vendor_page.name, vendor_page %></td>
-				<td><%= vendor_page.email %></td>
-				<td><%= vendor_page.partner_code %></td>
-				<td><%= link_to vendor_page.vendor_employees.count, employee_index_path(vendor_page_id: vendor_page.id) %></td>
-				<td><%= link_to "Add Salesperson", new_vendor_employee_path(vendor_page_id: vendor_page.id) %></td>
+				<td><%= link_to vendor.name, vendor %></td>
+				<td><%= vendor.email %></td>
 				<td>|</td>
-				<td><%= link_to "Edit", edit_vendor_page_path(vendor_page) %></td>
-				<td><%= link_to "Delete", vendor_page_path(vendor_page), method: :delete, data: { confirm: "Are you sure?" } %></td>				
+				<td><%= link_to "Edit", edit_vendor_path(vendor) %></td>
+				<td><%= link_to "Delete", vendor_path(vendor), method: :delete, data: { confirm: "Are you sure?" } %></td>				
 			</tr>
 		<% end %>
 	</tbody>

@@ -1,10 +1,6 @@
 class VendorPagesController < ApplicationController
   layout :resolve_layout
   
-  def index
-    
-  end
-
   def show
     @vendor = VendorPage.find(params[:id].to_s.downcase)
     @vendor_contact = @vendor.vendor_contacts.new

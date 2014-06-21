@@ -1,0 +1,9 @@
+<%= form_for(@vendor) do |f| %>
+	<%= f.label :name, "Please Enter the Vendor's Name" %>
+	<%= f.text_field :name %>
+
+	<%= f.label :email, "Please enter the Vendor's Email Address" %>
+	<%= f.text_field :email %>
+
+	<%= f.submit "Submit",  class: "button" %>
+<% end %>

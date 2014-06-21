@@ -1,38 +1,20 @@
 class VendorsController < ApplicationController
-  def index
-    
-  end
 
   def show
-    @vendor = Vendor.find(params[:id].to_s.downcase)
-    @vendor_contact = VendorContact.new
+    @vendor = Vendor.find(params[:id])
   end
   
-  def employee_index
-    @vendor = Vendor.find(params[:vendor_id])
-  end
-
   def new
     @vendor = Vendor.new
   end
   
   def create
-    @vendor = Vendor.create do |v| 
-      v.name = params[:vendor][:name]
-      v.email = params[:vendor][:email]
-      
-      named_url = params[:vendor][:name].split(' ').join('').downcase
-      url = named_url.include?("-") ? named_url.split('-').join('') : named_url
-      
-      v.named_url = url
-      v.partner_code = params[:vendor][:partner_code]
-      v.phone = params[:vendor][:phone]
-    end
+		@vendor = Vendor.create(params[:vendor])
     if @vendor.save
-      flash[:success] = "Vendor Page successfully created"
-      redirect_to new_vendor_employee_path(vendor_id: @vendor.id)
+      flash[:success] = "Vendor Successfully Created"
+      redirect_to dashboard_path
     else
-      flash[:error] = "Unable to create Vendor Page. Try again."
+      flash[:error] = "Unable to create Vendor. Try again."
       render "new"
     end
   end
