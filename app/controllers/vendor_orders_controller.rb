@@ -1,9 +1,6 @@
 class VendorOrdersController < ApplicationController
-	USERS = {	"admin" => "capstory2014" }
-	VENDORS = { "mattryandj" => "djevents2014" }
-
- before_filter :admin_authenticate, only: :index
- before_filter :vendor_authenticate, only: :new
+	http_basic_authenticate_with name: "admin", password: "capstory2014", only: :index
+	http_basic_authenticate_with name: "mattryandj", password: "djevents2014", only: :new
 
 	def	index
 		@orders = VendorOrder.all
@@ -31,16 +28,4 @@ class VendorOrdersController < ApplicationController
 	def order_thank_you
 	end
 
-	private
-	def admin_authenticate
-		authenticate_or_request_with_http_digest do |username|
-			USERS[username]
-		end
-	end
-
-	def	vendor_authenticate
-		authenticate_or_request_with_http_digest do |username|
-			VENDORS[username]
-		end
-	end
 end
