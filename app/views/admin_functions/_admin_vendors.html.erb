@@ -27,6 +27,11 @@
 				<td><%= link_to vendor.name, vendor %></td>
 				<td><%= vendor.email %></td>
 				<td>|</td>
+				<% unless vendor.authorizations.empty?  %>
+					<td><%= link_to "Change Password", edit_authorization_path(vendor.identity_auth) %></td>
+				<% else %>
+					<td><%= link_to "Generate Login", new_authorization_path(id: vendor.id) %></td>
+				<% end %>
 				<td><%= link_to "Edit", edit_vendor_path(vendor) %></td>
 				<td><%= link_to "Delete", vendor_path(vendor), method: :delete, data: { confirm: "Are you sure?" } %></td>				
 			</tr>

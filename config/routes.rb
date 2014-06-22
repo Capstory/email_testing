@@ -113,6 +113,7 @@ EmailTesting::Application.routes.draw do
 	# ==========================
   match 'partners/:id' => "vendor_pages#show", constraints: VendorPagesConstraints.new
   match 'employee_index' => "vendor_pages#employee_index"
+	match 'vendor_orders_index' => "vendor_orders#vendor_index"
 	resources :vendors
   resources :vendor_pages
   resources :vendor_contacts

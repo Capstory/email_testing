@@ -1,0 +1,38 @@
+<div class="row">
+	<div class="small-6 columns">
+		<h3 class="subheader"><%= @vendor.name %></h3>
+	</div>
+	<div class="small-6 columns">
+		<h3><%= link_to "Back", @vendor, class: "button expand" %></h3>
+	</div>
+</div>
+<div class="row">
+	<div class="small-12 small-centered columns">
+		<% @orders.each do |order| %>
+			<div class="panel">
+				<div class="row">
+					<div class="small-6 columns">
+						<h3><%= link_to order.client_names, "#", class: "vendor_order", data: { id: order.id } %></h3>	
+					</div>
+					<div class="small-6 columns">
+						<h4>Order Submitted: <%= order.created_at.to_date.to_formatted_s(:long)  %></h4>	
+					</div>
+				</div>
+				<div class="row" id="vendor_order_<%= order.id %>" style="display:none;margin-top:20px;">
+					<div class="small-12 columns">
+						<p>Requested Address: <%= order.requested_address %></p>
+						<p>Email: <%= order.email %></p>
+						<p>Event Date: <%= order.event_date.to_formatted_s(:long) %></p>
+						<p>Upgrades: <%= order.requested_upgrades %></p>
+						<h4 class="subheader">Client Address</h4>
+						<p>Address Line 1: <%= order.shipping_1 %></p>
+						<p>Address Line 2: <%= order.shipping_2 %></p>
+						<p>City: <%= order.shipping_city %></p>
+						<p>State: <%= order.shipping_state %></p>
+						<p>Zip Code: <%= order.shipping_zip %></p>
+					</div>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>

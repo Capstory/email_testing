@@ -11,13 +11,28 @@ class ApplicationController < ActionController::Base
   
   def admin_authentication
     if current_user
-      redirect_to login_path unless current_user.admin?
+			if !current_user.admin?
+				flash[:error] = "You are not authorized to access this area"
+				redirect_to current_user
+			end
     else
       flash[:error] = "Please Login First"
       redirect_to login_path
     end
   end
   
+  def vendor_authentication
+    if current_user
+			if !current_user.vendor?
+				flash[:error] = "You are not authorized to access this area"
+				redirect_to current_user
+			end
+    else
+      flash[:error] = "Please Login First"
+      redirect_to login_path
+    end
+  end
+
   def capsule_owner(user_id, capsule_id)
     @encapsulation = Encapsulation.find_by_user_id_and_capsule_id(user_id, capsule_id)
     if @encapsulation.nil?

@@ -1,7 +1,12 @@
 <div class="row">
-	<div class="small-8 small-centered columns">
+	<div class="small-12 columns">
+		<h3 class="subheader">Submit Order</h3>
+	</div>
+</div>
+<div class="row">
+	<div class="small-6 columns">
+		<h3>Event Information</h3>
 		<%= form_for @vendor_order do |f| %>
-			<h3>Event Information</h3>
 			<%= f.label :client_names, "Please enter the Client's Names" %> 
 			<%= f.text_field :client_names %>
 
@@ -10,10 +15,11 @@
 
 			<%= f.label :requested_address, "Please enter the email address the client would like (i.e. johnandjane@capstory.me). This will be the same as the capsule address (e.g. http://www.capstory.me/johnandjane)" %>
 			<%= f.text_field :requested_address %>
-			
-			<%= f.label :requested_upgrades, "Please include any upgrades that the client would like. If you have any additional questions or comments, contact the Capstory Team." %>
-			<%= f.text_area :requested_upgrades %>
 
+			<%= f.label :requested_upgrades, "Please include any upgrades that the client would like. If you have any additional questions or comments, contact the Capstory Team." %>
+			<%= f.text_area :requested_upgrades, rows: 12 %>
+		</div>
+		<div class="small-6 columns">
 			<h3>Client Information</h3>	
 			<%= f.label :email, "Please enter the clients email address" %>
 			<%= f.text_field :email %>
@@ -33,8 +39,15 @@
 			<%= f.label :shipping_zip, "Zip Code" %>
 			<%= f.text_field :shipping_zip %>
 
-
-			<%= f.submit "Submit Order", class: "button" %>
+			<%= f.hidden_field :vendor_id, value: @vendor_id %>
+			<div class="row">
+				<div class="small-6 columns">
+					<%= f.submit "Submit Order", class: "button expand" %>
+				</div>
+				<div class="small-6 columns">
+					<%= link_to "Back", vendor_path(id: @vendor_id), class: "button expand" %>
+				</div>
+			</div>	
 		<% end %>
 	</div>
 </div>

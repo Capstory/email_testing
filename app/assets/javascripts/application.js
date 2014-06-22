@@ -117,4 +117,11 @@ $(function(){
 		$("#download_submit_button").click();
 		event.preventDefault();
 	});	
+
+	$(".vendor_order").click(function(e) {
+		var id = $(this).attr("data-id");	
+		var vendor_selector = "#vendor_order_" + id;
+		$(vendor_selector).fadeToggle("medium");
+		e.preventDefault();
+	});
 });

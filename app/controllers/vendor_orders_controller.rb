@@ -1,9 +1,14 @@
 class VendorOrdersController < ApplicationController
-	http_basic_authenticate_with name: "admin", password: "capstory2014", only: :index
-	http_basic_authenticate_with name: "mattryandj", password: "djevents2014", only: :new
+	before_filter :vendor_authentication, only: [:vendor_index, :new]
+	before_filter :admin_authentication, only: :index
 
 	def	index
 		@orders = VendorOrder.all
+	end
+
+	def vendor_index
+		@vendor = Vendor.find(params[:vendor_id])
+		@orders = @vendor.vendor_orders
 	end
 
 	def show
@@ -11,6 +16,7 @@ class VendorOrdersController < ApplicationController
 	end
 
 	def	new
+		@vendor_id = params[:vendor_id]
 		@vendor_order = VendorOrder.new
 	end
 	

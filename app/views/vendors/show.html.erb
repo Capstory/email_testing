@@ -3,6 +3,7 @@
 		<h3 class="subheader"> <%= @vendor.name %> </h3>
 	</div>
 </div>
+<hr>
 <div class="row">
 	<div class="small-6 columns">
 		<h3 class="subheader">Clients</h3>
@@ -10,12 +11,16 @@
 			<ul class="no-bullet">
 				<li>
 				<div class="row">
-					<h3><%= client.name %></h3>
+					<div class="small-6 columns">
+						<h3><%= client.name %></h3>
+					</div>
+				</div>
+				<div class="row">
 					<div class="small-6 columns">
 						<h4 class="subheader">Capsule</h4>
 					</div>
 					<div class="small-6 columns" style="text-align:center;">
-						<% if client.capsules %>
+						<% unless client.capsules.empty? %>
 							<%= link_to fa_icon("picture-o 4x"), client.capsules.first, class: "user_nav_link" %>
 						<% else %>
 							<p>Please contact the Capstory Team. A capsule has not yet been created for this client</p>		
@@ -27,15 +32,25 @@
 		<% end %>
 	</div>
 	<div class="small-6 columns">
-		<h3 class="subheader">Admin Pages</h3>
+		<h3 class="subheader">Orders</h3>
 		<ul class="no-bullet">
 			<li>
 			<div class="row">
 				<div class="small-6 columns">
-					<h4 class="subheader">Order</h4>
+					<h4 class="subheader">Submit Order</h4>
 				</div>
 				<div class="small-6 columns" style="text-align:center;">
-					<%= link_to fa_icon("file 4x"), submit_order_path(admin_id: @vendor.id) %>
+					<%= link_to fa_icon("file 3x"), submit_order_path(vendor_id: @vendor.id) %>
+				</div>
+			</div>
+			</li>
+			<li>
+			<div class="row">
+				<div class="small-6 columns">
+					<h4 class="subheader">My Orders</h4>
+				</div>
+				<div class="small-6 columns" style="text-align:center;">
+					<%= link_to fa_icon("tags 3x"), vendor_orders_index_path(vendor_id: @vendor.id) %>
 				</div>
 			</div>
 			</li>
