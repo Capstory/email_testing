@@ -81,12 +81,20 @@ $(function(){
   
   $(".admin_links").click(function (event) {
     var partial_id = $(this).attr('id');
-    new_partial = "#" + partial_id + "_data";
+    var new_partial = "#" + partial_id + "_data";
     $(".data_partial").hide();
     $(new_partial).show();
     event.preventDefault();
   });
-  
+ 
+	$(".vendor_dashboard_link").click(function(event){
+		var partial_id = $(this).attr("id");
+		var new_partial = "#" + partial_id + "_data";
+		$(".vendor_partial").hide();
+		$(new_partial).show();
+		event.preventDefault();
+	});
+
   $(".date-pick").datepicker({
     dateFormat: "yy-mm-dd",
     autoFocusNextInput: true

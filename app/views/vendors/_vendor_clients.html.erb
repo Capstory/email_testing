@@ -1,0 +1,21 @@
+<div class="row">
+	<div class="small-12 columns">
+		<% clients.each do |client| %>
+			<div class="panel">
+				<div class="row">
+					<div class="small-6 columns">
+						<h4><span class="subheader">Client:</span><br> <%= client.name %></h4>
+					</div>
+					<div class="small-6 columns">
+						<h4 class="subheader">Capsule</h4>
+						<% unless client.capsules.empty? %>
+							<%= link_to fa_icon("picture-o 3x"), client.capsules.first %>
+						<% else %>
+							<p>Please contact the Capstory Team. A capsule has not yet been created for this client.</p>
+						<% end %>
+					</div>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>
