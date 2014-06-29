@@ -24,6 +24,7 @@ class VendorOrdersController < ApplicationController
 		@vendor_order = VendorOrder.new(params[:vendor_order])
 		@vendor_order.status = "unprocessed"
 		if @vendor_order.save
+			VendorOrderMailer.admin_notification(@vendor_order).deliver
 			flash[:success] = "Order Successfully Submitted"
 			redirect_to order_confirmation_path
 		else
