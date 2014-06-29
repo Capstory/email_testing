@@ -1,4 +1,5 @@
 class Client < User
+	attr_accessible :vendor_id
 	belongs_to :vendor  
 
 	def via_vendor?

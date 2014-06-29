@@ -4,7 +4,10 @@ class Capsule < ActiveRecord::Base
   has_many :encapsulations
   has_many :users, through: :encapsulations
   has_many :posts
-  
+	
+	validates :name, presence: true
+	validates :email, presence: true
+	validates :event_date, presence: true	
   validates_uniqueness_of :email
   # validates_format_of :email, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i
   

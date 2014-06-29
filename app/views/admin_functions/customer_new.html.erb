@@ -1,0 +1,13 @@
+<%= form_for(@client, url: customer_create_path) do |f| %>
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+	
+	<%= f.label :email %>
+	<%= f.text_field :email %>
+
+	<% unless @vendor.nil? %>	
+		<%= f.hidden_field :vendor_id, value: @client.vendor.id %>
+	<% end %>
+
+	<%= f.submit "Create Client", class: "button" %>
+<% end %>

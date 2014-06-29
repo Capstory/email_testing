@@ -1,5 +1,8 @@
 <div class="row">
 	<div class="small-6 small-centered columns">
+		<h3>Vendor Information</h3>
+		<p>Vendor Name: <%= @order.vendor.name %></p>
+		<p>Order Submitted: <%= @order.created_at.to_formatted_s(:long) %></p>
 		<h3>Order Information</h3>
 		<p>Clients: <%= @order.client_names %></p>
 		<p>Requested Address: <%= @order.requested_address %></p>

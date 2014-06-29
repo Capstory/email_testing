@@ -1,10 +1,15 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :email
+  attr_accessible :name, :email, :authorizations_attributes
   
   has_many :authorizations
   has_many :encapsulations
   has_many :capsules, through: :encapsulations
-  
+	
+	validates :name, presence: true
+	validates :email, presence: true
+
+	accepts_nested_attributes_for :authorizations
+
   def self.create_from_hash!(hash)
     create(:name => hash[:info][:name])
   end

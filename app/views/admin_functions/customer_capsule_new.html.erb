@@ -1,0 +1,40 @@
+<%= form_for(@capsule, url: customer_capsule_create_path) do |f| %>
+	<div class="row">
+		<div class="small-6 columns">
+			<%= f.label :name, "Capsule Name" %>
+			<span data-tooltip class="has-tip tip-top" title="The default name is: A Wedding Capsule for...client's name here">
+				<%= f.text_field :name %>
+			</span>
+
+			<%= f.label :email, "Capsule Email Address" %>
+			<div class="row">
+				<span data-tooltip class="has-tip tip-top" title="Enter the first portion of the email address (e.g. myweddingcapsule will become myweddingcapsule@capstory.me)">
+					<div class="small-6 columns">
+						<%= f.text_field :email %>
+					</div>
+					<div class="small-6 columns">
+						<h4>@capstory.me</h4>
+					</div>
+				</span>
+			</div>
+		</div>
+		<div class="small-6 columns">
+			<%= f.label :event_date, "Event Date" %>
+			<%= f.text_field :event_date, class: 'date-pick' %>
+
+			<%= f.label :response_message, "Enter a Customized Response Message" %>
+			<span data-tooltip class="has-tip tip-top" title="This is the message that will be sent out by text message to everyone who submits a picture">
+				<%= f.text_area :response_message, rows: 7 %>
+			</span>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-6 columns">
+			<%= f.hidden_field :client_id, value: @client_id %>
+			<%= link_to "Back to Dashboard", dashboard_path, class: "button" %>
+		</div>
+		<div class="small-6 columns">
+			<%= f.submit "Create Capsule", class: 'button pull-right' %>
+		</div>
+	</div>
+<% end %>
