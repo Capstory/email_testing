@@ -22,6 +22,7 @@ class VendorOrdersController < ApplicationController
 	
 	def	create
 		@vendor_order = VendorOrder.new(params[:vendor_order])
+		@vendor_order.status = "unprocessed"
 		if @vendor_order.save
 			flash[:success] = "Order Successfully Submitted"
 			redirect_to order_confirmation_path

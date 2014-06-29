@@ -11,11 +11,21 @@
 		<% @orders.each do |order| %>
 			<div class="panel">
 				<div class="row">
-					<div class="small-6 columns">
+					<div class="small-4 columns">
 						<h3><%= link_to order.client_names, "#", class: "vendor_order", data: { id: order.id } %></h3>	
 					</div>
-					<div class="small-6 columns">
-						<h4>Order Submitted: <%= order.created_at.to_date.to_formatted_s(:long)  %></h4>	
+					<div class="small-8 columns">
+						<h3>Order Submitted: <%= order.created_at.to_date.to_formatted_s(:long)  %></h3>	
+						<div class="row">
+							<div class="small-2 columns">
+								<h3>Status:</h3> 
+							</div>
+							<div class="small-10 columns">
+								<div data-alert class="<%= order.status_class %>">
+									<%= order.show_status %>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="row" id="vendor_order_<%= order.id %>" style="display:none;margin-top:20px;">
