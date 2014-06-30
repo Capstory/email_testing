@@ -6,7 +6,7 @@
 <div class="row">
 	<div class="small-6 columns">
 		<h3>Event Information</h3>
-		<%= form_for :new_order do |f| %>
+		<%= form_for(:new_order) do |f| %>
 			<%= f.label :client_names, "Please enter the Client's Names" %> 
 			<%= f.text_field :client_names %>
 
@@ -39,7 +39,6 @@
 			<%= f.label :shipping_zip, "Zip Code" %>
 			<%= f.text_field :shipping_zip %>
 
-			<%= f.hidden_field :vendor_id, value: :vendor_id %>
 			<div class="row">
 				<div class="small-6 columns">
 					<%= f.submit "Submit Order", class: "button expand" %>
