@@ -63,11 +63,17 @@ class VendorPagesController < ApplicationController
   def matt_ryan
   end
 
+	def demo
+
+	end
+
   private
   def resolve_layout
     case action_name
     when "matt_ryan"
       "matt_ryan"
+		when "demo"
+			"matt_ryan"
     else
       "vendor_pages"
     end

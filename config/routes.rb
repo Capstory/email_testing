@@ -27,9 +27,21 @@ class MattRyanConstraints
   end
 end
 
+class DemoPageConstraints
+	def matches?(request)
+		subdomain = request.subdomain
+		if subdomain == "demo"
+			return true
+		else
+			return false
+		end
+	end
+end
+
 EmailTesting::Application.routes.draw do
 
   match "" => "vendor_pages#matt_ryan", constraints: MattRyanConstraints.new
+	match "" => "vendor_pages#demo", constraints: DemoPageConstraints.new
 
   match "a" => "homepages#first_test_landing"
   match "b" => "homepages#second_test_landing"
