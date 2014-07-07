@@ -5,7 +5,11 @@ class UsersController < ApplicationController
   end
   
   def welcome
-
+		if current_user
+			redirect_to current_user
+		else
+			flash[:error] = "Please log in"
+			redirect_to login_path
   end
   
   def show
