@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 		else
 			flash[:error] = "Please log in"
 			redirect_to login_path
+		end
   end
   
   def show
