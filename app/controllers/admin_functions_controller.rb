@@ -61,4 +61,8 @@ class AdminFunctionsController < ApplicationController
 	def customer_authorization_new
 		@client = Client.find(params[:client_id])
 	end
+
+	def	manage_capsule
+		@capsule = Capsule.find(params[:capsule_id])
+	end
 end

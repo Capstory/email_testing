@@ -31,7 +31,7 @@
 				<td><%= link_to capsule.owners_name, capsule.owner %></td>
 				<td><%= capsule.email %></td>
 				<td><%= capsule.event_date %></td>
-				<td>|</td>
+				<td><%= link_to "Manage", manage_capsule_path(capsule_id: capsule.id) %></td>
 				<td><%= link_to "Edit", edit_capsule_path(capsule) %></td>
 				<td><%= link_to "Delete", capsule, method: :delete, data: { confirm: "Are you sure?" } %></td>
 			</tr>
