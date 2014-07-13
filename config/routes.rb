@@ -98,6 +98,8 @@ EmailTesting::Application.routes.draw do
   match "retrieve_emails" => "email_retrievers#activate"
   
   resources :encapsulations
+
+	match "alt_show/:id" => "capsules#alt_show"
   resources :capsules, except: :index
   
   match 'verify_pin' => "capsules#verify_pin"

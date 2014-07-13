@@ -1,0 +1,10 @@
+<h2>Alt Show</h2>
+<div id="isotope_div">
+	<div class="small-12 columns">
+		<% @posts.each do |post| %>
+			<% if post.body.nil? || post.body.upcase == "NO MESSAGE" %> 
+				<%= image_tag post.image(:capsule_height), class: "alt_cap_img" %>
+			<% end %>
+		<% end %>
+	</div>
+</div>

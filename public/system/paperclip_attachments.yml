@@ -1,6 +1,8 @@
 ---
 :Post:
   :image:
+  - :capsule_height
+  - :capsule_width
   - :large
   - :medium
   - :small

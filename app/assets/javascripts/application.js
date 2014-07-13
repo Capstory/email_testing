@@ -18,7 +18,9 @@
 //= require angular
 //= require angular-resource
 //= require angular-route
-
+//= require ./capsules/isotope.pkgd.min.js
+//= require_self
+//
 function checkForErrors () {
   var alert_array = []
   
@@ -132,4 +134,11 @@ $(function(){
 		$(vendor_selector).fadeToggle("medium");
 		e.preventDefault();
 	});
+
+	// if ( $("#isotope_div").length > 0 ) {
+	// 	$("#isotope_div").isotope({
+	// 		itemSelector: ".alt_cap_img",
+	// 		layoutMode: "fitRows"
+	// 	});
+	// }
 });

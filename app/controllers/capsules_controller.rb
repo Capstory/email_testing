@@ -37,7 +37,12 @@ class CapsulesController < ApplicationController
     @posts = @capsule.posts.order("created_at DESC").page(params[:page]).per_page(10)
     @post = Post.new
   end
-  
+	
+	def alt_show
+    @capsule = Capsule.find(params[:id].to_s.downcase)
+    @posts = @capsule.posts.order("created_at DESC")
+	end	
+
   def edit
     @capsule = Capsule.find(params[:id])
   end
@@ -112,6 +117,8 @@ class CapsulesController < ApplicationController
     case action_name
     when "slideshow"
       "slideshow"
+		when "alt_show"
+			"alt_capsule"
     else
       "capsules"
     end

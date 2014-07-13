@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+  <head>
+  	<meta charset="utf-8" />
+
+  	<!-- Uncomment to make IE8 render like IE7 -->
+  	<!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
+
+  	<!-- Set the viewport width to device width for mobile -->
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  	<title><%= content_for?(:title) ? yield(:title) : "Weddings @ Capstory || Collect Every Moment" %></title>
+
+  	<%= stylesheet_link_tag    "application" %>
+		<%= stylesheet_link_tag "static" %>
+  	<%= javascript_include_tag "vendor/modernizr" %>
+    <%= csrf_meta_tags %>
+		<%= filepicker_js_include_tag %>
+		<script type="text/javascript">if (window.location.hash == '#_=_')window.location.hash = '';</script>
+  </head>
+
+  <body>
+		<nav class="top-bar">
+		  <ul class="title-area">
+		    <li class="name">
+					<span id="application_logo">
+		     		<%= link_to image_tag("logo.png", width: '275px', height: '30px'), self.send(resolve_logo_route), style: "padding-right:10px;" %>
+					</span>
+		    </li>
+		  </ul>
+		  <section class="top-bar-section">
+				<% unless params[:action] == "verify_pin" || params[:action] == "new" %>
+					<ul class="left" style="margin-left:20px;">
+						<% if params[:action] == "show" %>
+							<li class="active"><%= link_to @capsule.name.upcase, @capsule %></li>
+						<% end %>
+					
+						<li><%= link_to "UPLOAD A PHOTO", "#", id: "activate_filepicker" %></li>
+					
+						<% if current_user && (current_user.admin? || capsule_owner(current_user.id, @capsule.id)) %>					
+							<li class="has-dropdown not-click">
+								<%= link_to "FACEBOOK", "#" %>
+					
+								<ul class="dropdown">
+									<% if current_user.facebook_authorized? %>
+										<li><%= link_to "Post Photos", "#", id: "facebook_modal_engage" %></li>
+										<li><%= link_to "Logout", delete_facebook_auth_path(provider: current_user.fb_provider, uid: current_user.fb_uid), id: "facebook_deconnect" %></li>
+									<% else %>
+										<li><%= link_to "Send Photos to Facebook", "/auth/facebook" %></li>
+									<% end %>
+								</ul>
+							</li>
+				
+							<li class="has-dropdown not-click">
+				        <%= link_to "SLIDESHOW", "#" %>
+
+		            <ul class="dropdown">
+									<li><%= link_to fa_icon("picture-o", text: "Start Slideshow"), slideshow_path(capsule_id: @capsule.id) %></li>
+									<% if current_user.admin? %>
+										<li><%= link_to fa_icon("edit", text: "Edit Capsule"), edit_capsule_path(@capsule) %></li>
+										<li><%= link_to fa_icon("user", text: "Add a Key Contributor"), new_contributor_path(capsule_id: @capsule.id) %></li>
+										<li><%= link_to fa_icon("cloud-download", text: "Download Photos"), download_path(klass: "Capsule", element_id: @capsule.id) %></li>
+										<li><%= link_to fa_icon("inbox", text: "Get Email"), retrieve_emails_path %></li>
+									<% end %>
+		            </ul>
+							</li>
+							
+						<% else %>
+							<li class="has-dropdown not-click">
+				        <%= link_to "SLIDESHOW", "#" %>
+
+		            <ul class="dropdown">
+									<li><%= link_to fa_icon("picture-o", text: "Start Slideshow"), slideshow_path(capsule_id: @capsule.id) %></li>
+		            </ul>
+							</li>
+						<% end %>
+					</ul>
+				<% end %>
+				
+				<ul class="right">
+					<% if current_user %>
+						<% user_name = !current_user.name.blank? ? current_user.name : "Mr. No Name" %>
+						<li class="has-dropdown not-click">
+							<%= link_to "Signed In as #{user_name}", current_user %>
+							
+							<ul class="dropdown">
+								<li><%= link_to "Sign Out", signout_path %></li>
+							</ul>
+						</li>
+					<% else %>
+						<li><%= link_to "Login", login_path %></li>
+					<% end %>
+		    </ul>
+		  </section>
+		</nav>
+		<div class="row">
+			<div class="small-12 columns">
+				<% flash.each do |key, value| %>
+					<% alert_class = key == :error ? :alert : key %>
+					<div data-alert class="alert-box <%= alert_class %>">
+						<p class="subheader"><%= value %></p>
+						<a href="#" class="close">x</a>
+					</div>
+				<% end %>
+				
+			</div>
+		</div>
+    
+		<%= yield %>
+
+    <%= javascript_include_tag "application" %>
+		<%= javascript_include_tag "capsule" %>
+		<%= render 'layouts/ga' if Rails.env.production? %>
+		<%= render 'layouts/crazy_egg' if Rails.env.production? %>
+  </body>
+</html>
