@@ -149,11 +149,11 @@ html.lt-ie9 .section_header h2 {
 }
 
 .section_header h3 {
-  font-size: 1.125em;
+  font-size: 1.35em;
   margin-bottom: 0.88889em;
   font-family: "proxima-nova", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
   font-weight: 500;
-  text-transform: uppercase; 
+  text-transform: none; 
 }
 
 .section_header hr {
@@ -192,6 +192,9 @@ html.lt-ie9 .section_header h2 {
 	padding-top: 20px;
 }
 
+.feature_box {
+	text-align: center;
+}
 </style>
 
 <div id="container">
@@ -260,19 +263,19 @@ html.lt-ie9 .section_header h2 {
 		<div class="row">
 			<div class="small-4 columns snapshots">
 				<%= image_tag("homepage/demo_card_front.png", height: '157px', width: '220px' ) %>
-				<p class="subheader">Guests can easily take and text message photos</p>
+				<p class="subheader">Guests capture the moments and text message the photos to your private capsule</p>
 			</div>
 			<div class="small-4 columns snapshots">
 				<%= image_tag("homepage/desiree_second.jpg", height: '157px', width: '220px' ) %>
-				<p class="subheader">Live photo stream at the reception</p>
+				<p class="subheader">You can choose to have a live photo stream at the reception</p>
 			</div>
 			<div class="small-4 columns snapshots">
 				<%= image_tag("homepage/capsule_screen_shot.png", height: '157px', width: '220px' ) %>
-				<p class="subheader">All of your guest photos in one place</p>
+				<p class="subheader">All your guests photos are stored in a single location online</p>
 			</div>
 			<div class="small-4 columns snapshots">
 				<%= image_tag("homepage/photobook_sample.jpg", height: '157px', width: '220px' ) %>
-				<p class="subheader">Beautiful keepsakes from your guest photos</p>
+				<p class="subheader">Capstory professionally edits the photos and creates beautiful keepsakes from your guests photos</p>
 			</div>
 		</div>
 	</div>
@@ -282,9 +285,48 @@ html.lt-ie9 .section_header h2 {
 		</div>
 	</div>
 </section>
-
 <section class="photobreak" id="first_photobreak"></section>
+<section class="main-content">
+	<div class="row" style="margin-top:60px;margin-bottom:60px;">
+		<div class="small-8 columns section_header">
+			<h1 style="margin-top:40px;color:#c49a55;">Capsule Features</h1>
+			<hr>
+			<div class="row">
+				<div class="small-12 small-centered columns">
+					<h3 class="subheader">Simple to use on any phone</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="small-12 small-centered columns">
+					<h3 class="subheader">Live Stream of guest photos</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="small-12 small-centered columns">
+					<h3 class="subheader">Live remote stream moderation</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="small-12 small-centered columns">
+					<h3 class="subheader">Download full-res photos at no additional cost</h3>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="small-12 small-centered columns">
+					<button class="btn btn_primary promo_group_btn sample_capsule">View Sample Capsule</button>
+				</div>
+			</div>
+		</div>
 
+
+		<div class="small-5 columns text-center">
+			<iframe src="//player.vimeo.com/video/97164515?title=0&amp;byline=0&amp;portrait=0&amp;autoplay=1&amp;loop=1" width="309" height="550" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		</div>
+	</div>
+</section>
+
+<section class="photobreak" id="second_photobreak"></section>
 <section class="main-content">
 	<div class="content_section">
 		<header class="section_header">
@@ -294,7 +336,12 @@ html.lt-ie9 .section_header h2 {
 		</header>
 		<div class="row">
 			<div class="small-12 small-centered columns">
-				<%= image_tag "homepage/large_capsule_screen_shot.png" %>
+				<%= link_to image_tag("homepage/large_capsule_screen_shot.png"), "http://www.capstory.me/reynoldslovestory" %>
+			</div>
+			<div class="small-6 small-centered columns">
+				<p style="text-align:center;" class="subheader">
+					Click above to view a sample capsule
+				</p>
 			</div>
 		</div>
 	</div>
@@ -621,7 +668,7 @@ html.lt-ie9 .section_header h2 {
     </section>
 </section>
 
-<section class="photobreak" id="second_photobreak"></section>
+<section class="photobreak" id="third_photobreak"></section>
 
 <section class="main-content">
 	<div class="content_section">
@@ -651,13 +698,8 @@ html.lt-ie9 .section_header h2 {
 				</blockquote>
 			</div>
 			<div class="small-4 columns snapshots">
-				<%= image_tag("homepage/sanjeet_angela_testimonial.jpg", width: '220px' ) %>
-				<blockquote>
-					It was awesome having Capstory at our reception. Guests loved using it all night and I got to see the wedding and all the photos the very next day!
-					<cite>
-						Sanjeet Grewal, Groom
-					</cite>
-				</blockquote>				
+				<%= image_tag("homepage/duboses_testimonial.jpg", width: '220px' ) %>
+				<blockquote>"It has been absolutely wonderful to have a central location to look at the memories of our special weekend!"<cite>Mr. & Mrs. Dubose | Married in the Caribbean</cite></blockquote>				
 			</div>
 			<div class="small-4 columns snapshots">
 				<%= image_tag("homepage/chris_des_testimonial.jpg", width: '220px' ) %>
@@ -677,7 +719,6 @@ html.lt-ie9 .section_header h2 {
 	</div>
 </section>
 
-<section class="photobreak" id="third_photobreak"></section>
 <footer id="site_footer" class="site_footer content_section">
   <section class="footer_content footer_contact">
     <header class="section_header">
@@ -720,7 +761,7 @@ html.lt-ie9 .section_header h2 {
 	  <div class="row">
 	  	<div class="small-6 columns">
 		  	<div class="copyright">
-		      <p><small>© 2012-2014 Capstory All rights reserved.</small></p>
+		      <p><small>© 2012-2014 Capstory&#153 All rights reserved.</small></p>
 		    </div> <!-- /copyright -->
 	  	</div>
 	  	<div class="small-6 columns">
@@ -731,7 +772,7 @@ html.lt-ie9 .section_header h2 {
 	      
 	        <li class="facebook"><a href="http://www.facebook.com/capstory">Facebook</a></li>
 	      
-	        <li class="instagram"><a href="http://instagram.com/capstoryweddings">Instagram</a></li>
+					<!-- <li class="instagram"><a href="http://instagram.com/capstoryweddings">Instagram</a></li> -->
 	      
 	        <!-- <li class="vimeo"><a href="/">Vimeo</a></li> -->
 	      

@@ -81,5 +81,8 @@ $(".buy_now").click(function(){
   window.location = "/update_test_program_visit?phaseline=2"
 })
 
+$(".sample_capsule").click(function(){
+	window.location = "http://www.capstory.me/reynoldslovestory";
+});
 checkForErrors();
 engageStripe();
