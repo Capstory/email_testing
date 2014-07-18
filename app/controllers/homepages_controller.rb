@@ -24,12 +24,10 @@ class HomepagesController < ApplicationController
   end
 
   def pricing
-    @contact_form = ContactForm.new
   end
 
   def buy
     @access_request = AccessRequest.new
-    @contact_form = ContactForm.new
   end
   
   def in_production?

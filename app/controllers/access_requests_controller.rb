@@ -39,7 +39,11 @@ class AccessRequestsController < ApplicationController
       end
     else
       flash.now[:error] = "There was a problem trying to log your request. Please, try again."
-      render "new"
+			if params[:access_request][:test_program_phaseline]
+				redirect_to purchase_path(@access_request), flash: { error: "Please ensure that the name and email fields are properly filled out." }
+			else
+				render "new"
+			end
     end
   end
   

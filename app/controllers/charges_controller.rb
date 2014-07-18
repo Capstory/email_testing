@@ -8,7 +8,7 @@ class ChargesController < ApplicationController
   end
   
   def new
-    @contact_form = ContactForm.new
+    # @contact_form = ContactForm.new
     # @test_program_visit = params[:tpv] ? true : false
   end
   

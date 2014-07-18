@@ -2,8 +2,8 @@ class AccessRequest < ActiveRecord::Base
   attr_accessible :email, :event_address, :name, :event_date, :request_status, :source, :partner_code, :industry_role, :questions
   
   validates_presence_of :name
-  validates_presence_of :source
-  validates :industry_role, presence: true, if: :industry_pro?
+  # validates_presence_of :source
+  # validates :industry_role, presence: true, if: :industry_pro?
   validates_uniqueness_of :email
   validates_format_of :email, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i
   
@@ -45,7 +45,7 @@ class AccessRequest < ActiveRecord::Base
   end
   
   def code
-    if self.partner_code.empty?
+    if self.partner_code.nil? || self.partner_code.empty?
       "N/A"
     else
       self.partner_code
@@ -57,7 +57,7 @@ class AccessRequest < ActiveRecord::Base
   end
   
   def questions_comments
-    if self.questions.empty?
+    if self.questions.nil? || self.empty?
       "N/A"
     else
       self.questions
