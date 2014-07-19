@@ -43,6 +43,7 @@ EmailTesting::Application.routes.draw do
   match "" => "vendor_pages#matt_ryan", constraints: MattRyanConstraints.new
 	match "" => "vendor_pages#demo", constraints: DemoPageConstraints.new
 
+	match "alt_a" => "homepages#alt_first_test_landing"
   match "a" => "homepages#first_test_landing"
   match "b" => "homepages#second_test_landing"
   match "c" => "homepages#third_test_landing"

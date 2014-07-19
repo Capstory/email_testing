@@ -1,5 +1,6 @@
 class HomepagesController < ApplicationController
   # force_ssl if: :in_production?, only: :landing
+	layout :resolve_layout
   
   def landing
     @access_request = AccessRequest.new
@@ -9,6 +10,13 @@ class HomepagesController < ApplicationController
   end
 
   def first_test_landing
+    # @access_request = AccessRequest.new
+    # @reminder = Reminder.new
+    @contact_form = ContactForm.new
+    # @engaged_contact = EngagedContact.new
+  end
+
+  def alt_first_test_landing
     # @access_request = AccessRequest.new
     # @reminder = Reminder.new
     @contact_form = ContactForm.new
@@ -34,4 +42,13 @@ class HomepagesController < ApplicationController
     Rails.env.production?
   end
 
+	private
+	def resolve_layout
+		case action_name
+		when "alt_first_test_landing"
+			"blank"
+		else
+			"homepages"
+		end
+	end
 end

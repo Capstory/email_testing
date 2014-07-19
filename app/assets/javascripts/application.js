@@ -141,4 +141,13 @@ $(function(){
 	// 		layoutMode: "fitRows"
 	// 	});
 	// }
+
+	$(".faq_answers").click(function(e) {
+	  $(".faq_questions.open").removeClass("open").hide();
+	  $answer_id = $(this).attr("data-answer");
+	  $("#" + $answer_id).addClass("open").fadeToggle("slow");
+	  e.preventDefault();
+	});
+
+	$("#live_slideshow").addClass("open").show();
 });
