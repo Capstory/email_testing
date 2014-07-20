@@ -35,7 +35,7 @@ class HomepagesController < ApplicationController
   end
 
   def buy
-    @access_request = AccessRequest.new
+		@access_request = AccessRequest.new
   end
   
   def in_production?
@@ -46,6 +46,10 @@ class HomepagesController < ApplicationController
 	def resolve_layout
 		case action_name
 		when "alt_first_test_landing"
+			"blank"
+		when "pricing"
+			"blank"
+		when "buy"
 			"blank"
 		else
 			"homepages"
