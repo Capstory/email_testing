@@ -140,14 +140,12 @@
 	<%= image_tag("homepage/desiree_header_reversed.jpg", width: "100%") %>
 </div>
 
-<div class="top-bar">
-
+<div class="top-bar" data-topbar>
+	<ul class="title-area" style="padding-top:10px;">
+		<li class="logo"><%= image_tag "homepage/svg/logo.svg", alt: "Capstory", width: "250px" %></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
 	<div class="top-bar-section">
-		<a href="#" class="logo">
-			<%= image_tag "homepage/svg/logo.svg", alt: "Capstory", width:"25%", class: "show-for-large-up" %>
-			<%= image_tag "homepage/svg/logo.svg", alt: "Capstory", width:"30%", class: "show-for-medium-only" %>
-			<%= image_tag "homepage/svg/logo.svg", alt: "Capstory", width:"50%", class: "show-for-small-only" %>
-		</a>
 		<ul class="nav-bar right" style="background-color:transparent;">
 
 			<li><%= link_to "Questions? 614-416-8010", "#site_footer", data: { link_type: "scroll" } %></li>
@@ -727,7 +725,7 @@
 		<%= link_to "Get Capstory", pricing_path, class: "button expand" %>
 	</div>
 </div>
-<div class="footer" style="padding-top:60px;">
+<div class="footer" style="padding-top:60px;" id="site_footer">
 	<div class="row">
 		<div class="small-12 small-centered columns">
 			<h2 style="color:#fff;text-align:center;">
