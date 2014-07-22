@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140629190652) do
+ActiveRecord::Schema.define(:version => 20140721201524) do
 
   create_table "access_requests", :force => true do |t|
     t.string   "name"
@@ -62,6 +62,12 @@ ActiveRecord::Schema.define(:version => 20140629190652) do
     t.string   "name"
     t.string   "email"
     t.text     "message"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "download_managers", :force => true do |t|
+    t.text     "file_path"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

@@ -33,7 +33,30 @@ function checkForErrors () {
   }
 }
 
+function downloadPoller () {
+	var timeoutID;
 
+	return {
+		startPolling: function (download_id) {
+			timeoutID = window.setInterval(function(){
+				downloadManager.poll(download_id);
+			}, 1000);
+		},
+		poll: function(download_id) {
+			var request_url = "/download_poller.json?download_id=" + download_id;
+			$.get(request_url, function(response){
+				if ( response.ready ) {
+					window.clearTimeout(timeoutID);
+
+					url = "/download_link?download_id=" + download_id;
+					window.location = url;
+				}
+			});	
+		}
+	}
+}
+
+var downloadManager = downloadPoller();
 
 $(function(){ 
   
