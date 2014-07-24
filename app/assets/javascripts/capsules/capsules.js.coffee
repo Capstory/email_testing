@@ -6,6 +6,3 @@ window.onImageUpload = ->
   PostPoller.clear(PostPoller.poll_timer)
   $("#filepicker_submit_button").click()
 
-$('.date-pick').datepicker
-  dateFormat: 'yy-mm-dd'
-  autoFocusNextInput: true

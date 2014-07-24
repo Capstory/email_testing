@@ -15,14 +15,22 @@ class CapsulesController < ApplicationController
   end
 
   def create
+		if params[:capsule][:email] && params[:capsule][:email].include?("@")
+			temp_email = params[:capsule][:email].split("@")
+			@email = temp_email.first
+		else
+			@email = params[:capsule][:email]
+		end
+
     if Rails.env.production?
-      email = params[:capsule][:email].nil? ? nil : "#{params[:capsule][:email].strip}@capstory.me"
+      @email = @email.nil? ? nil : "#{@email}@capstory.me"
     else
-      email = params[:capsule][:email].nil? ? nil : "#{params[:capsule][:email].strip}@capstory-testing.com"
+      @email = @email.nil? ? nil : "#{@email}@capstory-testing.com"
     end
-    @capsule = Capsule.create(name: params[:capsule][:name], email: email, response_message: params[:capsule][:response_message])
-    named_url = params[:capsule][:email].nil? ? nil : params[:capsule][:email]
-    @capsule.named_url = named_url
+    
+		@capsule = Capsule.create(name: params[:capsule][:name], email: @email, response_message: params[:capsule][:response_message], named_url: params[:capsule][:email], event_date: params[:capsule][:event_date])
+    # named_url = params[:capsule][:email].nil? ? nil : params[:capsule][:email]
+    # @capsule.named_url = named_url
     if @capsule.save
       flash[:success] = "Successfully created new capsule"
       redirect_to dashboard_path
