@@ -1,4 +1,5 @@
 class AdminsController < ApplicationController
+	before_filter :admin_authentication
   
   # =====================================
   # Begin standard controller actions

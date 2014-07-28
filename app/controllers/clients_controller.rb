@@ -1,4 +1,6 @@
 class ClientsController < ApplicationController
+	before_filter :admin_authentication, except: [:show]
+	before_filter :verify_client_show, only: :show
   # =====================================
   # Begin standard controller actions
   # =====================================
@@ -79,6 +81,21 @@ class ClientsController < ApplicationController
   # Begin non-standard controller actions
   # =====================================
   
+	def verify_client_show
+		if current_user
+			puts "Current User's ID: #{current_user.id}"
+			puts "Params' ID: #{ params[:id] }"
+			puts "Are the id's equal?: #{ current_user.id == params[:id].to_i }"
+			if current_user.id != params[:id].to_i && !current_user.admin? 
+				flash[:error] = "You are not authorized to access this area"
+				redirect_to current_user
+			end
+		else
+			flash[:error] = "Please Login First"
+			redirect_to login_path
+		end
+	end	
+
   def create_client_capsule(client, event_date)
     capsule_name = client.name
     capsule_base = "A Wedding Capsule for"

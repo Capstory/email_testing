@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
       redirect_to login_path
     end
   end
-  
+	
   def vendor_authentication
     if current_user
 			if !current_user.vendor?
