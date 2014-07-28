@@ -38,10 +38,22 @@ class DemoPageConstraints
 	end
 end
 
+class OhioUnionConstraints
+	def matches?(request)
+		subdomain = request.subdomain
+		if subdomain == "ohiounion"
+			return true
+		else
+			return false
+		end
+	end
+end
+
 EmailTesting::Application.routes.draw do
 
   match "" => "vendor_pages#matt_ryan", constraints: MattRyanConstraints.new
 	match "" => "vendor_pages#demo", constraints: DemoPageConstraints.new
+	match "" => "vendor_pages#ohiounion", constraints: OhioUnionConstraints.new
 
 	match "a" => "homepages#alt_first_test_landing"
   match "alt_a" => "homepages#first_test_landing"

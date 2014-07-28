@@ -64,7 +64,9 @@ class VendorPagesController < ApplicationController
   end
 
 	def demo
+	end
 
+	def ohiounion
 	end
 
   private
@@ -73,6 +75,8 @@ class VendorPagesController < ApplicationController
     when "matt_ryan"
       "matt_ryan"
 		when "demo"
+			"matt_ryan"
+		when "ohiounion"
 			"matt_ryan"
     else
       "vendor_pages"
