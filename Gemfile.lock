@@ -212,7 +212,7 @@ GEM
     vegas (0.1.11)
       rack (>= 1.0.0)
     will_paginate (3.0.5)
-    zencoder (2.4.6)
+    zencoder (2.5.0)
       multi_json
 
 PLATFORMS
