@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+  <head>
+  	<meta charset="utf-8" />
+
+  	<!-- Uncomment to make IE8 render like IE7 -->
+  	<!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
+
+  	<!-- Set the viewport width to device width for mobile -->
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  	<title><%= content_for?(:title) ? yield(:title) : "Weddings @ Capstory || Collect Every Moment" %></title>
+
+  	<%= stylesheet_link_tag    "conference_capsule" %>
+  	<%= javascript_include_tag "vendor/modernizr" %>
+		<%= filepicker_js_include_tag %>
+    <%= csrf_meta_tags %>
+		<script type="text/javascript">if (window.location.hash == '#_=_')window.location.hash = '';</script>
+  </head>
+
+  <body>
+		<%= javascript_include_tag "conference_capsule" %>
+		<nav class="top-bar">
+		  <ul class="title-area" style="padding-top:20px;">
+		    <li class="name">
+					<span id="application_logo">
+		     		<%= link_to image_tag("logo.png", width: '275px', height: '30px'), self.send(resolve_logo_route) %>
+					</span>
+		    </li>
+		  </ul>
+		</nav>
+
+		<div ng-app="ConferenceCapsuleApp">
+			<%= yield %>
+		</div>
+    
+		<%= render 'layouts/ga' if Rails.env.production? %>
+		<%= render 'layouts/crazy_egg' if Rails.env.production? %>
+  </body>
+</html>

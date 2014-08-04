@@ -1,0 +1,7 @@
+conference_capsule_app.factory("CapsuleData", [function(){
+	return {
+		get: function() {
+			return <%= @capsule.to_json.html_safe %>;
+		}
+	}
+}]);

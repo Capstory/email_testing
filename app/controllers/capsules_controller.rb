@@ -83,6 +83,48 @@ class CapsulesController < ApplicationController
   end
   
   # =====================================
+  # Conference Mobile View - Pure Romance
+  # =====================================
+  
+	def	conference_capsule
+		@capsule = Capsule.find(params[:id].to_s.downcase)
+	end
+
+	def	conference_filepicker_upload
+		@capsule_id = Capsule.find(params[:capsule_id]).id
+		@post = Post.new
+	end
+
+	def conference_filepicker_process
+		# raise params[:post].to_yaml
+		Resque.enqueue(FilepickerUpload, params[:post][:filepicker_url], params[:post][:capsule_id], params[:post][:time_group])	
+
+		flash[:success] = "Photos submitted. Processing has started."
+		redirect_to :back
+	end
+	
+	def	conference_get_posts
+		@posts = Capsule.find(params[:id]).posts
+
+		respond_to do |format|
+			format.json {
+				render json: @posts
+			}
+		end
+	end
+
+	def	conference_get_new_posts
+		@capsule = Capsule.find(params[:capsule_id])
+		@posts = @capsule.posts.where("id > ?", params[:after_id].to_i)
+
+		respond_to do |format|
+			format.json {
+				render json: @posts
+			}
+		end
+	end
+  
+  # =====================================
   # Begin non-standard controller actions
   # =====================================
   
@@ -127,6 +169,10 @@ class CapsulesController < ApplicationController
       "slideshow"
 		when "alt_show"
 			"alt_capsule"
+		when "conference_capsule"
+			"conference_capsule"
+		when "conference_filepicker_upload"
+			"conference_capsule"
     else
       "capsules"
     end

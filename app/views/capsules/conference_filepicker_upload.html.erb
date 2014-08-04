@@ -1,0 +1,12 @@
+<div class="row">
+	<div class="small-12 columns">
+		<%= form_for @post, url: conference_filepicker_process_path do |f| %>
+			<%= f.hidden_field :capsule_id, value: @capsule_id %>
+			<%= f.select(:time_group, options_for_select([[ "7:30AM", "0730"], [ "8:00AM", "0800"], [ "8:30AM", "0830"], [ "9:00AM", "0900"]])) %>
+
+			<%= f.filepicker_field :filepicker_url, multiple: true, services: "COMPUTER, DROPBOX, FACEBOOK, FLICKR, INSTAGRAM", button_text: "Upload A Photo", class: 'pick_file' %>
+
+			<%= f.submit "Submit" %>
+		<% end %>
+	</div>
+</div>

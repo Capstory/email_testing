@@ -1,0 +1,16 @@
+var conference_capsule_app = angular.module("ConferenceCapsuleApp", ["ngRoute", "iso.directives"]);
+
+conference_capsule_app.config(["$routeProvider", function($routeProvider){
+	$routeProvider
+		.when("/", {
+			controller: "CapsuleController",
+			templateUrl: "<%= asset_path 'capsule.html' %>"
+		})
+		.when("/time_category", {
+			controller: "CategoryController",
+			templateUrl: "<%= asset_path 'category.html' %>"
+		})
+		.otherwise({
+			redirectTo: "/"
+		});
+}]);
