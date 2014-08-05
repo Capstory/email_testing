@@ -1,6 +1,16 @@
 conference_capsule_app.controller("CapsuleController", ["$scope", "$timeout", "$interval", "CapsuleData", "CapsuleModel", function($scope, $timeout, $interval, CapsuleData, CapsuleModel) {
 	$scope.capsule_data = CapsuleData.get();
-	$scope.group = "0800";
+	// $scope.time_groups = angular.fromJson($scope.capsule_data.time_group) || { "": "All" };
+	// $scope.group = "0800";
+	
+	if ( angular.fromJson($scope.capsule_data.time_group) ) {
+		$scope.time_groups = angular.fromJson($scope.capsule_data.time_group);
+		$scope.group = Object.keys($scope.time_groups)[0];
+	} else {
+		$scope.time_groups = { "": "All" };
+		$scope.group = "";	
+	}
+	
 	$scope.posts;
 	$scope.init = function() {
 		CapsuleModel.getPostsAPI($scope.capsule_data.id).then(function(data) {
