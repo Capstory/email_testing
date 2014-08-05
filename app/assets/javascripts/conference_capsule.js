@@ -13,6 +13,11 @@
 //= require ./conference_capsule/angular-isotope.js
 //= require_self
 
+var filepicker_submission = function() {
+	$("#filepicker_upload").addClass("disabled");
+	$("#filepicker_submit").click();
+};
+
 $(function(){
 	$(document).foundation();
 });

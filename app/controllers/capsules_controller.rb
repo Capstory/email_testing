@@ -91,7 +91,12 @@ class CapsulesController < ApplicationController
 	end
 
 	def	conference_filepicker_upload
-		@capsule_id = Capsule.find(params[:capsule_id]).id
+		@capsule = Capsule.find(params[:capsule_id])
+		
+		@time_group_options = []
+		JSON.parse(@capsule.time_group).each do |key, value|
+			@time_group_options << [value, key]
+		end
 		@post = Post.new
 	end
 

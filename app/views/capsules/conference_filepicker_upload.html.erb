@@ -1,12 +1,25 @@
 <div class="row">
 	<div class="small-12 columns">
+		<% flash.each do |key, value| %>
+			<% alert_class = key == :error ? :alert : key %>
+			<div data-alert class="alert-box <%= alert_class %>">
+				<p class="subheader"><%= value %></p>
+				<a href="#" class="close">x</a>
+			</div>
+		<% end %>
+	</div>
+</div>
+<div class="row">
+	<div class="small-12 columns">
 		<%= form_for @post, url: conference_filepicker_process_path do |f| %>
-			<%= f.hidden_field :capsule_id, value: @capsule_id %>
-			<%= f.select(:time_group, options_for_select([[ "7:30AM", "0730"], [ "8:00AM", "0800"], [ "8:30AM", "0830"], [ "9:00AM", "0900"]])) %>
+			<%= f.hidden_field :capsule_id, value: @capsule.id %>
+			<p class="subheader"><%= f.label :time_group, "Step 1: Select a time slot for the photos" %></p>
+			<%= f.select(:time_group, options_for_select(@time_group_options)) %> 
 
-			<%= f.filepicker_field :filepicker_url, multiple: true, services: "COMPUTER, DROPBOX, FACEBOOK, FLICKR, INSTAGRAM", button_text: "Upload A Photo", class: 'pick_file' %>
+			<%= f.label :filepicker_url, "Step 2: Choose the Photos to Upload" %>
+			<%= f.filepicker_field :filepicker_url, multiple: true, services: "COMPUTER, DROPBOX, FACEBOOK, FLICKR, INSTAGRAM", button_text: "Upload Photos", onchange: "filepicker_submission()", id: 'filepicker_upload' %>
 
-			<%= f.submit "Submit" %>
+			<%= f.submit "Submit", id:"filepicker_submit" %>
 		<% end %>
 	</div>
 </div>
