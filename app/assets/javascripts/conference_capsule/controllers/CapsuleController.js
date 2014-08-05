@@ -8,7 +8,7 @@ conference_capsule_app.controller("CapsuleController", ["$scope", "$timeout", "$
 			$scope.posts = data;
 			$timeout(function() {
 				$scope.$emit("iso-method", {name: "arrange", params:null});
-			}, 200);
+			}, 500);
 			$scope.interval = $interval(function() {
 				if ( $scope.posts.length === 0 ) {
 					after_id = 0;
@@ -29,7 +29,7 @@ conference_capsule_app.controller("CapsuleController", ["$scope", "$timeout", "$
 	$scope.refreshIsotope = function() {
 		$timeout(function() {
 			$scope.$emit("iso-method", {name: "arrange", params: null });
-		}, 200);
+		}, 500);
 	};
 
 	$scope.capsuleImage = function(post) {
