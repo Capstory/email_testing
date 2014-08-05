@@ -26,11 +26,11 @@ conference_capsule_app.controller("CapsuleController", ["$scope", "$timeout", "$
 		});
 	};
 
-	$scope.refreshIsotope = function() {
+	$scope.$watch("group", function() {
 		$timeout(function() {
 			$scope.$emit("iso-method", {name: "arrange", params: null });
-		}, 500);
-	};
+		}, 200);
+	});
 
 	$scope.capsuleImage = function(post) {
 		var imageUrl = post.image;
