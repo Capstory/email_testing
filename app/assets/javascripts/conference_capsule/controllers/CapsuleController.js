@@ -29,7 +29,7 @@ conference_capsule_app.controller("CapsuleController", ["$scope", "$timeout", "$
 	$scope.$watch("group", function() {
 		$timeout(function() {
 			$scope.$emit("iso-method", {name: "arrange", params: null });
-		}, 200);
+		}, 500);
 	});
 
 	$scope.capsuleImage = function(post) {
