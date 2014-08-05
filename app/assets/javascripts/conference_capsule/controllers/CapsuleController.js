@@ -1,4 +1,4 @@
-conference_capsule_app.controller("CapsuleController", ["$scope", "$interval", "CapsuleData", "CapsuleModel", function($scope, $interval, CapsuleData, CapsuleModel) {
+conference_capsule_app.controller("CapsuleController", ["$scope", "$timeout", "$interval", "CapsuleData", "CapsuleModel", function($scope, $timeout, $interval, CapsuleData, CapsuleModel) {
 	$scope.capsule_data = CapsuleData.get();
 	$scope.group = "0800";
 	$scope.posts;
@@ -6,6 +6,9 @@ conference_capsule_app.controller("CapsuleController", ["$scope", "$interval", "
 		CapsuleModel.getPostsAPI($scope.capsule_data.id).then(function(data) {
 			// console.log(data);
 			$scope.posts = data;
+			$timeout(function() {
+				$scope.$emit("iso-method", {name: "arrange", params:null});
+			}, 200);
 			$scope.interval = $interval(function() {
 				if ( $scope.posts.length === 0 ) {
 					after_id = 0;
@@ -21,6 +24,12 @@ conference_capsule_app.controller("CapsuleController", ["$scope", "$interval", "
 				});
 			}, 15000);
 		});
+	};
+
+	$scope.refreshIsotope = function() {
+		$timeout(function() {
+			$scope.$emit("iso-method", {name: "arrange", params: null });
+		}, 200);
 	};
 
 	$scope.capsuleImage = function(post) {
