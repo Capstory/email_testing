@@ -16,6 +16,21 @@ class VendorPagesConstraints
   end
 end
 
+class PureRomanceConstraints
+	def matches?(request)
+		url = request.env["REQUEST_URI"]
+		request_parts = url.split("/")
+		
+		capsules = ["chriswc", "pattywc", "pureromancewc"]
+		
+		if capsules.include?(request_parts.last.to_s.downcase)
+			return true
+		else
+			return false
+		end
+	end
+end
+
 class MattRyanConstraints
   def matches?(request)
     subdomain = request.subdomain
@@ -184,6 +199,8 @@ EmailTesting::Application.routes.draw do
   
   mount Resque::Server, at: "/resque"
   
+	get "/:id" => "capsules#conference_capsule", constraints: PureRomanceConstraints.new
+
   # ==============================
   # Default routes for Capsules based on their id number
   # Must be kept at the bottom of the page so the named-url is the first route that is found and followed
