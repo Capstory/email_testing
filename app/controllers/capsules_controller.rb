@@ -91,7 +91,7 @@ class CapsulesController < ApplicationController
 	end
 
 	def	conference_filepicker_upload
-		@capsule = Capsule.find(params[:capsule_id])
+		@capsule = Capsule.find(params[:capsule_id].to_s.downcase)
 		
 		@time_group_options = []
 		JSON.parse(@capsule.time_group).each do |key, value|
