@@ -116,7 +116,7 @@ EmailTesting::Application.routes.draw do
 	match "conference_capsule/:id" => "capsules#conference_capsule"
 	match "conference_get_posts" => "capsules#conference_get_posts"
 	match "conference_get_new_posts" => "capsules#conference_get_new_posts"
-	match "conference_filepicker_upload/:capsule_id" => "capsules#conference_filepicker_upload"
+	match "conference_upload/:capsule_id" => "capsules#conference_filepicker_upload"
 	match "conference_filepicker_process" => "capsules#conference_filepicker_process"
 	match "alt_show/:id" => "capsules#alt_show"
   resources :capsules, except: :index

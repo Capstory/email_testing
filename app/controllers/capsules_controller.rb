@@ -41,13 +41,13 @@ class CapsulesController < ApplicationController
   end
   
   def show
-    @capsule = Capsule.find(params[:id].to_s.downcase)
+    @capsule = Capsule.find(params[:id])
     @posts = @capsule.posts.order("created_at DESC").page(params[:page]).per_page(10)
     @post = Post.new
   end
 	
 	def alt_show
-    @capsule = Capsule.find(params[:id].to_s.downcase)
+    @capsule = Capsule.find(params[:id])
     @posts = @capsule.posts.order("created_at DESC")
 	end	
 
@@ -87,7 +87,7 @@ class CapsulesController < ApplicationController
   # =====================================
   
 	def	conference_capsule
-		@capsule = Capsule.find(params[:id].to_s.downcase)
+		@capsule = Capsule.find(params[:id])
 	end
 
 	def	conference_filepicker_upload
