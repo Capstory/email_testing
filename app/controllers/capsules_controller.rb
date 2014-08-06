@@ -28,7 +28,7 @@ class CapsulesController < ApplicationController
       @email = @email.nil? ? nil : "#{@email}@capstory-testing.com"
     end
     
-		@capsule = Capsule.create(name: params[:capsule][:name], email: @email, response_message: params[:capsule][:response_message], named_url: params[:capsule][:email], event_date: params[:capsule][:event_date])
+		@capsule = Capsule.create(name: params[:capsule][:name], email: @email, response_message: params[:capsule][:response_message], named_url: params[:capsule][:email].to_s.downcase, event_date: params[:capsule][:event_date])
     # named_url = params[:capsule][:email].nil? ? nil : params[:capsule][:email]
     # @capsule.named_url = named_url
     if @capsule.save
@@ -41,13 +41,13 @@ class CapsulesController < ApplicationController
   end
   
   def show
-    @capsule = Capsule.find(params[:id])
+    @capsule = Capsule.find(params[:id].to_s.downcase)
     @posts = @capsule.posts.order("created_at DESC").page(params[:page]).per_page(10)
     @post = Post.new
   end
 	
 	def alt_show
-    @capsule = Capsule.find(params[:id])
+    @capsule = Capsule.find(params[:id].to_s.downcase)
     @posts = @capsule.posts.order("created_at DESC")
 	end	
 
@@ -87,7 +87,7 @@ class CapsulesController < ApplicationController
   # =====================================
   
 	def	conference_capsule
-		@capsule = Capsule.find(params[:id])
+		@capsule = Capsule.find(params[:id].to_s.downcase)
 	end
 
 	def	conference_filepicker_upload
