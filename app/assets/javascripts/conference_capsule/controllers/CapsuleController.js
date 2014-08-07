@@ -9,7 +9,7 @@ conference_capsule_app.controller("CapsuleController", ["$scope", "$timeout", "$
 	
 	if ( angular.fromJson($scope.capsule_data.time_group) ) {
 		$scope.time_groups = angular.fromJson($scope.capsule_data.time_group);
-		$scope.group = Object.keys($scope.time_groups)[0];
+		$scope.group = Object.keys($scope.time_groups)[1];
 	} else {
 		$scope.time_groups = { "": "All" };
 		$scope.group = "";	
