@@ -17,7 +17,7 @@
   </div>
   <!-- {{ posts }} -->
   <div class="row">
-    <div class="small-12 columns" id="isotopeContainer" isotope-container infinite-scroll="loadMorePosts()">
+    <div class="small-12 columns" id="isotopeContainer" isotope-container infinite-scroll="loadMorePosts()" infinite-scroll-distance="1">
         <div isotope-item ng-repeat="post in visible_posts | filter:group">
           <!-- {{ post }} -->
           <a href="{{ post.image }}" target="_blank"><img ng-src="{{ capsuleImage(post) }}" ng-show="isPhoto(post)" ng-click="seeOriginal(post)" width="280px" class="capsule_image"/></a>
