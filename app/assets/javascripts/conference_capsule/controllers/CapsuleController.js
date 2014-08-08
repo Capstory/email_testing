@@ -9,7 +9,7 @@ conference_capsule_app.controller("CapsuleController", ["$scope", "$timeout", "$
 
 	if ( angular.fromJson($scope.capsule_data.time_group) ) {
 		$scope.time_groups = angular.fromJson($scope.capsule_data.time_group);
-		$scope.group = Object.keys($scope.time_groups)[2];
+		$scope.group = Object.keys($scope.time_groups)[1];
 	} else {
 		$scope.time_groups = { "": "All" };
 		$scope.group = "";	
@@ -22,10 +22,10 @@ conference_capsule_app.controller("CapsuleController", ["$scope", "$timeout", "$
 		CapsuleModel.getPostsAPI($scope.capsule_data.id).then(function(data) {
 			// console.log(data);
 			$scope.posts = data;
-			// $scope.segmented_posts = CapsuleModel.segmentPosts($scope.time_groups, $scope.posts);
+			$scope.segmented_posts = CapsuleModel.segmentPosts($scope.time_groups, $scope.posts);
 			// console.log("Segmented Posts: ", $scope.segmented_posts);
 
-			// $scope.loadPhotos(6, "visible_posts");
+			$scope.loadPhotos(6, "visible_posts");
 
 			$scope.all_loaded = false;
 
@@ -53,6 +53,10 @@ conference_capsule_app.controller("CapsuleController", ["$scope", "$timeout", "$
 				});
 			}, 15000);
 		});
+	};
+
+	$scope.onGroupChange = function() {
+		$scope.loadPhotos(6, "visible_posts");
 	};
 
 	$scope.loadPhotos = function(number, load_target) {
@@ -111,6 +115,7 @@ conference_capsule_app.controller("CapsuleController", ["$scope", "$timeout", "$
 	// };
 
 	$scope.$watch("group", function() {
+		// console.log("Current group: ", $scope.group);
 		$timeout(function() {
 			$scope.$emit("iso-method", {name: "arrange", params: null });
 		}, 500);
