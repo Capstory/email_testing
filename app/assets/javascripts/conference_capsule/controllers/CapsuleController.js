@@ -30,6 +30,7 @@ conference_capsule_app.controller("CapsuleController", ["$scope", "$timeout", "$
 			$scope.all_loaded = false;
 
 			$timeout(function() {
+				$scope.$emit("iso-option", { transitionDuration: 0 });
 				$scope.$emit("iso-method", {name: "arrange", params: null});
 			}, 500);
 
