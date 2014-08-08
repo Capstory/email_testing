@@ -22,15 +22,15 @@ conference_capsule_app.controller("CapsuleController", ["$scope", "$timeout", "$
 		CapsuleModel.getPostsAPI($scope.capsule_data.id).then(function(data) {
 			// console.log(data);
 			$scope.posts = data;
-			$scope.segmented_posts = CapsuleModel.segmentPosts($scope.time_groups, $scope.posts);
+			// $scope.segmented_posts = CapsuleModel.segmentPosts($scope.time_groups, $scope.posts);
 			// console.log("Segmented Posts: ", $scope.segmented_posts);
 
-			$scope.loadPhotos(6, "visible_posts");
+			// $scope.loadPhotos(6, "visible_posts");
 
 			$scope.all_loaded = false;
 
 			$timeout(function() {
-				$scope.$emit("iso-option", { transitionDuration: 0 });
+				// $scope.$emit("iso-option", { transitionDuration: 0 });
 				$scope.$emit("iso-method", {name: "arrange", params: null});
 			}, 500);
 
@@ -111,7 +111,6 @@ conference_capsule_app.controller("CapsuleController", ["$scope", "$timeout", "$
 	// };
 
 	$scope.$watch("group", function() {
-		// console.log("Current group: ", $scope.group);
 		$timeout(function() {
 			$scope.$emit("iso-method", {name: "arrange", params: null });
 		}, 500);
