@@ -56,7 +56,7 @@ conference_capsule_app.controller("CapsuleController", ["$scope", "$timeout", "$
 	};
 
 	$scope.onGroupChange = function() {
-		$scope.loadPhotos(6, "visible_posts");
+		$scope.loadPhotos(9, "visible_posts");
 	};
 
 	$scope.loadPhotos = function(number, load_target) {
