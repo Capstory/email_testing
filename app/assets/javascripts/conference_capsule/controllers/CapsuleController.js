@@ -9,7 +9,7 @@ conference_capsule_app.controller("CapsuleController", ["$scope", "$timeout", "$
 
 	if ( angular.fromJson($scope.capsule_data.time_group) ) {
 		$scope.time_groups = angular.fromJson($scope.capsule_data.time_group);
-		$scope.group = Object.keys($scope.time_groups)[1];
+		$scope.group = Object.keys($scope.time_groups)[0];
 	} else {
 		$scope.time_groups = { "": "All" };
 		$scope.group = "";	
@@ -25,7 +25,7 @@ conference_capsule_app.controller("CapsuleController", ["$scope", "$timeout", "$
 			$scope.segmented_posts = CapsuleModel.segmentPosts($scope.time_groups, $scope.posts);
 			// console.log("Segmented Posts: ", $scope.segmented_posts);
 
-			$scope.loadPhotos(6, "visible_posts");
+			$scope.loadPhotos(9, "visible_posts");
 
 			$scope.all_loaded = false;
 
