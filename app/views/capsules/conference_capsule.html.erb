@@ -1,4 +1,5 @@
 <script>
 	<%= render "conference_capsule.js.erb" %>
 </script>
+<%= provide :title, @capsule.page_title %>
 <div ng-view></div>

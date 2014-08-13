@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140805201656) do
+ActiveRecord::Schema.define(:version => 20140813143149) do
 
   create_table "access_requests", :force => true do |t|
     t.string   "name"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20140805201656) do
     t.text     "response_message"
     t.string   "pin_code"
     t.text     "time_group"
+    t.string   "page_title"
   end
 
   create_table "charges", :force => true do |t|
