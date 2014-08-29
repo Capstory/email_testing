@@ -15,7 +15,7 @@ class ChargesController < ApplicationController
   
   def create
     # Charge amount in cents
-    amount = 100000
+    amount = 50000
     error_hash = {}
     customer = {}
     customer[:amount] = amount    
