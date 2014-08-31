@@ -5,6 +5,10 @@ class VendorPagesController < ApplicationController
     @vendor = VendorPage.find(params[:id].to_s.downcase)
     @vendor_contact = @vendor.vendor_contacts.new
   end
+
+	def alt_show
+		@vendor = VendorPage.find(request.subdomain)
+	end
   
   def employee_index
     @vendor_page = VendorPage.find(params[:vendor_page_id])
@@ -77,6 +81,8 @@ class VendorPagesController < ApplicationController
 		when "demo"
 			"matt_ryan"
 		when "ohiounion"
+			"matt_ryan"
+		when "alt_show"
 			"matt_ryan"
     else
       "vendor_pages"

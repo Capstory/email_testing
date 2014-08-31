@@ -84,6 +84,7 @@ input:focus{ outline: none; }
 
 #navigation{ position: relative; top: 0px; width: 100%; z-index: 99; transition: .3s ease; opacity: 1; max-height: 94px; transition: all .3s ease; -webkit-transition: all .3s ease; -moz-transition: all .3s ease; overflow: hidden; background: rgba(255,255,255,0.9); }
 #logo{ width: 100px; margin-top: 22px; margin-bottom: 15px; opacity: 0.8; }
+#capstory_logo{ width: 60px; margin-top: 10px; margin-bottom: 15px; opacity: 0.8; }
 .hide-nav{ top: -300px; }
 .sticky-nav{ position: fixed !important; top: 0px;  }
 .inner-nav{ position: absolute !important; background: #444444 !important; top: 0px;  }

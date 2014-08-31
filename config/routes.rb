@@ -64,11 +64,26 @@ class OhioUnionConstraints
 	end
 end
 
+class VendorSubdomainConstraints
+	def matches?(request)
+		if request.subdomain.present?
+			subdomain = request.subdomain
+			case subdomain
+			when "www"
+				return false
+			else
+				return true
+			end
+		end
+	end
+end
+
 EmailTesting::Application.routes.draw do
 
   match "" => "vendor_pages#matt_ryan", constraints: MattRyanConstraints.new
 	match "" => "vendor_pages#demo", constraints: DemoPageConstraints.new
 	match "" => "vendor_pages#ohiounion", constraints: OhioUnionConstraints.new
+	match "" => "vendor_pages#alt_show", constraints: VendorSubdomainConstraints.new
 
 	match "a" => "homepages#alt_first_test_landing"
   match "alt_a" => "homepages#first_test_landing"
