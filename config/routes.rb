@@ -71,6 +71,10 @@ class VendorSubdomainConstraints
 			case subdomain
 			when "www"
 				return false
+			when "ww"
+				return false
+			when "wwww"
+				return false
 			else
 				return true
 			end
