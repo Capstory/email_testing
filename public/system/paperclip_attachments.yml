@@ -1,9 +1,9 @@
 ---
 :Post:
   :image:
+  - :capsule_height
+  - :capsule_width
   - :large
   - :medium
   - :small
   - :thumb
-  - :capsule_height
-  - :capsule_width
