@@ -1,5 +1,5 @@
 class VendorPage < ActiveRecord::Base
-  attr_accessible :email, :name, :named_url, :partner_code, :phone
+  attr_accessible :email, :name, :named_url, :partner_code, :phone, :vendor_status
 
   has_many :vendor_contacts, as: :vendor_contactable
   has_many :vendor_employees
@@ -7,4 +7,8 @@ class VendorPage < ActiveRecord::Base
   
   extend FriendlyId
   friendly_id :named_url
+
+	def verified?
+		self.vendor_status ? true : false
+	end	
 end

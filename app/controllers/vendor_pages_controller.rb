@@ -8,6 +8,11 @@ class VendorPagesController < ApplicationController
 
 	def alt_show
 		@vendor = VendorPage.find(request.subdomain)
+		if @vendor.verified?
+			render "alt_show", layout: "matt_ryan"
+		else
+			render "new_vendor_page", layout: "new_vendors"
+		end
 	end
   
   def employee_index
@@ -29,6 +34,7 @@ class VendorPagesController < ApplicationController
       v.named_url = url
       v.partner_code = params[:vendor_page][:partner_code]
       v.phone = params[:vendor_page][:phone]
+			v.vendor_status = false
     end
     if @vendor_page.save
       flash[:success] = "Vendor Page successfully created"
@@ -44,6 +50,10 @@ class VendorPagesController < ApplicationController
   end
   
   def update
+		# 
+		# I need to add a manner of changing the vendor_status from false to true
+		# once a vendor signs up
+		#
     @vendor_page = VendorPage.find(params[:id])
     if @vendor_page.update_attributes(params[:vendor_page])
       flash[:success] = "Vendor Successfully Updated"
@@ -81,8 +91,6 @@ class VendorPagesController < ApplicationController
 		when "demo"
 			"matt_ryan"
 		when "ohiounion"
-			"matt_ryan"
-		when "alt_show"
 			"matt_ryan"
     else
       "vendor_pages"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140813143149) do
+ActiveRecord::Schema.define(:version => 20140919175237) do
 
   create_table "access_requests", :force => true do |t|
     t.string   "name"
@@ -200,8 +200,9 @@ ActiveRecord::Schema.define(:version => 20140813143149) do
     t.string   "email"
     t.string   "phone"
     t.string   "named_url"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.boolean  "vendor_status"
   end
 
   create_table "videos", :force => true do |t|
