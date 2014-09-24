@@ -109,34 +109,28 @@
 							<%# Image Ratio needs to be 1.54:1 %> 
               <li>                        
                   <div class="col-xs-4 col-sm-4 col-md-4 slider-content">
-                    <a href="#">
                       <%# <img src="img/slider-projects/1.jpg" alt=""> %>
 											<%= image_tag "reception_energy.jpg", alt: "" %>
                       <div class="slider-text">
                         <h3>Engaging Receptions</h3>
                         <p>Every client gets a live photo stream that can be projected on a screen throughout the reception. New photos appear in real-time. Clients and guests have enjoyed this tremendously!</p>
                       </div>
-                    </a>
                   </div>
                   <div class="col-xs-4 col-sm-4 col-md-4 slider-content">
-                    <a href="#">
                       <%# <img src="img/slider-projects/2.jpg" alt=""> %>
 											<%= image_tag "macbook_capsule.png", alt: "" %>
                       <div class="slider-text">
                         <h3>Branded Webpage</h3>
                         <p>Each and every couple receives a webpage with your branding for their photos and videos, which acts as a central location to collect, store and manage memories from their wedding.</p>
                       </div>
-                    </a>                   
                   </div>
                   <div class="col-xs-4 col-sm-4 col-md-4 slider-content">
-                    <a href="#">
                       <%# <img src="img/slider-projects/3.jpg" alt=""> %>
 											<%= image_tag "entrance.jpg", alt: "" %>
                       <div class="slider-text">
                         <h3>Professional Customer Service</h3>
                         <p>We provide concierge-level customer service in order to guarantee that each and every client has an amazing experience. Our goal is a successful event where we fade into the background.</p>
                       </div>
-                    </a>
                   </div>               
               </li>
  
@@ -1391,27 +1385,32 @@
       </div>
       <div class="row spacer40"></div>    
       <div class="row">
-          <form role="form" name="ajax-form" id="ajax-form" action="php/mail-it.php" method="post" class="form-main">
+				<%= form_for(@contact_form, remote: true) do |f| %>
           <div class="col-xs-12">
             
             <div class="row">            
               <div class="form-group col-xs-6">
-                <label for="name2">name</label>
-                <input class="form-control" id="name2" name="name" onblur="if(this.value == '') this.value='Name'" onfocus="if(this.value == 'Name') this.value=''" type="text" value="Name">
-                <div class="error" id="err-name">Please enter name</div>
+								<%= f.label :name %>
+								<%= f.text_field :name, class: "form-control", id: "name2", placeholder: "Name" %>
+                <%# <input class="form-control" id="name2" name="name" onblur="if(this.value == '') this.value='Name'" onfocus="if(this.value == 'Name') this.value=''" type="text" value="Name"> %>
+                <%# <div class="error" id="err-name">Please enter name</div> %>
               </div>
               <div class="form-group col-xs-6">
-                <label for="email2">email</label>
-                <input  class="form-control" id="email2" name="email"  type="text"  onfocus="if(this.value == 'E-mail') this.value='';" onblur="if(this.value == '') this.value='E-mail';" value="E-mail">
-                <div class="error" id="err-emailvld">E-mail is not a valid format</div> 
+                <%# <label for="email2">email</label> %>
+								<%= f.label :email %>
+								<%= f.text_field :email, class: "form-control", id: "email2", placeholder: "E-mail" %> 
+                <%# <input  class="form-control" id="email2" name="email"  type="text"  onfocus="if(this.value == 'E-mail') this.value='';" onblur="if(this.value == '') this.value='E-mail';" value="E-mail"> %>
+                <%# <div class="error" id="err-emailvld">E-mail is not a valid format</div> %> 
               </div>
             </div>
             
             <div class="row">            
               <div class="form-group col-xs-12">
-                <label for="message2">message</label>
-                <textarea  class="form-control" id="message2" name="message" onblur="if(this.value == '') this.value='Message'" onfocus="if(this.value == 'Message') this.value=''">Message</textarea>
-                <div class="error" id="err-message">Please enter message</div>
+                <%# <label for="message2">message</label> %>
+								<%= f.label :message %>
+								<%= f.text_area :message, class: "form-control", id: "message2", placeholder: "Message", rows: 8 %>
+                <%# <textarea  class="form-control" id="message2" name="message" onblur="if(this.value == '') this.value='Message'" onfocus="if(this.value == 'Message') this.value=''">Message</textarea> %>
+                <%# <div class="error" id="err-message">Please enter message</div> %>
 
               </div>
             </div> 
@@ -1424,16 +1423,61 @@
             <div class="row spacer10"></div>
             <div class="row">            
               <div class="col-xs-12 text-center">
-            <div id="ajaxsuccess">E-mail was successfully sent.</div>
-            <div class="error" id="err-form">There was a problem validating the form please check!</div>
+							<div class="alert alert-success" id="contact_form_success" style="display:none;">The e-mail was successfully sent. Thank you. We will reach back out to you as soon as we possibly can.</div>
+							<div class="error alert alert-danger" id="err-form">There is a problem with the contact form, please verify that all the fields are filled out correctly.</div>
             <div class="error" id="err-timedout">The connection to the server timed out!</div>
             <div class="error" id="err-state"></div>
               
-                <button type="submit" class="btn btn-default" id="send">Submit</button>
+                <%# <button type="submit" class="btn btn-default" id="send">Submit</button> %>
+								<%= f.submit "Submit", class: "btn btn-default" %>
               </div>
             </div>
           </div>  
-          </form>        
+					
+				<% end %>
+          <%# <form role="form" name="ajax-form" id="ajax-form" action="php/mail-it.php" method="post" class="form-main"> %>
+          <%# <div class="col-xs-12"> %>
+            
+          <%#   <div class="row"> %>            
+          <%#     <div class="form-group col-xs-6"> %>
+          <%#       <label for="name2">name</label> %>
+          <%#       <input class="form-control" id="name2" name="name" onblur="if(this.value == '') this.value='Name'" onfocus="if(this.value == 'Name') this.value=''" type="text" value="Name"> %>
+          <%#       <div class="error" id="err-name">Please enter name</div> %>
+          <%#     </div> %>
+          <%#     <div class="form-group col-xs-6"> %>
+          <%#       <label for="email2">email</label> %>
+          <%#       <input  class="form-control" id="email2" name="email"  type="text"  onfocus="if(this.value == 'E-mail') this.value='';" onblur="if(this.value == '') this.value='E-mail';" value="E-mail"> %>
+          <%#       <div class="error" id="err-emailvld">E-mail is not a valid format</div> %> 
+          <%#     </div> %>
+          <%#   </div> %>
+            
+          <%#   <div class="row"> %>            
+          <%#     <div class="form-group col-xs-12"> %>
+          <%#       <label for="message2">message</label> %>
+          <%#       <textarea  class="form-control" id="message2" name="message" onblur="if(this.value == '') this.value='Message'" onfocus="if(this.value == 'Message') this.value=''">Message</textarea> %>
+          <%#       <div class="error" id="err-message">Please enter message</div> %>
+
+          <%#     </div> %>
+          <%#   </div> %> 
+          <%#   <div class="row spacer30"></div> %>
+          <%#   <div class="row"> %>
+          <%#     <div class="col-md-8 col-md-offset-2"> %>
+          <%#       <p class="text-center">Please, fill out the form and press submit. Or, contact us by email or telephone. Our email and phone number are below.</p> %>
+          <%#     </div> %>
+          <%#   </div> %>
+          <%#   <div class="row spacer10"></div> %>
+          <%#   <div class="row"> %>            
+          <%#     <div class="col-xs-12 text-center"> %>
+          <%#   <div id="ajaxsuccess">E-mail was successfully sent.</div> %>
+          <%#   <div class="error" id="err-form">There was a problem validating the form please check!</div> %>
+          <%#   <div class="error" id="err-timedout">The connection to the server timed out!</div> %>
+          <%#   <div class="error" id="err-state"></div> %>
+              
+          <%#       <button type="submit" class="btn btn-default" id="send">Submit</button> %>
+          <%#     </div> %>
+          <%#   </div> %>
+          <%# </div> %>  
+          <%# </form> %>        
       </div>      
     </div>
     <div class="top">
@@ -1445,10 +1489,10 @@
         <div class="col-xs-12 col-sm-4 col-md-4">
           <h4>KEEP IN TOUCH</h4>
           <div class="footer-socials">
-              <a href="#"><i class="fa fa-facebook"></i></a>
-              <a href="#"><i class="fa fa-google-plus"></i></a>
-              <a href="#"><i class="fa fa-twitter"></i></a>
-              <a href="#"><i class="fa fa-pinterest"></i></a>
+              <a href="http://twitter.com/capstory"><i class="fa fa-twitter"></i></a>
+              <%# <a href="#"><i class="fa fa-google-plus"></i></a> %>
+              <a href="http://www.facebook.com/capstory"><i class="fa fa-facebook"></i></a>
+              <a href="http://www.pinterest.com/capstory"><i class="fa fa-pinterest"></i></a>
             </div>
         </div>
         

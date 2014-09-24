@@ -62,8 +62,8 @@ class ApplicationController < ActionController::Base
 	def resolve_url
 		if uri_to_redirect(request.env["HTTP_HOST"])
 			redirect_to "http://www.capstory.me#{request.env['REQUEST_URI']}"
-		elsif subdomain_to_redirect(request.env)
-			redirect_to "http://#{request.env['HTTP_HOST']}"
+		# elsif subdomain_to_redirect(request.env)
+		# 	redirect_to "http://#{request.env['HTTP_HOST']}"
 		end
 	end
 

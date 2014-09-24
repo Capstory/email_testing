@@ -22,4 +22,32 @@
 //= require ./corporate_template/layerslider/js/layerslider.kreaturamedia.jquery
 //= require_self
 
-$(function(){});
+
+$(function(){
+	var resetContactForm = function() {
+		$("#name2").val("");
+		$("#email2").val("");
+		$("#message2").val("");
+
+	};
+
+	$("#new_contact_form")
+		.on("ajax:success", function(e, data, status, xhr) {
+			console.log(data);
+			console.log(status);
+			console.log(xhr);
+
+			$("#contact_form_success").show();
+			$("#err-form").hide();
+			resetContactForm();
+		})
+		.on("ajax:error", function(e, xhr, status, error) {
+			console.log(e);
+			console.log(error);
+			console.log(xhr);
+			// alert("Unable to send contact form");
+			
+			$("#contact_form_success").hide();
+			$("#err-form").show();
+		});
+});

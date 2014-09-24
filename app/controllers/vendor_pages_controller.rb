@@ -12,6 +12,7 @@ class VendorPagesController < ApplicationController
 		if @vendor.verified?
 			render "alt_show", layout: "matt_ryan"
 		else
+			@contact_form = ContactForm.new
 			render "new_vendor_page", layout: "new_vendors"
 		end
 	end
