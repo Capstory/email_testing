@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  remote_ip: MyString
+  original_url: MyString
+  trackable_id: 1
+  trackable_type: MyString
+
+two:
+  remote_ip: MyString
+  original_url: MyString
+  trackable_id: 1
+  trackable_type: MyString

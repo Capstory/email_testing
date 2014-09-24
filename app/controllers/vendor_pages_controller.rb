@@ -1,13 +1,14 @@
 class VendorPagesController < ApplicationController
   layout :resolve_layout
-  
+	before_filter :register_visit, only: :alt_show 
+
   def show
     @vendor = VendorPage.find(params[:id].to_s.downcase)
     @vendor_contact = @vendor.vendor_contacts.new
   end
 
 	def alt_show
-		@vendor = VendorPage.find(request.subdomain)
+		@vendor ||= VendorPage.find(request.subdomain)
 		if @vendor.verified?
 			render "alt_show", layout: "matt_ryan"
 		else
@@ -96,4 +97,22 @@ class VendorPagesController < ApplicationController
       "vendor_pages"
     end
   end
+
+	def register_visit
+		if params[:visit_tag]
+			# puts "=========================================="
+			# puts "Remote Addr: #{request.env['REMOTE_ADDR']}"
+			# puts "Server Name: #{request.env['SERVER_NAME']}"
+			# puts "Remote IP: #{request.remote_ip}"
+			# puts "Original URL: #{request.original_url}"
+			# puts "=========================================="
+			@vendor_page = VendorPage.find(request.subdomain)
+			@vendor_page.page_visits.create!(remote_ip: request.remote_ip, original_url: request.original_url)	
+			redirect_to "http://#{request.env["HTTP_HOST"]}"			
+		# else
+		# 	puts "========================================="
+		# 	puts "There was no visit_tag"
+		# 	puts "========================================="
+		end
+	end
 end

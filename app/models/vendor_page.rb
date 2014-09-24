@@ -4,6 +4,8 @@ class VendorPage < ActiveRecord::Base
   has_many :vendor_contacts, as: :vendor_contactable
   has_many :vendor_employees
   # accepts_nested_attributes_for :vendor_employees, allow_destroy: true
+
+	has_many :page_visits, as: :trackable
   
   extend FriendlyId
   friendly_id :named_url

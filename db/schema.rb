@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140919175237) do
+ActiveRecord::Schema.define(:version => 20140924155904) do
 
   create_table "access_requests", :force => true do |t|
     t.string   "name"
@@ -108,6 +108,15 @@ ActiveRecord::Schema.define(:version => 20140919175237) do
     t.string   "genre"
     t.date     "event_date"
     t.integer  "user_id"
+  end
+
+  create_table "page_visits", :force => true do |t|
+    t.string   "remote_ip"
+    t.string   "original_url"
+    t.integer  "trackable_id"
+    t.string   "trackable_type"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "posts", :force => true do |t|
