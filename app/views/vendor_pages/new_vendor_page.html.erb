@@ -94,7 +94,7 @@
         <div class="col-md-8 col-md-offset-2">
 					<p class="lead">Brides face a difficult choice when choosing a venue for their wedding. Separate yourself from the competition.</p>
 					
-					<p class="lead">Enhance the experience customers have with <%= "venue name" %> by offering your clients a premier service to collect and cherish every stunning moment. Guests, friends and family members contribute all of the photos they capture on their mobile devices to your clients' <%= "venue name" %> branded webpage. Our Customer Satisfaction team assists your client throughout the entire process so they get to focus on what matters most.</p>
+					<p class="lead">Enhance the experience customers have with <%= @vendor.name %> by offering your clients a premier service to collect and cherish every stunning moment. Guests, friends and family members contribute all of the photos they capture on their mobile devices to your clients' <%= @vendor.name %> branded webpage. Our Customer Satisfaction team assists your client throughout the entire process so they get to focus on what matters most.</p>
 					<%# <p class="lead">Every event at your [club] can be truly unforgettable by offering your brides the premier service to collect and cherish every stunning moment. Guests, friends, and family contribute all of the photos they capture on mobile devices to webpage, unique to every couple and complete with [venue] branding. In addition, our customer satisfaction team assists them throughout the entire process so they can enjoy their special day.</p> %>
 
 					<p class="lead">You increase client satisfaction, brand recognition and your bottom line with Capstory, a concierge, digital photo collection service.</p>
@@ -114,7 +114,7 @@
 											<%= image_tag "reception_energy.jpg", alt: "" %>
                       <div class="slider-text">
                         <h3>Engaging Receptions</h3>
-												<p>Every <%= "venue name" %> webpage supports a live photo stream that can be projected throughout the reception, offering a more authentic, engaging experience for guests at your venue.</p>
+												<p>Every <%= @vendor.name %> webpage supports a live photo stream that can be projected throughout the reception, offering a more authentic, engaging experience for guests at your venue.</p>
                         <%# <p>Every client gets a live photo stream that can be projected on a screen throughout the reception. New photos appear in real-time. Clients and guests have enjoyed this tremendously!</p> %>
                       </div>
                   </div>
@@ -532,7 +532,7 @@
         <div class="col-md-5 col-sm-5">
           <div class="spacer30"></div>
           <h3 class="big">Photos and Videos in One Location</h3>
-          <p>Everyone's photos, videos, and stories, in one shared location online. Your 'photo booth in the cloud', the personal, [venue] branded webpage created for every client is the storage capsule for every memory collected, from every candid perspective. In these moments, one lens is not enough. Capture the entire crowds authentic experience, in one shared location.</p>
+					<p>Everyone's photos, videos, and stories, in one shared location online. Your 'photo booth in the cloud', the personal, <%= @vendor.name %> branded webpage created for every client is the storage capsule for every memory collected, from every candid perspective. In these moments, one lens is not enough. Capture the entire crowds authentic experience, in one shared location.</p>
           <%# <p><button type="button" class="btn btn-primary">More</button></p> %>
         </div>
         <div class="col-md-7 col-sm-7">
