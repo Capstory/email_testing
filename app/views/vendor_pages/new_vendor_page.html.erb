@@ -1383,7 +1383,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center">
-					<h2 class="section-title">Request A Demo</h2>
+					<h2 class="section-title">Thank You</h2>
 					<div class="row spacer40"></div>
 					<%# <p class="lead" style="font-size:20px;">Request A Demo</p> %>
 					<%# <p class="lead">Find out if we are available in your area</p> %>				
@@ -1391,100 +1391,119 @@
       </div>
       <div class="row spacer40"></div>    
       <div class="row">
-				<%= form_for(@contact_form, remote: true) do |f| %>
-          <div class="col-xs-12">
-            
-            <div class="row">            
-              <div class="form-group col-xs-6">
-								<%= f.label :name %>
-								<%= f.text_field :name, class: "form-control", id: "name2", placeholder: "Name" %>
-                <%# <input class="form-control" id="name2" name="name" onblur="if(this.value == '') this.value='Name'" onfocus="if(this.value == 'Name') this.value=''" type="text" value="Name"> %>
-                <%# <div class="error" id="err-name">Please enter name</div> %>
-              </div>
-              <div class="form-group col-xs-6">
-                <%# <label for="email2">email</label> %>
-								<%= f.label :email %>
-								<%= f.text_field :email, class: "form-control", id: "email2", placeholder: "E-mail" %> 
-                <%# <input  class="form-control" id="email2" name="email"  type="text"  onfocus="if(this.value == 'E-mail') this.value='';" onblur="if(this.value == '') this.value='E-mail';" value="E-mail"> %>
-                <%# <div class="error" id="err-emailvld">E-mail is not a valid format</div> %> 
-              </div>
-            </div>
-            
-            <div class="row">            
-              <div class="form-group col-xs-12">
-                <%# <label for="message2">message</label> %>
-								<%= f.label :message %>
-								<%= f.text_area :message, class: "form-control", id: "message2", placeholder: "Message", rows: 8 %>
-                <%# <textarea  class="form-control" id="message2" name="message" onblur="if(this.value == '') this.value='Message'" onfocus="if(this.value == 'Message') this.value=''">Message</textarea> %>
-                <%# <div class="error" id="err-message">Please enter message</div> %>
-
-              </div>
-            </div> 
-            <div class="row spacer30"></div>
-            <div class="row">
-              <div class="col-md-8 col-md-offset-2">
-                <p class="text-center">Please, fill out the form and press submit. Or, contact us by email or telephone. Our email and phone number are below.</p>
-              </div>
-            </div>
-            <div class="row spacer10"></div>
-            <div class="row">            
-              <div class="col-xs-12 text-center">
-							<div class="alert alert-success" id="contact_form_success" style="display:none;">The e-mail was successfully sent. Thank you. We will reach back out to you as soon as we possibly can.</div>
-							<div class="error alert alert-danger" id="err-form">There is a problem with the contact form, please verify that all the fields are filled out correctly.</div>
-            <div class="error" id="err-timedout">The connection to the server timed out!</div>
-            <div class="error" id="err-state"></div>
-              
-                <%# <button type="submit" class="btn btn-default" id="send">Submit</button> %>
-								<%= f.submit "Submit", class: "btn btn-default" %>
-              </div>
-            </div>
-          </div>  
-					
-				<% end %>
-          <%# <form role="form" name="ajax-form" id="ajax-form" action="php/mail-it.php" method="post" class="form-main"> %>
-          <%# <div class="col-xs-12"> %>
-            
-          <%#   <div class="row"> %>            
-          <%#     <div class="form-group col-xs-6"> %>
-          <%#       <label for="name2">name</label> %>
-          <%#       <input class="form-control" id="name2" name="name" onblur="if(this.value == '') this.value='Name'" onfocus="if(this.value == 'Name') this.value=''" type="text" value="Name"> %>
-          <%#       <div class="error" id="err-name">Please enter name</div> %>
-          <%#     </div> %>
-          <%#     <div class="form-group col-xs-6"> %>
-          <%#       <label for="email2">email</label> %>
-          <%#       <input  class="form-control" id="email2" name="email"  type="text"  onfocus="if(this.value == 'E-mail') this.value='';" onblur="if(this.value == '') this.value='E-mail';" value="E-mail"> %>
-          <%#       <div class="error" id="err-emailvld">E-mail is not a valid format</div> %> 
-          <%#     </div> %>
-          <%#   </div> %>
-            
-          <%#   <div class="row"> %>            
-          <%#     <div class="form-group col-xs-12"> %>
-          <%#       <label for="message2">message</label> %>
-          <%#       <textarea  class="form-control" id="message2" name="message" onblur="if(this.value == '') this.value='Message'" onfocus="if(this.value == 'Message') this.value=''">Message</textarea> %>
-          <%#       <div class="error" id="err-message">Please enter message</div> %>
-
-          <%#     </div> %>
-          <%#   </div> %> 
-          <%#   <div class="row spacer30"></div> %>
-          <%#   <div class="row"> %>
-          <%#     <div class="col-md-8 col-md-offset-2"> %>
-          <%#       <p class="text-center">Please, fill out the form and press submit. Or, contact us by email or telephone. Our email and phone number are below.</p> %>
-          <%#     </div> %>
-          <%#   </div> %>
-          <%#   <div class="row spacer10"></div> %>
-          <%#   <div class="row"> %>            
-          <%#     <div class="col-xs-12 text-center"> %>
-          <%#   <div id="ajaxsuccess">E-mail was successfully sent.</div> %>
-          <%#   <div class="error" id="err-form">There was a problem validating the form please check!</div> %>
-          <%#   <div class="error" id="err-timedout">The connection to the server timed out!</div> %>
-          <%#   <div class="error" id="err-state"></div> %>
-              
-          <%#       <button type="submit" class="btn btn-default" id="send">Submit</button> %>
-          <%#     </div> %>
-          <%#   </div> %>
-          <%# </div> %>  
-          <%# </form> %>        
+				<div class="col-xs-12">
+					<h3>Thanks for taking the time to consider Capstory. We look forward to being able to partner with one of the best venues in Columbus to bring an even better experience to your brides.</h3>	
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="pull-right">
+							<br>
+							<br>
+							<h3>Sincerely,</h3>
+							<%= image_tag "super_signature.png", width: 200 %>
+							<br>
+							<br>
+							<h3>Suprasanna Mishra</h3>
+							<h3>CEO, Capstory</h3>
+						</div>
+					</div>
+				</div>
       </div>      
+      <%# <div class="row"> %>
+				<%# <%= form_for(@contact_form, remote: true) do |f| %1> %>
+      <%#     <div class="col-xs-12"> %>
+            
+      <%#       <div class="row"> %>            
+      <%#         <div class="form-group col-xs-6"> %>
+								<%# <%= f.label :name %1> %>
+								<%# <%= f.text_field :name, class: "form-control", id: "name2", placeholder: "Name" %1> %>
+      <%#           <1%# <input class="form-control" id="name2" name="name" onblur="if(this.value == '') this.value='Name'" onfocus="if(this.value == 'Name') this.value=''" type="text" value="Name"> %1> %>
+      <%#           <1%# <div class="error" id="err-name">Please enter name</div> %1> %>
+      <%#         </div> %>
+      <%#         <div class="form-group col-xs-6"> %>
+      <%#           <1%# <label for="email2">email</label> %1> %>
+								<%# <%= f.label :email %1> %>
+								<%# <%= f.text_field :email, class: "form-control", id: "email2", placeholder: "E-mail" %1> %> 
+      <%#           <1%# <input  class="form-control" id="email2" name="email"  type="text"  onfocus="if(this.value == 'E-mail') this.value='';" onblur="if(this.value == '') this.value='E-mail';" value="E-mail"> %1> %>
+      <%#           <1%# <div class="error" id="err-emailvld">E-mail is not a valid format</div> %1> %> 
+      <%#         </div> %>
+      <%#       </div> %>
+            
+      <%#       <div class="row"> %>            
+      <%#         <div class="form-group col-xs-12"> %>
+      <%#           <1%# <label for="message2">message</label> %1> %>
+								<%# <%= f.label :message %1> %>
+								<%# <%= f.text_area :message, class: "form-control", id: "message2", placeholder: "Message", rows: 8 %1> %>
+      <%#           <1%# <textarea  class="form-control" id="message2" name="message" onblur="if(this.value == '') this.value='Message'" onfocus="if(this.value == 'Message') this.value=''">Message</textarea> %1> %>
+      <%#           <1%# <div class="error" id="err-message">Please enter message</div> %1> %>
+
+      <%#         </div> %>
+      <%#       </div> %> 
+      <%#       <div class="row spacer30"></div> %>
+      <%#       <div class="row"> %>
+      <%#         <div class="col-md-8 col-md-offset-2"> %>
+      <%#           <p class="text-center">Please, fill out the form and press submit. Or, contact us by email or telephone. Our email and phone number are below.</p> %>
+      <%#         </div> %>
+      <%#       </div> %>
+      <%#       <div class="row spacer10"></div> %>
+      <%#       <div class="row"> %>            
+      <%#         <div class="col-xs-12 text-center"> %>
+							<%# <div class="alert alert-success" id="contact_form_success" style="display:none;">The e-mail was successfully sent. Thank you. We will reach back out to you as soon as we possibly can.</div> %>
+							<%# <div class="error alert alert-danger" id="err-form">There is a problem with the contact form, please verify that all the fields are filled out correctly.</div> %>
+      <%#       <div class="error" id="err-timedout">The connection to the server timed out!</div> %>
+      <%#       <div class="error" id="err-state"></div> %>
+              
+      <%#           <1%# <button type="submit" class="btn btn-default" id="send">Submit</button> %1> %>
+								<%# <%= f.submit "Submit", class: "btn btn-default" %1> %>
+      <%#         </div> %>
+      <%#       </div> %>
+      <%#     </div> %>  
+					
+				<%# <% end %1> %>
+      <%#     <1%# <form role="form" name="ajax-form" id="ajax-form" action="php/mail-it.php" method="post" class="form-main"> %1> %>
+      <%#     <1%# <div class="col-xs-12"> %1> %>
+            
+      <%#     <1%#   <div class="row"> %1> %>            
+      <%#     <1%#     <div class="form-group col-xs-6"> %1> %>
+      <%#     <1%#       <label for="name2">name</label> %1> %>
+      <%#     <1%#       <input class="form-control" id="name2" name="name" onblur="if(this.value == '') this.value='Name'" onfocus="if(this.value == 'Name') this.value=''" type="text" value="Name"> %1> %>
+      <%#     <1%#       <div class="error" id="err-name">Please enter name</div> %1> %>
+      <%#     <1%#     </div> %1> %>
+      <%#     <1%#     <div class="form-group col-xs-6"> %1> %>
+      <%#     <1%#       <label for="email2">email</label> %1> %>
+      <%#     <1%#       <input  class="form-control" id="email2" name="email"  type="text"  onfocus="if(this.value == 'E-mail') this.value='';" onblur="if(this.value == '') this.value='E-mail';" value="E-mail"> %1> %>
+      <%#     <1%#       <div class="error" id="err-emailvld">E-mail is not a valid format</div> %1> %> 
+      <%#     <1%#     </div> %1> %>
+      <%#     <1%#   </div> %1> %>
+            
+      <%#     <1%#   <div class="row"> %1> %>            
+      <%#     <1%#     <div class="form-group col-xs-12"> %1> %>
+      <%#     <1%#       <label for="message2">message</label> %1> %>
+      <%#     <1%#       <textarea  class="form-control" id="message2" name="message" onblur="if(this.value == '') this.value='Message'" onfocus="if(this.value == 'Message') this.value=''">Message</textarea> %1> %>
+      <%#     <1%#       <div class="error" id="err-message">Please enter message</div> %1> %>
+
+      <%#     <1%#     </div> %1> %>
+      <%#     <1%#   </div> %1> %> 
+      <%#     <1%#   <div class="row spacer30"></div> %1> %>
+      <%#     <1%#   <div class="row"> %1> %>
+      <%#     <1%#     <div class="col-md-8 col-md-offset-2"> %1> %>
+      <%#     <1%#       <p class="text-center">Please, fill out the form and press submit. Or, contact us by email or telephone. Our email and phone number are below.</p> %1> %>
+      <%#     <1%#     </div> %1> %>
+      <%#     <1%#   </div> %1> %>
+      <%#     <1%#   <div class="row spacer10"></div> %1> %>
+      <%#     <1%#   <div class="row"> %1> %>            
+      <%#     <1%#     <div class="col-xs-12 text-center"> %1> %>
+      <%#     <1%#   <div id="ajaxsuccess">E-mail was successfully sent.</div> %1> %>
+      <%#     <1%#   <div class="error" id="err-form">There was a problem validating the form please check!</div> %1> %>
+      <%#     <1%#   <div class="error" id="err-timedout">The connection to the server timed out!</div> %1> %>
+      <%#     <1%#   <div class="error" id="err-state"></div> %1> %>
+              
+      <%#     <1%#       <button type="submit" class="btn btn-default" id="send">Submit</button> %1> %>
+      <%#     <1%#     </div> %1> %>
+      <%#     <1%#   </div> %1> %>
+      <%#     <1%# </div> %1> %>  
+      <%#     <1%# </form> %1> %>        
+      <%# </div> %>      
     </div>
     <div class="top">
         <div class="top-line"></div>
