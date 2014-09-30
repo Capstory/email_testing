@@ -62,7 +62,21 @@ class ApplicationController < ActionController::Base
 	def resolve_url
 		if uri_to_redirect(request.env["HTTP_HOST"])
 			redirect_to "http://www.capstory.me#{request.env['REQUEST_URI']}"
-		# elsif subdomain_to_redirect(request.env)
+		# ============================================================
+		# I need to come back to this in order to constrain the various subdomains so that only the capsules 
+		# for that particular subdomain can be seen. If the capsule is not a member of the subdomain, it should 
+		# be re-routed to a root url. 
+		# User story ---------
+		# A user, who is a customer of a vendor, wants to visit their capsule. Hence, they enter the capsule ID 
+		# under the subdomain of the vendor.
+		#
+		# User Story ---------
+		# A user, who is not a customer of a vendor, wants to visit a capsule. They enter the capsule ID under the
+		# subdomain of the vendor. However, because the capsule was not order through the vendor, the user is redirected
+		# the vendor's landing page. Or, do we still want them redirect to the capsule but at the standard subdomain?
+		#
+		# ============================================================
+			# elsif subdomain_to_redirect(request.env)
 		# 	redirect_to "http://#{request.env['HTTP_HOST']}"
 		end
 	end

@@ -73,16 +73,23 @@ class EmailRetriever
     self.get_new_emails.each do |mail|
     
       email = Email.new(self.get_email_data(mail), self.get_email_header(mail), self.default_capsule_id)
-    	
-      if email.has_attachments?
-        email.process_attachments
-      else
-        email.proccess_body
-      end
-      
-      self.imap_notify(mail)
-      
-      email.notify_sender
+  
+			if email.capsule_accepting_submissions?
+				if email.has_attachments?
+					email.process_attachments
+				else
+					email.proccess_body
+				end
+				email.notify_sender
+			else
+				puts "==============================="
+				puts "Unable to submit photo"
+				puts "Capsule closed"
+				puts "==============================="
+
+				email.notify_sender_of_closed_capsule
+			end
+			self.imap_notify(mail)
     end
 
     self.imap_close_out
@@ -112,6 +119,10 @@ class Email
     @header = header
     @capsule_id = self.set_capsule_id(default_capsule_id)
   end
+
+	def capsule_accepting_submissions?
+		Capsule.find(@capsule_id).accepting_submissions?	
+	end
 
   def set_capsule_id(default_capsule_id)
     capsule_id = Capsule.exists?(email: self.capsule_email) ? Capsule.find_by_email(self.capsule_email).id : default_capsule_id
@@ -189,4 +200,12 @@ class Email
       PostMailer.new_post_response(self.sender_email, self.capsule_email, capsule_link, capsule_message).deliver
     end  
   end
+
+	def notify_sender_of_closed_capsule
+		if Rails.env.production?
+			PostMailer.capsule_closed(self.sender_email, self.capsule_email)
+		else
+			PostMailer.capsule_closed(self.sender_email, self.capsule_email)
+		end
+	end
 end

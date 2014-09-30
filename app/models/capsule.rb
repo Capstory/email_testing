@@ -39,4 +39,8 @@ class Capsule < ActiveRecord::Base
       return owner.first.user
     end
   end
+
+	def accepting_submissions?
+		locked ? false : true
+	end
 end

@@ -9,6 +9,13 @@ class PostMailer < ActionMailer::Base
     
     mail(from: @capsule_email, reply_to: @capsule_email, to: @sender_email, subject: "Success!")
   end
+
+	def capsule_closed(sender, capsule_email)
+		@sender_email = sender
+		@capsule_email = capsule_email
+		
+		mail(from: @capsule_email, reply_to: "hello@capstory.me", to: @sender_email, subject: "This Capsule is Closed")
+	end
   
   def post_event_blast(sender, capsule_email, capsule_link)
     @sender_email = sender
