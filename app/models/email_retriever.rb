@@ -78,7 +78,7 @@ class EmailRetriever
 				if email.has_attachments?
 					email.process_attachments
 				else
-					email.proccess_body
+					email.process_body
 				end
 				email.notify_sender
 			else
