@@ -39,7 +39,9 @@
 							<li class="active"><%= link_to @capsule.name.upcase, @capsule %></li>
 						<% end %>
 					
-						<li><%= link_to "UPLOAD A PHOTO", "#", id: "activate_filepicker" %></li>
+						<% if @capsule.accepting_submissions? %>
+							<li><%= link_to "UPLOAD A PHOTO", "#", id: "activate_filepicker" %></li>
+						<% end %>
 					
 						<% if current_user && (current_user.admin? || capsule_owner(current_user.id, @capsule.id)) %>					
 							<li class="has-dropdown not-click">

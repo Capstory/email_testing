@@ -104,6 +104,7 @@ EmailTesting::Application.routes.draw do
 
   match "dashboard" => "admin_functions#dashboard"
 	match "manage_capsule" => "admin_functions#manage_capsule"
+	match "change_capsule_status" => "admin_functions#change_capsule_status"
 
   # ===================================================
   # AngularJS Play Routes 

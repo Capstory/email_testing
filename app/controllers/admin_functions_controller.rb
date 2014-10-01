@@ -65,4 +65,21 @@ class AdminFunctionsController < ApplicationController
 	def	manage_capsule
 		@capsule = Capsule.find(params[:capsule_id])
 	end
+
+	def change_capsule_status
+		@capsule = Capsule.find(params[:capsule_id])
+		case params[:capsule_action]
+		when "lock"
+			@capsule.locked = true
+		when "unlock"
+			@capsule.locked = false
+		end
+		if @capsule.save
+			flash[:success] = "Capsule status changed"
+			redirect_to :back
+		else
+			flash[:error] = "Unable to change the capsule status."
+			redirect_to :back
+		end
+	end
 end
