@@ -203,9 +203,9 @@ class Email
 
 	def notify_sender_of_closed_capsule
 		if Rails.env.production?
-			PostMailer.capsule_closed(self.sender_email, self.capsule_email)
+			PostMailer.capsule_closed(self.sender_email, self.capsule_email).deliver
 		else
-			PostMailer.capsule_closed(self.sender_email, self.capsule_email)
+			PostMailer.capsule_closed(self.sender_email, self.capsule_email).deliver
 		end
 	end
 end
