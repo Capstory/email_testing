@@ -9,6 +9,11 @@ class HomepagesController < ApplicationController
     @engaged_contact = EngagedContact.new
   end
 
+	def ovni_landing
+		@contact_form = ContactForm.new
+		render "ovni_landing", layout: "ovni_layout"
+	end
+
   def first_test_landing
     # @access_request = AccessRequest.new
     # @reminder = Reminder.new

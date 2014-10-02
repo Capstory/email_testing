@@ -13,7 +13,7 @@ class VendorPagesController < ApplicationController
 			render "alt_show", layout: "matt_ryan"
 		else
 			@contact_form = ContactForm.new
-			render "new_vendor_page", layout: "new_vendors"
+			render "new_vendor_page", layout: "ovni_layout"
 		end
 	end
   
