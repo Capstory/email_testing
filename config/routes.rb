@@ -89,6 +89,7 @@ EmailTesting::Application.routes.draw do
 	match "" => "vendor_pages#ohiounion", constraints: OhioUnionConstraints.new
 	match "" => "vendor_pages#alt_show", constraints: VendorSubdomainConstraints.new
 
+	match "landing" => "homepages#landing"
 	match "a" => "homepages#alt_first_test_landing"
   match "alt_a" => "homepages#first_test_landing"
   match "b" => "homepages#second_test_landing"
@@ -226,46 +227,6 @@ EmailTesting::Application.routes.draw do
   # Must be kept at the bottom of the page so the named-url is the first route that is found and followed
   # ==============================
   get '/:id' => "capsules#show" 
-  
-
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
-
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
 
   root :to => "users#welcome", constraints: SiteConstraints.new
   
