@@ -8,7 +8,7 @@ group :development do
   gem 'sqlite3'
 end
 
-group :production do
+group :production, :staging do
   gem 'thin'
   gem 'pg'
 end
@@ -87,11 +87,6 @@ gem 'rubyzip'
 
 group :development, :staging do
 	gem "letter_opener_web", "~> 1.2.0"
-end
-
-group :staging do
-	gem "pg"
-	gem "thin"
 end
 
 # Use unicorn as the app server
