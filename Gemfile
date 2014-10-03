@@ -85,6 +85,10 @@ gem 'rubyzip'
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 
+group :development, :staging do
+	gem "letter_opener_web", "~> 1.2.0"
+end
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

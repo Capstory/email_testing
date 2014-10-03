@@ -221,6 +221,9 @@ EmailTesting::Application.routes.draw do
   resources :download_managers, only: ["index"]
   
   mount Resque::Server, at: "/resque"
+	if Rails.env.development? || Rails.env.staging?
+		mount LetterOpenerWeb::Engine, at: "email_preview/letter_opener"
+	end
   
 	get "/:id" => "capsules#conference_capsule", constraints: PureRomanceConstraints.new
 
