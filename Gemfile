@@ -85,12 +85,11 @@ gem 'rubyzip'
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 
-group :development do
+group :development, :staging do
 	gem "letter_opener_web", "~> 1.2.0"
 end
 
 group :staging do
-	gem "letter_opener_web", "~> 1.2.0"
 	gem "pg"
 	gem "thin"
 end
