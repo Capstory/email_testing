@@ -89,7 +89,8 @@ EmailTesting::Application.routes.draw do
 	match "" => "vendor_pages#ohiounion", constraints: OhioUnionConstraints.new
 	match "" => "vendor_pages#alt_show", constraints: VendorSubdomainConstraints.new
 
-	match "homepages/ovni" => "homepages#ovni_landing"
+	match "homepages/ovni" => "homepages#brads_ovni_landing"
+	match "homepages/ovni2" => "homepages#dustins_ovni_landing"
 	match "landing" => "homepages#landing"
 	match "a" => "homepages#alt_first_test_landing"
   match "alt_a" => "homepages#first_test_landing"

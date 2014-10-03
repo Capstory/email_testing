@@ -9,9 +9,14 @@ class HomepagesController < ApplicationController
     @engaged_contact = EngagedContact.new
   end
 
-	def ovni_landing
+	def brads_ovni_landing
 		@contact_form = ContactForm.new
-		render "ovni_landing", layout: "ovni_layout"
+		render "brads_ovni_landing_99", layout: "ovni_layout"
+	end
+
+	def dustins_ovni_landing
+		@contact_form = ContactForm.new
+		render "dustins_ovni_landing", layout: "ovni_layout"
 	end
 
   def first_test_landing
