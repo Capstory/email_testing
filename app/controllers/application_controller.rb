@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 	protect_from_forgery
 	# before_filter :show_request_env_variables
 	force_ssl if: :in_production?
-	before_filter :resolve_url
+	# before_filter :resolve_url
 
 	private
 
