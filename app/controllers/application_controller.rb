@@ -62,7 +62,7 @@ class ApplicationController < ActionController::Base
 
 	def resolve_url
 		if uri_to_redirect(request.env["HTTP_HOST"])
-			redirect_to "http://www.capstory.me#{request.env['REQUEST_URI']}"
+			redirect_to "https://www.capstory.me#{request.env['REQUEST_URI']}"
 		# ============================================================
 		# I need to come back to this in order to constrain the various subdomains so that only the capsules 
 		# for that particular subdomain can be seen. If the capsule is not a member of the subdomain, it should 
