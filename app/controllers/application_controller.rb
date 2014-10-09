@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 	protect_from_forgery
-	# before_filter :show_request_env_variables
-	force_ssl if: :in_production?
+	before_filter :show_request_env_variables
+	force_ssl if: :set_ssl_by_domain
 	# before_filter :resolve_url
 
 	private
@@ -131,6 +131,10 @@ class ApplicationController < ActionController::Base
 		return logo_route
 	end
 	helper_method :resolve_logo_route
+
+	def set_ssl_by_domain
+		in_production?		
+	end
 
 	def in_production?
 		Rails.env.production?	
