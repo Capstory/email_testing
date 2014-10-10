@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
 	protect_from_forgery
-	before_filter :show_request_env_variables
+	# before_filter :show_request_env_variables
 	force_ssl if: :set_ssl_by_domain
-	# before_filter :redirect_dot_com_domain?
+	before_filter :redirect_dot_com_domain?
 	# before_filter :resolve_url
 
 	private
