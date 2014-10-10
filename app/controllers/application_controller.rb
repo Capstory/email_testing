@@ -169,8 +169,17 @@ class ApplicationController < ActionController::Base
 	end
 
 	def redirect_dot_com_domain
-		puts "======================================="
-		puts "Should redirect from #{request.url} to https://#{request.subdomain}.capstory.#{request_tld}#{request.env['REQUEST_URI']}"
-		puts "======================================="
+		# puts "======================================="
+		# puts "Should redirect from #{request.url} to https://#{request.subdomain}.capstory.me#{request.env['REQUEST_URI']}"
+		# puts "======================================="
+		redirect_to prepped_redirect_address
+	end
+
+	def prepped_redirect_address
+		if request.subdomain.blank?
+			"https://capstory.me#{request.env['REQUEST_URI']}"
+		else
+			"https://#{request.subdomain}.capstory.me#{request.env['REQUEST_URI']}"
+		end	
 	end
 end
