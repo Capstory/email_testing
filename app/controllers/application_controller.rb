@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
 	protect_from_forgery
-	# before_filter :show_request_env_variables
+	before_filter :show_request_env_variables
 	force_ssl if: :set_ssl_by_domain
+	# before_filter :redirect_dot_com_domain?
 	# before_filter :resolve_url
 
 	private
@@ -111,6 +112,7 @@ class ApplicationController < ActionController::Base
 
 		puts "============================"
 		puts "Request TLD: #{request_tld}"
+		redirect_dot_com_domain
 	end
 
 	def resolve_logo_route
@@ -158,5 +160,17 @@ class ApplicationController < ActionController::Base
 	def request_tld
 		# request.env["HTTP_HOST"].split(".").last
 		request.host.split(".").last
+	end
+
+	def redirect_dot_com_domain?
+		if in_production? && dot_com_domain?
+			redirect_dot_com_domain
+		end
+	end
+
+	def redirect_dot_com_domain
+		puts "======================================="
+		puts "Should redirect from #{request.url} to https://#{request.subdomain}.capstory.#{request_tld}#{request.env['REQUEST_URI']}"
+		puts "======================================="
 	end
 end
