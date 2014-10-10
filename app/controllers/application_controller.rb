@@ -133,10 +133,28 @@ class ApplicationController < ActionController::Base
 	helper_method :resolve_logo_route
 
 	def set_ssl_by_domain
-		in_production?		
+		if in_production?	&& dot_com_domain?
+			false
+		elsif in_production?
+			true
+		else
+			false
+		end
 	end
 
 	def in_production?
 		Rails.env.production?	
+	end
+
+	def dot_com_domain?
+		if request_tld == "com"
+			true
+		else
+			false	
+		end
+	end
+
+	def request_tld
+		host.split(".").last
 	end
 end
