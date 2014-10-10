@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 	protect_from_forgery
 	# before_filter :show_request_env_variables
-	# force_ssl if: :set_ssl_by_domain
+	force_ssl if: :set_ssl_by_domain
 	# before_filter :resolve_url
 
 	private
@@ -110,6 +110,7 @@ class ApplicationController < ActionController::Base
 		end
 
 		puts "============================"
+		puts "Request TLD: #{request_tld}"
 	end
 
 	def resolve_logo_route
@@ -155,6 +156,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def request_tld
-		host.split(".").last
+		# request.env["HTTP_HOST"].split(".").last
+		request.host.split(".").last
 	end
 end
