@@ -4,8 +4,20 @@ class ApplicationController < ActionController::Base
 	force_ssl if: :set_ssl_by_domain
 	before_filter :redirect_dot_com_domain?
 	# before_filter :resolve_url
+	#
+	after_filter :set_csrf_cookie_for_ng
+
+	protected
+	
+	def verified_request?
+		super || form_authenticity_token == request.headers['X_XSRF_TOKEN']
+	end
 
 	private
+
+	def set_csrf_cookie_for_ng
+		cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
+	end
 
 	def current_user
 		@current_user ||= User.find(session[:user_id]) if session[:user_id]

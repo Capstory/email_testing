@@ -2,8 +2,8 @@
 //= require jquery_ujs
 //= require foundation
 //= require ./capsules/isotope.pkgd.min
-//= require ./conference_capsule/angular
-//= require ./conference_capsule/angular-route
+//= require ./angular_src_files/angular
+//= require ./angular_src_files/angular-route
 //= require ./conference_capsule/conference_capsule.js.erb
 //= require_tree ./conference_capsule/controllers
 //= require_tree ./conference_capsule/services

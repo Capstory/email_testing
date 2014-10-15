@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  attr_accessible :body, :email, :image, :capsule_id, :filepicker_url
+  attr_accessible :body, :email, :image, :capsule_id, :filepicker_url, :tag_for_deletion
 
   has_attached_file :image, :styles => { :large => "450x450>", :medium => "300x300>", :thumb => "100x100>", :small => "200x200>", :capsule_height => "x350", :capsule_width => "350x", :lightbox_width => "1024x" }
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/

@@ -1,0 +1,19 @@
+<div keypress="13:keypresser();107:nextPhoto();106:previousPhoto()" class="row" ng-init="init()">
+  <div class="small-12 small-centered columns">
+    <div class="row">
+      <div class="medium-8 columns">
+        <img src="{{ selected_post.image }}" width="100%", height="auto" />
+      </div>
+      <div class="medium-4 columns">
+        <p>Capsule ID: {{ selected_post.capsule_id }}</p>
+        <p>Submitter: {{ selected_post.email }}</p>
+        <button class="btn" ng-click="markForTrash(selected_post)">Delete</button>
+        <p>Index: {{ selected_post.index }}</p>
+        <p>
+        {{ selected_post }}
+        </p>
+      </div>
+    </div>
+    <img class="th" src="{{ thumbnailImage(post) }}" ng-class="postSelected(post)" width="100px" height="auto" ng-repeat="post in posts" ng-click="selectPost($index)" style="margin:10px;"/>
+  </div>
+</div>

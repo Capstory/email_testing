@@ -108,6 +108,8 @@ EmailTesting::Application.routes.draw do
   match "dashboard" => "admin_functions#dashboard"
 	match "manage_capsule" => "admin_functions#manage_capsule"
 	match "change_capsule_status" => "admin_functions#change_capsule_status"
+	match "remote_moderation" => "admin_functions#remote_moderation"
+	match "remote_moderation/mark_for_trash" => "admin_functions#remote_moderation_delete"
 
   # ===================================================
   # AngularJS Play Routes 
