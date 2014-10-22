@@ -182,5 +182,5 @@ remote_moderation_app.controller("RemoteModerationController", ["$document", "$i
 			function(status) {
 				console.log("Couldn't get new data", status);
 			});	
-	}, 50000);
+	}, 5000);
 }]);
