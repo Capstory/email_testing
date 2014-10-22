@@ -106,4 +106,40 @@ class AdminFunctionsController < ApplicationController
 		# 	format.json { render json: {success: "here we go"}, status: 304 }
 		# end
 	end
+
+	def remote_moderation_undelete
+		post = Post.find(params[:post_id])
+		post.tag_for_deletion = false
+		if post.save
+			respond_to do |format|
+				format.json { render json: { success: post.id, status_code: 200 } }
+			end
+		else
+			respond_to do |format|
+				format.json { render json: { error: post.id, status_code: 404 } }
+			end
+		end
+	end
+
+	def remote_moderation_new_posts
+		posts = Post.where("id > ?", params[:after_id])
+
+		respond_to do |format|
+			format.json { render json: posts }
+		end
+	end
+
+	def remote_moderation_verify_post
+		post = Post.find(params[:post_id])
+		post.verified = true
+		if post.save
+			respond_to do |format|
+				format.json { render json: { success: post.id, status_code: 200 } }
+			end
+		else
+			respond_to do |format|
+				format.json { render json: { error: post.id, status_code: 404 } }
+			end
+		end
+	end
 end

@@ -2,16 +2,27 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @capsule = Capsule.find(params[:capsule_id])
-    @posts = @capsule.posts.where('id > ?', params[:after].to_i)
-    
-    respond_to :js
+		visible_info = JSON.parse(params[:capsule_id])
+    @capsule = Capsule.find(visible_info[0])
+		posts = @capsule.posts.verified.pluck(:id)
+    # @posts = @capsule.posts.verified.where('id > ?', params[:after].to_i)
+		posts_to_get = posts.reject { |post_id| visible_info[1].include?(post_id) }
+		@posts = Post.find(posts_to_get)
+		
+		unless @posts.empty?
+			visible_info = [visible_info[0], (visible_info[1] + posts_to_get).flatten]
+			@visible_info = visible_info.to_json
+		end
+
+    respond_to do |format|
+			format.js
+		end
   end
   
   def slides
     @capsule = Capsule.find(params[:capsule_id])
     @slides = []
-    posts = @capsule.posts.where('id > ?', params[:after].to_i)
+    posts = @capsule.posts.verified.where('id > ?', params[:after].to_i)
     unless posts.empty?
       posts.each { |post| @slides << post.image.url }
       @id = posts.last.id
@@ -47,7 +58,7 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    Resque.enqueue(FilepickerUpload, params[:post][:filepicker_url], params[:post][:capsule_id])
+    Resque.enqueue(FilepickerUpload, params[:post][:filepicker_url], params[:post][:capsule_id], params[:post][:capsule_requires_verification])
 
     flash[:success] = "Photo successfully submitted. It may take a moment to upload."
     redirect_to :back

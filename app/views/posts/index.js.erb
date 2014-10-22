@@ -1,6 +1,12 @@
-<% if !@posts.empty? %>
-  var $newElement = $("<%= j render @posts.order('created_at DESC') %>");
+<% unless @posts.empty? %>
+	var $dataUrl = $("#original_container").attr("data-url");
+	$dataUrl = $dataUrl.split("?");
+	var $newDataUrl = "capsule_id=" + "<%= @visible_info %>";
+	$newDataUrl = $dataUrl[0] + "?" + $newDataUrl;
+	<%# console.log("New Data Url: ", $newDataUrl); %>
+	$("#original_container").data("url", $newDataUrl);
 
+  var $newElement = $("<%= j render @posts %>");
 
   $("#original_container").prepend($newElement).fadeIn('slow');
 

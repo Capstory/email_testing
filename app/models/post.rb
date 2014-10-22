@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  attr_accessible :body, :email, :image, :capsule_id, :filepicker_url, :tag_for_deletion
+  attr_accessible :body, :email, :image, :capsule_id, :filepicker_url, :tag_for_deletioni, :verified
 
   has_attached_file :image, :styles => { :large => "450x450>", :medium => "300x300>", :thumb => "100x100>", :small => "200x200>", :capsule_height => "x350", :capsule_width => "350x", :lightbox_width => "1024x" }
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
@@ -8,4 +8,7 @@ class Post < ActiveRecord::Base
   # do_not_validate_attachment_file_type :image
   belongs_to :capsule
   has_one :video
+
+	scope :verified, -> { where(verified: true) }
+	scope :not_yet_verified, -> { where(verified: false) }
 end

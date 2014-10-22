@@ -13,6 +13,8 @@
 	<div class="small-12 columns">
 		<%= form_for @post, url: conference_filepicker_process_path do |f| %>
 			<%= f.hidden_field :capsule_id, value: @capsule.id %>
+			<%= f.hidden_field :capsule_requires_verification, value: @capsule.requires_verification %>
+
 			<p class="subheader"><%= f.label :time_group, "Step 1: Select a time slot for the photos" %></p>
 			<%= f.select(:time_group, options_for_select(@time_group_options)) %> 
 

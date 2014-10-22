@@ -63,6 +63,7 @@ class Video < ActiveRecord::Base
       post.image = URI.parse(new_url)
       post.body = options[:body]
       post.email = options[:email]
+			post.verified = options[:verified]
     end
     
     # Setting final parameters for video instance
@@ -82,6 +83,7 @@ class Video < ActiveRecord::Base
 	# options[:capsule_id] => The ID of the desired capsule
 	# options[:body] => Default should be 'No message'
 	# options[:email] => Sender email - manual should default to brad@capstory.me
+	# options[:verified] => True -> the post will appear in the Capsule, False -> the post must be verified first
 	#
 	def	self.manually_generate_file(options={})
     video_file = Video.create
@@ -142,6 +144,7 @@ class Video < ActiveRecord::Base
       post.image = URI.parse(new_url)
       post.body = options[:body]
       post.email = options[:email]
+			post.verified = options[:verified]
     end
     
     # Setting final parameters for video instance

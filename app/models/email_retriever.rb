@@ -112,21 +112,22 @@ class AttachmentFile < Tempfile
 end
 
 class Email
-  attr_accessor :data, :header, :capsule_id
+  attr_accessor :data, :header, :capsule_id, :post_verified
 
   def initialize(data, header, default_capsule_id)
     @data = data
     @header = header
-    @capsule_id = self.set_capsule_id(default_capsule_id)
+    @capsule_id, @post_verified = self.set_capsule_id_and_verification_status(default_capsule_id)
   end
 
 	def capsule_accepting_submissions?
 		Capsule.find(@capsule_id).accepting_submissions?	
 	end
 
-  def set_capsule_id(default_capsule_id)
+  def set_capsule_id_and_verification_status(default_capsule_id)
     capsule_id = Capsule.exists?(email: self.capsule_email) ? Capsule.find_by_email(self.capsule_email).id : default_capsule_id
-    return capsule_id
+		post_verified = Capsule.find(capsule_id).requires_verification ? false : true
+    return capsule_id, post_verified
   end
 
   def sender_email
@@ -168,12 +169,12 @@ class Email
         post_body = File.extname(attachment.filename) == ".txt" ? attachment.body.decoded : "No message"
       
         if EmailRetriever.video_formats.include?(File.extname(attachment.filename))
-          Video.generate_file(@upload_file, { body: post_body, email: self.sender_email, capsule_id: self.capsule_id })
+          Video.generate_file(@upload_file, { body: post_body, email: self.sender_email, capsule_id: self.capsule_id, verified: self.post_verified })
           # Post.create!(body: post_body, email: @sender_email, image: '#', capsule_id: @capsule_id)
         elsif File.extname(attachment.filename) == ".txt"
-          Post.create!(body: post_body, email: self.sender_email, capsule_id: self.capsule_id)
+          Post.create!(body: post_body, email: self.sender_email, capsule_id: self.capsule_id, verified: self.post_verified)
         else
-          Post.create!(body: post_body, email: self.sender_email, image: @upload_file, capsule_id: self.capsule_id)
+          Post.create!(body: post_body, email: self.sender_email, image: @upload_file, capsule_id: self.capsule_id, verified: self.post_verified)
         end
         @upload_file.close
         @upload_file.unlink
@@ -184,7 +185,7 @@ class Email
   def process_body
     plain_body = self.data.body.decoded
           
-    Post.create!(body: plain_body, email: self.sender_email, capsule_id: self.capsule_id)
+    Post.create!(body: plain_body, email: self.sender_email, capsule_id: self.capsule_id, verified: self.post_verified)
   end
 
   def notify_sender
