@@ -42,13 +42,14 @@ class CapsulesController < ApplicationController
   
   def show
     @capsule = Capsule.find(params[:id].to_s.downcase)
-    @posts = @capsule.posts.order("created_at DESC").page(params[:page]).per_page(10)
+		@visible_posts = [ @capsule.id, @capsule.posts.verified.pluck(:id) ]
+    @posts = @capsule.posts.verified.order("created_at DESC").page(params[:page]).per_page(10)
     @post = Post.new
   end
 	
 	def alt_show
     @capsule = Capsule.find(params[:id].to_s.downcase)
-    @posts = @capsule.posts.order("created_at DESC")
+    @posts = @capsule.posts.verified.order("created_at DESC")
 	end	
 
   def edit
@@ -102,14 +103,14 @@ class CapsulesController < ApplicationController
 
 	def conference_filepicker_process
 		# raise params[:post].to_yaml
-		Resque.enqueue(FilepickerUpload, params[:post][:filepicker_url], params[:post][:capsule_id], params[:post][:time_group])	
+		Resque.enqueue(FilepickerUpload, params[:post][:filepicker_url], params[:post][:capsule_id], params[:post][:capsule_requires_verification], params[:post][:time_group])	
 
 		flash[:success] = "Photos submitted. Processing has started."
 		redirect_to :back
 	end
 	
 	def	conference_get_posts
-		@posts = Capsule.find(params[:id]).posts
+		@posts = Capsule.find(params[:id]).posts.verified
 
 		respond_to do |format|
 			format.json {
@@ -120,7 +121,7 @@ class CapsulesController < ApplicationController
 
 	def	conference_get_new_posts
 		@capsule = Capsule.find(params[:capsule_id])
-		@posts = @capsule.posts.where("id > ?", params[:after_id].to_i)
+		@posts = @capsule.posts.verified.where("id > ?", params[:after_id].to_i)
 
 		respond_to do |format|
 			format.json {
@@ -136,7 +137,7 @@ class CapsulesController < ApplicationController
   def slideshow
     @capsule = Capsule.find(params[:capsule_id])
     @slides = []
-    @capsule.posts.order("created_at DESC").each do |post|
+    @capsule.posts.verified.order("created_at DESC").each do |post|
       if post.body.nil? || post.body.upcase == "NO MESSAGE" 
         @slides << post.image.url
       else

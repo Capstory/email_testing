@@ -1,0 +1,7 @@
+remote_moderation_app.factory("PostData", [function() {
+	return {
+		get: function() {
+					return <%= @posts.to_json.html_safe %>;
+				 }
+	}
+}]);

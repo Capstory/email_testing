@@ -1,0 +1,50 @@
+<div keypress="13:keypresser();107:nextPhoto();106:previousPhoto()" class="row" ng-init="init()">
+  <div class="small-12 small-centered columns">
+    <div class="row">
+      <div class="medium-8 columns">
+        <div ng-hide="postNotPicture(selected_post)">
+          <img src="{{ selected_post.image }}" width="100%", height="auto"/>
+        </div>
+        <h2 class="subheader" ng-show="postNotPicture(selected_post)">{{ selected_post.body }}</h2>
+      </div>
+      <div class="medium-4 columns">
+        <button class="button" ng-hide="inTrash(selected_post)" ng-click="markForTrash(selected_post)">Delete</button>
+        <button class="button disabled alert" ng-show="inTrash(selected_post)">In Trash</button>
+        <button class="button" ng-hide="selected_post.verified" ng-click="verifyPost(selected_post)">Verify Post</button> 
+        <p>Capsule ID: {{ selected_post.capsule_id }}</p>
+        <p>Submitter: {{ selected_post.email }}</p>
+        <p>Index: {{ selected_post.index }}</p>
+        <!-- <p>{{ selected_post }}</p> -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="medium-6 columns">
+        <h3 class="subheader">Visible Photos</h3>
+        <div class="th" ng-repeat="post in posts" style="margin:10px;" ng-click="selectPost($index)">
+          <img ng-hide="postNotPicture(post)" src="{{ thumbnailImage(post) }}" ng-class="postSelected(post)" width="75px" height="auto"/>
+          <p ng-show="postNotPicture(post)">{{ post.body }}</p>
+        </div>
+      </div>
+      <div class="medium-6 columns">
+        <h3 class="subheader">Trash</h3>
+
+        <div class="row">
+          <div class="small-12 columns" ng-repeat="post in trash_posts" ng-mouseenter="hoverOnPost(post)" ng-mouseleave="hoverOffPost(post)" style="margin:10px;" ng-class="{panel: post.hover}">
+            <div class="row">
+              <div class="small-4 columns">
+                <div ng-hide="postNotPicture(post)">
+                  <img ng-hide="post.hover" src="{{ thumbnailImage(post) }}" width="75px" height="auto"/>
+                  <img ng-show="post.hover" src="{{ thumbnailImage(post) }}" width="125px" height="auto"/>
+                </div>
+                <p ng-show="postNotPicture(post)">{{ post.body }}</p>
+              </div>
+              <div class="small-8 columns">
+                <button ng-show="post.hover" class="button" ng-click="removeFromTrash(post)">Remove From Trash</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+var remote_moderation_app = angular.module("RemoteModerationApp", ["ngRoute"]);
+
+remote_moderation_app.config(["$routeProvider", function($routeProvider) {
+	$routeProvider
+	.when("/", {
+		controller: "RemoteModerationController",
+		templateUrl: "<%= asset_path 'remote_moderation.html' %>"
+	})
+	.otherwise({
+		redirectTo: "/"
+	});
+}]);

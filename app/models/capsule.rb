@@ -1,5 +1,5 @@
 class Capsule < ActiveRecord::Base
-  attr_accessible :name, :email, :event_date, :named_url, :response_message
+  attr_accessible :name, :email, :event_date, :named_url, :response_message, :requires_verification
   
   has_many :encapsulations
   has_many :users, through: :encapsulations

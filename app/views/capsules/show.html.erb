@@ -58,6 +58,7 @@
 				    </div>
 				  <% end %>
 					<%= f.hidden_field :capsule_id, value: @capsule.id %>
+					<%= f.hidden_field :capsule_requires_verification, value: @capsule.requires_verification %>
 
 				 	<%= f.filepicker_field :filepicker_url, multiple: true, services: "COMPUTER, DROPBOX, FACEBOOK, FLICKR, INSTAGRAM", onchange: 'onImageUpload()', button_text: "Upload A Photo", class: 'pick_file' %>
 
@@ -69,8 +70,7 @@
 				<% end %>
 		</div>
 
-
-<%= content_tag :div, id: "original_container", data: { url: posts_url(capsule_id: @capsule.id) } do %>
+<%= content_tag :div, id: "original_container", data: { url: posts_url(capsule_id: @visible_posts.to_json) } do %>
 		<%= render @posts %>
 <% end %>
 
