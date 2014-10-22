@@ -6,7 +6,7 @@
 //= require ./angular_src_files/angular-route
 //= require ./remote_moderation/remote_moderation.js.erb
 //= require_tree ./remote_moderation/controllers
-//= require_tree ./remote_moderation/services
+// require_tree ./remote_moderation/services
 //= require_tree ./remote_moderation/models
 //= require ./remote_moderation/filters.js
 //= require ./remote_moderation/directives.js
