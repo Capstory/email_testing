@@ -173,4 +173,18 @@ $(function(){
 	});
 
 	$("#live_slideshow").addClass("open").show();
+
+	$("#addressCheckBox").change(function() {
+		console.log("Address Check Box Change");
+		if ( $("#addressCheckBox").prop("checked") ) {
+			console.log("Address box is checked");
+			$("#billingAddressDiv").hide("slow");
+			$("#addressCheckBox").val("yes");
+		} else {
+			$("#billingAddressDiv").show("slow");
+			$("#addressCheckBox").val("no");
+			console.log("Address box is not checked");
+		}
+	}).change();
+	
 });

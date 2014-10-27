@@ -1,0 +1,152 @@
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script>
+	var stripeResponseHandler = function(status, response) {
+		console.log("Stripe Status: ", status);
+		console.log("Stripe Response: ", response);
+
+		switch(status) {
+			case 200:
+				$("#transaction_token").val(response.id);
+				$("#last4").val(response.card.last4);
+				$("#cardType").val(response.card.type);
+				document.getElementById("chargeSubmitButton").click();
+				break;
+			default:
+				break;
+		}
+	};
+
+	Stripe.setPublishableKey("<%= Rails.configuration.stripe[:publishable_key] %>");
+
+	var activateStripe = function() {
+		var exp_month = $("#card_exp_month").val();
+		var exp_year = $("#card_exp_year").val();
+		
+		console.log("Month: ", exp_month);
+		console.log("Year: ", exp_year);
+
+		exp_month = parseInt(exp_month);
+		exp_year = parseInt(exp_year);
+		
+		console.log("Month: ", exp_month);
+		console.log("Year: ", exp_year);
+
+		Stripe.card.createToken({
+			number: $("#card_number").val(),
+			cvc: $("#card_cvc").val(),
+			exp_month: exp_month,
+			exp_year: exp_year
+		}, stripeResponseHandler);	
+
+	};
+
+</script>
+
+<div class="row" style="margin-top:20px;">
+	<%= form_tag(controller: "charges", action: "alt_create", remote: true) do %>
+		<div class="small-6 columns">
+			<h3 class="subheader">Shipping Details</h3>	
+			<hr>
+
+			<%= label_tag :email %>
+			<%= email_field_tag :email, "" %>
+
+			<%= label_tag :first_name %>
+			<%= text_field_tag :first_name, "" %>
+
+			<%= label_tag :last_name %>
+			<%= text_field_tag :last_name, "" %>
+
+			<%= label_tag :shipping_address_1, "Address" %>
+			<%= text_field_tag :shipping_address_1, "" %>
+
+			<%= label_tag :shipping_address_2, "Address 2" %>
+			<%= text_field_tag :shipping_address_2, "" %>
+
+			<%= label_tag :shipping_city %>
+			<%= text_field_tag :shipping_city, "" %>
+
+			<%= label_tag :shipping_state %>
+			<%= text_field_tag :shipping_state, "" %>
+
+			<%= label_tag :shipping_zip %>
+			<%= text_field_tag :shipping_zip, "" %>
+
+		</div>
+		<div class="small-6 columns">
+			<h3 class="subheader">Payment Details</h3>
+			<hr>
+			<p>
+				<small>Accepted Forms of Payment</small><br>
+				<%= image_tag "credit-card-logos-market.png", id: "credit_card_logos" %>
+			</p>
+
+			<%= label_tag :card_number, "Credit Card Number" %>
+			<%= text_field_tag :card_number, "", id: "card_number" %>
+			
+			<%= select_tag :card_exp_month, options_for_select([
+																													["Jan - 01", 1], 
+																													["Feb - 02", 2], 
+																													["Mar - 03", 3],
+																													["Apr - 04", 4],
+																													["May - 05", 5],
+																													["Jun - 06", 6],
+																													["Jul - 07", 7],
+																													["Aug - 08", 8],
+																													["Sep - 09", 9],
+																													["Oct - 10", 10],
+																													["Nov - 11", 11],
+																													["Dec - 12", 12]	
+																												]), class: "small-6 medium-5", id: "card_exp_month" %>
+
+			<%= select_tag :card_exp_year, options_for_select([
+																													["2014", 2014],
+																													["2015", 2015],
+																													["2016", 2016],
+																													["2017", 2017],
+																													["2018", 2018],
+																													["2019", 2019]																							
+																												]), class: "small-6 medium-6", id: "card_exp_year" %>
+
+			<div class="row">
+				<div class="small-4 columns">
+					<%= label_tag :card_cvc, "Credit Card CVC" %>
+					<%= text_field_tag :card_cvc, "", id: "card_cvc" %>
+				</div>
+			</div>
+
+			<%= hidden_field_tag :transaction_token, nil, id: "transaction_token" %>
+			<%= hidden_field_tag :last_4, nil, id: "last4" %>
+			<%= hidden_field_tag :card_type, nil, id: "cardType" %>
+
+			<%= check_box_tag :same_address, "yes", true, id: "addressCheckBox" %>
+			<%= label_tag :same_address, "Billing Address same as Shipping Address" %>
+			
+			<div style="display:none;" id="billingAddressDiv">
+				<%= label_tag :billing_address_1, "Address" %>
+				<%= text_field_tag :billing_address_1, "" %>
+
+				<%= label_tag :billing_address_2, "Address 2" %>
+				<%= text_field_tag :billing_address_2, "" %>
+
+				<%= label_tag :billing_city %>
+				<%= text_field_tag :billing_city, "" %>
+
+				<%= label_tag :billing_state %>
+				<%= text_field_tag :billing_state, "" %>
+
+				<%= label_tag :billing_zip %>
+				<%= text_field_tag :billing_zip, "" %>
+			</div>
+			<button id="chargeSubmitButton" style="display:none;"></button>
+
+			<a class="button" onclick="activateStripe()">Verify Order Details</a>
+		</div>
+	<% end %>
+</div>
+<hr style="margin-top:60px;">
+<div class="row">
+	<div class="small-12 columns">
+		<h3 class="subheader">Order Summary</h3>
+	</div>
+</div>

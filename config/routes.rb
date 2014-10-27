@@ -187,7 +187,12 @@ EmailTesting::Application.routes.draw do
   match 'payment' => 'charges#new'
   match 'payment_thank_you' => "charges#thank_you"
   match 'payment_error' => "charges#payment_error"
-  resources :charges
+	match 'alt_payment' => "charges#alt_new"
+  resources :charges do
+		collection do
+			post "alt_create"
+		end
+	end
   
 	# ==========================
 	# Note the constraints on the partners/:id route. It is the same path as the vendor_employees#show route

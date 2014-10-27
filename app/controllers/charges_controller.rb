@@ -11,6 +11,103 @@ class ChargesController < ApplicationController
     # @contact_form = ContactForm.new
     # @test_program_visit = params[:tpv] ? true : false
   end
+
+	def alt_new
+		render "alt_new.html.erb", layout: "application" 
+	end
+
+  def alt_create
+    # Charge amount in cents
+    amount = 49500
+    error_hash = {}
+    customer = {}
+    customer[:amount] = amount    
+    customer[:email] = params[:email]
+    customer[:first_name] = params[:first_name]
+    customer[:last_name] = params[:last_name]
+		customer[:full_name] = params[:first_name] + " " + params[:last_name]
+    customer[:billing_address_1] = params[:same_address] == "yes" ? params[:shipping_address_1] :  params[:billing_address_1]
+    customer[:billing_address_2] = params[:same_address] == "yes" ? params[:shipping_address_2] :  params[:billing_address_2]
+    customer[:billing_city] = params[:same_address] == "yes" ? params[:shipping_city] :  params[:billing_city]
+    customer[:billing_state] = params[:same_address] == "yes" ? params[:shipping_state] :  params[:billing_state]
+    customer[:billing_zip] = params[:same_address] == "yes" ? params[:shipping_zip] :  params[:billing_zip]
+    # customer[:billing_country] = params[:first_name]
+    # customer[:shipping_name] = params[:first_nam]
+    customer[:shipping_address_1] = params[:shipping_address_1]
+    customer[:shipping_address_2] = params[:shipping_address_2]
+    customer[:shipping_city] = params[:shipping_city]
+    customer[:shipping_state] = params[:shipping_state]
+    customer[:shipping_zip] = params[:shipping_zip]
+    # customer[:shipping_country] = params[:first_name]
+    customer[:last_4] = params[:last_4]
+		customer[:card_type] = params[:card_type]
+
+		# raise customer.to_yaml
+
+    begin
+      client = Stripe::Customer.create(
+        email: params[:email],
+        card: params[:transaction_token]
+      )
+    
+      stripe_charge = Stripe::Charge.create(
+        customer: client.id,
+        amount: amount,
+        description: 'Charges with Stripe',
+        currency: 'usd'
+      )
+    rescue Stripe::CardError => e
+      error_hash[:card_error] = JSON.parse(e.json_body)
+    rescue Stripe::InvalidRequestError => e
+      error_hash[:invalid_request_error] = JSON.parse(e.json_body)
+    rescue Stripe::AuthenticationError => e
+      error_hash[:authentication_error] = JSON.parse(e.json_body)
+    rescue Stripe::APIConnectionError => e
+      error_hash[:api_connection_error] = JSON.parse(e.json_body)
+    rescue Stripe::StripeError => e
+      error_hash[:stripe_error] = JSON.parse(e.json_body)
+    end
+    
+    # customer[:last_4] = stripe_charge["card"]["last4"]
+    # customer[:card_type] = stripe_charge["card"]["type"]
+    customer[:success] = stripe_charge["paid"]
+    
+    
+    if error_hash.empty?
+      if Rails.env.production?
+        charge = Charge.create(name: customer[:full_name], email: customer[:email], customer_hash: customer)
+        PaymentMailer.admin_payment_confirmation(customer).deliver
+        PaymentMailer.client_payment_confirmation(customer).deliver
+        
+        unless charge.save
+          problem = "The payment was made but the charge wasn't saved to the database"
+          PaymentMailer.admin_error_notification(customer, problem).deliver
+        end
+      else
+        charge = Charge.create(name: customer[:full_name], email: customer[:email], customer_hash: customer, is_test: true)
+        unless charge.save
+          raise "The payment went through fine but there was an error somewhere else"
+        end
+      end
+      
+      flash[:success] = "Transaction Successful"
+      redirect_to payment_thank_you_path(customer_email: customer[:email])
+    else
+      if Rails.env.production?
+        charge = Charge.create(name: customer[:full_name], email: customer[:email], customer_hash: customer, error_hash: error_hash)
+        problem = charge.save ? "There was an issue with the payment." : "There was an issue with the payment and the charge was not properly saved in the database."
+        PaymentMailer.admin_error_notification(customer, problem, error_hash).deliver
+      else
+        charge = Charge.create(name: customer[:full_name], email: customer[:email], customer_hash: customer, error_hash: error_hash, is_test: true)
+        unless charge.save
+          raise "There was an issue with both the payment and saving the charge"
+        end
+      end
+      
+      flash[:error] = "Unable to process the payment."
+      redirect_to payment_error_path(customer_email: customer[:email])
+    end
+  end
   
   
   def create
