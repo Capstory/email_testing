@@ -11,7 +11,7 @@ class HomepagesController < ApplicationController
 
 	def brads_ovni_landing
 		@contact_form = ContactForm.new
-		render "brads_ovni_landing_photos", layout: "ovni_layout"
+		render "brad_ovni_landing_photos_799", layout: "ovni_layout"
 	end
 
 	def dustins_ovni_landing
