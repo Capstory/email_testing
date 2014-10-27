@@ -245,6 +245,7 @@ EmailTesting::Application.routes.draw do
 
   root :to => "users#welcome", constraints: SiteConstraints.new
   
-  root :to => 'homepages#alt_first_test_landing'
+  # root :to => 'homepages#alt_first_test_landing'
+  root :to => 'homepages#homepage'
 
 end
