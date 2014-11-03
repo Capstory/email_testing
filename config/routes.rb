@@ -91,6 +91,7 @@ EmailTesting::Application.routes.draw do
 
 	match "homepages/ovni" => "homepages#brads_ovni_landing"
 	match "homepages/ovni2" => "homepages#dustins_ovni_landing"
+	match "homepages/pay" => "homepages#alt_ovni_homepage"
 	match "landing" => "homepages#landing"
 	# match "a" => "homepages#alt_first_test_landing"
   # match "alt_a" => "homepages#first_test_landing"
@@ -180,6 +181,8 @@ EmailTesting::Application.routes.draw do
   # Static Page Routes
   # match "home" => "static_pages#home"
   match "login" => "static_pages#login"
+	get "legal/terms_of_use" => "static_pages#terms_of_use"
+	match "legal/privacy_policy" => "static_pages#privacy_policy"
 
   match "thank_you" => "access_requests#thank_you"
   resources :access_requests, only: ["create", "new"]
@@ -190,7 +193,8 @@ EmailTesting::Application.routes.draw do
 	match 'alt_payment' => "charges#alt_new"
   resources :charges do
 		collection do
-			post "alt_create"
+			post "order_details"
+			post "order_confirm"
 		end
 	end
   

@@ -6,10 +6,15 @@
 
 		switch(status) {
 			case 200:
+				$("#stripeError").addClass("errorMessage");
 				$("#transaction_token").val(response.id);
 				$("#last4").val(response.card.last4);
 				$("#cardType").val(response.card.type);
 				document.getElementById("chargeSubmitButton").click();
+				break;
+			case 402:
+				$("#stripeError").removeClass("errorMessage");
+				$("#stripeErrorMessage").html("Error Message: " + response.error.message);
 				break;
 			default:
 				break;
@@ -18,18 +23,81 @@
 
 	Stripe.setPublishableKey("<%= Rails.configuration.stripe[:publishable_key] %>");
 
+	var validateElement = {
+			isValid: function(field_id) {
+				var isValid = true;
+				var $element = $("#" + field_id);
+				var value = $element.val();
+				var type = $element[0].type.toLowerCase();
+
+				switch(type) {
+					case 'text':
+						if (value.length == 0 || value.length < 2) {
+							console.log(field_id, "Error");
+							isValid = false;
+						}
+						break;
+					case 'email':
+						var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+						if ( !emailReg.test(value) ) {
+							console.log(field_id, "Error");
+							isValid = false;
+						}
+						break;
+				}
+
+				var method = isValid ? "removeClass" : "addClass";
+				$("#errorMessage_" + field_id)[method]("showErrorMessage");
+
+				return isValid;
+			}
+	};
+
+	var isErrorFree = function() {
+		var errorFree = true;
+		var fieldsToCheck = [
+			"email",
+			"first_name",
+			"last_name",
+			"shipping_address_1",
+			"shipping_city",
+			"shipping_state",
+			"shipping_zip"
+			];	
+		var billingFields = [
+			"billing_address_1",
+			"billing_city",
+			"billing_state",
+			"billing_zip"
+		];
+
+		if ( $("#addressCheckBox").prop("checked") ) {
+			$.map(fieldsToCheck, function(field_id) {
+				if (validateElement.isValid(field_id) == false) {
+					errorFree = false;
+				}	
+			});
+		} else {
+			var fields = fieldsToCheck.concat(billingFields);
+			$.map(fields, function(field_id) {
+				if (validateElement.isValid(field_id) == false) {
+					errorFree = false;
+				}	
+			});
+	
+		}
+
+		return errorFree;
+	};
+
 	var activateStripe = function() {
+		if ( isErrorFree() == false ) { return false; }
+
 		var exp_month = $("#card_exp_month").val();
 		var exp_year = $("#card_exp_year").val();
 		
-		console.log("Month: ", exp_month);
-		console.log("Year: ", exp_year);
-
 		exp_month = parseInt(exp_month);
 		exp_year = parseInt(exp_year);
-		
-		console.log("Month: ", exp_month);
-		console.log("Year: ", exp_year);
 
 		Stripe.card.createToken({
 			number: $("#card_number").val(),
@@ -41,35 +109,77 @@
 	};
 
 </script>
+<style>
+	div.errorMessage {
+		display: none;
+	}
+
+	div.showErrorMessage {
+		display: block;	
+		margin-bottom: -16px;
+	}
+</style>
+
+<div class="row">
+	<div class="small-12 small-centered columns">
+		<ul class="breadcrumbs">
+			<li><%= link_to "Home", root_url %></li>
+			<li class="current">Order Form</li>
+			<li class="unavailable">Order Summary</li>
+			<li class="unavailable">Confirmation</li>
+		</ul>
+	</div>
+</div>
 
 <div class="row" style="margin-top:20px;">
-	<%= form_tag(controller: "charges", action: "alt_create", remote: true) do %>
+	<%= form_tag(controller: "charges", action: "order_details") do %>
 		<div class="small-6 columns">
 			<h3 class="subheader">Shipping Details</h3>	
 			<hr>
 
 			<%= label_tag :email %>
+			<div id="errorMessage_email" class="errorMessage">
+				<small class="error">The email address is invalid</small>
+			</div>
 			<%= email_field_tag :email, "" %>
-
+				
 			<%= label_tag :first_name %>
+			<div id="errorMessage_first_name" class="errorMessage">
+				<small class="error">A First Name is Required</small>
+			</div>
 			<%= text_field_tag :first_name, "" %>
 
 			<%= label_tag :last_name %>
+			<div id="errorMessage_last_name" class="errorMessage">
+				<small class="error">A Last Name is Required</small>
+			</div>
 			<%= text_field_tag :last_name, "" %>
 
 			<%= label_tag :shipping_address_1, "Address" %>
+			<div id="errorMessage_shipping_address_1" class="errorMessage">
+				<small class="error">This is a Required Field</small>
+			</div>
 			<%= text_field_tag :shipping_address_1, "" %>
 
 			<%= label_tag :shipping_address_2, "Address 2" %>
 			<%= text_field_tag :shipping_address_2, "" %>
 
 			<%= label_tag :shipping_city %>
+			<div id="errorMessage_shipping_city" class="errorMessage">
+				<small class="error">This is a Required Field</small>
+			</div>
 			<%= text_field_tag :shipping_city, "" %>
 
 			<%= label_tag :shipping_state %>
+			<div id="errorMessage_shipping_state" class="errorMessage">
+				<small class="error">This is a Required Field</small>
+			</div>
 			<%= text_field_tag :shipping_state, "" %>
 
 			<%= label_tag :shipping_zip %>
+			<div id="errorMessage_shipping_zip" class="errorMessage">
+				<small class="error">This is a Required Field</small>
+			</div>
 			<%= text_field_tag :shipping_zip, "" %>
 
 		</div>
@@ -84,6 +194,7 @@
 			<%= label_tag :card_number, "Credit Card Number" %>
 			<%= text_field_tag :card_number, "", id: "card_number" %>
 			
+			<%= label_tag :card_exp_month, "Credit Card Expiration" %>	
 			<%= select_tag :card_exp_month, options_for_select([
 																													["Jan - 01", 1], 
 																													["Feb - 02", 2], 
@@ -115,38 +226,93 @@
 				</div>
 			</div>
 
+			<div class="errorMessage" id="stripeError">
+				<div class="alert-box alert">
+					<h5>There is an error with the Credit Card Data</h5>
+					<br>
+					<h5 id="stripeErrorMessage"></h5>
+				</div>
+			</div>
+
 			<%= hidden_field_tag :transaction_token, nil, id: "transaction_token" %>
 			<%= hidden_field_tag :last_4, nil, id: "last4" %>
 			<%= hidden_field_tag :card_type, nil, id: "cardType" %>
+			<%= hidden_field_tag :package_price, @package[:price] %>
+			<%= hidden_field_tag :package_name, @package[:name] %>
 
 			<%= check_box_tag :same_address, "yes", true, id: "addressCheckBox" %>
 			<%= label_tag :same_address, "Billing Address same as Shipping Address" %>
 			
 			<div style="display:none;" id="billingAddressDiv">
 				<%= label_tag :billing_address_1, "Address" %>
+			<div id="errorMessage_billing_address_1" class="errorMessage">
+				<small class="error">This is a Required Field</small>
+			</div>
 				<%= text_field_tag :billing_address_1, "" %>
 
 				<%= label_tag :billing_address_2, "Address 2" %>
 				<%= text_field_tag :billing_address_2, "" %>
 
 				<%= label_tag :billing_city %>
+			<div id="errorMessage_billing_city" class="errorMessage">
+				<small class="error">This is a Required Field</small>
+			</div>
 				<%= text_field_tag :billing_city, "" %>
 
 				<%= label_tag :billing_state %>
+			<div id="errorMessage_billing_state" class="errorMessage">
+				<small class="error">This is a Required Field</small>
+			</div>
 				<%= text_field_tag :billing_state, "" %>
 
 				<%= label_tag :billing_zip %>
+			<div id="errorMessage_billing_zip" class="errorMessage">
+				<small class="error">This is a Required Field</small>
+			</div>
 				<%= text_field_tag :billing_zip, "" %>
 			</div>
 			<button id="chargeSubmitButton" style="display:none;"></button>
 
-			<a class="button" onclick="activateStripe()">Verify Order Details</a>
 		</div>
 	<% end %>
 </div>
 <hr style="margin-top:60px;">
-<div class="row">
+<div class="row" style="margin-bottom:100px;">
 	<div class="small-12 columns">
 		<h3 class="subheader">Order Summary</h3>
+		<div class="row panel">
+			<div class="small-6 medium-9 columns">
+				<p class="subheader">Package</p>
+				<h4>THE <%= @package[:name].upcase %> PACKAGE</h4>
+			</div>
+			<div class="small-6 medium-3 columns">
+				<div class="pull-right">
+					<p class="subheader">Price</p>
+					<h4>$<%= @package[:price] %></h4>	
+				</div>
+			</div>
+		</div>
+		<div class="row" style="margin-top:50px;">
+			<div class="small-6 medium-9 columns">
+				<p class="subheader"><em>All Taxes and Shipping Fees are Included</em></p>
+			</div>
+			<div class="small-6 medium-3 columns">
+				<%# <hr> %>
+				<div class="pull-right">
+					<h4 class="subheader">Total</h4>
+					<h3>$<%= @package[:price] %></h3>
+				</div>
+			</div>
+		</div>
+		<div class="row" style="margin-top:50px;">
+			<hr>
+			<div class="small-6 medium-9 columns">
+				<p class="subheader">By submitting an order with Capstory, I agree to the <%= link_to "Terms of Use", "/legal/terms_of_use" %> and <%= link_to "Privacy Policy", "/legal/privacy_policy" %>.</p>
+				<p class="subheader">If you have any questions, pleaes contact us anytime at 513-401-5572 or email us at <%= link_to "hello@capstory.me", "mailto:hello@capstory.me" %></p>
+			</div>
+			<div class="small-6 medium-3 columns">
+				<a class="button pull-right" onclick="activateStripe()">Verify Order Details</a>
+			</div>
+		</div>
 	</div>
 </div>

@@ -9,11 +9,11 @@
 		</style>
   </head>
   <body>
-    <h1>Thank you for your order, <%= @customer[:billing_name] %></h1>
+    <h1>Thank you for your order, <%= @customer[:full_name] %></h1>
 		<hr>
 		<p>Billed To:</p>
 		<ul>
-			<li><%= @customer[:billing_name] %></li>
+			<li><%= @customer[:full_name] %></li>
 			<li><%= @customer[:billing_address_1] %></li>
 			<li><%= @customer[:billing_address_2] %></li>
 			<li><%= @customer[:billing_city] %>, <%= @customer[:billing_state] %> <%= @customer[:billing_zip] %></li>
@@ -21,7 +21,7 @@
 		</ul>
 		<p>Shipping:</p>
 		<ul>
-			<li><%= @customer[:shipping_name] %></li>
+			<li><%= @customer[:full_name] %></li>
 			<li><%= @customer[:shipping_address_1] %></li>
 			<li><%= @customer[:shipping_address_2] %></li>
 			<li><%= @customer[:shipping_city] %>, <%= @customer[:shipping_state] %> <%= @customer[:shipping_zip] %></li>
@@ -29,10 +29,11 @@
 		</ul>
     <p>Credit Card:</p>
 		<ul>
-			<li>Number: ...<%= @customer[:last_4] %></li>
+			<li>Number: **** **** **** <%= @customer[:last_4] %></li>
 			<li>Type: <%= @customer[:card_type] %></li>
 		</ul>
-		<p>Amount: $495.00</p>
+		<p>The <%= @customer[:package].capitalize %> Package</p>
+		<p>Amount: $<%= @customer[:amount] / 100 %></p>
 		<hr>
     <p>We will be in touch very soon to get everything set up and to make sure you have the best day ever!</p>
 		<p>Please contact us if you have any questions or concerns <a href="mailto:hello@capstory.me">hello@capstory.me</a></p>

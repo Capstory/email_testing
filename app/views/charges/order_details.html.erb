@@ -1,0 +1,71 @@
+<div class="row">
+	<div class="small-12 small-centered columns">
+		<ul class="breadcrumbs">
+			<li><%= link_to "Home", root_url %></li>
+			<li><%= link_to "Order Form", :back %></li>
+			<li class="current">Order Summary</li>
+			<li class="unavailable">Confirmation</li>
+		</ul>
+	</div>
+</div>
+<style>
+	ul.vcard {
+		border: none;
+	}
+</style>
+<div class="row">
+	<div class="small-12 medium-4 columns">
+		<h3 class="subheader">Shipping Address</h3>
+		<hr>
+		<ul class="vcard">
+			<li class="fn"><%= @customer.full_name %></li>
+			<li class="street-address"><%= @customer.shipping_address_1 %></li>
+			<li class="street-address"><%= @customer.shipping_address_2 %></li>
+			<li class="state"><%= @customer.shipping_city %>, <%= @customer.shipping_state %> <%= @customer.shipping_zip %></li>
+			<li class="email"><%= link_to @customer.email, "mailto:#{@customer.email}" %></li>
+		</ul>
+	</div>
+	<div class="small-12 medium-4 columns">
+		<h3 class="subheader">Billing Address</h3>
+		<hr>
+		<ul class="vcard">
+			<li class="fn"><%= @customer.full_name %></li>
+			<li class="street-address"><%= @customer.billing_address_1 %></li>
+			<li class="street-address"><%= @customer.billing_address_2 %></li>
+			<li class="state"><%= @customer.billing_city %>, <%= @customer.billing_state %> <%= @customer.billing_zip %></li>
+		</ul>
+	</div>
+	<div class="small-12 medium-4 columns">
+		<h3 class="subheader">Payment Details</h3>
+		<hr>
+		<ul class="vcard">
+			<li>Credit Card No: **** **** **** <%= @customer.last_4 %></li>
+			<li>Credit Card Type: <%= @customer.card_type %></li>
+			<li>Credit Card Expiration: <%= @customer.card_expiration %></li>
+		</ul>
+	</div>
+</div>
+<div class="row">
+	<div class="small-12 columns panel">
+		<h3><small>Order Details</small></h3>
+		<div class="row">
+			<div class="small-12 medium-6 columns">
+				<h4><%= @customer.package.capitalize %> Package</h4>
+			</div>
+			<div class="small-12 medium-6 columns">
+				<h4 class="pull-right">$<%= @customer.amount / 100 %></h4>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="small-6 columns">
+		<%= link_to "Back", :back, class: "button" %>
+	</div>
+	<div class="small-6 columns">
+		<%= form_tag(controller: "charges", action: "order_confirm") do %>
+			<%= hidden_field_tag :customer, struct_to_json(@customer) %>
+			<%= submit_tag "Submit Order", class:"button pull-right" %>
+		<% end %>
+	</div>
+</div>

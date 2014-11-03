@@ -16,6 +16,6 @@ class PaymentMailer < ActionMailer::Base
     @customer = customer
     @problem = problem
     @error_hash = error_hash
-    mail(to: ["dustin@capstory.me", "suprasanna@capstory.me", "jocelyn@capstory.me", "brad@capstory.me"], subject: "There was a problem with a recent charge")
+    mail(to: ["dustin@capstory.me", "suprasanna@capstory.me", "brad@capstory.me"], subject: "There was a problem with a recent charge")
   end
 end
