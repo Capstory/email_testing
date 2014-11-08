@@ -85,8 +85,8 @@ end
 EmailTesting::Application.routes.draw do
 
   match "" => "vendor_pages#matt_ryan", constraints: MattRyanConstraints.new
-	match "" => "vendor_pages#demo", constraints: DemoPageConstraints.new
-	match "" => "vendor_pages#ohiounion", constraints: OhioUnionConstraints.new
+	# match "" => "vendor_pages#demo", constraints: DemoPageConstraints.new
+	# match "" => "vendor_pages#ohiounion", constraints: OhioUnionConstraints.new
 	match "" => "vendor_pages#alt_show", constraints: VendorSubdomainConstraints.new
 
 	match "homepages/ovni" => "homepages#brads_ovni_landing"

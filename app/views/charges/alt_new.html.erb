@@ -283,7 +283,8 @@
 		<div class="row panel">
 			<div class="small-6 medium-9 columns">
 				<p class="subheader">Package</p>
-				<h4>THE <%= @package[:name].upcase %> PACKAGE</h4>
+				<h4>The <%= package_name_prep(@package[:name].titleize) %> Package</h4>
+          <div class="spacer60"></div>
 			</div>
 			<div class="small-6 medium-3 columns">
 				<div class="pull-right">

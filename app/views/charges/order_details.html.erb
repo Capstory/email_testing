@@ -50,7 +50,7 @@
 		<h3><small>Order Details</small></h3>
 		<div class="row">
 			<div class="small-12 medium-6 columns">
-				<h4><%= @customer.package.capitalize %> Package</h4>
+				<h4><%= package_name_prep(@customer.package.titleize) %> Package</h4>
 			</div>
 			<div class="small-12 medium-6 columns">
 				<h4 class="pull-right">$<%= @customer.amount / 100 %></h4>

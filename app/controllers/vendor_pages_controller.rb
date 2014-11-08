@@ -8,9 +8,15 @@ class VendorPagesController < ApplicationController
   end
 
 	def alt_show
+		
 		@vendor ||= VendorPage.find(request.subdomain)
 		if @vendor.verified?
-			render "alt_show", layout: "matt_ryan"
+			if page = find_page_and_layout(request.subdomain)
+				@contact_form = ContactForm.new
+				render page[:view], layout: page[:layout]
+			else
+				render "alt_show", layout: "matt_ryan"
+			end
 		else
 			@contact_form = ContactForm.new
 			render "new_vendor_page", layout: "ovni_layout"
@@ -114,6 +120,21 @@ class VendorPagesController < ApplicationController
 		# 	puts "========================================="
 		# 	puts "There was no visit_tag"
 		# 	puts "========================================="
+		end
+	end
+
+	def find_page_and_layout(subdomain)
+		pages = {
+			"americheer" => {
+				view: "americheer_landing",
+				layout: "ovni_layout"
+			}
+		}
+
+		if pages[subdomain.downcase]
+			pages[subdomain.downcase]
+		else
+			nil
 		end
 	end
 end

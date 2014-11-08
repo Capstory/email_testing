@@ -29,6 +29,11 @@ class HomepagesController < ApplicationController
 		render "dustins_ovni_landing", layout: "ovni_layout"
 	end
 
+	# def americheer_landing
+	# 	@contact_form = ContactForm.new
+	# 	render "americheer_landing", layout: "ovni_layout"
+	# end
+
   def first_test_landing
     # @access_request = AccessRequest.new
     # @reminder = Reminder.new

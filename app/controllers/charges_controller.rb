@@ -22,6 +22,10 @@ class ChargesController < ApplicationController
 			package_price = 799
 		when "gold"
 			package_price = 1499
+		when "americheer_team"
+			package_price = 400
+		when "americheer_family"
+			package_price = 175
 		else
 			package_price = 799
 		end

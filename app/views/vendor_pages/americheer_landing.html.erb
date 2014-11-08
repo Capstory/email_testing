@@ -1,0 +1,422 @@
+<style>
+	.btn-primary {
+		background-color: #C69C56;
+		border: none;
+	}
+
+	.down, .back-to-top {
+		background-color: #C69C56;
+	}
+</style>
+  <header id="header">   
+    <nav class="navbar" role="navigation">
+      <div class="navbar-inner">
+	      <div class="container">
+          <!-- logo-->                       
+					<%# <a href="#" title="Home" class="logo"><img src="img/logo.png " alt="logo"></a> %>         
+					<a href="#" title="Home" class="logo"><%= image_tag "logo.png" %> <%= image_tag "americheer/americheer-logo.jpg", style: "padding-left:10px;" %></a>         
+          <!-- Menu -->
+          <ul class="nav">
+            <li><a href="#home" title="Home">Home</a></li>
+            <%# <li><a href="#services" title="Services">Services</a></li> %>
+            <li><a href="#about" title="About">About</a></li>
+            <li><a href="#experience" title="Experience">Experience</a></li>
+						<li><a href="#ordering" title="Ordering">Ordering</a></li>
+            <%# <li><a href="#pricing" title="Pricing">Pricing</a></li> %> 
+            <li><a href="#contact" title="Contact">Contact</a></li>
+						<%# <li><%= link_to "Login", login_path %1></li> %>
+            <%# <li><a href="#showcase" title="Showcase">Showcase</a></li> %>
+          </ul>
+          <select class="select-menu"></select> <!-- select menu for small screens -->  
+        </div>
+      </div>
+         
+	  </nav>    
+    <!-- Nav ends -->    
+		<div id="home"> 
+	      <!-- LayerSlider -->
+        	<div id="full-slider-wrapper">
+        		<div id="layerslider" style="width:1920px; height:1200px; max-width: 1920px;">
+              <!-- Slide 1 -->
+        			<div class="ls-slide" data-ls="slidedelay:8000;transition3d: 2,7,9;">
+        				<%# <img src="img/slider-main/1.jpg" class="ls-bg" alt="Slide background"> %>
+								<%= image_tag "americheer/image_92.jpg", alt: "Slide background", class: "ls-bg" %>
+								<h1 class="ls-l hidden-xs" style="top:40%;left:50%;color:#fff;white-space: nowrap;" data-ls="durationin:2000;scalexin:1.5;scaleyin:1.5;">THIS SEASON,<br> DON'T MISS A MOMENT</h1>
+
+        				<p class="ls-l" style="top:60%;left:50%;" data-ls="durationin:2000;showuntil:8000;fadein:true;fadeout:true;scalexin:1.5;scaleyin:1.5;">
+        					<a class="down" href="#about"><i class="fa fa-angle-down"></i></a>
+        				</p>
+        				
+        			</div>
+              <!-- Slide 1 End -->
+              <!-- Slide 2 -->
+        			<div class="ls-slide" data-ls="slidedelay:8000;transition2d:5;">
+        				<%# <img src="img/slider-main/2.jpg" class="ls-bg" alt="Slide background"> %>
+								<%= image_tag "americheer/image_8.jpg", alt: "Slide Background", class: "ls-bg" %>
+								<h1 class="ls-l hidden-xs" style="top:40%;left:50%;color:#fff;white-space: nowrap;" data-ls="durationin:2000;scalexin:1.5;scaleyin:1.5;">THIS SEASON,<br> DON'T MISS A MOMENT</h1>
+        				<p class="ls-l" style="top:60%;left:50%;" data-ls="durationin:2000;showuntil:8000;fadein:true;fadeout:true;scalexin:1.5;scaleyin:1.5;">
+        					<a class="down" href="#about"><i class="fa fa-angle-down"></i></a>
+        				</p>
+        				
+        			</div>
+              <!-- Slide 2 End -->
+              <!-- Slide 3 -->
+        			<div class="ls-slide" data-ls="slidedelay:8000;transition3d:32,34,37,38,41;">
+        				<%# <img src="img/slider-main/3.jpg" class="ls-bg" alt="Slide background"> %>
+								<%= image_tag "americheer/image_40.jpg", alt: "Slide Background", class: "ls-bg" %>
+								<h1 class="ls-l hidden-xs" style="top:40%;left:50%;color:#fff;white-space: nowrap;" data-ls="durationin:2000;scalexin:1.5;scaleyin:1.5;">THIS SEASON,<br> DON'T MISS A MOMENT</h1>
+            
+        				<p class="ls-l" style="top:60%;left:50%;" data-ls="durationin:2000;showuntil:8000;fadein:true;fadeout:true;scalexin:1.5;scaleyin:1.5;">
+        					<a class="down" href="#about"><i class="fa fa-angle-down"></i></a>
+        				</p>
+        				
+        			</div>
+              <!-- Slide 3 End -->
+        		</div>
+        	</div>
+          <!-- LayerSlider End -->    
+				</div>
+    
+
+  </header>
+  
+   <section id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+					<h2 class="section-title">How It Works</h2>         
+        </div>
+      </div>
+      <div class="row spacer40"></div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="thumbnail-slider">
+						<%= image_tag "americheer/how_it_works.png" %>
+          </div>
+                  
+        </div>
+        <div class="col-md-6">
+          <div class="spacer60"></div>
+					<p>The easiest way to add photos to your private webpage (called a capsule) is by texting it 
+					directly. Each webpage has a unique address. Your team (parents, athletes, coaches, family) 
+					can instantly share memories throughout the year from their mobile devices by sending them 
+					in via text-message.</p>
+					<p>It works just like texting a friend and pictures show up in under a minute!</p>
+        </div>
+      </div>
+      <div class="row spacer100"></div>      
+    </div>     
+  </section>   
+
+	<div id="parallax-two" class="parallax" style="background-image:url(<%= asset_path 'americheer/image_36.png' %>);background-size:100%;">
+		<div class="parallax-colored">
+			<div class="parallax-text-container-2">
+				<div class="parallax-text-item">
+					<div class="container">
+						<div class="row spacer40"></div>
+						<div class="row">
+							<div class="col-md-12 text-center">
+								<h2 class="section-title-white">No App Needed</h2>
+							</div>
+						</div>
+						<div class="row spacer40"></div>
+						<div class="row">
+							<div class="col-md-12">
+								<p class="white text-center" style="font-size:20px;">We offer a truly unique array of options for submitting photos without the need to download an app. <br> One less thing for people to worry about.</p> 
+							</div>
+						</div>
+						<div class="row spacer50"></div>
+						<div class="row">
+							<div class="col-md-3 col-xs-6">
+								<div class="services-1">
+									<div class="services-1-icon">
+										<i class="fa fa-mobile" style="color:white;"></i>
+									</div>
+									<div class="services-1-title-white">VIA TEXT MESSAGE</div>
+								</div>
+							</div>
+							<div class="col-md-3 col-xs-6">
+								<div class="services-1">
+									<div class="services-1-icon">
+										<i class="fa fa-envelope" style="color:white;"></i>
+									</div>
+									<div class="services-1-title-white">VIA EMAIL</div>
+								</div>
+							</div>
+							<div class="col-md-3 col-xs-6">
+								<div class="services-1">
+									<div class="services-1-icon">
+										<i class="fa fa-laptop" style="color:white;"></i>
+									</div>
+									<div class="services-1-title-white">VIA DIRECT UPLOAD</div>
+								</div>
+							</div>
+							<div class="col-md-3 col-xs-6">
+								<div class="services-1">
+									<div class="services-1-icon">
+										<i class="fa fa-user" style="color:white;"></i>
+									</div>
+										<div class="services-1-title-white">VIA CUSTOMER SERVICE</div>
+								</div>
+							</div>                
+						</div>
+						<div class="row spacer70"></div>
+					</div> 
+				</div>
+      </div>
+    </div>        
+  </div>
+
+   <section id="experience">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+					<h2 class="section-title">Your Season</h2>      
+        </div>
+      </div>
+      <div class="row spacer40"></div>
+      <div class="row">
+        <div class="col-md-4">
+					<div class="thumbnail-slider">
+						<ul class="slides">
+							<li>
+								<%= image_tag "americheer/image_9.png" %>
+							</li>
+						</ul>
+					</div>
+        </div>
+        <div class="col-md-8">
+          <div class="spacer60"></div>
+          <h2 class="big">Capture Photos from Practice...</h2>
+        </div>
+      </div>      
+      <div class="row spacer40"></div>
+      <div class="row">
+        <div class="col-sm-12 col-md-8">
+          <div class="spacer60"></div>
+          <h2 class="big">To Travel...</h2>
+        </div>
+        <div class="col-sm-12 col-md-4">
+					<div class="thumbnail-slider">
+						<ul class="slides">
+							<li>
+								<%= image_tag "americheer/image_43.png" %>
+							</li>
+						</ul>
+					</div>
+        </div>
+      </div>      
+      <div class="row spacer40"></div>
+      <div class="row">
+        <div class="col-sm-12 col-md-4">
+					<div class="thumbnail-slider">
+						<ul class="slides">
+							<li>
+								<%= image_tag "americheer/image_37.png" %>
+							</li>
+						</ul>
+					</div>
+        </div>
+        <div class="col-sm-12 col-md-8">
+          <div class="spacer60"></div>
+          <h2 class="big">...To Competition</h2>
+        </div>
+      </div>      
+			<div class="row spacer60"></div>
+    </div>     
+  </section>   
+  <section id="ordering"> 
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+					<h2 class="section-title">Ordering</h2>      
+        </div>
+      </div>
+      <div class="row spacer80"></div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="projects-slider">
+              <div class="row">
+            <ul class="slides">          
+							<%# Images need to be 768x500 %> 
+							<%# Image Ratio needs to be 1.54:1 %> 
+              <li>                        
+                  <div class="col-xs-4 col-sm-4 col-md-4 slider-content">
+                      <%# <img src="img/slider-projects/2.jpg" alt=""> %>
+											<%= image_tag "americheer/macbook_americheer.png", alt: "" %>
+                      <div class="slider-text">
+                        <h3>1. Get Your Team's Capsule</h3>
+												<p>Order your team or family capsule today 
+												and start capturing your season from every 
+												perspective!</p>
+												<br>
+												<p>Easily forward instructions from us to your 
+												whole team to get everyone started right 
+												away.</p>
+                      </div>
+                  </div>
+                  <div class="col-xs-4 col-sm-4 col-md-4 slider-content">
+                      <%# <img src="img/slider-projects/3.jpg" alt=""> %>
+											<%= image_tag "americheer/image_4.png", alt: "" %>
+                      <div class="slider-text">
+                        <h3>2. Use All Season</h3>
+												<p>Your capsule can take unlimited photo 
+												uploads for 12 months from the purchase 
+												date!</p>
+												<br>
+												<p>You and your team can download the 
+												original photos at any time at no additional 
+												cost.</p>
+                      </div>
+                  </div>               
+                  <div class="col-xs-4 col-sm-4 col-md-4 slider-content">
+                      <%# <img src="img/slider-projects/1.jpg" alt=""> %>
+											<%= image_tag "americheer/image_3.png", alt: "" %>
+                      <div class="slider-text">
+                        <h3>3. Order Prints and Keepsakes</h3>
+												<p>Love a specific picture? No matter who 
+												captured the moment, print individual 
+												photos and have them shipped to your 
+												door.</p> 
+												<p>You can also do the same with beautiful 
+												keepsake books.</p>
+                      </div>
+                  </div>
+              </li>
+            </ul>
+            </div>
+          </div>        
+        </div>
+      </div>
+    </div>  
+    <div class="spacer40"></div>
+  </section> 
+
+   <section>
+    <div class="container">
+			<div class="row" id="pricing">
+				<div class="col-xs-12 col-md-6 text-center" style="margin-top:60px;">
+					<h2>Family Capsule</h2>
+					<div class="row spacer40"></div>
+					<ul class="list-unstyled">
+						<li>Priority Phone and Email Support</li>
+						<li>Personalized Capsule for Your Family + Athlete</li>
+						<li>Unlimited Photo Submissions</li>
+						<li>Hosting and Maintenance for 12 Months</li>
+						<li>Optimized Site Accessible from Smart Phones, Tablets and Desktops</li>
+					</ul>
+					<h2 class="">$175</h2>
+					<div class="row spacer40"></div>
+					<%= link_to "Purchase", alt_payment_path(package: "americheer_family"), class: "btn btn-primary btn-lg" %> 
+				</div>	
+				<div class="col-xs-12  col-md-6 text-center" style="margin-top:60px;">
+					<h2>Team Capsule</h2>
+					<div class="row spacer40"></div>
+					<ul class="list-unstyled">
+						<li>Priority Phone and Email Support</li>
+						<li>Personalized Capsule for Your Entire Team</li>
+						<li>Unlimited Photo Submissions</li>
+						<li>Hosting and Maintenance for 12 Months</li>
+						<li>Optimized Site Accessible from Smart Phones, Tablets and Desktops</li>
+					</ul>
+					<h2 class="">$400</h2>
+					<div class="row spacer40"></div>
+					<%= link_to "Purchase", alt_payment_path(package: "americheer_team"), class: "btn btn-primary btn-lg" %> 
+				</div>	
+			</div>
+			<div class="row spacer60"></div>
+    </div>     
+  </section>   
+   
+  <footer id="contact"> <!-- footer begings -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+					<h2 class="section-title">Questions?</h2>
+					<div class="row spacer40"></div>
+					<%# <p class="lead" style="font-size:20px;">Request A Demo</p> %>
+					<%# <p class="lead">Find out if we are available in your area</p> %>				
+        </div>
+      </div>
+      <div class="row spacer40"></div>    
+      <div class="row">
+				<%= form_for(@contact_form, remote: true) do |f| %>
+          <div class="col-xs-12">
+            
+            <div class="row">            
+              <div class="form-group col-xs-6">
+								<%= f.label :name %>
+								<%= f.text_field :name, class: "form-control", id: "name2", placeholder: "Name" %>
+              </div>
+              <div class="form-group col-xs-6">
+                <%# <label for="email2">email</label> %>
+								<%= f.label :email %>
+								<%= f.text_field :email, class: "form-control", id: "email2", placeholder: "E-mail" %> 
+              </div>
+            </div>
+            
+            <div class="row">            
+              <div class="form-group col-xs-12">
+                <%# <label for="message2">message</label> %>
+								<%= f.label :message %>
+								<%= f.text_area :message, class: "form-control", id: "message2", placeholder: "Message", rows: 8 %>
+
+              </div>
+            </div> 
+            <div class="row spacer30"></div>
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+                <p class="text-center">Please, fill out the form and press submit. Or, contact us by email or telephone. Our email and phone number are below.</p>
+              </div>
+            </div>
+            <div class="row spacer10"></div>
+            <div class="row">            
+              <div class="col-xs-12 text-center">
+							<div class="alert alert-success" id="contact_form_success" style="display:none;">The e-mail was successfully sent. Thank you. We will reach back out to you as soon as we possibly can.</div>
+							<div class="error alert alert-danger" id="err-form">There is a problem with the contact form, please verify that all the fields are filled out correctly.</div>
+            <div class="error" id="err-timedout">The connection to the server timed out!</div>
+            <div class="error" id="err-state"></div>
+              
+                <%# <button type="submit" class="btn btn-default" id="send">Submit</button> %>
+								<%= f.submit "Submit", class: "btn btn-default" %>
+              </div>
+            </div>
+          </div>  
+					
+				<% end %>
+      </div>      
+    </div>
+    <div class="top">
+        <div class="top-line"></div>
+      <a class="back-to-top"><i class="fa fa-angle-up"></i></a>    
+    </div>      
+    <div class="container">    
+      <div class="row">
+        <div class="col-xs-12 col-sm-4 col-md-4">
+          <h4>KEEP IN TOUCH</h4>
+          <div class="footer-socials">
+              <a href="http://twitter.com/capstory"><i class="fa fa-twitter"></i></a>
+              <%# <a href="#"><i class="fa fa-google-plus"></i></a> %>
+              <a href="http://www.facebook.com/capstory"><i class="fa fa-facebook"></i></a>
+              <a href="http://www.pinterest.com/capstory"><i class="fa fa-pinterest"></i></a>
+            </div>
+        </div>
+        
+      
+        
+        <div class="col-xs-12 col-sm-4 col-md-4">
+          <h4>ADDRESS</h4>
+          <p>1275 Kinnear Road, Columbus, OH 43212</p>
+          <%# <p>513-401-5572</p> %>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4">
+          <h4>SUPPORT</h4>
+          <p>If you have a question or comment, please contact us.</p>
+          <p><button type="button" class="btn btn-primary">Phone: 513-401-5572</button></p>
+          <p><button type="button" class="btn btn-primary">Email: hello@capstory.me</button></p>
+					<p><%= link_to "Login", login_path, class: "btn btn-primary" %></p>
+        </div>        
+      </div>
+    </div>
+    <div class="spacer100"></div>
+  </footer> <!-- Footer ends -->
