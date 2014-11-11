@@ -73,5 +73,9 @@
   <%# <script src="layerslider/js/greensock.js"></script> %>
   <%# <script src="layerslider/js/layerslider.transitions.js"></script> %>
   <%# <script src="layerslider/js/layerslider.kreaturamedia.jquery.js"></script> %>    
+	<% if Rails.env.production? && params[:action] == "landing" %>
+		<%= render "layouts/crazy_egg" %>
+		<%= render "layouts/ga" %>
+	<% end %>
 	</body>
 </html>
