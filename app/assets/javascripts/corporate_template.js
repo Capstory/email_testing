@@ -31,23 +31,54 @@ $(function(){
 
 	};
 
+	var resetCustomizeForm = function() {
+		$("#customize_name2").val("");
+		$("#customize_email2").val("");
+		$("#customize_message2").val("");
+
+	};
+
+// 	$("#modalSubmitButton").on("click", function() {
+// 		$("#contactSubmitButton").click();
+// 	});
+
 	$("#new_contact_form")
 		.on("ajax:success", function(e, data, status, xhr) {
-			console.log(data);
-			console.log(status);
-			console.log(xhr);
+			// console.log(data);
+			// console.log(status);
+			// console.log(xhr);
 
 			$("#contact_form_success").show();
 			$("#err-form").hide();
 			resetContactForm();
 		})
 		.on("ajax:error", function(e, xhr, status, error) {
-			console.log(e);
-			console.log(error);
-			console.log(xhr);
+			// console.log(e);
+			// console.log(error);
+			// console.log(xhr);
 			// alert("Unable to send contact form");
 			
 			$("#contact_form_success").hide();
 			$("#err-form").show();
+		});
+
+	$("#customizeContactForm")
+		.on("ajax:success", function(e, data, status, xhr) {
+			// console.log(data);
+			// console.log(status);
+			// console.log(xhr);
+
+			$("#customize_form_success").show();
+			$("#customize_form_err").hide();
+			resetCustomizeForm();
+		})
+		.on("ajax:error", function(e, xhr, status, error) {
+			// console.log(e);
+			// console.log(error);
+			// console.log(xhr);
+			// alert("Unable to send contact form");
+			
+			$("#customize_form_success").hide();
+			$("#customize_form_err").show();
 		});
 });
