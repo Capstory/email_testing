@@ -35,7 +35,7 @@ function slideshow_setup (){
           counter += 1;
           $("#loading_div").css('background-image', "url(" + slideshow_array[counter] + ")");
         }
-      }, 10000);
+      }, 8000);
     },
     stop_slideshow: function (slideshow_variable) {
       clearInterval(slideshow_variable);

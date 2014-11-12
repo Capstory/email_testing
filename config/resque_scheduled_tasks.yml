@@ -1,5 +1,5 @@
 perform_email_engine:
-  every: 30s
+  every: 10s
   class: EmailEngine
   args:
   description: Runs the email_engine job in the workers folder
