@@ -236,7 +236,7 @@ EmailTesting::Application.routes.draw do
   resources :download_managers, only: ["index"]
   
   mount Resque::Server, at: "/resque"
-	if Rails.env.development? || Rails.env.staging?
+	if Rails.env.development?
 		mount LetterOpenerWeb::Engine, at: "email_preview/letter_opener"
 	end
   
