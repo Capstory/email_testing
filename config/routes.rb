@@ -188,10 +188,10 @@ EmailTesting::Application.routes.draw do
   match "thank_you" => "access_requests#thank_you"
   resources :access_requests, only: ["create", "new"]
   
-  match 'payment' => 'charges#new'
+  match 'payment' => 'charges#alt_new'
   match 'payment_thank_you' => "charges#thank_you"
   match 'payment_error' => "charges#payment_error"
-	match 'alt_payment' => "charges#alt_new"
+	match 'alt_payment' => "charges#new"
   resources :charges do
 		collection do
 			post "order_details"
@@ -251,6 +251,6 @@ EmailTesting::Application.routes.draw do
   root :to => "users#welcome", constraints: SiteConstraints.new
   
   # root :to => 'homepages#alt_first_test_landing'
-  root :to => 'homepages#homepage'
+  root :to => 'homepages#alt_ovni_homepage'
 
 end
