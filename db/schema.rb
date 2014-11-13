@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141111213820) do
+ActiveRecord::Schema.define(:version => 20141113201208) do
 
   create_table "access_requests", :force => true do |t|
     t.string   "name"
@@ -111,6 +111,20 @@ ActiveRecord::Schema.define(:version => 20141111213820) do
     t.string   "genre"
     t.date     "event_date"
     t.integer  "user_id"
+  end
+
+  create_table "logos", :force => true do |t|
+    t.string   "image"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "logoable_id"
+    t.string   "logoable_type"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.integer  "height"
+    t.integer  "width"
   end
 
   create_table "page_visits", :force => true do |t|

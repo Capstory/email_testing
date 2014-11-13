@@ -188,3 +188,8 @@ $(function(){
 	}).change();
 	
 });
+
+logoApp = angular.module("logoApp", []);
+
+logoApp.controller("DimensionsCtrl", ["$scope", function($scope) {
+}]);

@@ -208,6 +208,8 @@ EmailTesting::Application.routes.draw do
 	resources :vendors
   resources :vendor_pages
   resources :vendor_contacts
+
+	resources :logos
 	
 	match "submit_order" => "vendor_orders#new"
 	match "order_confirmation" => "vendor_orders#order_thank_you"

@@ -1,0 +1,9 @@
+<h1>Create A New Logo</h1>
+<%= form_for(@logo) do |f| %>
+	<%= f.hidden_field :logoable_id, value: @vendor_page.id %>
+	<%= f.hidden_field :logoable_type, value: @vendor_page.class %>
+
+	<%= f.file_field :image %>
+
+	<%= f.submit "Create Logo", class: "button" %>
+<% end %>

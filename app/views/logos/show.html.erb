@@ -1,0 +1,16 @@
+<div class="row" ng-app="logoApp">
+	<div class="small-6 columns">
+		<%= image_tag @logo.image.url(:standard), width: (@logo.width || "100%"), height: (@logo.height || "100%") %>
+	</div>
+	<div class="small-6 columns" ng-controller="DimensionsCtrl">
+		<h3>Image Dimensions</h3>
+		<input type="text" ng-model="logoHeight" />
+		<input type="text" ng-model="logoWidth" />
+		<button>Update Dimensions</button>
+		{{logoHeight}}
+		{{logoWidth}}
+	</div>
+</div>
+
+<script>
+</script>
