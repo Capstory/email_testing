@@ -209,6 +209,7 @@ EmailTesting::Application.routes.draw do
   resources :vendor_pages
   resources :vendor_contacts
 
+	match "logo_redimension" => "logos#update"
 	resources :logos
 	
 	match "submit_order" => "vendor_orders#new"

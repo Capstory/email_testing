@@ -22,4 +22,20 @@ class LogosController < ApplicationController
 
   def edit
   end
+
+	def update
+		@logo = Logo.find(params[:logo_id])
+		@logo.width = params[:width]
+		@logo.height = params[:height]
+
+		if @logo.save
+			respond_to do |format|
+				format.json { render json: @logo }
+			end
+		else
+			respond_to do |format|
+				format.json { render json: { "status" => "unable to save" } }
+			end
+		end
+	end
 end

@@ -191,5 +191,64 @@ $(function(){
 
 logoApp = angular.module("logoApp", []);
 
-logoApp.controller("DimensionsCtrl", ["$scope", function($scope) {
+logoApp.service("DimensionsAPI", ["$http", "$q", function($http, $q) {
+	this.saveDimensions = function(width, height, logo_id) {
+		var deferred = $q.defer();
+
+		var request_url = "/logo_redimension.json?width=" + width + "&height=" + height + "&logo_id=" + logo_id;
+
+		$http({
+			method: "PUT",
+			url: request_url
+		})
+		.success(function(data, status, headers) {
+			deferred.resolve(data);
+		})
+		.error(function(data, status, headers) {
+			deferred.reject(status);
+		});
+
+		return deferred.promise;
+	}
+}]);
+
+logoApp.controller("DimensionsCtrl", ["$scope", "$timeout", "DimensionData", "DimensionsAPI", function($scope, $timeout, DimensionData, DimensionsAPI) {
+	$scope.successfulSave = false;
+	$scope.errorSave = false;
+
+	$scope.logoWidth = DimensionData.getWidth();
+	$scope.logoHeight = DimensionData.getHeight();
+	var $logo = angular.element("#standardLogo");
+
+	$scope.init = function() {
+		$scope.updateDimensions($scope.logoWidth, $scope.logoHeight);
+	};
+
+	$scope.originalAspectRatio = DimensionData.getAspectRatio();
+
+	$scope.updateDimensions = function(width, height) {
+		console.log("Width: ", width);
+		console.log("Height: ", height);
+		$logo.css("height", height);
+		$logo.css("width", width);
+	};
+
+	$scope.saveDimensions = function(width, height, logo_id) {
+		DimensionsAPI.saveDimensions(width, height, logo_id).then(function(data) {
+			console.log("Successfully saved");
+			$scope.successfulSave = true;
+
+			$timeout(function() {
+				$scope.successfulSave = false;
+			}, 3000);
+		}, 
+		function(status) {
+			console.log("Unable to Save");
+			$scope.errorSave = true;
+
+			$timeout(function() {
+				$scope.errorSave = false;
+			}, 3000);
+		});	
+	};
 }]);
