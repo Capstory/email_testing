@@ -131,8 +131,8 @@
 	</div>
 </div>
 
-<div class="row" style="margin-top:20px;">
 	<%= form_tag(controller: "charges", action: "order_details") do %>
+<div class="row" style="margin-top:20px;">
 		<div class="small-6 columns">
 			<h3 class="subheader">Shipping Details</h3>	
 			<hr>
@@ -274,8 +274,28 @@
 			<button id="chargeSubmitButton" style="display:none;"></button>
 
 		</div>
-	<% end %>
 </div>
+		<div class="row" style="margin-top:50px;">
+			<div class="small-12 columns">
+				<p class="subheader">Do you have a discount code? <a id="discountCodeLink">Click Here to Apply Discount Code</a></p>
+				<div id="discountCodeInput" style="display:none;">
+					<div class="row">
+						<div class="small-12 medium-6 columns">
+							<p class="subheader">Please, enter your discount code.</p>
+						</div>
+						<div class="small-12 medium-6 columns">
+							<%= text_field_tag :discount_code, nil, placeholder: "Enter Discount Code" %>
+						</div>
+					</div>
+					<div class="row">
+						<div class="small-12 columns">
+							<p class="subheader">You will see the discount reduced from the total on the next page, 'Verify Order Details'.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<% end %>
 <hr style="margin-top:60px;">
 <div class="row" style="margin-bottom:100px;">
 	<div class="small-12 columns">

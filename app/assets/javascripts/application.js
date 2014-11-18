@@ -187,6 +187,10 @@ $(function(){
 		}
 	}).change();
 	
+	$("#discountCodeLink").click(function() {
+		$element = $("#discountCodeInput");
+		$element.toggle();
+	});
 });
 
 logoApp = angular.module("logoApp", []);
