@@ -36,7 +36,19 @@ class ChargesController < ApplicationController
 	def order_details
 		# Charge amount in cents
 		customer = {}
-		customer[:amount] = params[:package_price].to_i * 100	
+
+		if params[:discount_code] && !params[:discount_code].strip.empty?
+			discount = Discount.find_by_discount_code(params[:discount_code].downcase)
+			discount_result = discount ? discount.apply_discount(params[:package_price].to_i) : [params[:package_price].to_i, "Unable to find Discount Code"]
+			amount = discount_result.first
+			discount_msg = discount_result.last
+		else
+			amount = params[:package_price].to_i
+			discount_msg = nil
+		end
+
+		# customer[:amount] = params[:package_price].to_i * 100	
+		customer[:amount] = amount * 100
 		customer[:package] = params[:package_name]
 		customer[:email] = params[:email]
 		customer[:first_name] = params[:first_name]
@@ -56,6 +68,9 @@ class ChargesController < ApplicationController
 		customer[:card_type] = params[:card_type]
 		customer[:card_expiration] = "#{params[:card_exp_month]}/#{params[:card_exp_year]}"
 		customer[:transaction_token] = params[:transaction_token]
+		customer[:discount_message] = discount_msg
+		customer[:discount_campaign] = discount.campaign_name if discount
+		customer[:discount_code] = discount.discount_code if discount
 
 		# raise customer.to_yaml
 		@customer = OpenStruct.new(customer)

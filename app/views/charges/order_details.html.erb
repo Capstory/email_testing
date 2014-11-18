@@ -56,6 +56,13 @@
 				<h4 class="pull-right">$<%= @customer.amount / 100 %></h4>
 			</div>
 		</div>
+		<% if @customer.discount_code %>
+			<div class="row">
+				<div class="small-12 columns">
+					<p><%= @customer.discount_message %> - <%= @customer.discount_campaign %></p>
+				</div>
+			</div>
+		<% end %>
 	</div>
 </div>
 <div class="row">

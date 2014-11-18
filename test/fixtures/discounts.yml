@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  string: 
+  amount: 1.5
+  genre: MyString
+  campaign_name: MyString
+  start_date: 2014-11-18
+  end_date: 2014-11-18
+
+two:
+  string: 
+  amount: 1.5
+  genre: MyString
+  campaign_name: MyString
+  start_date: 2014-11-18
+  end_date: 2014-11-18
