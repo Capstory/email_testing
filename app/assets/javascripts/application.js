@@ -192,10 +192,10 @@ $(function(){
 logoApp = angular.module("logoApp", []);
 
 logoApp.service("DimensionsAPI", ["$http", "$q", function($http, $q) {
-	this.saveDimensions = function(width, height, logo_id) {
+	this.saveDimensions = function(width, height, padding_top, padding_left, logo_id) {
 		var deferred = $q.defer();
 
-		var request_url = "/logo_redimension.json?width=" + width + "&height=" + height + "&logo_id=" + logo_id;
+		var request_url = "/logo_redimension.json?width=" + width + "&height=" + height + "&padding_top=" + padding_top + "&padding_left=" + padding_left + "&logo_id=" + logo_id;
 
 		$http({
 			method: "PUT",
@@ -218,23 +218,28 @@ logoApp.controller("DimensionsCtrl", ["$scope", "$timeout", "DimensionData", "Di
 
 	$scope.logoWidth = DimensionData.getWidth();
 	$scope.logoHeight = DimensionData.getHeight();
+	$scope.logoPaddingTop = DimensionData.getPaddingTop();
+	$scope.logoPaddingLeft = DimensionData.getPaddingLeft();
+
 	var $logo = angular.element("#standardLogo");
 
 	$scope.init = function() {
-		$scope.updateDimensions($scope.logoWidth, $scope.logoHeight);
+		$scope.updateDimensions($scope.logoWidth, $scope.logoHeight, $scope.logoPaddingTop, $scope.logoPaddingLeft);
 	};
 
 	$scope.originalAspectRatio = DimensionData.getAspectRatio();
 
-	$scope.updateDimensions = function(width, height) {
+	$scope.updateDimensions = function(width, height, padding_top, padding_left) {
 		console.log("Width: ", width);
 		console.log("Height: ", height);
 		$logo.css("height", height);
 		$logo.css("width", width);
+		$logo.css("padding-top", padding_top + "px");
+		$logo.css("padding-left", padding_left + "px");
 	};
 
-	$scope.saveDimensions = function(width, height, logo_id) {
-		DimensionsAPI.saveDimensions(width, height, logo_id).then(function(data) {
+	$scope.saveDimensions = function(width, height, padding_top, padding_left, logo_id) {
+		DimensionsAPI.saveDimensions(width, height, padding_top, padding_left, logo_id).then(function(data) {
 			console.log("Successfully saved");
 			$scope.successfulSave = true;
 

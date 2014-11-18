@@ -14,4 +14,8 @@ class VendorPage < ActiveRecord::Base
 	def verified?
 		self.vendor_status ? true : false
 	end	
+
+	def has_logo?
+		self.logo.blank?
+	end
 end

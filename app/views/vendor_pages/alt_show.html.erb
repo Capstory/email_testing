@@ -55,7 +55,11 @@
 				
 					<div class="medium-2 columns text-center">
 						<!-- <a class="smooth-scroll	" href="#home-scroll"><img id="logo" alt="logo" src="img/logo.png" /></a> -->
-						<%= link_to image_tag("square_logo.png", alt: "logo", id: "capstory_logo"), "#home-scroll", class: "smooth-scroll" %>
+						<% if @vendor.has_logo? %>
+							<%= link_to image_tag("square_logo.png", alt: "logo", id: "capstory_logo"), "#home-scroll", class: "smooth-scroll" %>
+						<% else %>
+							<%= link_to image_tag(logo_url(@vendor), width: logo_width(@vendor), height: logo_height(@vendor), style: "padding-top:#{logo_padding_top(@vendor)}; padding-left:#{logo_padding_left(@vendor)};"), "#home-scroll", class: "smooth-scroll" %>
+						<% end %>
 					</div>
 				
 					<div class="medium-5 columns text-center">

@@ -1,14 +1,16 @@
 <div class="row" ng-app="logoApp">
 	<div class="small-6 columns">
-		<%= image_tag @logo.image.url(:standard), width: (@logo.width || @logo.standard_width), height: (@logo.height || @logo.standard_height), id: "standardLogo" %>
+		<%= image_tag @logo.image.url(:standard), width: (@logo.width || @logo.standard_width), height: (@logo.height || @logo.standard_height), id: "standardLogo", style: "padding-top: #{@logo.padding_top || 0};" %>
 	</div>
 	<div class="small-6 columns" ng-controller="DimensionsCtrl" ng-init="init()">
 		<h3>Image Dimensions</h3>
 		<p>Original Image Ratio: {{ originalAspectRatio }}:1</p>
 		<input type="text" ng-model="logoHeight" />
 		<input type="text" ng-model="logoWidth" />
-		<button ng-click="updateDimensions(logoWidth, logoHeight)">Update Dimensions</button>
-		<button ng-click="saveDimensions(logoWidth, logoHeight, <%= @logo.id %>)">Save Dimensions</button>
+		<input type="text" ng-model="logoPaddingTop" />
+		<input type="text" ng-model="logoPaddingLeft" />
+		<button ng-click="updateDimensions(logoWidth, logoHeight, logoPaddingTop, logoPaddingLeft)">Update Dimensions</button>
+		<button ng-click="saveDimensions(logoWidth, logoHeight, logoPaddingTop, logoPaddingLeft, <%= @logo.id %>)">Save Dimensions</button>
 		<p>Current Image Ratio: {{ logoWidth / logoHeight | number: 2}}:1</p>
 		<div class="alert-box success" ng-show="successfulSave">
 			Dimensions Successfully saved
@@ -23,11 +25,15 @@
 	logoApp.factory("DimensionData", [function() {
 		var width = <%= @logo.width || @logo.standard_width  %>;
 		var height = <%= @logo.height || @logo.standard_height %>;
+		var padding_top = <%= @logo.padding_top || 0 %>;
+		var padding_left = <%= @logo.padding_left || 0 %>;
 
 		var getDimensions = function() {
 			return {
 				width: width,
-				height: height
+				height: height,
+				padding_top: padding_top,
+				padding_left: padding_left
 			};
 		};
 
@@ -37,6 +43,12 @@
 			},
 			getHeight: function() {
 				return height;
+			},
+			getPaddingTop: function() {
+				return padding_top;
+			},
+			getPaddingLeft: function() {
+				return padding_left;
 			},
 			getAspectRatio: function() {
 				var ratio = width / height;

@@ -27,6 +27,8 @@ class LogosController < ApplicationController
 		@logo = Logo.find(params[:logo_id])
 		@logo.width = params[:width]
 		@logo.height = params[:height]
+		@logo.padding_top = params[:padding_top].to_i
+		@logo.padding_left = params[:padding_left].to_i
 
 		if @logo.save
 			respond_to do |format|
