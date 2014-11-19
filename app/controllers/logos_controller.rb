@@ -5,7 +5,11 @@ class LogosController < ApplicationController
 	end
 
   def new
-		@vendor_page = VendorPage.find(params[:vendor_page_id])
+		if application_classes.include?(params[:klass])
+			@associated_object = params[:klass].constantize.find(params[:associated_object_id])
+		else
+			@associated_object = VendorPage.find(params[:associated_object_id])
+		end
 		@logo = Logo.new
   end
 

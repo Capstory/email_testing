@@ -23,6 +23,7 @@
 			<th></th>
 			<th></th>
 			<th></th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -39,6 +40,11 @@
 					<td><%= link_to "Unlock", change_capsule_status_path(capsule_id: capsule.id, capsule_action: :unlock), data: { confirm: "Are you sure that you want to open this capsule to accept submissions?" } %></td>
 				<% end %>
 				<td><%= link_to "Edit", edit_capsule_path(capsule) %></td>
+				<% if capsule.logo %>
+					<td><%= link_to "See Logo", capsule.logo %></td>
+				<% else %>
+					<td><%= link_to "Add Logo", new_logo_path(klass: capsule.class, associated_object_id: capsule.id) %></td>
+				<% end %>
 				<td><%= link_to "Delete", capsule, method: :delete, data: { confirm: "Are you sure?" } %></td>
 			</tr>
 		<% end %>

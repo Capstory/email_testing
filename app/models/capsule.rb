@@ -4,6 +4,7 @@ class Capsule < ActiveRecord::Base
   has_many :encapsulations
   has_many :users, through: :encapsulations
   has_many :posts
+	has_one :logo, as: :logoable
 	
 	validates :name, presence: true
 	validates :email, presence: true
@@ -42,5 +43,9 @@ class Capsule < ActiveRecord::Base
 
 	def accepting_submissions?
 		locked ? false : true
+	end
+
+	def has_logo?
+		!self.logo.blank?
 	end
 end

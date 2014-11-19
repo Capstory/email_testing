@@ -1,7 +1,8 @@
 <h1>Create A New Logo</h1>
 <%= form_for(@logo) do |f| %>
-	<%= f.hidden_field :logoable_id, value: @vendor_page.id %>
-	<%= f.hidden_field :logoable_type, value: @vendor_page.class %>
+	<%= f.hidden_field :logoable_id, value: @associated_object.id %>
+	<%= f.hidden_field :logoable_type, value: @associated_object.class %>
+	<p>Adding a logo to: a <%= @associated_object.class %></p>
 
 	<%= f.file_field :image %>
 

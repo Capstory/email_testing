@@ -46,19 +46,4 @@ class DownloadManagersController < ApplicationController
     redirect_to params[:file_path]
   end
   
-  private
-  
-  def application_classes
-    klasses = []
-    Dir.foreach("#{Rails.root}/app/models") do |model_path|
-      klasses << model_path
-    end
-    klasses.select! { |model_path| model_path.include?(".rb") }
-    klasses.each_with_index do |model_path, index|
-      klass = model_path.split(".").first
-      klass = klass.include?("_") ? klass.split("_").map(&:titlecase).join("") : klass.titlecase
-      klasses[index] = klass
-    end
-    return klasses
-  end
 end
