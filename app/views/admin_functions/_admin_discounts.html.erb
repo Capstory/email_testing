@@ -1,0 +1,40 @@
+<div class="row">
+	<div class="small-6 columns">
+		<h4 class="subheader">
+			Discounts<br>
+			<small>
+				Below are all the Discounts in the system. You can create a new one if you need to by clicking
+				on the button to the right.
+			</small>
+		</h4>
+	</div>	
+	<div class="small-6 columns">
+		<%= link_to "Add a Discount", new_discount_path, class: "button" %>
+	</div>
+</div>
+<table>
+	<thead>
+		<tr>
+			<th width="200">Campaign Name</th>
+			<th>Amount</th>
+			<th>Percent/Fixed</th>
+			<th>Start Date</th>
+			<th>End Date</th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% discounts.each do |discount| %>
+			<tr>
+				<td><%= link_to discount.campaign_name, discount %></td>
+				<td><%= discount.show_amount %></td>
+				<td><%= discount.genre.capitalize %></td>
+				<td><%= discount.show_start_date %></td>
+				<td><%= discount.show_end_date %></td>
+				<td><%= link_to "Edit", edit_discount_path(discount) %></td>
+				<td><%= link_to "Delete", discount, method: :delete, data: { confirm: "Are you sure?" } %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

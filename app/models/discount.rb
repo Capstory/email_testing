@@ -20,4 +20,25 @@ class Discount < ActiveRecord::Base
 			return [new_price.to_i, "Discount Successfully Applied"]
 		end
 	end
+
+	def show_amount
+		case self.genre
+		when "percent"
+			amount = (self.amount * 100).to_s + "%"
+		when "fixed"
+			amount = "$" + self.amount.to_s
+		else
+			amount = (self.amount * 100).to_s + "%"
+		end
+
+		return amount
+	end
+
+	def show_start_date
+		self.start_date.to_formatted_s(:long)
+	end
+
+	def show_end_date
+		self.end_date.to_formatted_s(:long)
+	end
 end

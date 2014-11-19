@@ -216,6 +216,8 @@ EmailTesting::Application.routes.draw do
 	match "order_confirmation" => "vendor_orders#order_thank_you"
 	resources :vendor_orders, only: [:new, :index, :create, :show]
 
+	resources :discounts
+
   # ==========================
   # Note that this is the same path as the vendors#show route above. Thus, must be placed below the constrained route.
   # ==========================

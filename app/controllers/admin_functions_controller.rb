@@ -11,6 +11,7 @@ class AdminFunctionsController < ApplicationController
     @encapsulations = Encapsulation.all
     @vendor_pages = VendorPage.all
 		@vendors = Vendor.all
+		@discounts = Discount.all
   end
 
 	def	customer_new

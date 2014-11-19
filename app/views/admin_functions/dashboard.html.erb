@@ -22,6 +22,7 @@
 			<li><%= link_to "Authorizations", "#", class: "admin_links", id: "show_authorizations" %></li>
 			<li><%= link_to "Vendor", "#", class: "admin_links", id: "show_vendors" %></li>
 			<li><%= link_to "Vendor Pages", "#", class: "admin_links", id: "show_vendor_pages" %></li>
+			<li><%= link_to "Discounts", "#", class: "admin_links", id: "show_discounts" %></li>
 		</ul>
 	</div>
 	<div class="small-9 columns">
@@ -51,6 +52,9 @@
 		</div>
 		<div id="show_vendors_data" style="display:none;" class="data_partial">
 			<%= render "admin_vendors", vendors: @vendors %>
+		</div>
+		<div id="show_discounts_data" style="display:none;" class="data_partial">
+			<%= render "admin_discounts", discounts: @discounts %>
 		</div>
 	</div>
 </div>

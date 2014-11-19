@@ -1,0 +1,26 @@
+<h2>Create a New Discount</h2>
+
+<%= form_for(@discount) do |f| %>
+	<%= f.label :campaign_name %>
+	<%= f.text_field :campaign_name %>
+
+	<%= f.label :amount %>
+	<p class="subheader">If it is a fixed price enter the amount in whole numbers (e.g. 100). If it is a percent discount, enter the amount on decimal format (e.g. 0.1 for 10%)</p>
+	<%= f.text_field :amount %>
+
+	<%= f.label :genre, "Percent of Fixed Discount" %>
+	<%= f.select :genre, options_for_select([["Percent", "percent"],["Fixed", "fixed"]]) %>
+
+	<%= f.label :start_date %>
+	<p class="subheader">Please enter the starting date in the format: 06-15-2015 (i.e. 15th of June, 2014)</p>
+	<%= f.text_field :start_date %>
+
+	<%= f.label :end_date %>
+	<p class="subheader">Please enter the starting date in the format: 06-15-2015 (i.e. 15th of June, 2014)</p>
+	<%= f.text_field :end_date %>
+
+	<%= f.label :discount_code %>
+	<%= f.text_field :discount_code %>
+
+	<%= f.submit "Create Discount", class: "button" %>
+<% end %>
