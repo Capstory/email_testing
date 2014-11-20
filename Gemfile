@@ -50,6 +50,8 @@ gem 'jquery-rails'
 gem 'fancybox2-rails'
 gem 'filepicker-rails'
 
+gem "chartkick"
+
 gem 'rmagick'
 gem 'paperclip', '3.5.2'
 gem 'aws-sdk'

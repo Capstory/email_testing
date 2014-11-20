@@ -108,6 +108,7 @@ EmailTesting::Application.routes.draw do
 
 
   match "dashboard" => "admin_functions#dashboard"
+	get "admin/metrics" => "admin_functions#metrics"
 	match "manage_capsule" => "admin_functions#manage_capsule"
 	match "change_capsule_status" => "admin_functions#change_capsule_status"
 	match "remote_moderation" => "admin_functions#remote_moderation"

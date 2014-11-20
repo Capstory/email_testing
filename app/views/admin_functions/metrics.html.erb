@@ -1,0 +1,53 @@
+<div class="row">
+	<div class="small-12 columns">
+		<h2>Capstory Metrics</h2>
+	</div>
+</div>
+<div class="row">
+	<div class="small-12 medium-4 columns">
+		<h3>Photos</h3>
+		<p>Avg: <%= Capsule.posts_avg(@capsules) %></p>
+		<p>Min: <%= Capsule.posts_min(@capsules) %></p>
+		<p>Max: <%= Capsule.posts_max(@capsules) %></p>
+	</div>
+	<div class="small-12 medium-4 columns">
+		<h3>Contributors</h3>
+		<p>Avg: <%= Capsule.contributors_avg(@capsules) %></p>
+		<p>Min: <%= Capsule.contributors_min(@capsules) %></p>
+		<p>Max: <%= Capsule.contributors_max(@capsules) %></p>
+	</div>
+	<div class="small-12 medium-4 columns">
+		<h3>Usage (days)</h3>
+		<p>Avg: <%= Capsule.usage_avg(@capsules) %></p>
+		<p>Min: <%= Capsule.usage_min(@capsules) %></p>
+		<p>Max: <%= Capsule.usage_max(@capsules) %></p>
+	</div>
+</div>
+<div class="row">
+	<div class="small-12 columns">
+		<h3>Capsule Metrics</h3>
+		<table>
+			<thead>
+				<tr>
+					<th>Capsule</th>	
+					<th># of pics</th>	
+					<th># of contributors</th>	
+					<th>Date Range of Usage</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @capsules.each do |capsule| %>
+					<tr>
+						<td style="width:25%;"><%= capsule.name %></td>
+						<td style="width:25%;"><%= capsule.posts.count %></td>
+						<td style="width:25%;"><%= capsule.contributors_count %></td>
+						<td style="width:25%;"><%= capsule.usage_range %> days</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
+<%# <div class="row"> %>
+<%# 	<%= line_chart({21.day.ago => 21, 33.days.ago => 34}) %1> %>
+<%# </div> %>

@@ -15,6 +15,54 @@ class Capsule < ActiveRecord::Base
   extend FriendlyId
   friendly_id :named_url
   
+	def self.posts_avg(capsules)
+		posts_count = capsules.map { |capsule| capsule.posts.count }
+		result = posts_count.reduce(:+) / capsules.count
+		return result
+	end
+
+	def self.posts_min(capsules)
+		posts_count = capsules.map { |capsule| capsule.posts.count }
+		return posts_count.min
+	end
+
+	def self.posts_max(capsules)
+		posts_count = capsules.map { |capsule| capsule.posts.count }
+		return posts_count.max
+	end
+
+	def self.contributors_avg(capsules)
+		contributors_count = capsules.map { |capsule| capsule.contributors_count }			
+		result = contributors_count.reduce(:+) / capsules.count
+		return result
+	end
+
+	def self.contributors_min(capsules)
+		contributors_count = capsules.map { |capsule| capsule.contributors_count }			
+		return contributors_count.min
+	end
+
+	def self.contributors_max(capsules)
+		contributors_count = capsules.map { |capsule| capsule.contributors_count }			
+		return contributors_count.max
+	end
+
+	def self.usage_avg(capsules)
+		usage_array = capsules.map { |capsule| capsule.usage_range }
+		numerator = usage_array.reduce(:+) / capsules.count
+		return numerator
+	end
+
+	def self.usage_min(capsules)
+		usage_array = capsules.map { |capsule| capsule.usage_range }
+		return usage_array.min
+	end
+
+	def self.usage_max(capsules)
+		usage_array = capsules.map { |capsule| capsule.usage_range }
+		return usage_array.max
+	end
+
   def has_pin?
     if self.pin_code.nil?
       return false
@@ -47,5 +95,27 @@ class Capsule < ActiveRecord::Base
 
 	def has_logo?
 		!self.logo.blank?
+	end
+
+	def contributors
+		contributors = self.posts.map { |p| p.email }
+		return contributors.uniq
+	end
+
+	def contributors_count
+		self.contributors.count
+	end
+
+	def usage_range
+		case self.posts.count
+		when 0
+			return 0
+		when 1
+			return 1
+		else
+			dates = self.posts.map { |p| p.created_at }
+			diff = dates.max - dates.min
+			return (diff / 1.day).to_i
+		end
 	end
 end

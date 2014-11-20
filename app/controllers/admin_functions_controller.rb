@@ -14,6 +14,10 @@ class AdminFunctionsController < ApplicationController
 		@discounts = Discount.all
   end
 
+	def metrics
+		@capsules = Capsule.all
+	end
+
 	def	customer_new
 		if ( params.has_key?(:vendor_id) && !params[:vendor_id].blank? )
 			@vendor = Vendor.find(params[:vendor_id])
