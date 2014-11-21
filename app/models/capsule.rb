@@ -65,16 +65,32 @@ class Capsule < ActiveRecord::Base
 		return usage_array.max
 	end
 
-	def self.admins
+	def self.all_non_zero
 		self.all.select do |capsule|
+			capsule.posts.count > 2
+		end
+	end
+
+	def self.admins
+		self.all_non_zero.select do |capsule|
 			capsule.owner != "N/A" && capsule.owner.type == "Admin"
 		end
 	end
 
 	def self.clients
-		self.all.select do |capsule|
+		self.all_non_zero.select do |capsule|
 			capsule.owner != "N/A" && capsule.owner.type == "Client"
 		end
+	end
+
+	def self.to_chart_data(capsules)
+		data = {}
+		data[DateTime.new(2013, 9, 01, 22, 30, 00)] = 0
+		capsules.each do |capsule|
+			data[capsule.posts.last.created_at] = capsule.posts.count
+		end
+
+		return data
 	end
 
 	def has_pin?

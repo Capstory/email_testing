@@ -48,6 +48,6 @@
 		</table>
 	</div>
 </div>
-<%# <div class="row"> %>
-<%# 	<%= line_chart({21.day.ago => 21, 33.days.ago => 34}) %1> %>
-<%# </div> %>
+<div class="row">
+	<%= line_chart(Capsule.to_chart_data(@capsules)) %>
+</div>
