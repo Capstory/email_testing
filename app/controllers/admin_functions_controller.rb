@@ -15,7 +15,7 @@ class AdminFunctionsController < ApplicationController
   end
 
 	def metrics
-		@capsules = Capsule.all
+		@capsules = Capsule.clients
 	end
 
 	def	customer_new

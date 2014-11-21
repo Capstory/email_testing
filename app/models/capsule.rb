@@ -3,6 +3,7 @@ class Capsule < ActiveRecord::Base
   
   has_many :encapsulations
   has_many :users, through: :encapsulations
+
   has_many :posts
 	has_one :logo, as: :logoable
 	
@@ -11,6 +12,7 @@ class Capsule < ActiveRecord::Base
 	# validates :event_date, presence: true	
   validates_uniqueness_of :email
   # validates_format_of :email, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i
+	
   
   extend FriendlyId
   friendly_id :named_url
@@ -63,14 +65,26 @@ class Capsule < ActiveRecord::Base
 		return usage_array.max
 	end
 
-  def has_pin?
-    if self.pin_code.nil?
-      return false
-    else
-      return true
-    end
-  end
-  
+	def self.admins
+		self.all.select do |capsule|
+			capsule.owner != "N/A" && capsule.owner.type == "Admin"
+		end
+	end
+
+	def self.clients
+		self.all.select do |capsule|
+			capsule.owner != "N/A" && capsule.owner.type == "Client"
+		end
+	end
+
+	def has_pin?
+		if self.pin_code.nil?
+			return false
+		else
+			return true
+		end
+	end
+
   def owners_name
     owner = self.encapsulations.where(owner: true)
     if owner.empty?
