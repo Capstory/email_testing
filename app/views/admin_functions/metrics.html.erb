@@ -23,7 +23,7 @@
 		<p>Max: <%= Capsule.usage_max(@capsules) %></p>
 	</div>
 </div>
-<div class="row">
+<div class="row" style="margin-top:60px;">
 	<div class="small-12 columns">
 		<h3>Capsule Metrics</h3>
 		<table>
@@ -48,6 +48,13 @@
 		</table>
 	</div>
 </div>
+<div class="row" style="margin-top:60px;">
+	<div class="small-12 columns">
+		<h3>Photos per Capsule over Time</h3>
+	</div>
+</div>
 <div class="row">
-	<%= line_chart(Capsule.to_chart_data(@capsules)) %>
+	<div class="small-12 columns">
+		<%= line_chart(Capsule.to_chart_data(@capsules)) %>
+	</div>
 </div>
