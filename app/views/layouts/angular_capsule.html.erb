@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+  <head>
+  	<meta charset="utf-8" />
+
+  	<!-- Uncomment to make IE8 render like IE7 -->
+  	<!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
+
+  	<!-- Set the viewport width to device width for mobile -->
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  	<title><%= content_for?(:title) ? yield(:title) : "Weddings @ Capstory || Collect Every Moment" %></title>
+
+  	<%= stylesheet_link_tag    "angular_capsule" %>
+  	<%= javascript_include_tag "vendor/modernizr" %>
+		<%= filepicker_js_include_tag %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+		<style>
+			.capsule_link {
+				text-align: center;
+				background-color: #fff;
+			}
+
+			.capsule_link:hover {
+				background-color: #eee;
+			}
+		</style>
+		<%= javascript_include_tag "angular_capsule" %>
+		<nav class="top-bar">
+		  <ul class="title-area" style="padding-top:20px;">
+		    <li class="name">
+					<span id="application_logo">
+		     		<%= link_to image_tag("logo.png", width: '275px', height: '30px'), self.send(resolve_logo_route) %>
+						<%# <%= link_to fa_icon("inbox", text: "Get Email"), retrieve_emails_path %1> %>
+					</span>
+		    </li>
+		  </ul>
+			<section class="top-bar-section">	
+				<ul class="right">
+					<% if current_user %>
+						<% user_name = !current_user.name.blank? ? current_user.name : "Mr. No Name" %>
+						<li class="has-dropdown not-click">
+							<%= link_to "Signed In as #{user_name}", current_user %>
+							
+							<ul class="dropdown">
+								<li><%= link_to "Sign Out", signout_path %></li>
+							</ul>
+						</li>
+					<% else %>
+						<li><%= link_to "Login", login_path %></li>
+					<% end %>
+				</ul>
+				</section>
+		</nav>
+		<div style="display:none;">
+				<%= form_for(@post) do |f| %>
+				  <% if @post.errors.any? %>
+				    <div id="error_explanation">
+				      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+				      <ul>
+				      <% @post.errors.full_messages.each do |msg| %>
+				        <li><%= msg %></li>
+				      <% end %>
+				      </ul>
+				    </div>
+				  <% end %>
+					<%= f.hidden_field :capsule_id, value: @capsule.id %>
+					<%= f.hidden_field :capsule_requires_verification, value: @capsule.requires_verification %>
+
+				 	<%= f.filepicker_field :filepicker_url, multiple: true, services: "COMPUTER, DROPBOX, FACEBOOK, FLICKR, INSTAGRAM", onchange: 'onImageUpload()', button_text: "Upload A Photo", class: 'pick_file' %>
+
+					<!-- <div id="after_filepicker_upload" class="alert-box success" style="display:none;">
+						<p class='subheader'>Image processing finished. Click the button to complete the upload.</p>
+					</div> -->
+					<%= f.submit "Upload", class: 'button', id: 'filepicker_submit_button', style: "display:none;" %>
+
+				<% end %>
+		</div>
+		<div ng-app="AngularCapsuleApp">
+			<%= yield %>
+		</div>
+    
+		<%= render 'layouts/ga' if Rails.env.production? %>
+		<%= render 'layouts/crazy_egg' if Rails.env.production? %>
+  </body>
+</html>

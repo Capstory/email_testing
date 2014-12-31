@@ -1,0 +1,21 @@
+angular_capsule_app = angular.module("AngularCapsuleApp", 
+		[
+		"ngRoute",
+		"ngTouch",
+		"iso.directives"
+		]);
+
+angular_capsule_app.config(["$routeProvider", function($routeProvider) {
+	$routeProvider
+		.when("/", {
+			controller: "CapsuleCtlr",
+			templateUrl: "<%= asset_path 'angular_capsule/capsule.html' %>"
+		})
+		.when("/photo/:postId", {
+			controller: "PostCtrl",
+			templateUrl: "<%= asset_path 'angular_capsule/post.html' %>"
+		})
+		.otherwise({
+			redirectTo: "/"
+		});
+}]);

@@ -91,4 +91,55 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+	# ================================== 
+	#    NON-STANDARD METHODS
+	# ==================================
+	
+	def get_new_posts
+		currently_visible_post_ids = params[:post_ids].split(",").map(&:to_i)
+		currently_tagged_for_deletion_post_ids = params[:posts_tagged_for_deletion].split(",").map(&:to_i)
+
+		@capsule = Capsule.includes(:posts).find(params[:capsule_id])
+
+		post_ids = @capsule.posts.pluck(:id)
+		tagged_for_deletion_post_ids = @capsule.posts.where(tag_for_deletion: true).pluck(:id)
+
+		new_post_ids = post_ids.reject { |post_id| currently_visible_post_ids.include?(post_id) }
+		# new_tagged_for_deletion_post_ids = tagged_for_deletion_post_ids.reject { |post_id| currently_tagged_for_deletion_post_ids.include?(post_id) }
+		new_tagged_for_deletion_post_ids = tagged_for_deletion_post_ids - currently_tagged_for_deletion_post_ids
+		new_undeleted_post_ids = currently_tagged_for_deletion_post_ids - tagged_for_deletion_post_ids
+
+		@new_posts = []
+		@newly_tagged_for_deletion = []
+		@newly_undeleted = []
+
+		unless new_post_ids.empty?
+			new_post_ids.each do |post_id|
+				@new_posts << @capsule.posts.find(post_id)
+			end
+		else
+			# @new_posts << @capsule.posts.first
+		end
+
+		unless new_tagged_for_deletion_post_ids.empty?
+			new_tagged_for_deletion_post_ids.each do |post_id|
+				@newly_tagged_for_deletion << @capsule.posts.find(post_id)
+			end
+		else
+			# @newly_tagged_for_deletion << @capsule.posts.last
+		end
+
+		unless new_undeleted_post_ids.empty?
+			new_undeleted_post_ids.each do |post_id|
+				@newly_undeleted << @capsule.posts.find(post_id)
+			end
+		end
+
+		respond_to do |format|
+			# format.json { render json: {capsule: @capsule,posts: @posts}}
+			format.json { render json: { msg: "success", new_posts: @new_posts, new_deletions: @newly_tagged_for_deletion, new_undeleted: @newly_undeleted } }
+		end
+	end
 end

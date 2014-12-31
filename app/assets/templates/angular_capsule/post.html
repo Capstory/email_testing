@@ -1,0 +1,70 @@
+<style>
+  .arrow {
+    text-align: center;
+  }
+
+  .arrow:hover {
+    background-color: #eee;
+    cursor: pointer;
+  }
+</style>
+<div keypress="39:keypressNext(posts, postId);37:keypressPrevious(posts, postId)" class="row" ng-controller="PostCtrl" ng-init="init()" ng-swipe-right="goPrevious(posts, postId)" ng-swipe-left="goNext(posts, postId)">
+  <div ng-click="goPrevious(posts, postId)" class="show-for-medium-up medium-1 columns arrow" ng-style="arrowDivHeight">
+    <a ng-style="lineHeight" ng-show="arrowShow"><i class="fa fa-3x fa-chevron-left"></i></a>
+  </div>
+  <div class="small-12 medium-10 columns">
+    <!-- <p>Capsule Controller Data: {{ capsule }}</p> -->
+    <!-- <p>Visible Posts: {{ visiblePosts }}</p> -->
+    
+    <!-- <h1>Has a video: {{ post.hasVideo }}</h1> -->
+
+    <div id="mainElement">
+      <div ng-hide="post.hasVideo">
+        <img ng-show="post.isImage" ng-src="{{ post.image }}" width="100%"/> 
+        <h2 style="height:220px;" ng-hide="post.isImage"><blockquote style="margin-top:80px;">{{ post.body }}</blockquote></h2>
+      </div>
+
+      <video id="video" ng-show="post.hasVideo" ng-src="{{ post.video_url }}" style="width:100%;" controls></video>
+    </div>
+    <div class="row show-for-medium-up">
+      <div class="medium-6 columns">
+        <a ng-click="backToCapsule()"><i class="fa fa-long-arrow-left" style="margin-top: 50px;"></i> Back to Capsule</a>
+      </div>
+      <div class="medium-6 columns">
+        <div ng-hide="post.hasVideo">
+          <a ng-show="post.isImage" ng-href="{{ post.image }}" target="_self" download class="pull-right" style="margin-top:50px;"> Download Original Image</a>
+        </div>
+        <a ng-show="post.hasVideo" ng-href="{{ post.video_url }}" target="_self" download class="pull-right" style="margin-top:50px;">Download Original Video</a>
+      </div>
+    </div>
+    <div class="row show-for-small-only">
+      <div class="small-12 columns" id="navAdvice">
+        <p class="subheader" style="margin-top:20px;">
+          <i class="fa fa-arrow-left"></i>
+          Swipe left or right to navigate photos
+          <i class="fa fa-arrow-right"></i>
+        </p>
+      </div>
+    </div>
+    <div class="row show-for-small-only">
+      <div class="small-12 columns">
+        <a class="button expand" ng-click="backToCapsule()" style="margin-top: 50px;"><i class="fa fa-long-arrow-left"></i> Back to Capsule</a>
+      </div>
+    </div>
+      <div class="row show-for-small-only">
+        <div class="small-12 columns" style="text-align:center;margin-top:20px;">
+          <div ng-hide="post.hasVideo">
+            <a ng-show="post.isImage" ng-href="{{ post.image }}" target="_self" download> Download Original Image</a>
+          </div>
+          <a ng-show="post.hasVideo" ng-href="{{ post.video_url }}" target="_self" download>Download Original Video</a>
+        </div>
+      </div>
+    <!-- <button ng-click="backToCapsule()">Back To Capsule</button> -->
+    <!-- <button ng-click="goPrevious(posts, postId)">Previous</button> -->
+    <!-- <button ng-click="goNext(posts, postId)">Next</button> -->
+  </div>
+  <div ng-click="goNext(posts, postId)" class="show-for-medium-up medium-1 columns arrow" ng-style="arrowDivHeight">
+    <a ng-show="arrowShow" ng-style="lineHeight"><i class="fa fa-3x fa-chevron-right"></i></a> 
+  </div>
+</div>
+<div class="row clearfix" style="margin-top:50px"></div>

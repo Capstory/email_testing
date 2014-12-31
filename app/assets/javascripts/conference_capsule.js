@@ -10,8 +10,8 @@
 //= require_tree ./conference_capsule/models
 //= require ./conference_capsule/filters.js
 //= require ./conference_capsule/directives.js
-//= require ./conference_capsule/angular-isotope.js
-//= require ./conference_capsule/ng-infinite-scroll.js
+//= require ./common_use/angular-isotope.js
+//= require ./common_use/ng-infinite-scroll.js
 //= require_self
 
 var filepicker_submission = function() {

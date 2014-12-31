@@ -47,9 +47,14 @@ class CapsulesController < ApplicationController
     @post = Post.new
   end
 	
-	def alt_show
+	def angular_show
     @capsule = Capsule.find(params[:id].to_s.downcase)
-    @posts = @capsule.posts.verified.order("created_at DESC")
+    @posts = @capsule.posts.includes(:video)
+		# @visible_posts = [ @capsule.id, @capsule.posts.verified.pluck(:id) ]
+		@videos = @posts.map { |p| if p.video then p.video end }.compact
+		@post = Post.new
+
+		render "angular_show", layout: "angular_capsule"
 	end	
 
   def edit
@@ -173,8 +178,6 @@ class CapsulesController < ApplicationController
     case action_name
     when "slideshow"
       "slideshow"
-		when "alt_show"
-			"alt_capsule"
 		when "conference_capsule"
 			"conference_capsule"
 		when "conference_filepicker_upload"
