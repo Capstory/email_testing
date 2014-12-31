@@ -128,6 +128,10 @@ class VendorPagesController < ApplicationController
 			"americheer" => {
 				view: "americheer_landing",
 				layout: "ovni_layout"
+			},
+			"receptionsinc" => {
+				view: "receptions_landing",
+				layout: "ovni_layout"
 			}
 		}
 
