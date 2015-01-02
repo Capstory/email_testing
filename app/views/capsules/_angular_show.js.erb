@@ -1,0 +1,38 @@
+angular_capsule_app.factory("CapsuleData", [function() {
+	var capsuleData = <%= @capsule.to_json.html_safe %>;
+	var posts = <%= @posts.to_json.html_safe %>;
+	var videos = <%= @videos.to_json.html_safe %>;
+	var slideshowImage = {
+		imagePath: "<%= asset_path('slideshow_icon.png') %>",
+		linkPath: "<%= slideshow_path(capsule_id: @capsule.id) %>"
+	};
+	var uploadImage = {
+		imagePath: "<%= asset_path('upload_icon.png') %>", 
+		linkPath: "#"
+	};
+	var currentUser = {
+		admin: <%= current_user.admin? %>,
+		capsuleOwner: <%= capsule_owner(current_user.id, @capsule.id) %>
+	};
+
+	return {
+		getCapsuleData: function() {
+			return capsuleData;
+		},
+		getPosts: function() {
+			return posts;
+		},
+		getVideos: function() {
+			return videos;					 
+		},
+		getSlideshowImagePath: function() {
+			return slideshowImage;
+		},
+		getUploadImagePath: function() {
+			return uploadImage;								
+		},
+		getAuthDetails: function() {
+			return currentUser;
+		}
+	};
+}]);

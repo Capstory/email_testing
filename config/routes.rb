@@ -154,6 +154,8 @@ EmailTesting::Application.routes.draw do
   
   resources :posts
   match "slides" => "posts#slides"
+	match "check_new_posts" => "posts#get_new_posts"
+	match "mark_for_deletion" => "posts#mark_for_deletion"
   
   match "retrieve_emails" => "email_retrievers#activate"
   
@@ -164,7 +166,7 @@ EmailTesting::Application.routes.draw do
 	match "conference_get_new_posts" => "capsules#conference_get_new_posts"
 	match "conference_upload/:capsule_id" => "capsules#conference_filepicker_upload"
 	match "conference_filepicker_process" => "capsules#conference_filepicker_process"
-	match "alt_show/:id" => "capsules#alt_show"
+	match "angular/:id" => "capsules#angular_show"
   resources :capsules, except: :index
   
   match 'verify_pin' => "capsules#verify_pin"
