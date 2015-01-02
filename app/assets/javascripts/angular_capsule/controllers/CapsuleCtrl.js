@@ -1,4 +1,4 @@
-angular_capsule_app.controller("CapsuleCtlr", ["$scope", "$rootScope", "$location", "$timeout", "$interval", "CapsuleData", "CapsuleModel", "PostModel", "VideoModel", function($scope, $rootScope, $location, $timeout, $interval, CapsuleData, CapsuleModel, PostModel, VideoModel) {
+angular_capsule_app.controller("CapsuleCtlr", ["$window", "$scope", "$rootScope", "$location", "$timeout", "$interval", "CapsuleData", "CapsuleModel", "PostModel", "VideoModel", function($window, $scope, $rootScope, $location, $timeout, $interval, CapsuleData, CapsuleModel, PostModel, VideoModel) {
 	$scope.initIso = function() {
 		$scope.iso = new Isotope("#isotopeContainer", {
 			itemSelector: ".isotopeItem",
@@ -93,6 +93,18 @@ angular_capsule_app.controller("CapsuleCtlr", ["$scope", "$rootScope", "$locatio
 
 	};
 
+	PostModel.getNewPosts($scope.capsule.id, $scope.posts).then(function(data) {
+		PostModel.updatePostData($scope.posts, data);
+		buildCapsuleImages($scope.posts);
+
+		$timeout(function() {
+			refreshIsotope();
+		}, 500);
+	}
+	, function(status) {
+		console.log("There has been an error", status);
+	});
+
 	var stopPoller = function() {
 		if ( angular.isDefined(poller) ) {
 			$interval.cancel(poller);
@@ -122,5 +134,9 @@ angular_capsule_app.controller("CapsuleCtlr", ["$scope", "$rootScope", "$locatio
 
 	$scope.activateFilepicker = function() {
 		angular.element(".pick_file").click();
+	};
+
+	$window.onImageUpload = function() {
+		angular.element("#filepicker_submit_button").click();
 	};
 }]);

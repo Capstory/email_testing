@@ -155,6 +155,7 @@ EmailTesting::Application.routes.draw do
   resources :posts
   match "slides" => "posts#slides"
 	match "check_new_posts" => "posts#get_new_posts"
+	match "mark_for_deletion" => "posts#mark_for_deletion"
   
   match "retrieve_emails" => "email_retrievers#activate"
   

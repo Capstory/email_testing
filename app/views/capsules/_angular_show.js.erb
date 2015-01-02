@@ -10,6 +10,10 @@ angular_capsule_app.factory("CapsuleData", [function() {
 		imagePath: "<%= asset_path('upload_icon.png') %>", 
 		linkPath: "#"
 	};
+	var currentUser = {
+		admin: <%= current_user.admin? %>,
+		capsuleOwner: <%= capsule_owner(current_user.id, @capsule.id) %>
+	};
 
 	return {
 		getCapsuleData: function() {
@@ -26,6 +30,9 @@ angular_capsule_app.factory("CapsuleData", [function() {
 		},
 		getUploadImagePath: function() {
 			return uploadImage;								
+		},
+		getAuthDetails: function() {
+			return currentUser;
 		}
 	};
 }]);

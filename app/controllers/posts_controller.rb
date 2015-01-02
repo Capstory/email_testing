@@ -142,4 +142,19 @@ class PostsController < ApplicationController
 			format.json { render json: { msg: "success", new_posts: @new_posts, new_deletions: @newly_tagged_for_deletion, new_undeleted: @newly_undeleted } }
 		end
 	end
+
+	def mark_for_deletion
+		@post = Post.find(params[:post_id])
+		@post.tag_for_deletion = true
+
+		if @post.save
+			respond_to do |format|
+				format.json { render json: {success: params[:post_id] }, status: 200 }
+			end
+		else
+			respond_to do |format|
+				format.json { render json: {error: params[:post_id], msg: "Unable to mark post for deletion" }, status: 409 }
+			end
+		end
+	end
 end

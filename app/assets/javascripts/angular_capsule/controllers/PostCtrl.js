@@ -8,6 +8,10 @@ angular_capsule_app.controller("PostCtrl", ["$scope", "$routeParams", "$location
 		return height;
 	};
 
+	var capsulePermissions = {
+		tagPermission: false
+	};
+
 	$scope.arrowShow = false;
 
 	$scope.postId = $routeParams.postId;
@@ -23,6 +27,7 @@ angular_capsule_app.controller("PostCtrl", ["$scope", "$routeParams", "$location
 		$scope.post.hasVideo = PostModel.checkPostHasVideo($scope.post, $scope.videos);
 		$scope.post.video_url = PostModel.getVideoUrl($scope.post, $scope.videos);
 
+		capsulePermissions = CapsuleModel.setAndGetCapsulePermissions(CapsuleData.getAuthDetails());
 
 		$timeout(function() {
 			$scope.arrowDivHeight = { 'height': setArrowDivHeight() + "px" };
@@ -55,10 +60,25 @@ angular_capsule_app.controller("PostCtrl", ["$scope", "$routeParams", "$location
 		});
 	};
 
+	$scope.showDelete = function() {
+		if (capsulePermissions.tagPermission) { return true; }
+
+		return false;
+	};
+
 	$scope.keypressPrevious = function(posts, postId) {
 		$scope.$apply(function() {
 			$scope.goPrevious(posts, postId);
 		});
+	};
+
+	$scope.deletePost = function(postId) {
+		PostModel.deletePost(postId).then(function(data, status) {
+			// console.log("Data: ", data);
+			$location.path("/");
+		}, function(data, status) {
+			console.log("Status: ", status);	
+		});	
 	};
 
 	$timeout(function() {

@@ -13,6 +13,29 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 		return $rootScope.postsData;
 	};
 
+	var deletePost = function(postId) {
+		var deferred = $q.defer();
+
+		var request_url = "/mark_for_deletion.json?post_id=" + postId;
+
+		$http({
+			method: "PUT",
+			url: request_url
+		})
+		.success(function(data, status, headers) {
+			deferred.resolve(data, status);
+		})
+		.error(function(data, status, header) {
+			deferred.reject(data, status);
+		});
+
+		return deferred.promise;
+	};
+
+	this.deletePost = function(postId) {
+		return deletePost(postId);
+	};
+
 	var getNewPosts = function(dataSyncObject) {
 		var deferred = $q.defer();
 		var request_url = "/check_new_posts.json?capsule_id=" + dataSyncObject.capsuleId + "&post_ids=" + dataSyncObject.postIds + "&posts_tagged_for_deletion=" + dataSyncObject.postsTaggedForDeletion;
@@ -287,4 +310,5 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 		}
 		return getRootPostsData();
 	};
+
 }]);
