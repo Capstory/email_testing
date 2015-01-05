@@ -36,9 +36,28 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 		return deletePost(postId);
 	};
 
+	var buildGetNewPostUrl = function(dataSyncObject) {
+		var url = "/check_new_posts.json?capsule_id=" + dataSyncObject.capsuleId;
+		
+		// if (dataSyncObject.postIds.length > 0) {
+			url += "&post_ids=" + dataSyncObject.postIds;
+		// }
+
+		// if (dataSyncObject.postsTaggedForDeletion.length > 0) {
+			url += "&posts_tagged_for_deletion=" + dataSyncObject.postsTaggedForDeletion;
+		// }
+
+		// if (dataSyncObject.postsUnverified.length > 0) {
+			url += "&posts_unverified=" + dataSyncObject.postsUnverified;
+		// }
+
+		return url;
+	};
+
 	var getNewPosts = function(dataSyncObject) {
 		var deferred = $q.defer();
-		var request_url = "/check_new_posts.json?capsule_id=" + dataSyncObject.capsuleId + "&post_ids=" + dataSyncObject.postIds + "&posts_tagged_for_deletion=" + dataSyncObject.postsTaggedForDeletion + "&posts_unverified=" + dataSyncObject.postsUnverified;
+		// var request_url = "/check_new_posts.json?capsule_id=" + dataSyncObject.capsuleId + "&post_ids=" + dataSyncObject.postIds + "&posts_tagged_for_deletion=" + dataSyncObject.postsTaggedForDeletion + "&posts_unverified=" + dataSyncObject.postsUnverified;
+		var request_url = buildGetNewPostUrl(dataSyncObject);
 
 		$http({
 			method: "GET",
@@ -110,10 +129,6 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 				postIds.push(post.id);
 			}
 		});
-
-		if ( postIds.length == 0 ) {
-			postIds = "ignore";
-		}
 
 		return postIds;
 	};
