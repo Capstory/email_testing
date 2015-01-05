@@ -11,8 +11,8 @@ angular_capsule_app.factory("CapsuleData", [function() {
 		linkPath: "#"
 	};
 	var currentUser = {
-		admin: <%= current_user.admin? %>,
-		capsuleOwner: <%= capsule_owner(current_user.id, @capsule.id) %>
+		admin: <%= current_user ? current_user.admin? : false %>,
+		capsuleOwner: <%= current_user ? capsule_owner(current_user.id, @capsule.id) : false %>
 	};
 
 	return {
