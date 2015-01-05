@@ -1,18 +1,18 @@
-<div class="row">
-  <div class="small-12 columns">
-    <button class="button tiny" ng-click="startPoller()" ng-hide="pollerActive()">Start Poller</button>
-    <button class="button tiny" ng-click="stopPoller()" ng-show="pollerActive()">Stop Poller</button>
-    <button class="button tiny" ng-click="toggleData('Capsule')">Toggle Capsule Data</button>
-    <button class="button tiny" ng-click="toggleData('Posts')">Toggle Posts Data</button>
-    <button class="button tiny" ng-click="toggleData('Videos')">Toggle Video Data</button>
-    <button class="button tiny" ng-click="addObject(true)">Add New Object - Verified</button>
-    <button class="button tiny" ng-click="addObject(false)">Add New Object - Not Verified</button>
-    <button class="button tiny" ng-click="initIso()">Refresh</button>
-    <p ng-show="showCapsuleData">Capsule: {{ capsule }}</p>
-    <p ng-show="showPostsData">Posts: {{ posts }}</p>
-    <p ng-show="showVideosData">Video Data: {{ videos }}</p>
-  </div>
-</div>
+<!-- <div class="row"> -->
+<!--   <div class="small-12 columns"> -->
+<!--     <button class="button tiny" ng-click="startPoller()" ng-hide="pollerActive()">Start Poller</button> -->
+<!--     <button class="button tiny" ng-click="stopPoller()" ng-show="pollerActive()">Stop Poller</button> -->
+<!--     <button class="button tiny" ng-click="toggleData('Capsule')">Toggle Capsule Data</button> -->
+<!--     <button class="button tiny" ng-click="toggleData('Posts')">Toggle Posts Data</button> -->
+<!--     <button class="button tiny" ng-click="toggleData('Videos')">Toggle Video Data</button> -->
+<!--     <button class="button tiny" ng-click="addObject(true)">Add New Object - Verified</button> -->
+<!--     <button class="button tiny" ng-click="addObject(false)">Add New Object - Not Verified</button> -->
+<!--     <button class="button tiny" ng-click="initIso()">Refresh</button> -->
+<!--     <p ng-show="showCapsuleData">Capsule: {{ capsule }}</p> -->
+<!--     <p ng-show="showPostsData">Posts: {{ posts }}</p> -->
+<!--     <p ng-show="showVideosData">Video Data: {{ videos }}</p> -->
+<!--   </div> -->
+<!-- </div> -->
 <div>
   <div class="small-12 medium-6 columns capsule_link">
     <a ng-href="{{ slideshowImage.linkPath }}">
