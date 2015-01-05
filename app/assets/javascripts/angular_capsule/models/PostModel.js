@@ -38,7 +38,7 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 
 	var getNewPosts = function(dataSyncObject) {
 		var deferred = $q.defer();
-		var request_url = "/check_new_posts.json?capsule_id=" + dataSyncObject.capsuleId + "&post_ids=" + dataSyncObject.postIds + "&posts_tagged_for_deletion=" + dataSyncObject.postsTaggedForDeletion;
+		var request_url = "/check_new_posts.json?capsule_id=" + dataSyncObject.capsuleId + "&post_ids=" + dataSyncObject.postIds + "&posts_tagged_for_deletion=" + dataSyncObject.postsTaggedForDeletion + "&posts_unverified=" + dataSyncObject.postsUnverified;
 
 		$http({
 			method: "GET",
@@ -118,11 +118,24 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 		return postIds;
 	};
 
+	var getUnverifiedPosts = function(posts) {
+		var postIds = [];
+	
+		angular.forEach(posts, function(post) {
+			if (!post.verified) {
+				postIds.push(post.id);
+			}
+		});
+
+		return postIds;
+	}
+
 	var genDataSyncObject = function(capsuleId, posts) {
 		var object = {
 			capsuleId: capsuleId,
 			postIds: getPostIds(posts),
-			postsTaggedForDeletion: getTaggedForDeletionPosts(posts)
+			postsTaggedForDeletion: getTaggedForDeletionPosts(posts),
+			postsUnverified: getUnverifiedPosts(posts)
 		};
 
 		return object;
@@ -265,6 +278,9 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 					case "undeletion":
 						post.tag_for_deletion = false;
 						break;
+					case "verified":
+						post.verified = true;
+						break;
 				}
 			}
 
@@ -277,6 +293,7 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 		var posts = updatePosts(currentPosts, newData.new_posts);
 		posts = applyUpdates(posts, newData.new_deletions, "deletion");
 		posts = applyUpdates(posts, newData.new_undeleted, "undeletion");
+		posts = applyUpdates(posts, newData.new_verified, "verified");
 
 		setRootPostsData(posts);		
 

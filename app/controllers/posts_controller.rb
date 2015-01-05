@@ -100,20 +100,24 @@ class PostsController < ApplicationController
 	def get_new_posts
 		currently_visible_post_ids = params[:post_ids].split(",").map(&:to_i)
 		currently_tagged_for_deletion_post_ids = params[:posts_tagged_for_deletion].split(",").map(&:to_i)
+		currently_unverified_post_ids = params[:posts_unverified].split(",").map(&:to_i)
 
 		@capsule = Capsule.includes(:posts).find(params[:capsule_id])
 
 		post_ids = @capsule.posts.pluck(:id)
 		tagged_for_deletion_post_ids = @capsule.posts.where(tag_for_deletion: true).pluck(:id)
+		unverified_post_ids = @capsule.posts.where(verified: false).pluck(:id)
 
 		new_post_ids = post_ids.reject { |post_id| currently_visible_post_ids.include?(post_id) }
 		# new_tagged_for_deletion_post_ids = tagged_for_deletion_post_ids.reject { |post_id| currently_tagged_for_deletion_post_ids.include?(post_id) }
 		new_tagged_for_deletion_post_ids = tagged_for_deletion_post_ids - currently_tagged_for_deletion_post_ids
 		new_undeleted_post_ids = currently_tagged_for_deletion_post_ids - tagged_for_deletion_post_ids
+		new_verified_post_ids = currently_unverified_post_ids - unverified_post_ids
 
 		@new_posts = []
 		@newly_tagged_for_deletion = []
 		@newly_undeleted = []
+		@newly_verified = []
 
 		unless new_post_ids.empty?
 			new_post_ids.each do |post_id|
@@ -137,9 +141,15 @@ class PostsController < ApplicationController
 			end
 		end
 
+		unless new_verified_post_ids.empty?
+			new_verified_post_ids.each do |post_id|
+				@newly_verified << @capsule.posts.find(post_id)
+			end
+		end
+
 		respond_to do |format|
 			# format.json { render json: {capsule: @capsule,posts: @posts}}
-			format.json { render json: { msg: "success", new_posts: @new_posts, new_deletions: @newly_tagged_for_deletion, new_undeleted: @newly_undeleted } }
+			format.json { render json: { msg: "success", new_posts: @new_posts, new_deletions: @newly_tagged_for_deletion, new_undeleted: @newly_undeleted, new_verified: @newly_verified } }
 		end
 	end
 
