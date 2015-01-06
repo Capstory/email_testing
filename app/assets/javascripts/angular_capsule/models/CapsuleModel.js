@@ -35,6 +35,18 @@ angular_capsule_app.service("CapsuleModel", ["$rootScope", function($rootScope) 
 		return newPerms;
 	};
 
+	var allPostsVisible = function(posts) {
+		var i;
+
+		for(i = 0; i < posts.length; i++) {
+			if ( !posts[i].visible ) {
+				return false;
+			}
+		}
+
+		return true;
+	};
+
 	this.setAndGetCapsuleData = function(capsuleData) {
 		if ( !angular.isDefined($rootScope.capsuleData) ) {
 			setCapsuleData(capsuleData);
@@ -55,5 +67,9 @@ angular_capsule_app.service("CapsuleModel", ["$rootScope", function($rootScope) 
 			setCapsulePermissions(authDetails);
 		}
 		return buildCapsulePermissions(getCapsulePermissions());
+	};
+
+	this.allPostsVisible = function(posts) {
+		return allPostsVisible(posts);
 	};
 }]);

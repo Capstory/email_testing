@@ -27,6 +27,16 @@ angular_capsule_app.controller("CapsuleCtlr", ["$window", "$scope", "$rootScope"
 			post.image = PostModel.cleanMissingImageUrl(post.image);
 			post.capsule_image = buildCapsuleImageUrl(post);
 			post.isImage = PostModel.checkPostIsImage(post);
+			if ( !angular.isDefined(post.visible) ) {
+				post.visible = true;
+			}
+		});
+		return posts;
+	};
+
+	var setAllPostsToInvisible = function(posts) {
+		angular.forEach(posts, function(post) {
+			post.visible = false;
 		});
 		return posts;
 	};
@@ -36,17 +46,43 @@ angular_capsule_app.controller("CapsuleCtlr", ["$window", "$scope", "$rootScope"
 		$scope[element] = !$scope[element];
 	};
 
+	var loadPhotos = function(n, posts) {
+		var searching = true;
+		var i;
+		var counter = 0;
+		
+		if ( posts.length < 1 ) { return; }
+
+		for (i = posts.length - 1; counter < n; i--) {
+			if ( CapsuleModel.allPostsVisible(posts) ) { return; }
+
+			if ( !posts[i].visible ) {
+				posts[i].visible = true;
+				counter += 1;
+			}
+		}
+
+		return;
+	};
+
 	$scope.showCapsuleData = false;
 	$scope.showPostsData = false;
 	$scope.showVideoData = false;
 
 	$scope.capsule = CapsuleModel.setAndGetCapsuleData(CapsuleData.getCapsuleData());
 
-	$scope.posts = buildCapsuleImages(CapsuleData.getPosts());
+	$scope.posts = setAllPostsToInvisible(buildCapsuleImages(CapsuleData.getPosts()));
 
 	$scope.videos = VideoModel.setAndGetVideoData(CapsuleData.getVideos());
 	$scope.slideshowImage = CapsuleData.getSlideshowImagePath();
 	$scope.uploadImage = CapsuleData.getUploadImagePath();
+
+	$scope.loadPhotos = function() {
+		loadPhotos(9, $scope.posts);
+		$timeout(function() {
+			refreshIsotope();
+		});
+	};
 
 	$scope.toggleData = function(dataToShow) {
 		toggleData(dataToShow);
@@ -139,4 +175,9 @@ angular_capsule_app.controller("CapsuleCtlr", ["$window", "$scope", "$rootScope"
 	$window.onImageUpload = function() {
 		angular.element("#filepicker_submit_button").click();
 	};
+
+	// $scope.testScroll = function() {
+	// 	console.log("Hey, a scroll event happened");
+	// 	$scope.loadPhotos();
+	// }
 }]);
