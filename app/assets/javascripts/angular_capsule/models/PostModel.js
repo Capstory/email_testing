@@ -343,4 +343,13 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 		return getRootPostsData();
 	};
 
+	var buildImageUrl = function(post, genre) {
+		var imageUrl = post.image;
+
+		return imageUrl.replace("original", genre);
+	};
+
+	this.buildImageUrl = function(post, genre) {
+		return buildImageUrl(post, genre);
+	};
 }]);

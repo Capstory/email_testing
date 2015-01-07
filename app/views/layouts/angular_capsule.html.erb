@@ -34,14 +34,21 @@
 		</style>
 		<%= javascript_include_tag "angular_capsule" %>
 		<nav class="top-bar">
-		  <ul class="title-area" style="padding-top:20px;">
+		  <ul class="title-area">
 		    <li class="name">
 					<span id="application_logo">
-		     		<%= link_to image_tag("logo.png", width: '275px', height: '30px'), self.send(resolve_logo_route) %>
-						<%# <%= link_to fa_icon("inbox", text: "Get Email"), retrieve_emails_path %1> %>
+						<%= yield :logo %>
 					</span>
 		    </li>
 		  </ul>
+		  <%# <ul class="title-area" style="padding-top:20px;"> %>
+		  <%#   <li class="name"> %>
+					<%# <span id="application_logo"> %>
+		  <%#    		<%= link_to image_tag("logo.png", width: '275px', height: '30px'), self.send(resolve_logo_route) %1> %>
+						<%# <1%# <%= link_to fa_icon("inbox", text: "Get Email"), retrieve_emails_path %2> %1> %>
+					<%# </span> %>
+		  <%#   </li> %>
+		  <%# </ul> %>
 			<section class="top-bar-section">	
 				<ul class="right">
 					<% if current_user %>
@@ -61,17 +68,17 @@
 		</nav>
 		<div style="display:none;">
 				<%= form_for(@post) do |f| %>
-				  <% if @post.errors.any? %>
-				    <div id="error_explanation">
-				      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+				  <%# <% if @post.errors.any? %1> %>
+				  <%#   <div id="error_explanation"> %>
+				  <%#     <h2><%= pluralize(@post.errors.count, "error") %1> prohibited this post from being saved:</h2> %>
 
-				      <ul>
-				      <% @post.errors.full_messages.each do |msg| %>
-				        <li><%= msg %></li>
-				      <% end %>
-				      </ul>
-				    </div>
-				  <% end %>
+				  <%#     <ul> %>
+				  <%#     <% @post.errors.full_messages.each do |msg| %1> %>
+				  <%#       <li><%= msg %1></li> %>
+				  <%#     <% end %1> %>
+				  <%#     </ul> %>
+				  <%#   </div> %>
+				  <%# <% end %1> %>
 					<%= f.hidden_field :capsule_id, value: @capsule.id %>
 					<%= f.hidden_field :capsule_requires_verification, value: @capsule.requires_verification %>
 
@@ -83,6 +90,17 @@
 					<%= f.submit "Upload", class: 'button', id: 'filepicker_submit_button', style: "display:none;" %>
 
 				<% end %>
+		</div>
+		<div class="row">
+			<div class="small-12 columns">
+				<% flash.each do |key, value| %>
+					<% alert_class = key == :error ? :alert : key %>
+					<div data-alert class="alert-box <%= alert_class %>" id="flashAlert">
+						<p class="subheader"><%= value %></p>
+						<a href="#" class="close">x</a>
+					</div>
+				<% end %>
+			</div>
 		</div>
 		<div ng-app="AngularCapsuleApp">
 			<%= yield %>

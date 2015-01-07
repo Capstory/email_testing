@@ -23,7 +23,7 @@ angular_capsule_app.controller("PostCtrl", ["$scope", "$routeParams", "$location
 		$scope.videos = VideoModel.setAndGetVideoData(CapsuleData.getVideos());
 
 		$scope.post = PostModel.getCurrentPost($scope.posts, $routeParams.postId);
-
+		$scope.post.large_image = PostModel.buildImageUrl($scope.post, "lightbox_width");
 		$scope.post.hasVideo = PostModel.checkPostHasVideo($scope.post, $scope.videos);
 		$scope.post.video_url = PostModel.getVideoUrl($scope.post, $scope.videos);
 
