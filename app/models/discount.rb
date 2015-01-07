@@ -6,7 +6,7 @@ class Discount < ActiveRecord::Base
 
 	def apply_discount(purchase_price)
 		if Time.now.to_date > self.end_date
-			return nil, "Discount is no longer Valid. The end of the discount period was: #{self.end_date.to_formatted_s(:long)}"
+			return [purchase_price, "Discount is no longer Valid. The end of the discount period was: #{self.end_date.to_formatted_s(:long)}"]
 		else
 			case self.genre
 			when "percent"
