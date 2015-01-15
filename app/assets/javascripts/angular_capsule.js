@@ -15,6 +15,19 @@
 //= require ./common_use/ng-infinite-scroll.js
 //= require_self
 
+var emitMenuClick = function() {
+	var event = new Event("menuClick");
+	document.dispatchEvent(event);
+};
+
+var emitFilepickerEngage = function() {
+	var event = new Event("filepickerEngage");
+	document.dispatchEvent(event);
+	// e.preventDefault();
+	// return false;
+};
+
 $(function() {
 	$(document).foundation();
+
 });

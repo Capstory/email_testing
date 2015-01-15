@@ -12,10 +12,12 @@ angular_capsule_app.controller("PostCtrl", ["$scope", "$routeParams", "$location
 		tagPermission: false
 	};
 
+
 	$scope.arrowShow = false;
 
 	$scope.postId = $routeParams.postId;
 	$scope.init = function(postId) {
+		angular.element(".capsuleOffCanvasMenuItems").hide();
 		$scope.capsule = CapsuleModel.setAndGetCapsuleData(CapsuleData.getCapsuleData());
 		$scope.posts = PostModel.setAndGetPostsData(CapsuleData.getPosts());
 		// $scope.visiblePosts = CapsuleData.getVisiblePosts();

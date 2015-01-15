@@ -1,5 +1,13 @@
 module ApplicationHelper
 
+	def show_user_name
+		if current_user
+			!current_user.name.blank? ? "Signed in as #{current_user.name}" : "Signed in as Private User"
+		else
+			"Guest Visitor"	
+		end
+	end
+
 	def logo_url(object)
 		return object.logo.image.url(:standard)
 	end

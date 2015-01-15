@@ -1,4 +1,5 @@
-angular_capsule_app.controller("CapsuleCtlr", ["$window", "$scope", "$rootScope", "$location", "$timeout", "$interval", "CapsuleData", "CapsuleModel", "PostModel", "VideoModel", function($window, $scope, $rootScope, $location, $timeout, $interval, CapsuleData, CapsuleModel, PostModel, VideoModel) {
+angular_capsule_app.controller("CapsuleCtlr", ["$document", "$window", "$scope", "$rootScope", "$location", "$timeout", "$interval", "CapsuleData", "CapsuleModel", "PostModel", "VideoModel", function($document, $window, $scope, $rootScope, $location, $timeout, $interval, CapsuleData, CapsuleModel, PostModel, VideoModel) {
+
 	$scope.initIso = function() {
 		$scope.iso = new Isotope("#isotopeContainer", {
 			itemSelector: ".isotopeItem",
@@ -66,6 +67,7 @@ angular_capsule_app.controller("CapsuleCtlr", ["$window", "$scope", "$rootScope"
 	};
 
 	$scope.init = function() {
+		angular.element(".capsuleOffCanvasMenuItems").show();
 		if ( angular.element("#flashAlert") ) {
 			$timeout(function() {
 				angular.element("#flashAlert").fadeOut("slow");
@@ -166,6 +168,7 @@ angular_capsule_app.controller("CapsuleCtlr", ["$window", "$scope", "$rootScope"
 	
 	$scope.$on("$destroy", function() {
 		stopPoller();
+		$document.unbind("scroll");
 	});
 
 	startPoller();
@@ -188,4 +191,31 @@ angular_capsule_app.controller("CapsuleCtlr", ["$window", "$scope", "$rootScope"
 	// 	console.log("Hey, a scroll event happened");
 	// 	$scope.loadPhotos();
 	// }
+
+	$scope.showFixedBar = false;
+
+	$document.bind("menuClick", function() {
+		console.log("Someone just clicked the menu");
+	});
+
+	$document.bind("filepickerEngage", function() {
+		// console.log("Filepicker engaged");
+		$scope.activateFilepicker();
+	});
+
+	$document.bind("scroll", function() {
+		var isoContainerTop = angular.element("#isotopeContainer")[0].getClientRects()[0].top;
+		var capsuleNavLinks = angular.element("#capsuleNavLinks");
+		if ( isoContainerTop < 40 ) {
+			$scope.$apply(function() {
+				if ( capsuleNavLinks.is(":visible") ) { return; }
+				capsuleNavLinks.fadeIn("slow");
+			});
+		} else {
+			$scope.$apply(function() {
+				if ( !capsuleNavLinks.is(":visible") ) { return; }
+				capsuleNavLinks.fadeOut("slow");
+			});
+		}
+	});
 }]);

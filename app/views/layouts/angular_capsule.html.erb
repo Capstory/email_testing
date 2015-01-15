@@ -23,56 +23,90 @@
 
   <body>
 		<%= javascript_include_tag "angular_capsule" %>
-		<nav class="top-bar">
-		  <ul class="title-area">
-		    <li class="name">
-					<span id="application_logo">
-						<%= yield :logo %>
-					</span>
-		    </li>
-		  </ul>
-		  <%# <ul class="title-area" style="padding-top:20px;"> %>
-		  <%#   <li class="name"> %>
-					<%# <span id="application_logo"> %>
-		  <%#    		<%= link_to image_tag("logo.png", width: '275px', height: '30px'), self.send(resolve_logo_route) %1> %>
-						<%# <1%# <%= link_to fa_icon("inbox", text: "Get Email"), retrieve_emails_path %2> %1> %>
-					<%# </span> %>
-		  <%#   </li> %>
-		  <%# </ul> %>
-			<section class="top-bar-section">	
-				<ul class="right">
-					<% if current_user %>
-						<% user_name = !current_user.name.blank? ? current_user.name : "Mr. No Name" %>
-						<li class="has-dropdown not-click">
-							<%= link_to "Signed In as #{user_name}", current_user %>
-							
+		<div class="off-canvas-wrap" data-offcanvas>
+			<div class="inner-wrap">
+				<nav class="left-off-canvas-menu">
+					<ul class="off-canvas-list">
+						<div class="capsuleOffCanvasMenuItems">
+							<li><label>Capsule Options</label></li>
+							<li><%= link_to "Start Slideshow", slideshow_path(capsule_id: @capsule.id) %></li>
+							<li><a onclick="emitFilepickerEngage()">Upload Image/Video</a></li>
+						</div>
+						<% if current_user %>
+							<li><label><%= show_user_name %></label></li>
+							<li><%= link_to "Sign Out", signout_path %></li>
+						<% else %>
+							<li><label>User Options</label></li>
+							<li><%= link_to "Sign In", login_path %></li>
+						<% end %>
+					</ul>
+				</nav>
+
+				<a class="exit-off-canvas"></a>
+				
+				<div class="fixed">
+					<nav class="top-bar">
+					<ul class="title-area">
+						<li class="name">
+						<span id="application_logo">
+							<%= yield :logo %>
+						</span>
+						</li>
+						<li class="toggle-topbar menu-icon">
+							<a class="left-off-canvas-toggle"><span>Menu</span></a>
+						</li>
+					</ul>
+					<%# <ul class="title-area" style="padding-top:20px;"> %>
+						<%#	 <li class="name"> %>
+						<%# <span id="application_logo"> %>
+							<%#				<%= link_to image_tag("logo.png", width: '275px', height: '30px'), self.send(resolve_logo_route) %1> %>
+							<%# <1%# <%= link_to fa_icon("inbox", text: "Get Email"), retrieve_emails_path %2> %1> %>
+							<%# </span> %>
+						<%#	 </li> %>
+						<%# </ul> %>
+					<section class="top-bar-section">	
+					<ul class="right">
+						<% if current_user %>
+							<%# <% user_name = !current_user.name.blank? ? current_user.name : "Mr. No Name" %1> %>
+							<li class="has-dropdown not-click">
+							<%= link_to show_user_name, current_user %>
+							<%# <%= link_to "Signed In as #{user_name}", current_user %1> %>
+
 							<ul class="dropdown">
 								<li><%= link_to "Sign Out", signout_path %></li>
 							</ul>
-						</li>
-					<% else %>
-						<li><%= link_to "Login", login_path %></li>
-					<% end %>
-				</ul>
-				</section>
-		</nav>
-		<div style="display:none;">
-				<%= form_for(@post) do |f| %>
-				  <%# <% if @post.errors.any? %1> %>
-				  <%#   <div id="error_explanation"> %>
-				  <%#     <h2><%= pluralize(@post.errors.count, "error") %1> prohibited this post from being saved:</h2> %>
+							</li>
+						<% else %>
+							<li><%= link_to "Login", login_path %></li>
+						<% end %>
+					</ul>
+					<ul class="left">
+						<div style="margin-left:60px;display:none;" id="capsuleNavLinks">
+							<li><%= link_to "Start Slideshow", "#" %></li>	
+							<li><%= link_to "Upload Image/Video", "#" %></li>	
+						</div>
+					</ul>
+					</section>
+					</nav>
+				</div>
+				<div style="height:65px;"></div>
+				<div style="display:none;">
+					<%= form_for(@post) do |f| %>
+						<%# <% if @post.errors.any? %1> %>
+							<%#	 <div id="error_explanation"> %>
+								<%#		 <h2><%= pluralize(@post.errors.count, "error") %1> prohibited this post from being saved:</h2> %>
 
-				  <%#     <ul> %>
-				  <%#     <% @post.errors.full_messages.each do |msg| %1> %>
-				  <%#       <li><%= msg %1></li> %>
-				  <%#     <% end %1> %>
-				  <%#     </ul> %>
-				  <%#   </div> %>
-				  <%# <% end %1> %>
+								<%#		 <ul> %>
+									<%#		 <% @post.errors.full_messages.each do |msg| %1> %>
+									<%#			 <li><%= msg %1></li> %>
+									<%#		 <% end %1> %>
+								<%#		 </ul> %>
+							<%#	 </div> %>
+						<%# <% end %1> %>
 					<%= f.hidden_field :capsule_id, value: @capsule.id %>
 					<%= f.hidden_field :capsule_requires_verification, value: @capsule.requires_verification %>
 
-				 	<%= f.filepicker_field :filepicker_url, multiple: true, services: "COMPUTER, DROPBOX, FACEBOOK, FLICKR, INSTAGRAM", onchange: 'onImageUpload()', button_text: "Upload A Photo", class: 'pick_file' %>
+					<%= f.filepicker_field :filepicker_url, multiple: true, services: "COMPUTER, DROPBOX, FACEBOOK, FLICKR, INSTAGRAM", onchange: 'onImageUpload()', button_text: "Upload A Photo", class: 'pick_file' %>
 
 					<!-- <div id="after_filepicker_upload" class="alert-box success" style="display:none;">
 						<p class='subheader'>Image processing finished. Click the button to complete the upload.</p>
@@ -80,21 +114,23 @@
 					<%= f.submit "Upload", class: 'button', id: 'filepicker_submit_button', style: "display:none;" %>
 
 				<% end %>
-		</div>
-		<div class="row">
-			<div class="small-12 columns">
-				<% flash.each do |key, value| %>
-					<% alert_class = key == :error ? :alert : key %>
-					<div data-alert class="alert-box <%= alert_class %>" id="flashAlert">
-						<p class="subheader"><%= value %></p>
-						<a href="#" class="close">x</a>
-					</div>
-				<% end %>
+			</div>
+			<div class="row">
+				<div class="small-12 columns">
+					<% flash.each do |key, value| %>
+						<% alert_class = key == :error ? :alert : key %>
+						<div data-alert class="alert-box <%= alert_class %>" id="flashAlert">
+							<p class="subheader"><%= value %></p>
+							<a href="#" class="close">x</a>
+						</div>
+					<% end %>
+				</div>
+			</div>
+			<div ng-app="AngularCapsuleApp">
+				<%= yield %>
 			</div>
 		</div>
-		<div ng-app="AngularCapsuleApp">
-			<%= yield %>
-		</div>
+	</div>
     
 		<%= render 'layouts/ga' if Rails.env.production? %>
 		<%= render 'layouts/crazy_egg' if Rails.env.production? %>
