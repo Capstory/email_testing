@@ -14,13 +14,24 @@
   background-color: #eee;
 }
 
-#application_logo {
-  position: relative;
-  top: 10px;
-  left: 10px;
-}
-
-#application_logo a, a:hover, a:visited {
+.application_logo a, a:hover, a:visited {
   background: none;
   text-decoration: none;
+}
+
+@media only screen {
+  .application_logo #capstory_logo {
+    position: relative;
+    top: 20px;
+    left: 10px;
+  }
+}
+
+@media only screen and (min-width: 40.063em) {
+  .application_logo #capstory_logo {
+    position: relative;
+    top: 10px;
+    left: 10px;
+  }
+
 }
