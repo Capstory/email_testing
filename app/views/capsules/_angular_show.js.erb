@@ -3,7 +3,7 @@ angular_capsule_app.factory("CapsuleData", [function() {
 	var posts = <%= @posts.to_json.html_safe %>;
 	var videos = <%= @videos.to_json.html_safe %>;
 	var slideshowImage = {
-		imagePath: "<%= asset_path('slideshow_icon_v2.png') %>",
+		imagePath: "<%= asset_path('slideshow_icon_v3.png') %>",
 		linkPath: "<%= slideshow_path(capsule_id: @capsule.id) %>"
 	};
 	var uploadImage = {
