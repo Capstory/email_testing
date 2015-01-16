@@ -40,3 +40,18 @@ angular_capsule_app.directive("keypress", ["$document", function($document) {
 		}
 	}
 }]);
+
+angular_capsule_app.directive("onassetload", [function() {
+	return {
+		restrict: "A",
+		link: function(scope, elem, attrs) {
+			elem.bind("load", function() {
+				// I need to finish by inserting a spinner that hides itself
+			});
+
+			elem.on("$destroy", function() {
+				elem.unbind("load");
+			});
+		}
+	};
+}]);

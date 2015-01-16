@@ -20,11 +20,11 @@
 
     <div id="mainElement">
       <div ng-hide="post.hasVideo">
-        <img ng-show="post.isImage" ng-src="{{ post.large_image }}" width="100%"/> 
+        <img ng-show="post.isImage" ng-src="{{ post.large_image }}" width="100%" onassetload /> 
         <h2 style="height:220px;" ng-hide="post.isImage"><blockquote style="margin-top:80px;">{{ post.body }}</blockquote></h2>
       </div>
 
-      <video id="video" ng-show="post.hasVideo" ng-src="{{ post.video_url }}" style="width:100%;" controls></video>
+      <video id="video" ng-show="post.hasVideo" ng-src="{{ post.video_url }}" style="width:100%;" onassetload controls></video>
     </div>
     <div class="row show-for-medium-up">
       <div class="medium-6 columns">
