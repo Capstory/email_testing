@@ -63,7 +63,7 @@ angular_capsule_app.controller("PostCtrl", ["$scope", "$routeParams", "$location
 	};
 
 	$scope.showDelete = function() {
-		if (capsulePermissions.tagPermission) { return true; }
+		if ( capsulePermissions.tagPermission ) { return true; }
 
 		return false;
 	};

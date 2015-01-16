@@ -47,15 +47,24 @@ angular_capsule_app.controller("CapsuleCtlr", ["$document", "$window", "$scope",
 		$scope[element] = !$scope[element];
 	};
 
+	$scope.spinnerVisible = true;
+
+	var hideSpinner = function() {
+		if ( $scope.spinnerVisible ) {
+			$scope.spinnerVisible = false;
+			// console.log("Hiding the spinner");
+		}
+	};
+
 	var loadPhotos = function(n, posts) {
 		var searching = true;
 		var i;
 		var counter = 0;
 		
-		if ( posts.length < 1 ) { return; }
+		if ( posts.length < 1 ) { return "hideSpinner()"; }
 
 		for (i = posts.length - 1; counter < n; i--) {
-			if ( CapsuleModel.allPostsVisible(posts) ) { return; }
+			if ( CapsuleModel.allPostsVisible(posts) ) { return "hideSpinner()"; }
 
 			if ( !posts[i].visible ) {
 				posts[i].visible = true;
@@ -63,7 +72,7 @@ angular_capsule_app.controller("CapsuleCtlr", ["$document", "$window", "$scope",
 			}
 		}
 
-		return;
+		return true;
 	};
 
 	$scope.init = function() {
@@ -88,10 +97,11 @@ angular_capsule_app.controller("CapsuleCtlr", ["$document", "$window", "$scope",
 	$scope.uploadImage = CapsuleData.getUploadImagePath();
 
 	$scope.loadPhotos = function() {
-		loadPhotos(9, $scope.posts);
+		var result = loadPhotos(9, $scope.posts);
 		$timeout(function() {
 			refreshIsotope();
-		});
+			eval(result);
+		}, 300);
 	};
 
 	$scope.toggleData = function(dataToShow) {
