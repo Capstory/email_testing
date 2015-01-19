@@ -17,6 +17,11 @@
     <!-- <p>Visible Posts: {{ visiblePosts }}</p> -->
     
     <!-- <h1>Has a video: {{ post.hasVideo }}</h1> -->
+    <div class="row" ng-show="mainElementLoading" style="margin-top:40px;">
+      <div class="small-2 small-centered columns">
+        <p class="subheader">Loading <i class="fa fa-spinner fa-spin fa-4x" style="margin-top:15px;"></i></p>
+      </div>
+    </div>
 
     <div id="mainElement">
       <div ng-hide="post.hasVideo">
@@ -50,7 +55,7 @@
     </div>
     <div class="row show-for-small-only">
       <div class="small-12 columns" id="navAdvice">
-        <p class="subheader" style="margin-top:20px;">
+        <p class="subheader" style="margin-top:20px;text-align:center;">
           <i class="fa fa-arrow-left"></i>
           Swipe left or right to navigate photos
           <i class="fa fa-arrow-right"></i>

@@ -14,6 +14,7 @@ angular_capsule_app.controller("PostCtrl", ["$scope", "$routeParams", "$location
 
 
 	$scope.arrowShow = false;
+	$scope.mainElementLoading = true;
 
 	$scope.postId = $routeParams.postId;
 	$scope.init = function(postId) {

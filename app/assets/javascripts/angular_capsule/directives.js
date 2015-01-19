@@ -46,7 +46,8 @@ angular_capsule_app.directive("onassetload", [function() {
 		restrict: "A",
 		link: function(scope, elem, attrs) {
 			elem.bind("load", function() {
-				// I need to finish by inserting a spinner that hides itself
+				// console.log("Image Loaded");
+				scope.mainElementLoading = false;
 			});
 
 			elem.on("$destroy", function() {
