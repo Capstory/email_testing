@@ -9,19 +9,20 @@
   }
 </style>
 <div keypress="39:keypressNext(posts, postId);37:keypressPrevious(posts, postId)" class="row" ng-controller="PostCtrl" ng-init="init()" ng-swipe-right="goPrevious(posts, postId)" ng-swipe-left="goNext(posts, postId)">
+    <div class="row" ng-show="mainElementLoading" style="margin-top:10px; margin-bottom:30px;">
+      <div class="small-2 small-centered columns">
+        <p class="subheader">Loading <i class="fa fa-spinner fa-spin fa-4x" style="margin-top:15px;"></i></p>
+      </div>
+    </div>
   <div ng-click="goPrevious(posts, postId)" class="show-for-medium-up medium-1 columns arrow" ng-style="arrowDivHeight">
-    <a ng-style="lineHeight" ng-show="arrowShow"><i class="fa fa-3x fa-chevron-left"></i></a>
+    <a ng-style="lineHeight" ng-show="mainElementLoading"><i class="fa fa-3x fa-chevron-left" style="color:white;"></i></a>
+    <a ng-style="lineHeight" ng-hide="mainElementLoading"><i class="fa fa-3x fa-chevron-left"></i></a>
   </div>
   <div class="small-12 medium-10 columns">
     <!-- <p>Capsule Controller Data: {{ capsule }}</p> -->
     <!-- <p>Visible Posts: {{ visiblePosts }}</p> -->
     
     <!-- <h1>Has a video: {{ post.hasVideo }}</h1> -->
-    <div class="row" ng-show="mainElementLoading" style="margin-top:10px; margin-bottom:30px;">
-      <div class="small-2 small-centered columns">
-        <p class="subheader">Loading <i class="fa fa-spinner fa-spin fa-4x" style="margin-top:15px;"></i></p>
-      </div>
-    </div>
 
     <div id="mainElement">
       <div ng-hide="post.hasVideo">
@@ -85,7 +86,8 @@
     <!-- <button ng-click="goNext(posts, postId)">Next</button> -->
   </div>
   <div ng-click="goNext(posts, postId)" class="show-for-medium-up medium-1 columns arrow" ng-style="arrowDivHeight">
-    <a ng-show="arrowShow" ng-style="lineHeight"><i class="fa fa-3x fa-chevron-right"></i></a> 
+    <a ng-show="mainElementLoading" ng-style="lineHeight"><i class="fa fa-3x fa-chevron-right" style="color:white;"></i></a>
+    <a ng-hide="mainElementLoading" ng-style="lineHeight"><i class="fa fa-3x fa-chevron-right"></i></a> 
   </div>
 </div>
 <div class="row clearfix" style="margin-top:50px"></div>

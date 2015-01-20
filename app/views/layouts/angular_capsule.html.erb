@@ -82,8 +82,8 @@
 					</ul>
 					<ul class="left">
 						<div style="margin-left:60px;display:none;" id="capsuleNavLinks">
-							<li><%= link_to "Start Slideshow", "#" %></li>	
-							<li><%= link_to "Upload Image/Video", "#" %></li>	
+							<li><%= link_to "Start Slideshow", slideshow_path(capsule_id: @capsule.id) %></li>	
+							<li><a onclick="emitFilepickerEngage()">Upload Image/Video</a></li>	
 						</div>
 					</ul>
 					</section>

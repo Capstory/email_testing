@@ -179,6 +179,7 @@ angular_capsule_app.controller("CapsuleCtlr", ["$document", "$window", "$scope",
 	$scope.$on("$destroy", function() {
 		stopPoller();
 		$document.unbind("scroll");
+		angular.element("#capsuleNavLinks").fadeOut();
 	});
 
 	startPoller();

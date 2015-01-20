@@ -35,7 +35,7 @@ angular_capsule_app.controller("PostCtrl", ["$scope", "$routeParams", "$location
 		$timeout(function() {
 			$scope.arrowDivHeight = { 'height': setArrowDivHeight() + "px" };
 			$scope.lineHeight = { 'line-height': setLineHeight() + "px" };
-			$scope.arrowShow = true;
+			// $scope.arrowShow = true;
 		}, 200);
 	};
 
