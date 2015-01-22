@@ -34,6 +34,12 @@ class HomepagesController < ApplicationController
 		render "dustins_ovni_landing", layout: "ovni_layout"
 	end
 
+	def wnci_marketing
+		@email_form = ContactForm.new
+		@contact_form = ContactForm.new
+		render "wnci_marketing", layout: "ovni_layout"
+	end
+
 	# def americheer_landing
 	# 	@contact_form = ContactForm.new
 	# 	render "americheer_landing", layout: "ovni_layout"
