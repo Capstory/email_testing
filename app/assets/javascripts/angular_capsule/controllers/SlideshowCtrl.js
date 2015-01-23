@@ -27,9 +27,31 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 		$scope.post.large_image = PostModel.buildImageUrl($scope.post, "lightbox_width");
 	};
 
-	// $interval(function() {
-	// 	rotateImages($scope.posts, $scope.post.id);
-	// }, 5000);
+	var poller;
+	var startPoller = function() {
+		if ( angular.isDefined(poller) ) { return; }
+
+		poller = $interval(function() {
+			PostModel.getNewPosts($scope.capsule.id, $scope.posts).then(function(data) {
+				PostModel.updatePostData($scope.posts, data);
+				// console.log("Poller response: ", data);
+			}, function(status) {
+				console.log("There was an error", status);
+			});
+		}, 5000);
+	}
 	
+	var stopPoller = function() {
+		if ( angular.isDefined(poller) ) {
+			$interval.cancel(poller);
+			poller = undefined;
+		}
+	};
+
+	$scope.$on("$destroy", function() {
+		stopPoller();
+	});
+
+	startPoller();
 	setImageRotation($scope.timeInterval);
 }]);

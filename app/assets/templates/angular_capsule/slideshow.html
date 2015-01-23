@@ -1,6 +1,7 @@
 <div class="row" ng-init="init()">
   <div class="small-12 columns" style="text-align:center;">
-    <img ng-src="{{ post.large_image }}" style="width:auto;height:700px;" />
+    <img ng-show="post.isImage" ng-src="{{ post.large_image }}" style="width:auto;height:700px;" />
+    <h2 ng-hide="post.isImage" style="margin-top:200px;">{{ post.body }}</h2>
     <!-- <input ng-model="timeInterval" type="number" /> -->
     <!-- <h3>Current Post - {{ post }}</h3> --> 
     <!-- <p>{{ posts }}</p> -->
