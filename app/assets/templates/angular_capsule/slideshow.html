@@ -1,9 +1,19 @@
 <div class="row" ng-init="init()">
   <div class="small-12 columns" style="text-align:center;">
-    <img ng-show="post.isImage" ng-src="{{ post.large_image }}" style="width:auto;height:700px;" />
-    <h2 ng-hide="post.isImage" style="margin-top:200px;">{{ post.body }}</h2>
-    <!-- <input ng-model="timeInterval" type="number" /> -->
-    <!-- <h3>Current Post - {{ post }}</h3> --> 
-    <!-- <p>{{ posts }}</p> -->
+    <div style="height:750px;">
+      <img ng-show="post.isImage" ng-src="{{ post.large_image }}" style="width:auto;height:700px;" />
+      <h2 ng-hide="post.isImage" style="padding-top:200px;">{{ post.body }}</h2>
+      <!-- <input ng-model="timeInterval" type="number" /> -->
+      <!-- <h3>Current Post - {{ post }}</h3> --> 
+      <!-- <p>{{ posts }}</p> -->
+    </div>
+    <div class="row" style="margin-top:40px;margin-bottom:100px;">
+      <div class="small-2 columns" ng-repeat="item in filmStrip">
+        <img ng-src="{{ item.thumb }}" style="width:auto;height:100px;" ng-show="item.isImage" />
+        <div ng-hide="item.isImage">
+          <p><blockquote>{{ item.body }}</blockquote></p>
+        </div>
+      </div>
+    </div>
   </div> 
 </div>

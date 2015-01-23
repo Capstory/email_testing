@@ -1,22 +1,41 @@
 angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interval", "CapsuleData", "CapsuleModel", "PostModel", "VideoModel", function($scope, $timeout, $interval, CapsuleData, CapsuleModel, PostModel, VideoModel) {
 	$scope.timeInterval = 5000;
 
-	var rotateImages = function(posts, currentId) {
-		var nextPostId = PostModel.findNextPostId(posts, currentId);
-		var newPost = PostModel.getCurrentPost(posts, nextPostId);
-		if ( PostModel.checkPostHasVideo(newPost, $scope.videos) ) {
-			// console.log("Skipped image", newPost);
-			return rotateImages(posts, newPost.id);
+	var getNextPost = function(posts, currentId, videos) {
+		var nextId = PostModel.findNextPostId(posts, currentId);
+		var nextPost = PostModel.getCurrentPost(posts, nextId);
+		
+		if ( PostModel.checkPostHasVideo(nextPost, videos) ) {
+			return getNextPost(posts, nextId, videos);
 		}
-		$scope.post = newPost;
-		$scope.post.large_image = PostModel.buildImageUrl($scope.post, "lightbox_width");
+
+		return nextPost;
 	};
 
-	var setImageRotation = function(timeInterval) {
+	var rotateImages = function(posts, post, videos) {
+		var newPost = getNextPost(posts, post.id, videos);
+		$scope.post = newPost;
+		$scope.post.large_image = PostModel.buildImageUrl($scope.post, "lightbox_width");
+		$scope.filmStrip = buildFilmStrip(posts, $scope.post, videos, 6, []);
+	};
+
+	var setImageRotation = function(posts, post, videos, timeInterval) {
 		$timeout(function() {
-			rotateImages($scope.posts, $scope.post.id);
-			setImageRotation($scope.timeInterval);
+			rotateImages(posts, post, videos);
+			setImageRotation($scope.posts, $scope.post, $scope.videos, $scope.timeInterval);
 		}, timeInterval);
+	};
+
+	var buildFilmStrip = function(posts, currentPost, videos, n, acc) {
+
+		var nextPost = getNextPost(posts, currentPost.id, videos);
+		nextPost.thumb = PostModel.buildImageUrl(nextPost, "thumb");
+		acc.push(nextPost);
+
+		if (acc.length == n) {
+			return acc;
+		}
+		return buildFilmStrip(posts, nextPost, videos, n, acc);
 	};
 
 	$scope.init = function() {
@@ -25,6 +44,10 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 		$scope.videos = VideoModel.setAndGetVideoData(CapsuleData.getVideos());
 		$scope.post = PostModel.getCurrentPost($scope.posts, $scope.posts[0].id);
 		$scope.post.large_image = PostModel.buildImageUrl($scope.post, "lightbox_width");
+
+		$scope.filmStrip = buildFilmStrip($scope.posts, $scope.post, $scope.videos, 6, []);
+
+		setImageRotation($scope.posts, $scope.post, $scope.videos, $scope.timeInterval);
 	};
 
 	var poller;
@@ -53,5 +76,4 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 	});
 
 	startPoller();
-	setImageRotation($scope.timeInterval);
 }]);
