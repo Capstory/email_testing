@@ -7,7 +7,7 @@
 //= require ./angular_src_files/angular-touch
 //= require ./angular_capsule/angular_capsule.js.erb
 //= require_tree ./angular_capsule/controllers
-// require_tree ./angular_capsule/services
+//= require_tree ./angular_capsule/services
 //= require_tree ./angular_capsule/models
 //= require ./angular_capsule/filters.js
 //= require ./angular_capsule/directives.js

@@ -39,17 +39,11 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 	var buildGetNewPostUrl = function(dataSyncObject) {
 		var url = "/check_new_posts.json?capsule_id=" + dataSyncObject.capsuleId;
 		
-		// if (dataSyncObject.postIds.length > 0) {
-			url += "&post_ids=" + dataSyncObject.postIds;
-		// }
+		url += "&post_ids=" + dataSyncObject.postIds;
 
-		// if (dataSyncObject.postsTaggedForDeletion.length > 0) {
-			url += "&posts_tagged_for_deletion=" + dataSyncObject.postsTaggedForDeletion;
-		// }
+		url += "&posts_tagged_for_deletion=" + dataSyncObject.postsTaggedForDeletion;
 
-		// if (dataSyncObject.postsUnverified.length > 0) {
-			url += "&posts_unverified=" + dataSyncObject.postsUnverified;
-		// }
+		url += "&posts_unverified=" + dataSyncObject.postsUnverified;
 
 		return url;
 	};
@@ -313,6 +307,16 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 		setRootPostsData(posts);		
 
 		return posts;
+	};
+
+	this.filterNewPosts = function(posts, newPostsArray, data) {
+		var newPostIds = getPostIds(data.new_posts);
+
+		angular.forEach(newPostIds, function(post_id) {
+			post = getCurrentPost(posts, post_id);
+			newPostsArray.push(post);
+		});
+
 	};
 
 	var filterPostsByTagForDeletionAndVerified = function(posts) {
