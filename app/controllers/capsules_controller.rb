@@ -1,6 +1,6 @@
 class CapsulesController < ApplicationController
   layout :resolve_layout
-  before_filter :pin_code?, only: :show
+  before_filter :pin_code?, only: [:show, :angular_show]
   
   # =====================================
   # Begin standard controller actions
@@ -160,8 +160,11 @@ class CapsulesController < ApplicationController
     if provided_pin_code == capsule.pin_code
       auth_capsule = "authenticated_capsule_#{capsule.id}"
       session[auth_capsule.to_sym] = true
+
       flash[:success] = "PIN Code Authenticated. Thank you."
-      redirect_to capsule
+
+			target_path = JSON.parse(params[:target_path])
+      redirect_to :action => target_path["action"], id: target_path["id"]
     else
       flash[:error] = "Sorry, that isn't the right PIN code"
       redirect_to verify_pin_path(capsule_id: capsule.id)
@@ -192,7 +195,7 @@ class CapsulesController < ApplicationController
       capsule = Capsule.find(params[:id].to_s.downcase)
       if capsule.has_pin?
         unless pin_logged?(capsule.id)
-          redirect_to verify_pin_path(capsule_id: capsule.id)
+          redirect_to verify_pin_path(capsule_id: capsule.id, target_path: request.path_parameters)
         end
       end
     end

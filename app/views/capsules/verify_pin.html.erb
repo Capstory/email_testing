@@ -2,6 +2,8 @@
 	<div class="small-6 small-centered columns">
 		<%= form_tag pin_authentication_path do %>
 			<%= hidden_field_tag :capsule_id, params[:capsule_id] %>
+			<%= hidden_field_tag :target_path, params[:target_path].to_json %>
+
 			<%= label_tag :pin_code,"Please Enter the PIN Code for this capsule" %>
 			<%= text_field_tag :pin_code %>
 	
