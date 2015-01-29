@@ -167,7 +167,7 @@ class CapsulesController < ApplicationController
       redirect_to :action => target_path["action"], id: target_path["id"]
     else
       flash[:error] = "Sorry, that isn't the right PIN code"
-      redirect_to verify_pin_path(capsule_id: capsule.id)
+      redirect_to verify_pin_path(capsule_id: capsule.id, target_path: JSON.parse(params[:target_path]))
     end
   end
   
