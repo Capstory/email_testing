@@ -1,11 +1,12 @@
-  <div class="row" ng-init="init()">
-    <div class="row">
-      <div class="small-12 columns">
-        <button class="button expand" ng-click="toggleNewPhotos()" ng-hide="newPhotos">Insert New Photos</button>
-        <button class="button expand" ng-click="toggleNewPhotos()" ng-show="newPhotos">Turn off New Photos</button>
-        <!-- <button class="button expand" ng-click="showCurrentNewPost()">Show New Photo</button> -->
-      </div>
+<div ng-init="init()">
+  <div class="row">
+    <div class="small-12 columns">
+      <button class="button expand" ng-click="toggleNewPhotos()" ng-hide="newPhotos">Insert New Photos</button>
+      <button class="button expand" ng-click="toggleNewPhotos()" ng-show="newPhotos">Turn off New Photos</button>
+      <!-- <button class="button expand" ng-click="showCurrentNewPost()">Show New Photo</button> -->
     </div>
+  </div>
+  <div class="row">
     <div class="small-12 columns" style="text-align:center;">
       <div style="height:750px;">
         <img ng-show="post.isImage" ng-src="{{ post.large_image }}" style="width:auto;height:700px;" />
@@ -14,36 +15,34 @@
         <!-- <h3>Current Post - {{ post }}</h3> --> 
         <!-- <p>{{ posts }}</p> -->
       </div>
-      <div class="row" style="margin-top:40px;margin-bottom:100px;" ng-show="currentNewPostVisible">
-        <div class="small-4 columns" style="background-color:red;">
-          <img ng-src="{{ currentNewPost.thumb }}" style="padding:10px;"/>
-        </div>
-        <div class="small-2 columns" ng-repeat="item in smallFilmStrip">
-          <img ng-src="{{ item.thumb }}" style="width:auto;height:100px;" ng-show="item.isImage" />
-          <div ng-hide="item.isImage">
-            <p><blockquote>{{ item.body }}</blockquote></p>
-          </div>
-        </div>
-      </div>
-      <div class="row" style="margin-top:40px;margin-bottom:100px;" ng-hide="currentNewPostVisible">
-        <div class="small-2 columns" ng-repeat="item in filmStrip">
-          <img ng-src="{{ item.thumb }}" style="width:auto;height:100px;" ng-show="item.isImage" />
-          <div ng-hide="item.isImage">
-            <p><blockquote>{{ item.body }}</blockquote></p>
-          </div>
-        </div>
-      </div>
     </div> 
-    <div class="row">
-      <div class="small-6 columns">
-        <!-- <p>New Posts Array: {{ newPosts }}</p> -->
-      </div>
-      <div class="small-6 columns">
-        <!-- <p>Current New Photo: {{ currentNewPost.id }}</p> -->
-        <!-- <img ng-show="currentNewPostVisible" ng-src="{{ currentNewPost.thumb }}" /> -->
-      </div>
+  </div>
+  <div class="row" style="margin-top:40px;margin-bottom:100px;" ng-show="currentNewPostVisible">
+    <div class="small-4 columns alert-box secondary" ng-style="currentPostPosition">
+      <img ng-src="{{ currentNewPost.thumb }}"/>
     </div>
-    <div style="position:relative;">
-    
+    <div class="small-2 columns" ng-repeat="item in smallFilmStrip">
+      <img ng-src="{{ item.thumb }}" style="width:auto;height:100px;" ng-show="item.isImage" />
+      <div ng-hide="item.isImage">
+        <p><blockquote>{{ item.body }}</blockquote></p>
+      </div>
     </div>
   </div>
+  <div class="row" style="margin-top:40px;margin-bottom:100px;" ng-hide="currentNewPostVisible">
+    <div class="small-2 columns" ng-repeat="item in filmStrip">
+      <img ng-src="{{ item.thumb }}" style="width:auto;height:100px;" ng-show="item.isImage" />
+      <div ng-hide="item.isImage">
+        <p><blockquote>{{ item.body }}</blockquote></p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-6 columns">
+      <!-- <p>New Posts Array: {{ newPosts }}</p> -->
+    </div>
+    <div class="small-6 columns">
+      <!-- <p>Current New Photo: {{ currentNewPost.id }}</p> -->
+      <!-- <img ng-show="currentNewPostVisible" ng-src="{{ currentNewPost.thumb }}" /> -->
+    </div>
+  </div>
+</div>

@@ -2,6 +2,12 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 	$scope.timeInterval = 5000;
 	$scope.newPhotos = false;
 
+	$scope.currentPostPosition = {
+		position: "relative",
+		left: "0px",
+		top: "-300px"
+	};
+
 	var getNextPost = function(posts, currentId, videos) {
 		var nextId = PostModel.findNextPostId(posts, currentId);
 		var nextPost = PostModel.getCurrentPost(posts, nextId);
