@@ -1,11 +1,21 @@
 angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interval", "RandomPhotoGenerator", "CapsuleData", "CapsuleModel", "PostModel", "VideoModel", function($scope, $timeout, $interval, RandomPhotoGenerator, CapsuleData, CapsuleModel, PostModel, VideoModel) {
-	$scope.timeInterval = 5000;
-	$scope.newPhotos = false;
+	var computeNewPostTopPosition = function(element, offset) {
+		var elementHeight = element[0].clientHeight;
+		if (elementHeight > offset) {
+			elementHeight -= offset;
+		}
 
-	$scope.currentPostPosition = {
-		position: "relative",
-		left: "0px",
-		top: "-300px"
+		return "-" + elementHeight.toString() + "px";
+	};
+
+	var setNewPostPosition = function() {
+		var element = angular.element("#currentNewPostDiv");
+
+		return {
+			position: "relative",
+			left: "0px",
+			top: computeNewPostTopPosition(element, 100)
+		};	
 	};
 
 	var getNextPost = function(posts, currentId, videos) {
@@ -45,6 +55,11 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 		}
 		return buildFilmStrip(posts, nextPost, videos, n, acc);
 	};
+
+	$scope.timeInterval = 5000;
+	$scope.newPhotos = false;
+	$scope.currentNewPostPosition = setNewPostPosition();
+
 
 	$scope.init = function() {
 		$scope.capsule = CapsuleModel.setAndGetCapsuleData(CapsuleData.getCapsuleData());
@@ -124,8 +139,11 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 		$scope.newPhotos = !$scope.newPhotos;
 	};
 
-	showCurrentNewPost = function() {
+	var showCurrentNewPost = function() {
 		$scope.currentNewPost = $scope.newPosts.shift();
+		$timeout(function() {
+			$scope.currentNewPostPosition = setNewPostPosition();			
+		}, 100);
 	};
 
 	var newPhotoInterval;
@@ -149,11 +167,9 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 
 	$scope.$watchCollection("newPosts", function() {
 		if ($scope.newPosts.length > 0) {
-			console.log("Interval Started");
 			$scope.currentNewPostVisible = true;
 			startNewPhotoInterval();
 		} else {
-			console.log("Interval Stopped");
 			stopNewPhotoInterval();
 			$timeout(function() {
 				$scope.currentNewPost = undefined;
