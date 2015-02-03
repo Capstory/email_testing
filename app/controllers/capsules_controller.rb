@@ -40,14 +40,14 @@ class CapsulesController < ApplicationController
     end
   end
   
-  # def show
-  #   @capsule = Capsule.find(params[:id].to_s.downcase)
-		# @visible_posts = [ @capsule.id, @capsule.posts.verified.pluck(:id) ]
-  #   @posts = @capsule.posts.verified.order("created_at DESC").page(params[:page]).per_page(10)
-  #   @post = Post.new
-  # end
+  def show
+    @capsule = Capsule.find(params[:id].to_s.downcase)
+		@visible_posts = [ @capsule.id, @capsule.posts.verified.pluck(:id) ]
+    @posts = @capsule.posts.verified.order("created_at DESC").page(params[:page]).per_page(10)
+    @post = Post.new
+  end
 	
-	def show
+	def angular_show
     @capsule = Capsule.find(params[:id].to_s.downcase)
     @posts = @capsule.posts.includes(:video)
 		# @visible_posts = [ @capsule.id, @capsule.posts.verified.pluck(:id) ]
