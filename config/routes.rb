@@ -167,7 +167,7 @@ EmailTesting::Application.routes.draw do
 	match "conference_get_new_posts" => "capsules#conference_get_new_posts"
 	match "conference_upload/:capsule_id" => "capsules#conference_filepicker_upload"
 	match "conference_filepicker_process" => "capsules#conference_filepicker_process"
-	match "angular/:id" => "capsules#angular_show"
+	# match "angular/:id" => "capsules#angular_show"
   resources :capsules, except: :index
   
   match 'verify_pin' => "capsules#verify_pin"
