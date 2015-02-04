@@ -82,13 +82,13 @@ angular_capsule_app.controller("CapsuleCtlr", ["$document", "$window", "$scope",
 	$scope.capsule = CapsuleModel.setAndGetCapsuleData(CapsuleData.getCapsuleData());
 
 	$scope.posts = setAllPostsToInvisible(buildCapsuleImages(CapsuleData.getPosts()));
-	console.log("Posts: ", $scope.posts);
 
 	$scope.videos = VideoModel.setAndGetVideoData(CapsuleData.getVideos());
 	$scope.slideshowImage = CapsuleData.getSlideshowImagePath();
 	$scope.uploadImage = CapsuleData.getUploadImagePath();
 
 	$scope.loadPhotos = function() {
+		console.log("Photos loading...");
 		var result = loadPhotos(9, $scope.posts);
 		$timeout(function() {
 			refreshIsotope();
@@ -103,7 +103,6 @@ angular_capsule_app.controller("CapsuleCtlr", ["$document", "$window", "$scope",
 				angular.element("#flashAlert").fadeOut("slow");
 			}, 3000);
 		}
-		$scope.loadPhotos();
 	};
 
 	$scope.toggleData = function(dataToShow) {
