@@ -93,7 +93,7 @@ angular_capsule_app.controller("CapsuleCtlr", ["$document", "$window", "$scope",
 		$timeout(function() {
 			refreshIsotope();
 			eval(result);
-		}, 1000);
+		}, 300);
 	};
 
 	$scope.init = function() {
