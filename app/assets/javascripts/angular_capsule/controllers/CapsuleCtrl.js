@@ -91,6 +91,7 @@ angular_capsule_app.controller("CapsuleCtlr", ["$document", "$window", "$scope",
 	$scope.capsule = CapsuleModel.setAndGetCapsuleData(CapsuleData.getCapsuleData());
 
 	$scope.posts = setAllPostsToInvisible(buildCapsuleImages(CapsuleData.getPosts()));
+	console.log("Posts: ", $scope.posts);
 
 	$scope.videos = VideoModel.setAndGetVideoData(CapsuleData.getVideos());
 	$scope.slideshowImage = CapsuleData.getSlideshowImagePath();
