@@ -75,15 +75,6 @@ angular_capsule_app.controller("CapsuleCtlr", ["$document", "$window", "$scope",
 		return true;
 	};
 
-	$scope.init = function() {
-		angular.element(".capsuleOffCanvasMenuItems").show();
-		if ( angular.element("#flashAlert") ) {
-			$timeout(function() {
-				angular.element("#flashAlert").fadeOut("slow");
-			}, 3000);
-		}
-	};
-
 	$scope.showCapsuleData = false;
 	$scope.showPostsData = false;
 	$scope.showVideoData = false;
@@ -103,6 +94,16 @@ angular_capsule_app.controller("CapsuleCtlr", ["$document", "$window", "$scope",
 			refreshIsotope();
 			eval(result);
 		}, 300);
+	};
+
+	$scope.init = function() {
+		angular.element(".capsuleOffCanvasMenuItems").show();
+		if ( angular.element("#flashAlert") ) {
+			$timeout(function() {
+				angular.element("#flashAlert").fadeOut("slow");
+			}, 3000);
+		}
+		$scope.loadPhotos();
 	};
 
 	$scope.toggleData = function(dataToShow) {
