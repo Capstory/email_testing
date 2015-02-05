@@ -66,9 +66,9 @@ angular_capsule_app.controller("CapsuleCtlr", ["$document", "$window", "$scope",
 		for (i = posts.length - 1; counter < n; i--) {
 			if ( CapsuleModel.allPostsVisible(posts) ) { return "hideSpinner()"; }
 
-			if ( !posts[i].visible && !posts[i].tag_for_deletion ) {
+			if ( !posts[i].visible ) {
 				posts[i].visible = true;
-				counter += 1;
+				if (!posts[i].tag_for_deletion && posts[i].verified) { counter += 1; }
 			}
 		}
 
