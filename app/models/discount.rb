@@ -3,6 +3,12 @@ class Discount < ActiveRecord::Base
 
 	validates_uniqueness_of :discount_code
 	validates_uniqueness_of :campaign_name
+	validates :campaign_name, presence: true
+	validates :amount, presence: true
+	validates :end_date, presence: true
+	validates :start_date, presence: true
+	validates :genre, presence: true
+	validates :discount_code, presence: true
 
 	def apply_discount(purchase_price)
 		if Time.now.to_date > self.end_date

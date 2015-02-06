@@ -22,5 +22,6 @@
 	<%= f.label :discount_code %>
 	<%= f.text_field :discount_code %>
 
-	<%= f.submit "Create Discount", class: "button" %>
+	<%= link_to "Back to Discount", @discount %>
+	<%= f.submit "Update Discount", class: "button pull-right" %>
 <% end %>

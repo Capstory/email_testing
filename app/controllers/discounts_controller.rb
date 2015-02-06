@@ -9,9 +9,11 @@ class DiscountsController < ApplicationController
 			discount.campaign_name = params[:discount][:campaign_name]
 			discount.amount = params[:discount][:amount].to_f
 			discount.genre = params[:discount][:genre]
-			discount.start_date = Date.strptime(params[:discount][:start_date], "%m-%d-%Y")
-			discount.end_date = Date.strptime(params[:discount][:end_date], "%m-%d-%Y")
-			discount.discount_code = params[:discount][:discount_code]
+			discount.start_date = !params[:discount][:start_date].empty? ? Date.parse(params[:discount][:start_date]) : nil
+			discount.end_date = !params[:discount][:end_date].empty? ? Date.parse(params[:discount][:end_date]) : nil
+			# discount.start_date = !params[:discount][:start_date].empty? ? Date.strptime(params[:discount][:start_date], "%m-%d-%Y") : nil
+			# discount.end_date = !params[:discount][:end_date].empty? ? Date.strptime(params[:discount][:end_date], "%m-%d-%Y") : nil
+			discount.discount_code = params[:discount][:discount_code].downcase
 		end
 		if @discount.save
 			flash[:success] = "Successfully created discount"
@@ -20,6 +22,10 @@ class DiscountsController < ApplicationController
 			flash[:error] = "Unable to create discount"
 			render "new"
 		end
+	end
+
+	def show
+		@discount = Discount.find(params[:id])
 	end
 
 	def edit

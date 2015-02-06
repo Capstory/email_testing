@@ -1,0 +1,18 @@
+<div class="row">
+	<div class="small-12 columns">
+		<h2 class="subheader"><%= @discount.campaign_name %></h2>
+	</div>
+</div>
+<div class="row">
+	<div class="small-6 columns">
+		<p>Discount Code: <b><%= @discount.discount_code %></b></p>	
+		<p>Amount: <b><%= @discount.show_amount %></b></p>	
+		<p>Type of Discount: <b><%= @discount.genre.capitalize %></b></p>	
+	</div>
+	<div class="small-6 columns">
+		<p>Start Date: <b><%= @discount.show_start_date %></b></p>	
+		<p>End Date: <b><%= @discount.show_end_date %></b></p>	
+		<p><%= link_to "Edit Discount", edit_discount_path(@discount) %></p>
+		<p><%= link_to "Back to Dashboard", dashboard_path %></p>
+	</div>
+</div>
