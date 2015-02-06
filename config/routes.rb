@@ -92,7 +92,7 @@ EmailTesting::Application.routes.draw do
 	match "wnci" => "homepages#wnci_marketing"
 	match "homepages/ovni" => "homepages#brads_ovni_landing"
 	match "homepages/ovni2" => "homepages#dustins_ovni_landing"
-	match "homepages/pay" => "homepages#alt_ovni_homepage"
+	# match "homepages/pay" => "homepages#alt_ovni_homepage"
 	# match "landing" => "homepages#landing"
 	match "landing" => "homepages#test_ovni_landing"
 	# match "a" => "homepages#alt_first_test_landing"
