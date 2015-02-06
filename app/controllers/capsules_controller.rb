@@ -49,7 +49,7 @@ class CapsulesController < ApplicationController
 
 	def show
     @capsule = Capsule.find(params[:id].to_s.downcase)
-    @posts = @capsule.posts.includes(:video)
+    @posts = @capsule.posts.order(:id).includes(:video)
 		# @visible_posts = [ @capsule.id, @capsule.posts.verified.pluck(:id) ]
 		@videos = @posts.map { |p| if p.video then p.video end }.compact
 		@post = Post.new
@@ -59,7 +59,7 @@ class CapsulesController < ApplicationController
 	
 	def angular_show
     @capsule = Capsule.find(params[:id].to_s.downcase)
-    @posts = @capsule.posts.includes(:video)
+    @posts = @capsule.posts.order(:id).includes(:video)
 		# @visible_posts = [ @capsule.id, @capsule.posts.verified.pluck(:id) ]
 		@videos = @posts.map { |p| if p.video then p.video end }.compact
 		@post = Post.new
