@@ -17,14 +17,14 @@
     </div> 
   </div>
   <div class="row" style="margin-top:40px;margin-bottom:100px;" ng-show="currentNewPostVisible">
-    <div class="small-4 columns alert-box secondary" ng-style="currentNewPostPosition" id="currentNewPostDiv">
-      <img ng-src="{{ currentNewPost.thumb }}"/>
-    </div>
     <div class="small-2 columns" ng-repeat="item in smallFilmStrip">
       <img ng-src="{{ item.thumb }}" style="width:auto;height:100px;" ng-show="item.isImage" />
       <div ng-hide="item.isImage">
         <p><blockquote>{{ item.body }}</blockquote></p>
       </div>
+    </div>
+    <div class="small-4 columns alert-box secondary" ng-style="currentNewPostPosition" id="currentNewPostDiv">
+      <img ng-src="{{ currentNewPost.thumb }}"/>
     </div>
   </div>
   <div class="row" style="margin-top:40px;margin-bottom:20px;" ng-hide="currentNewPostVisible">

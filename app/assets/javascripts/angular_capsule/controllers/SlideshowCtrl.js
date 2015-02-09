@@ -1,4 +1,17 @@
-angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interval", "RandomPhotoGenerator", "CapsuleData", "CapsuleModel", "PostModel", "VideoModel", function($scope, $timeout, $interval, RandomPhotoGenerator, CapsuleData, CapsuleModel, PostModel, VideoModel) {
+angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interval", "$location", "RandomPhotoGenerator", "CapsuleData", "CapsuleModel", "PostModel", "VideoModel", function($scope, $timeout, $interval, $location, RandomPhotoGenerator, CapsuleData, CapsuleModel, PostModel, VideoModel) {
+	var changeTopBarDiv = function(endState) {
+		var el = angular.element("#topBarDiv");
+
+		switch(endState) {
+			case "make_invisible":
+				el.hide();
+				break;
+			case "make_visible":
+				el.show();
+				break;
+		}
+	};
+
 	var computeNewPostTopPosition = function(element, offset) {
 		var elementHeight = element[0].clientHeight;
 		if (elementHeight > offset) {
@@ -62,6 +75,8 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 
 
 	$scope.init = function() {
+		changeTopBarDiv("make_invisible");
+
 		$scope.capsule = CapsuleModel.setAndGetCapsuleData(CapsuleData.getCapsuleData());
 		$scope.posts = PostModel.setAndGetPostsData(CapsuleData.getPosts());
 		$scope.videos = VideoModel.setAndGetVideoData(CapsuleData.getVideos());
@@ -104,7 +119,7 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 			PostModel.getNewPosts($scope.capsule.id, $scope.posts).then(function(data) {
 
 				if ($scope.newPhotos) {
-					var objects = createNewPostObject(3, $scope.posts[$scope.posts.length - 1].id, []);
+					var objects = createNewPostObject(1, $scope.posts[$scope.posts.length - 1].id, []);
 					angular.forEach(objects, function(object) {
 						data.new_posts.push(object);
 					});
@@ -114,8 +129,6 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 
 				PostModel.filterNewPosts($scope.posts, $scope.newPosts, data);
 
-
-				// console.log("Poller response: ", data);
 			}, function(status) {
 				console.log("There was an error", status);
 			});
@@ -130,6 +143,7 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 	};
 
 	$scope.$on("$destroy", function() {
+		changeTopBarDiv("make_visible");
 		stopPoller();
 	});
 
@@ -179,4 +193,8 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 	});
 
 	startPoller();
+
+	$scope.backToCapsule = function() {
+		$location.path("/");
+	};
 }]);
