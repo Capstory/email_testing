@@ -41,7 +41,7 @@ angular_capsule_app.directive("keypress", ["$document", function($document) {
 	}
 }]);
 
-angular_capsule_app.directive("onassetload", [function() {
+angular_capsule_app.directive("onassetload", ["$timeout", function($timeout) {
 	return {
 		restrict: "A",
 		link: function(scope, elem, attrs) {
@@ -49,6 +49,12 @@ angular_capsule_app.directive("onassetload", [function() {
 				// console.log("Image Loaded");
 				scope.mainElementLoading = false;
 			});
+
+			$timeout(function() {
+				if (scope.mainElementLoading) {
+					scope.mainElementLoading = false;
+				}
+			}, 2000);
 
 			elem.on("$destroy", function() {
 				elem.unbind("load");
