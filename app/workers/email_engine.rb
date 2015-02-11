@@ -16,4 +16,8 @@ class EmailEngine
     email.process
     # puts "I'm checking the email right now!"
   end
+
+	def self.show_notification_count
+		p @@notification_count
+	end
 end
