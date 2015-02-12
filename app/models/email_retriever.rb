@@ -73,6 +73,7 @@ class EmailRetriever
     self.get_new_emails.each do |mail|
     
       email = Email.new(self.get_email_data(mail), self.get_email_header(mail), self.default_capsule_id)
+			self.imap_notify(mail)
   
 			if email.capsule_accepting_submissions?
 				if email.has_attachments?
@@ -89,7 +90,6 @@ class EmailRetriever
 
 				email.notify_sender_of_closed_capsule
 			end
-			self.imap_notify(mail)
     end
 
     self.imap_close_out
@@ -183,10 +183,19 @@ class Email
   end
 
   def process_body
-    plain_body = self.data.body.decoded
+    # plain_body = self.data.body.decoded
+		plain_body = self.get_body_text
           
     Post.create!(body: plain_body, email: self.sender_email, capsule_id: self.capsule_id, verified: self.post_verified)
   end
+
+	def get_body_text
+		if self.data.multipart?
+			self.data.parts.first.body.decoded
+		else
+			self.data.body.decoded
+		end
+	end
 
   def notify_sender
     # Send a response to the sender
