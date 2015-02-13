@@ -42,12 +42,27 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 		return nextPost;
 	};
 
+	var getPreviousPost = function(posts, currentId, videos) {
+		var previousId = PostModel.findPreviousPostId(posts, currentId);
+		var previousPost = PostModel.getCurrentPost(posts, previousId);
+	
+		if (PostModel.checkPostHasVideo(previousPost, videos)) {
+			return getPreviousPost(posts, previousId, videos);
+		}
+
+		return previousPost;
+	};
+
 	var rotateImages = function(posts, post, videos) {
 		var newPost = getNextPost(posts, post.id, videos);
 		$scope.post = newPost;
 		$scope.post.large_image = PostModel.buildImageUrl($scope.post, "lightbox_width");
 		$scope.filmStrip = buildFilmStrip(posts, $scope.post, videos, 6, []);
 		$scope.smallFilmStrip = buildFilmStrip(posts, $scope.post, videos, 4, []);
+		$scope.previousPost = getPreviousPost(posts, newPost.id, videos);
+		$scope.nextPost = getNextPost(posts, newPost.id, videos);
+		$scope.previousPreviousPost = getPreviousPost(posts, $scope.previousPost.id, videos);
+		$scope.nextNextPost = getNextPost(posts, $scope.nextPost.id, videos);
 	};
 
 	var setImageRotation = function(posts, post, videos, timeInterval) {
@@ -85,6 +100,10 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 
 		$scope.filmStrip = buildFilmStrip($scope.posts, $scope.post, $scope.videos, 6, []);
 		$scope.smallFilmStrip = buildFilmStrip($scope.posts, $scope.post, $scope.videos, 4, []);
+		$scope.previousPost = getPreviousPost($scope.posts, $scope.post.id, $scope.videos);
+		$scope.nextPost = getNextPost($scope.posts, $scope.post.id, $scope.videos);
+		$scope.previousPreviousPost = getPreviousPost($scope.posts, $scope.previousPost.id, $scope.videos);
+		$scope.nextNextPost = getNextPost($scope.posts, $scope.nextPost.id, $scope.videos);
 
 		setImageRotation($scope.posts, $scope.post, $scope.videos, $scope.timeInterval);
 
