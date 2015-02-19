@@ -5,35 +5,39 @@
       <button class="button expand" ng-click="toggleNewPhotos()" ng-show="newPhotos">Turn off New Photos</button>
     </div>
   </div>
-    <div class="small-1 columns" style="padding-top:200px;" >
-        <img ng-show="post.isImage" ng-src="{{ previousPreviousPost.image }}" />
-        <h5 ng-hide="post.isImage">{{ previousPreviousPost.body }}</h5>
-    </div>
+    <!-- <div class="small-1 columns" style="padding-top:200px;" > -->
+    <!--     <img ng-show="post.isImage" ng-src="{{ previousPreviousPost.image }}" /> -->
+    <!--     <h5 ng-hide="post.isImage">{{ previousPreviousPost.body }}</h5> -->
+    <!-- </div> -->
     <div class="small-2 columns" style="padding-top:200px;" >
-        <img ng-show="post.isImage" ng-src="{{ previousPost.image }}" />
+        <img ng-show="post.isImage" ng-src="{{ previousPreviousPost.image }}" style="position:relative;left:0px;top:-50px;"/>
+        <h5 ng-hide="post.isImage">{{ previousPreviousPost.body }}</h5>
+        <img ng-show="post.isImage" ng-src="{{ previousPost.image }}" style="position:relative;left:100px;top:-100px;" />
         <h5 ng-hide="post.isImage">{{ previousPost.body }}</h5>
     </div>
-    <div class="small-6 columns" style="text-align:center;">
+    <div class="small-8 columns" style="text-align:center;">
       <div style="height:750px;">
-        <img ng-show="post.isImage" ng-src="{{ post.large_image }}" />
+        <img ng-show="post.isImage" ng-src="{{ post.large_image }}" style="width:auto;height:700px;position:relative;left:0px;top:0px;z-index:100;"/>
         <h1 ng-hide="post.isImage" style="padding-top:200px;">{{ post.body }}</h1>
       </div>
     </div> 
     <div class="small-2 columns" style="padding-top:200px;">
-        <img ng-show="post.isImage" ng-src="{{ nextPost.image }}" />
+        <img ng-show="post.isImage" ng-src="{{ nextPost.image }}" style="position:relative;left:-100px;top:50px;z-index:1;" />
         <h5 ng-hide="post.isImage">{{ nextPost.body }}</h5>
-    </div>
-    <div class="small-1 columns" style="padding-top:200px;">
-        <img ng-show="post.isImage" ng-src="{{ nextNextPost.image }}" />
+        <img ng-show="post.isImage" ng-src="{{ nextNextPost.image }}" style="position:relative;left:0px;top:-200px;"/>
         <h5 ng-hide="post.isImage">{{ nextNextPost.body }}</h5>
     </div>
-  <div class="row" style="margin-top:40px;margin-bottom:100px;" ng-show="false">
-    <div class="small-2 columns" ng-repeat="item in smallFilmStrip">
-      <img ng-src="{{ item.thumb }}" style="width:auto;height:100px;" ng-show="item.isImage" />
-      <div ng-hide="item.isImage">
-        <p><blockquote>{{ item.body }}</blockquote></p>
-      </div>
-    </div>
+    <!-- <div class="small-1 columns" style="padding-top:200px;"> -->
+    <!--     <img ng-show="post.isImage" ng-src="{{ nextNextPost.image }}" /> -->
+    <!--     <h5 ng-hide="post.isImage">{{ nextNextPost.body }}</h5> -->
+    <!-- </div> -->
+  <div class="row" style="margin-top:40px;margin-bottom:100px;" ng-show="currentNewPostVisible">
+    <!-- <div class="small-2 columns" ng-repeat="item in smallFilmStrip"> -->
+    <!--   <img ng-src="{{ item.thumb }}" style="width:auto;height:100px;" ng-show="item.isImage" /> -->
+    <!--   <div ng-hide="item.isImage"> -->
+    <!--     <p><blockquote>{{ item.body }}</blockquote></p> -->
+    <!--   </div> -->
+    <!-- </div> -->
     <div class="small-3 columns alert-box secondary" ng-style="currentNewPostPosition" id="currentNewPostDiv">
       <img ng-src="{{ currentNewPost.thumb }}"/>
     </div>
