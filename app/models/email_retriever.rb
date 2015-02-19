@@ -137,12 +137,20 @@ class Email
 
   def capsule_email
     if Rails.env.production?
-      capsule_email = self.header.to[0].mailbox + "@capstory.me"
+      capsule_email = to_address_mailbox +  "@capstory.me"
     else
-      capsule_email = self.header.to[0].mailbox + "@capstory-testing.com"
+      capsule_email = to_address_mailbox +  "@capstory-testing.com"
     end
     return capsule_email
   end
+
+	def to_address_mailbox
+		if self.header.to[0].mailbox.nil?
+			"nothing"
+		else
+			self.header.to[0].mailbox.downcase
+		end
+	end
 
   def has_attachments?
     if self.data.multipart? && self.data.has_attachments?
