@@ -40,6 +40,11 @@ class HomepagesController < ApplicationController
 		render "wnci_marketing", layout: "ovni_layout"
 	end
 
+	def live_stream_focus
+		@contact_form = ContactForm.new
+		render "ovni_landing_live_stream", layout: "ovni_layout"
+	end
+
 	# def americheer_landing
 	# 	@contact_form = ContactForm.new
 	# 	render "americheer_landing", layout: "ovni_layout"
