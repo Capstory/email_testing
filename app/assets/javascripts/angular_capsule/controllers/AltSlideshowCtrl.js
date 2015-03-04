@@ -63,10 +63,10 @@ angular_capsule_app.controller("AltSlideshowCtrl", ["$scope", "$timeout", "$inte
 
 	var imageRotator = undefined;
 
-	var setImageRotation = function(posts, post, videos, timeInterval, filmStrip) {
+	var setImageRotation = function(timeInterval) {
 		imageRotator = $timeout(function() {
-			rotateImages(posts, post, videos, filmStrip);
-			setImageRotation($scope.posts, $scope.post, $scope.videos, $scope.timeInterval, $scope.filmStrip);
+			rotateImages($scope.posts, $scope.post, $scope.videos, $scope.filmStrip);
+			setImageRotation($scope.timeInterval);
 		}, timeInterval);
 	};
 
@@ -104,7 +104,7 @@ angular_capsule_app.controller("AltSlideshowCtrl", ["$scope", "$timeout", "$inte
 		$scope.filmStrip = buildFilmStrip($scope.posts, $scope.post, $scope.videos, 5, []);
 		$scope.smallFilmStrip = buildFilmStrip($scope.posts, $scope.post, $scope.videos, 4, []);
 
-		setImageRotation($scope.posts, $scope.post, $scope.videos, $scope.timeInterval, $scope.filmStrip);
+		setImageRotation($scope.timeInterval);
 
 		$scope.newPhotos = false;
 		$scope.newPosts = [];
@@ -145,6 +145,7 @@ angular_capsule_app.controller("AltSlideshowCtrl", ["$scope", "$timeout", "$inte
 				}
 
 				PostModel.updatePostData($scope.posts, data, { genre: "inject", currentPostId: $scope.post.id });
+				$scope.filmStrip = buildFilmStrip($scope.posts, $scope.post, $scope.videos, 5, []);
 				
 				// PostModel.updatePostData($scope.posts, data);
 

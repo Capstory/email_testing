@@ -282,7 +282,7 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 	};
 
 	var injectNewPosts = function(posts, newPostsArray, injectIndex) {
-		var spliceArgs = [injectIndex - 1, 0].concat(newPostsArray);
+		var spliceArgs = [injectIndex, 0].concat(newPostsArray);
 		Array.prototype.splice.apply(posts, spliceArgs);
 		return posts;
 	};
