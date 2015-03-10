@@ -39,6 +39,7 @@ class ContactFormsController < ApplicationController
 
 		respond_to do |format|
 			if @contact_form.save
+				ContactFormMailer.admin_notification(@contact_form).deliver
 				format.json { render json: { status: :ok } }
 			else
 				format.json { render json: { status: :unable_to_save_form }, status: :unprocessable_entity } 
