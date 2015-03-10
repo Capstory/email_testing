@@ -26,4 +26,23 @@ class ContactFormsController < ApplicationController
   
   def thank_you
   end
+
+	def request_package_information
+		@contact_form = ContactForm.new
+		@contact_form.name = params[:name].blank? ? nil : params[:name]
+		@contact_form.email = params[:email].blank? ? nil : params[:email]
+		@contact_form.source = "request_package_information"
+		
+		msg_info = {bronze_package: params[:bronze_package], silver_package: params[:silver_package], gold_package: params[:gold_package], custom_package: params[:custom_package], message: params[:message], event_date: params[:event_date]}
+
+		@contact_form.message = ContactForm.compose_request_package_information_message(msg_info)
+
+		respond_to do |format|
+			if @contact_form.save
+				format.json { render json: { status: :ok } }
+			else
+				format.json { render json: { status: :unable_to_save_form }, status: :unprocessable_entity } 
+			end
+		end
+	end
 end

@@ -20,10 +20,12 @@
             <li><a href="#home" title="Home">Home</a></li>
             <%# <li><a href="#services" title="Services">Services</a></li> %>
             <li><a href="#about" title="About">About</a></li>
-						<li><a href="#keepsakes" title="Keepsakes">Keepsakes</a></li>
+						<%# <li><a href="#keepsakes" title="Keepsakes">Keepsakes</a></li> %>
+						<li><a href="#testimonials" title="Testimonials">Testimonials</a></li>
             <li><a href="#packages" title="Packages">Packages</a></li> 
-            <li><a href="#experience" title="Experience">Experience</a></li>
+            <%# <li><a href="#experience" title="Experience">Experience</a></li> %>
             <li><a href="#features" title="Features">Features</a></li>
+						<li><a href="#contact" title="Contact Us">Contact Us</a></li>
 						<%# <li><%= link_to "Login", login_path %1></li> %>
             <%# <li><a href="#showcase" title="Showcase">Showcase</a></li> %>
           </ul>
@@ -142,7 +144,7 @@
     </div>  
     <div class="spacer40"></div>
   </section> 
-   <section id="keepsakes">
+   <section>
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center">
@@ -184,7 +186,7 @@
 					</div>
         </div>
       </div>      
-			<div class="row spacer100"></div>
+			<div class="row spacer100" id="testimonials"></div>
 			<div class="row">
 				<div class="col-md-12 text-center">
 					<h2 class="section-title">Testimonials</h2>
@@ -223,13 +225,13 @@
 						I can’t say enough great things about our CapStory experience. If you are looking for a fun, interactive and memorable deviation away from the Photo Booth route, look no further!</blockquote></p>
 				</div>
 			</div>
-      <div class="row spacer100"></div>      
-			<div class="row" id="pricing">
+      <div class="row spacer100" id="packages"></div>      
+			<div class="row">
 				<div class="col-xs-12 col-md-4 text-center" style="margin-top:60px;">
 					<h2 class="section-title">Bronze</h2>
 					<div class="row spacer40"></div>
 					<%# <%= link_to "Purchase", payment_path(package: "bronze"), class: "btn btn-primary btn-lg" %1> %> 
-					<a class="btn btn-primary" href="mailto:hello@capstory.me">Contact Us for Pricing</a>
+					<%# <a class="btn btn-primary" href="mailto:hello@capstory.me">Contact Us for Pricing</a> %>
 					<div class="row spacer40"></div>
 					<ul class="list-unstyled">
 						<li>24/7 Assistance</li>
@@ -248,7 +250,7 @@
 					<h2 class="section-title">Silver</h2>
 					<div class="row spacer40"></div>
 					<%# <%= link_to "Purchase", payment_path(package: "silver"), class: "btn btn-primary btn-lg" %1> %> 
-					<a class="btn btn-primary" href="mailto:hello@capstory.me">Contact Us for Pricing</a>
+					<%# <a class="btn btn-primary" href="mailto:hello@capstory.me">Contact Us for Pricing</a> %>
 					<div class="row spacer40"></div>
 					<ul class="list-unstyled">
 						<li>24/7 Assistance</li>
@@ -269,7 +271,7 @@
 					<h2 class="section-title">Gold</h2>
 					<div class="row spacer40"></div>
 					<%# <%= link_to "Purchase", payment_path(package: "gold"), class: "btn btn-primary btn-lg" %1> %> 
-					<a class="btn btn-primary" href="mailto:hello@capstory.me">Contact Us for Pricing</a>
+					<%# <a class="btn btn-primary" href="mailto:hello@capstory.me">Contact Us for Pricing</a> %>
 					<div class="row spacer40"></div>
 					<ul class="list-unstyled">
 						<li>24/7 Assistance</li>
@@ -288,6 +290,95 @@
 					</ul>
 					<%# <h2 class="">$1,499</h2> %>
 				</div>	
+			</div>
+			<div class="row">
+				<div class="col-xs-12 text-center">
+					<a data-toggle="modal" data-target="#requestPackageInfo" class="btn btn-primary btn-lg">Request More Package Information</a>
+				</div>
+			<div class="modal fade" id="requestPackageInfo" tabindex="-1" role="dialog" aria-labelledby="RequestPackageInfo" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+							<h4 class="modal-title">Request A Custom Package</h4>
+						</div>
+						<%= form_tag("/contact_forms/request_package_information", format: :json,  method: "post", remote: true, id: "requestPackageInfo") do |f| %>
+							<%= hidden_field_tag :source, "request_package_information" %>
+							<div class="modal-body">
+								<div class="row">
+									<div class="col-xs-12">
+
+										<div class="row">            
+											<div class="form-group col-xs-6">
+												<%= label_tag :name %>
+												<%= text_field_tag :name, "", class: "form-control", id: "package_info_name2", placeholder: "Name" %>
+											</div>
+											<div class="form-group col-xs-6">
+												<%# <label for="email2">email</label> %>
+												<%= label_tag :email %>
+												<%= text_field_tag :email, "", class: "form-control", id: "package_info_email2", placeholder: "E-mail" %> 
+											</div>
+										</div>
+
+										<div class="row">            
+											<div class="form-group col-xs-6">
+												<%= label_tag :packages, "Which Package Interests You?" %>
+												<br>
+												<%= check_box_tag(:bronze_package) %>
+												<%= label_tag(:bronze_package, "The Bronze Package") %>
+												<br>
+												<%= check_box_tag(:silver_package) %>
+												<%= label_tag(:silver_package, "The Silver Package") %>
+												<br>
+												<%= check_box_tag(:gold_package) %>
+												<%= label_tag(:gold_package, "The Gold Package") %>
+												<br>
+												<%= check_box_tag(:custom_package) %>
+												<%= label_tag(:custom_package, "A Custom Package") %>
+											</div>
+											<div class="form-group col-xs-6">
+												<%= label_tag :event_date %>
+												<%= text_field_tag :event_date, "", class: "form-control", id: "package_info_date", placeholder: "Event Date" %>
+											</div>
+										</div>
+										<div class="row">
+											<div class="form-group col-xs-12">
+												<%# <label for="message2">message</label> %>
+												<%= label_tag :message, "Additional Comment" %>
+												<%= text_area_tag :message, "",class: "form-control", id: "package_info_message2", placeholder: "Additional Coment", rows: 4 %>
+
+											</div>
+										</div> 
+										<div class="row spacer30"></div>
+										<div class="row">
+											<div class="col-md-8 col-md-offset-2">
+												<p class="text-center">Please, fill out the form and press submit. Or, contact us by email or telephone. Our email and phone number are below.</p>
+											</div>
+										</div>
+										<div class="row spacer10"></div>
+										<div class="row">            
+											<div class="col-xs-12 text-center">
+												<div class="alert alert-success" id="package_info_form_success" style="display:none;">The e-mail was successfully sent. Thank you. We will reach back out to you as soon as we possibly can.</div>
+												<div class="error alert alert-danger" id="package_info_form_err">There is a problem with the contact form, please verify that all the fields are filled out correctly.</div>
+												<div class="error" id="err-timedout">The connection to the server timed out!</div>
+												<div class="error" id="err-state"></div>
+
+												<%# <button type="submit" class="btn btn-default" id="send">Submit</button> %>
+											</div>
+										</div>
+									</div>  
+
+								</div>      
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								<%= submit_tag "Submit", class: "btn btn-primary" %>
+								<%# <button type="button" class="btn btn-primary" id="modalSubmitButton">Save changes</button> %>
+							</div>
+						<% end %>
+					</div>
+				</div>
+			</div>
 			</div>
 			<div class="row spacer60"></div>
     </div>     
@@ -334,7 +425,7 @@
     </div>
 
   
-   <section id="experience">
+   <section id="features">
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center">
@@ -439,7 +530,7 @@
     </div>        
   </div>
 
-  <section id="features"> 
+  <section> 
   
     <div class="container">
       <div class="row">
@@ -521,7 +612,7 @@
       <div class="row spacer100"></div>
     </div>
    
-  <footer> <!-- footer begings -->
+  <footer id="contact"> <!-- footer begings -->
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center">

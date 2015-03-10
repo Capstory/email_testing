@@ -38,6 +38,28 @@ $(function(){
 
 	};
 
+	var resetCheckBox = function(elementId) {
+		$(elementId).attr("checked", false);
+	};
+
+	var resetCheckBoxes = function(elementArray) {
+		if (elementArray.length == 0) { return true; }
+
+		var elId = elementArray.pop();
+		resetCheckBox(elId);
+
+		resetCheckBoxes(elementArray);	
+	};
+
+	var resetPackageInfoForm = function() {
+		$("#package_info_name2").val("");
+		$("#package_info_email2").val("");
+		$("#package_info_message2").val("");
+		$("#package_info_date").val("");
+		
+		resetCheckBoxes(["#bronze_package", "#silver_package", "#gold_package", "#custom_package"]);	
+	};
+
 // 	$("#modalSubmitButton").on("click", function() {
 // 		$("#contactSubmitButton").click();
 // 	});
@@ -80,5 +102,25 @@ $(function(){
 			
 			$("#customize_form_success").hide();
 			$("#customize_form_err").show();
+		});
+
+	$("#requestPackageInfo")
+		.on("ajax:success", function(e, data, status, xhr) {
+			// console.log(data);
+			// console.log(status);
+			// console.log(xhr);
+
+			$("#package_info_form_success").show();
+			$("#package_info_form_err").hide();
+			resetPackageInfoForm();
+		})
+		.on("ajax:error", function(e, xhr, status, error) {
+			// console.log(e);
+			// console.log(error);
+			// console.log(xhr);
+			// alert("Unable to send contact form");
+			
+			$("#package_info_form_success").hide();
+			$("#package_info_form_err").show();
 		});
 });
