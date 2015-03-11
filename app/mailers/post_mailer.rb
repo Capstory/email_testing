@@ -7,7 +7,7 @@ class PostMailer < ActionMailer::Base
     @url = capsule_link.is_a?(String) ? "http://www.capstory.me/" + capsule_link : "http://www.capstory.me/capsules/" + capsule_link.to_s
     @message = capsule_message
     
-    mail(from: @capsule_email, reply_to: @capsule_email, to: @sender_email, subject: "Success!")
+    mail(from: @capsule_email, reply_to: @capsule_email, to: @sender_email, subject: "Received!")
   end
 
 	def capsule_closed(sender, capsule_email)
