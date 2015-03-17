@@ -24,7 +24,7 @@ class PostsController < ApplicationController
     @slides = []
     posts = @capsule.posts.verified.where('id > ?', params[:after].to_i)
     unless posts.empty?
-      posts.each { |post| @slides << post.image.url }
+      posts.each { |post| @slides << post.image.url(:lightbox_width) }
       @id = posts.last.id
     end
     

@@ -154,7 +154,7 @@ class CapsulesController < ApplicationController
     @slides = []
     @capsule.posts.verified.order("created_at DESC").each do |post|
       if post.body.nil? || post.body.upcase == "NO MESSAGE" 
-        @slides << post.image.url
+        @slides << post.image.url(:lightbox_width)
       else
         next
       end
