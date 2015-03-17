@@ -62,3 +62,15 @@ angular_capsule_app.directive("onassetload", ["$timeout", function($timeout) {
 		}
 	};
 }]);
+
+angular_capsule_app.directive("newPhoto", [function() {
+	return {
+		restrict: "A",
+		link: function(scope, elem, attrs) {
+			if (attrs.newPhoto) {
+				console.log("New Photo arrived");
+				attrs.newPhoto = false;
+			} 
+		}
+	};
+}]);

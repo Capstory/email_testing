@@ -108,7 +108,7 @@
       </div>
     </div>
     <div class="small-2 columns" ng-repeat="item in filmStrip">
-      <img ng-src="{{ item.thumb }}" style="width:auto;height:100px;" ng-show="item.isImage" />
+      <img new-photo="{{ item.newPhoto }}" ng-src="{{ item.thumb }}" style="width:auto;height:100px;" ng-show="item.isImage" />
       <div ng-hide="item.isImage">
         <p><blockquote>{{ item.body }}</blockquote></p>
       </div>

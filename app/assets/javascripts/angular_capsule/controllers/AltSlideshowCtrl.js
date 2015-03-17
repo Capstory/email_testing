@@ -140,6 +140,7 @@ angular_capsule_app.controller("AltSlideshowCtrl", ["$scope", "$timeout", "$inte
 					var maxId = Math.max.apply(null, PostModel.getPostIds($scope.posts));
 					var objects = createNewPostObject(1, maxId, []);
 					angular.forEach(objects, function(object) {
+						object.newPhoto = true;
 						data.new_posts.push(object);
 					});
 				}
