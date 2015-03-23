@@ -39,6 +39,10 @@ angular_capsule_app.config(["$routeProvider", function($routeProvider) {
 			controller: "AltSlideshowCtrl",
 			templateUrl: "<%= asset_path 'angular_capsule/slideshow_f.html' %>"
 		})
+		.when("/animated_slideshow", {
+			controller: "AnimatedSlideshowCtrl",
+			templateUrl: "<%= asset_path 'angular_capsule/animated_slideshow.html' %>"
+		})
 		.otherwise({
 			redirectTo: "/"
 		});
