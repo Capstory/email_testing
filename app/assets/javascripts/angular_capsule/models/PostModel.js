@@ -93,6 +93,18 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 		return nextPostId;
 	};
 
+	var findPostIndexById = function(posts, postId) {
+		var i = 0;
+
+		for (i = 0; i < posts.length; i++) {
+			if (posts[i].id == postId) {
+				return i;
+			}
+		}
+
+		return -1;
+	};
+
 	var findPostById = function(posts, postId) {
 		var result;
 
@@ -113,6 +125,10 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 		});
 
 		return postIds;
+	};
+
+	this.getPostIds = function(posts) {
+		return getPostIds(posts);
 	};
 
 	var getTaggedForDeletionPosts = function(posts) {
@@ -265,6 +281,12 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 		return getNewPosts(dataSyncObject);
 	};
 
+	var injectNewPosts = function(posts, newPostsArray, injectIndex) {
+		var spliceArgs = [injectIndex, 0].concat(newPostsArray);
+		Array.prototype.splice.apply(posts, spliceArgs);
+		return posts;
+	};
+
 	var updatePosts = function(currentPosts, newPosts) {
 		angular.forEach(newPosts, function(post) {
 			currentPosts.push(post);
@@ -298,8 +320,17 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 		return posts;
 	};
 
-	this.updatePostData = function(currentPosts, newData) {
-		var posts = updatePosts(currentPosts, newData.new_posts);
+	this.updatePostData = function(currentPosts, newData, options) {
+		var posts;
+
+		if ( angular.isDefined(options) ) {
+			var currentPostIndex = findPostIndexById(currentPosts, options.currentPostId);
+
+			posts = injectNewPosts(currentPosts, newData.new_posts, currentPostIndex);
+		} else {
+			posts = updatePosts(currentPosts, newData.new_posts);
+		}
+
 		posts = applyUpdates(posts, newData.new_deletions, "deletion");
 		posts = applyUpdates(posts, newData.new_undeleted, "undeletion");
 		posts = applyUpdates(posts, newData.new_verified, "verified");

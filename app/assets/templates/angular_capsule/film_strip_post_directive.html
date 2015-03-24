@@ -1,0 +1,7 @@
+<div style="text-align:center;">
+  <p ng-show="item.newPhoto" style="position:relative;left:0px;top:-30px;margin-bottom:-25px;">New</p>
+  <img ng-src="{{ item.thumb }}" ng-style="filmStripPostHeight" ng-show="item.isImage" />
+  <div ng-hide="item.isImage">
+    <p><blockquote>{{ item.body }}</blockquote></p>
+  </div>
+</div>

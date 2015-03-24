@@ -1,36 +1,39 @@
-angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interval", "$location", "RandomPhotoGenerator", "CapsuleData", "CapsuleModel", "PostModel", "VideoModel", function($scope, $timeout, $interval, $location, RandomPhotoGenerator, CapsuleData, CapsuleModel, PostModel, VideoModel) {
+angular_capsule_app.controller("AnimatedSlideshowCtrl", ["$scope", "$timeout", "$interval", "$location", "RandomPhotoGenerator", "CapsuleData", "CapsuleModel", "PostModel", "VideoModel", function($scope, $timeout, $interval, $location, RandomPhotoGenerator, CapsuleData, CapsuleModel, PostModel, VideoModel) {
 	var changeTopBarDiv = function(endState) {
 		var el = angular.element("#topBarDiv");
+		var spacer = angular.element("#topBarSpacer");
 
 		switch(endState) {
 			case "make_invisible":
 				el.hide();
+				spacer.hide();
 				break;
 			case "make_visible":
 				el.show();
+				spacer.show();
 				break;
 		}
 	};
 
-	var computeNewPostTopPosition = function(element, offset) {
-		var elementHeight = element[0].clientHeight;
-		if (elementHeight > offset) {
-			elementHeight -= offset;
-		}
+	// var computeNewPostTopPosition = function(element, offset) {
+	// 	var elementHeight = element[0].clientHeight;
+	// 	if (elementHeight > offset) {
+	// 		elementHeight -= offset;
+	// 	}
 
-		return "-" + elementHeight.toString() + "px";
-	};
+	// 	return "-" + elementHeight.toString() + "px";
+	// };
 
-	var setNewPostPosition = function() {
-		var element = angular.element("#currentNewPostDiv");
+	// var setNewPostPosition = function() {
+	// 	var element = angular.element("#currentNewPostDiv");
 
-		return {
-			position: "relative",
-			left: "0px",
-			"z-index": 1000,
-			top: computeNewPostTopPosition(element, 100)
-		};	
-	};
+	// 	return {
+	// 		position: "relative",
+	// 		left: "0px",
+	// 		"z-index": 1000,
+	// 		top: computeNewPostTopPosition(element, 100)
+	// 	};	
+	// };
 
 	var getNextPost = function(posts, currentId, videos) {
 		var nextId = PostModel.findNextPostId(posts, currentId);
@@ -54,30 +57,30 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 		return previousPost;
 	};
 
-	var rotateImages = function(posts, post, videos) {
-		var newPost = getNextPost(posts, post.id, videos);
-		$scope.post = newPost;
+	var rotateImages = function(posts, post, videos, filmStrip) {
+		$scope.post = filmStrip.shift();
 		$scope.post.large_image = PostModel.buildImageUrl($scope.post, "lightbox_width");
-		$scope.filmStrip = buildFilmStrip(posts, $scope.post, videos, 6, []);
+		$scope.filmStrip = buildFilmStrip(posts, $scope.post, videos, 5, []);
 		$scope.smallFilmStrip = buildFilmStrip(posts, $scope.post, videos, 4, []);
-		$scope.previousPost = getPreviousPost(posts, newPost.id, videos);
-		$scope.nextPost = getNextPost(posts, newPost.id, videos);
-		$scope.previousPreviousPost = getPreviousPost(posts, $scope.previousPost.id, videos);
-		$scope.nextNextPost = getNextPost(posts, $scope.nextPost.id, videos);
+
 	};
 
-	var imageRotator;
+	var imageRotator = undefined;
+
+	var setImageRotation = function(timeInterval) {
+		imageRotator = $timeout(function() {
+			rotateImages($scope.posts, $scope.post, $scope.videos, $scope.filmStrip);
+
+			$timeout(function() {
+				$scope.$broadcast("refreshPosts");
+			}, $scope.timeInterval - 500);
+
+			setImageRotation($scope.timeInterval);
+		}, timeInterval);
+	};
 
 	var stopImageRotation = function() {
 		$timeout.cancel(imageRotator);
-	};
-
-	var setImageRotation = function(posts, post, videos, timeInterval) {
-		imageRotator = $timeout(function() {
-			// console.log("Regular Slideshow");
-			rotateImages(posts, post, videos);
-			setImageRotation($scope.posts, $scope.post, $scope.videos, $scope.timeInterval);
-		}, timeInterval);
 	};
 
 	var buildFilmStrip = function(posts, currentPost, videos, n, acc) {
@@ -94,7 +97,7 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 
 	$scope.timeInterval = 5000;
 	$scope.newPhotos = false;
-	$scope.currentNewPostPosition = setNewPostPosition();
+	// $scope.currentNewPostPosition = setNewPostPosition();
 
 
 	$scope.init = function() {
@@ -104,16 +107,13 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 		$scope.posts = PostModel.setAndGetPostsData(CapsuleData.getPosts());
 		$scope.videos = VideoModel.setAndGetVideoData(CapsuleData.getVideos());
 		$scope.post = PostModel.getCurrentPost($scope.posts, $scope.posts[0].id);
+		$scope.post.thumb = PostModel.buildImageUrl($scope.post, "thumb");
 		$scope.post.large_image = PostModel.buildImageUrl($scope.post, "lightbox_width");
 
-		$scope.filmStrip = buildFilmStrip($scope.posts, $scope.post, $scope.videos, 6, []);
+		$scope.filmStrip = buildFilmStrip($scope.posts, $scope.post, $scope.videos, 5, []);
 		$scope.smallFilmStrip = buildFilmStrip($scope.posts, $scope.post, $scope.videos, 4, []);
-		$scope.previousPost = getPreviousPost($scope.posts, $scope.post.id, $scope.videos);
-		$scope.nextPost = getNextPost($scope.posts, $scope.post.id, $scope.videos);
-		$scope.previousPreviousPost = getPreviousPost($scope.posts, $scope.previousPost.id, $scope.videos);
-		$scope.nextNextPost = getNextPost($scope.posts, $scope.nextPost.id, $scope.videos);
 
-		setImageRotation($scope.posts, $scope.post, $scope.videos, $scope.timeInterval);
+		setImageRotation($scope.timeInterval);
 
 		$scope.newPhotos = false;
 		$scope.newPosts = [];
@@ -146,20 +146,30 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 			PostModel.getNewPosts($scope.capsule.id, $scope.posts).then(function(data) {
 
 				if ($scope.newPhotos) {
-					var objects = createNewPostObject(1, $scope.posts[$scope.posts.length - 1].id, []);
+					var maxId = Math.max.apply(null, PostModel.getPostIds($scope.posts));
+					var objects = createNewPostObject(1, maxId, []);
 					angular.forEach(objects, function(object) {
+						// object.newPhoto = true;
 						data.new_posts.push(object);
 					});
 				}
 
-				PostModel.updatePostData($scope.posts, data);
+				PostModel.updatePostData($scope.posts, data, { genre: "inject", currentPostId: $scope.post.id });
 
-				PostModel.filterNewPosts($scope.posts, $scope.newPosts, data);
+				angular.forEach(data.new_posts, function(post) {
+					$scope.newPosts.push(post);
+				});
+
+				$scope.filmStrip = buildFilmStrip($scope.posts, $scope.post, $scope.videos, 5, []);
+				
+				// PostModel.updatePostData($scope.posts, data);
+
+				// PostModel.filterNewPosts($scope.posts, $scope.newPosts, data);
 
 			}, function(status) {
 				console.log("There was an error", status);
 			});
-		}, 5000);
+		}, 2000);
 	}
 
 	var stopPoller = function() {
@@ -207,22 +217,44 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 		}
 	};
 
-	$scope.$watchCollection("newPosts", function() {
-		if ($scope.newPosts.length > 0) {
-			$scope.currentNewPostVisible = true;
-			startNewPhotoInterval();
-		} else {
-			stopNewPhotoInterval();
-			$timeout(function() {
-				$scope.currentNewPost = undefined;
-				$scope.currentNewPostVisible = false;
-			}, 2000);
-		}
-	});
+	// $scope.$watchCollection("newPosts", function() {
+	// 	if ($scope.newPosts.length > 0) {
+	// 		$scope.currentNewPostVisible = true;
+	// 		startNewPhotoInterval();
+	// 	} else {
+	// 		stopNewPhotoInterval();
+	// 		$timeout(function() {
+	// 			$scope.currentNewPost = undefined;
+	// 			$scope.currentNewPostVisible = false;
+	// 		}, 2000);
+	// 	}
+	// });
 
 	startPoller();
 
 	$scope.backToCapsule = function() {
 		$location.path("/");
+	};
+
+	$scope.popNew = function(post) {
+		var i = 0;
+
+		for(i = 0; i < $scope.newPosts.length; i++) {
+			if($scope.newPosts[i].id == post.id) {
+				$scope.newPosts.splice(i, 1);	
+			}
+		}
+	};
+
+	$scope.isInNewPosts = function(post) {
+		var i = 0;
+
+		for(i = 0; i < $scope.newPosts.length; i++) {
+			if($scope.newPosts[i].id == post.id) {
+				return true;
+			}
+		}
+
+		return false;
 	};
 }]);
