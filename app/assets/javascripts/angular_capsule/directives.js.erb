@@ -24,17 +24,11 @@ angular_capsule_app.directive("keypress", ["$document", function($document) {
 	return {
 		restrict: "A",
 		link: function(scope, element, attrs) {
-			// $document.bind("keypress", function(event) {
-			// 	console.log("Key press code: ", event.keyCode);
-			// });
-
 			$document.bind("keydown", function(event) {
-				// console.log("Key down code: ", event.keyCode);
 				evalExpression(scope, attrs.keypress, event.keyCode);
 			});
 
 			element.on("$destroy", function() {
-				// $document.unbind("keypress");
 				$document.unbind("keydown");
 			});
 		}
@@ -46,7 +40,6 @@ angular_capsule_app.directive("onassetload", ["$timeout", function($timeout) {
 		restrict: "A",
 		link: function(scope, elem, attrs) {
 			elem.bind("load", function() {
-				// console.log("Image Loaded");
 				scope.mainElementLoading = false;
 			});
 
@@ -92,10 +85,7 @@ angular_capsule_app.directive("mainElementDirective", [function() {
 						scope.mainImageContainerHeight = angular.extend({"margin-top":35}, setImageContainerHeight(0.8));
 						scope.mainImageHeight = setImageContainerHeight(0.72);
 						scope.mainBodyPaddingTop = {"padding-top": 200};
-								
-					},
-		controller: function($scope) {
-								}
+					}
 	};
 }]);
 
@@ -169,6 +159,7 @@ angular_capsule_app.directive("currentPostDirective", [function() {
 			}
 
 			scope.spotlightImageHeight = setSpotlightImageHeight();
+			scope.spotlightQuoteHeight = angular.extend({"padding-top": 15, "margin-bottom": -10}, setSpotlightImageHeight());
 		}
 	};
 }]);

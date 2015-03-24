@@ -35,3 +35,23 @@
   }
 
 }
+
+.testStyles {
+  position: relative;
+  width: 15px;
+  left: 100px;
+  top: -20px; 
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 15px solid #A3A6A9;
+}
+
+.testStylesDiv {
+  position: relative;
+  padding-top: 5px;
+  left: 0px;
+  top: -10px;
+  border-radius: 3px;
+  border: 2px solid #A3A6A9;
+  text-align: center;
+}
