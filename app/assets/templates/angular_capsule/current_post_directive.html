@@ -1,4 +1,4 @@
-<img ng-src="{{ post.thumb }}" ng-show="post.isImage" class="spotlightImage" />
+<img ng-src="{{ post.thumb }}" ng-show="post.isImage" ng-style="spotlightImageHeight" />
 <div ng-hide="post.isImage">
-  <p><blockquote class="spotlightQuote">{{ post.body }}</blockquote></p>
+  <p><blockquote ng-style="spotlightImageHeight">{{ post.body }}</blockquote></p>
 </div>

@@ -1,13 +1,16 @@
 angular_capsule_app.controller("AnimatedSlideshowCtrl", ["$scope", "$timeout", "$interval", "$location", "RandomPhotoGenerator", "CapsuleData", "CapsuleModel", "PostModel", "VideoModel", function($scope, $timeout, $interval, $location, RandomPhotoGenerator, CapsuleData, CapsuleModel, PostModel, VideoModel) {
 	var changeTopBarDiv = function(endState) {
 		var el = angular.element("#topBarDiv");
+		var spacer = angular.element("#topBarSpacer");
 
 		switch(endState) {
 			case "make_invisible":
 				el.hide();
+				spacer.hide();
 				break;
 			case "make_visible":
 				el.show();
+				spacer.show();
 				break;
 		}
 	};

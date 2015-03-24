@@ -1,4 +1,4 @@
-<div style="height:750px;">
-  <img ng-show="post.isImage" ng-src="{{ post.large_image }}" style="width:auto;height:700px;" />
-  <h1 ng-hide="post.isImage" style="padding-top:200px;">{{ post.body }}</h1>
+<div ng-style="mainImageContainerHeight">
+  <img ng-show="post.isImage" ng-src="{{ post.large_image }}" ng-style="mainImageHeight" />
+  <h1 ng-hide="post.isImage" ng-style="mainBodyPaddingTop">{{ post.body }}</h1>
 </div>
