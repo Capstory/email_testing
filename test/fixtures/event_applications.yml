@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  student: false
+  university_year: MyString
+  years_coding: 1
+  language_preference: MyString
+  work_preference: MyString
+  github_account_name: MyString
+  email: MyString
+
+two:
+  name: MyString
+  student: false
+  university_year: MyString
+  years_coding: 1
+  language_preference: MyString
+  work_preference: MyString
+  github_account_name: MyString
+  email: MyString

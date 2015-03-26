@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+		<h4>Someone has submitted a question or comment from the contact form</h4>
+    <p>Name: <%= @event_application.name %></p>
+		<p>Email: <%= @event_application.email %></p>
+		<p>Student: <%= @event_application.student %></p>
+		<p>University Year: <%= @event_application.university_year %></p>
+		<p>Language Preference: <%= @event_application.language_preference %></p>
+		<p>Work Preference: <%= @event_application.work_preference %></p>
+		<p>Github Account Name: <%= @event_application.github_account_name %></p>
+		<pre>Message: <%= @event_application.message %></pre>
+  </body>
+</html>

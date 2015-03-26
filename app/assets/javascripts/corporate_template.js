@@ -60,9 +60,33 @@ $(function(){
 		resetCheckBoxes(["#bronze_package", "#silver_package", "#gold_package", "#custom_package"]);	
 	};
 
+	var resetEventApplicationForm = function() {
+		var elements = ["name", "email", "github_account_name", "language_preference", "university_year", "work_preference", "message"];
+		var i = 0;
+
+		for(i = 0; i < elements.length;i++) {
+			var el = "#event_application_" + elements[i];
+			$(el).val("");
+		}
+
+		return true;
+	};
+
 // 	$("#modalSubmitButton").on("click", function() {
 // 		$("#contactSubmitButton").click();
 // 	});
+
+	$("#new_event_application")
+		.on("ajax:success", function(e, data, status, xhr) {
+		
+			$("#contact_form_success").show();
+			$("#err-form").hide();
+			resetEventApplicationForm();
+		})
+		.on("ajax:error", function(e, data, status, xhr) {
+			$("#contact_form_success").hide();
+			$("#err-form").show();
+		})
 
 	$("#new_contact_form")
 		.on("ajax:success", function(e, data, status, xhr) {

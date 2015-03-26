@@ -11,7 +11,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141118224403) do
+ActiveRecord::Schema.define(:version => 20150326191344) do
+
   create_table "access_requests", :force => true do |t|
     t.string   "name"
     t.string   "email"
@@ -110,6 +111,19 @@ ActiveRecord::Schema.define(:version => 20141118224403) do
     t.boolean  "winner"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "event_applications", :force => true do |t|
+    t.string   "name"
+    t.boolean  "student",             :default => true
+    t.string   "university_year"
+    t.string   "language_preference"
+    t.string   "work_preference"
+    t.string   "github_account_name"
+    t.string   "email"
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.text     "message"
   end
 
   create_table "identities", :force => true do |t|

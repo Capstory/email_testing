@@ -1,0 +1,300 @@
+  <header id="header">   
+    <nav class="navbar" role="navigation">
+      <div class="navbar-inner">
+	      <div class="container">
+          <!-- logo-->                       
+					<a href="#" title="Home" class="logo"><%= image_tag "code_for_a_cause/code_for_a_cause_playfair_linear.png" %></a> 
+          <!-- Menu -->
+          <ul class="nav">
+            <li><a href="#home" title="Home">Home</a></li>
+						<li><a href="#what" title="What">What</a></li>
+						<li><a href="#who" title="Who">Who</a></li>
+						<li><a href="#where" title="Where">Where</a></li>
+						<li><a href="#when" title="When">When</a></li>
+						<li><a href="#apply" title="Apply">Apply</a></li>
+          </ul>
+          <select class="select-menu"></select> <!-- select menu for small screens -->  
+        </div>
+      </div>
+         
+	  </nav>    
+    <!-- Nav ends -->    
+		<div id="home"> 
+	      <!-- LayerSlider -->
+        	<div id="full-slider-wrapper">
+        		<div id="layerslider" style="width:1920px; height:1200px; max-width: 1920px;">
+              <!-- Slide 1 -->
+        			<div class="ls-slide" data-ls="slidedelay:8000;transition3d: 2,7,9;">
+								<%= image_tag "code_for_a_cause/two_men_back_wikimania.jpg", alt: "Slide background", class: "ls-bg" %>
+								<h1 class="ls-l hidden-xs" style="top:40%;left:50%;color:#fff;white-space: nowrap;" data-ls="durationin:2000;scalexin:1.5;scaleyin:1.5;">Build A Real-World Application <br> Alongside Industry Pros</h1>
+
+        				<p class="ls-l" style="top:60%;left:50%;" data-ls="durationin:2000;fadein:true;fadeout:true;scalexin:1.5;scaleyin:1.5;">
+        					<a class="down" href="#what"><i class="fa fa-angle-down"></i></a>
+        				</p>
+        				
+        			</div>
+        		</div>
+        	</div>
+          <!-- LayerSlider End -->    
+				</div>
+    
+
+  </header>
+  
+  <section id="what"> 
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+					<h2 class="section-title">What</h2> 
+        </div>
+      </div>
+      <div class="row spacer40"></div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+					<p class="lead"><b>Build something great with cool people for a good cause.</b></p>
+					<p class="lead">The goal: build a complete application with a small team in a single day.</p>
+					<p class="lead">Capstory's <b>Code for a Cause</b> gives students the opportunity to work hand-in-hand with experienced professionals from Columbus's startup community in support of Ohio State University's Pelotonia team. </p>
+					<p class="lead">Team Buckeye needs a tool with which they can intelligently and efficiently connect Pelotonia participants with Pelotonia-related practice events. The application will make it easier for people to particpate in Pelotonia, a cycling event that raises money for cancer research. Pelotonia is the largest cycling event in the United States.</p>
+
+        </div>
+      </div>
+      <div class="row spacer80"></div>
+			<div class="row" style="text-align:center;">
+				<div class="col-sm-12 col-md-6">
+					<%= link_to (image_tag "code_for_a_cause/team_buckeye_logo.gif", width: "80%"), "http://teambuckeye.osu.edu/" %>
+				</div>
+				<div class="col-sm-12 col-md-6">
+					<%= link_to (image_tag "code_for_a_cause/pelotonia_2015.png", width: "100%"), "http://pelotonia.org" %>
+				</div>
+			</div>
+
+    </div>  
+    <div class="spacer40"></div>
+  </section> 
+   <section id="who">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+					<h2 class="section-title">Who</h2>      
+        </div>
+      </div>
+      <div class="row spacer40"></div>
+      <div class="row">
+        <div class="col-md-6">
+					<h1 style="padding-top:60px">30 Open Spots</h1>
+        </div>
+        <div class="col-md-6">
+          <div class="spacer30"></div>
+          <h3 class="big">Build Your Resume</h3>
+					<p>Everyone who participates will work with a small team as part of the larger effort to build a complete, production-ready application. </p>
+					<p>Each of the participants will be listed as a contributor to the project and can put the project on their resume as part of their portfolio. In addition, certificates of participation will be available if requested.</p>
+        </div>
+      </div>      
+      <div class="row spacer40"></div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="spacer30"></div>
+          <h3 class="big">Find Job Opportunities</h3>
+					<p>All of the mentors will be working on the project alongside the student teams. This will give the students a phenomenal chance to see industry professionals in action and discover potential internship and employment opportunities.</p>
+					<p>Each of the mentors comes from a company that is actively searching for talented people. <b>Code for a Cause</b> is a unique opportunity to connect with innovative companies.</p>
+        </div>
+        <div class="col-md-6">
+          <h1 style="padding-top:60px">8 - 10 Mentors</h1>
+        </div>
+      </div>      
+			<div class="row spacer100"></div>
+    </div>     
+  </section>   
+
+    
+	<div id="parallax-three" class="parallax" style="background-image:url(<%= asset_path 'code_for_a_cause/opening_of_wikimania.jpg' %>);">
+			<div class="parallax-text-container-1">
+				<div class="parallax-text-item">
+					<div class="row spacer40"></div>  
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12 text-center">
+								<h2 class="section-title-white">"Amateurs sit and wait for inspiration, the rest of us just get up and go to work."</h2>
+							</div>
+						</div>
+						<div class="row spacer40"></div>
+						<div class="row">
+							<div class="col-md-12">
+								<p class="white text-center" style="font-size:20px;">Stephen King</p> 
+							</div>
+						</div>
+						<div class="row spacer40"></div>
+					</div> 
+				</div>
+    </div>        
+  </div>
+  
+   <section id="where">
+		<div class="row spacer40"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+					<h2 class="section-title">Where</h2> 
+        </div>
+      </div>
+      <div class="row spacer60"></div>
+      <div class="row">
+        <div class="col-md-6" style="text-align:center;">
+						<%= link_to (image_tag "https://maps.googleapis.com/maps/api/staticmap?center=1275+Kinnear+Road+Columbus+OH&zoom=14&size=600x400&markers=color:red%7C1275+Kinnear+Road+Columbus+OH"), "https://www.google.com/maps/place/1275+Kinnear+Rd,+The+Ohio+State+University,+Columbus,+OH+43212/@39.9973393,-83.0423711" %>
+                  
+        </div>
+        <div class="col-md-6">
+          <div class="spacer80"></div>
+					<h3 class="text-center">Rev1 Ventures / TechColumbus</h3>
+					<h4>1275 Kinnear Road</h4>
+					<h4>Columbus, OH 43212</h4>
+					<h3 class="text-center"><a href="https://www.rev1ventures.com/">Website</a></h3>
+        </div>
+      </div>
+      <div class="row spacer100"></div>      
+    </div>     
+  </section>   
+
+<section id="when"> 
+  
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2 class="section-title">When</h2> 
+        </div>
+      </div>
+      <div class="row spacer60"></div>
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <div class="spacer30"></div>
+          <h3 class="big">The Challenge: Everything in One Day</h3>
+					<p>The goal is to accomplish as much as possible within one day. With good management and organization, it is most certainly possible. In addition to being a great experience, <b>Code for a Cause</b> will also provide a real-world view into the tasks associated with managing a team of people and accomplishing something awesome in a short time span.</p>
+        </div>
+        <div class="col-sm-12 col-md-6">
+					<div class="row spacer60"></div>
+					<h1>12 April, 2015 </h1> 
+					<h2>8AM until Complete</h2>
+        </div>
+      </div>      
+      <div class="row spacer40"></div>
+      <div class="row spacer100"></div>
+    </div>
+   
+  <footer id="apply"> <!-- footer begings -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+					<h2 class="section-title">Apply to Participate</h2>
+					<div class="row spacer40"></div>
+					<h3 class="text-center">Why is it necessary to apply?</h3>
+					<p>This is the first time that we are running an event of this kind. Thus, we want to keep the group size small so as not to become too overwhelming of a crowd to manage.</p>
+					<div class="row spacer40"></div>
+					<h3 class="text-center">What skills are needed?</h3>
+					<p>In general, the event will be heavily oriented toward individuals with technical or design skills. However, if you are interested in being a product manager please apply. If you don't have design, UX, programming or management skills but are still interested in participating, tell us why you would like to be involved and what you feel you can bring to the team.</p>
+					<div class="row spacer40"></div>
+					<h3 class="text-center">Is it first come, first serve?</h3>
+					<p>No. Preference will be given to more senior students who are closer to graduating. If you are a freshman or sophomore and would still like to participate, please tell us why you should be a part of the team. A good collection of past work and clear passion and interest to learn will go a long way towards acceptance.</p>
+					<div class="row spacer40"></div>
+					<h3 class="text-center">Should I still apply?</h3>
+					<p>Absolutely!! This is only the beginning.</p>
+					<p>We are planning on hosting additional events in the Fall of 2015 and Spring 2016. In addition, we will have free training sessions prior to future events. If you apply now and are not accepted, you will be put on the waiting list and automatically entered to participate in the next event and benefit from exclusive training on the latest technologies.</p>
+        </div>
+      </div>
+      <div class="row spacer40"></div>    
+      <div class="row">
+				<%= form_for(@event_application, remote: true) do |f| %>
+          <div class="col-xs-12">
+            
+            <div class="row">            
+              <div class="form-group col-xs-6">
+								<%= f.label :name, "Full Name" %>
+								<%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+              </div>
+              <div class="form-group col-xs-6">
+                <%# <label for="email2">email</label> %>
+								<%= f.label :email %>
+								<%= f.text_field :email, class: "form-control", placeholder: "E-mail" %> 
+              </div>
+            </div>
+						<div class="row">
+							<div class="form-group col-xs-6">
+								<%= f.label :github_account_name, "Github User Name" %>
+								<%= f.text_field :github_account_name, class: "form-control", placeholder: "mygithub" %>
+							</div>
+							<div class="form-group col-xs-6">
+								<%= f.label :language_preference, "Programming Language Preference" %>
+								<%= f.text_field :language_preference, class: "form-control", placeholder: "Python, Lisp, C, Haskell" %>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-xs-6">
+								<%= f.label :university_year, "Year at University" %>
+								<%= f.select :university_year, options_for_select(["Freshman", "Sophomore", "Junior", "Senior", "5th Year", "Other", "Not Applicable"]), {}, class: "form-control" %>
+							</div>
+							<div class="form-group col-xs-6">
+								<%= f.label :work_preference, "What do you prefer working on?" %>
+								<%= f.select :work_preference, options_for_select(["Design/UX", "Front-End", "Back-End", "API", "Database", "DevOps/Deployment"]), {}, class: "form-control" %>
+							</div>
+						</div>
+            
+            <div class="row">            
+              <div class="form-group col-xs-12">
+                <%# <label for="message2">message</label> %>
+								<%= f.label :message, "Questions or Comments" %>
+								<%= f.text_area :message, class: "form-control", placeholder: "Message", rows: 8 %>
+
+              </div>
+            </div> 
+            <div class="row spacer30"></div>
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+                <p class="text-center">Please, fill out the form and press submit.</p>
+              </div>
+            </div>
+            <div class="row spacer10"></div>
+            <div class="row">            
+              <div class="col-xs-12 text-center">
+							<div class="alert alert-success" id="contact_form_success" style="display:none;">The e-mail was successfully sent. Thank you. We will reach back out to you as soon as we possibly can.</div>
+							<div class="error alert alert-danger" id="err-form">There is a problem with the contact form, please verify that all the fields are filled out correctly.</div>
+            <div class="error" id="err-timedout">The connection to the server timed out!</div>
+            <div class="error" id="err-state"></div>
+              
+                <%# <button type="submit" class="btn btn-default" id="send">Submit</button> %>
+								<%= f.submit "Submit", class: "btn btn-default" %>
+              </div>
+            </div>
+          </div>  
+					
+				<% end %>
+      </div>      
+    </div>
+    <div class="top">
+        <div class="top-line"></div>
+      <a class="back-to-top"><i class="fa fa-angle-up"></i></a>    
+    </div>      
+    <div class="container">    
+      <div class="row">
+        <div class="col-xs-12 col-sm-4 col-md-4">
+          <h4>ADDRESS</h4>
+          <p>1275 Kinnear Road, Columbus, OH 43212</p>
+          <%# <p>513-401-5572</p> %>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4">
+          <h4>CODE FOR A CAUSE</h4>
+          <%# <div class="footer-socials"> %>
+          <%#     <a href="http://twitter.com/capstory"><i class="fa fa-twitter"></i></a> %>
+          <%#     <a href="#"><i class="fa fa-google-plus"></i></a> %>
+          <%#     <a href="http://www.facebook.com/capstory"><i class="fa fa-facebook"></i></a> %>
+          <%#     <a href="http://www.pinterest.com/capstory"><i class="fa fa-pinterest"></i></a> %>
+          <%#   </div> %>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4">
+          <h4>SUPPORT</h4>
+          <p>If you have a question or comment, please contact us.</p>
+          <p><button type="button" class="btn btn-primary">Email: brad@capstory.me</button></p>
+					<%# <p><%= link_to "Login", login_path, class: "btn btn-primary" %1></p> %>
+        </div>        
+      </div>
+    </div>
+    <div class="spacer100"></div>
+  </footer> <!-- Footer ends -->

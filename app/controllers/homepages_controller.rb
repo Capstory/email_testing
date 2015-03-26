@@ -78,6 +78,11 @@ class HomepagesController < ApplicationController
   def buy
 		@access_request = AccessRequest.new
   end
+
+	def code_for_a_cause
+		@event_application = EventApplication.new
+		render "code_for_a_cause", layout: "ovni_layout"
+	end
   
   def in_production?
     Rails.env.production?

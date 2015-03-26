@@ -82,8 +82,19 @@ class VendorSubdomainConstraints
 	end
 end
 
+class CodeForACauseConstraints
+	def matches?(request)
+		if request.subdomain.present?
+			request.subdomain == "codeforacause"
+		else
+			return false
+		end
+	end
+end
+
 EmailTesting::Application.routes.draw do
 
+	match "" => "homepages#code_for_a_cause", constraints: CodeForACauseConstraints.new
   match "" => "vendor_pages#matt_ryan", constraints: MattRyanConstraints.new
 	# match "" => "vendor_pages#demo", constraints: DemoPageConstraints.new
 	# match "" => "vendor_pages#ohiounion", constraints: OhioUnionConstraints.new
@@ -239,6 +250,8 @@ EmailTesting::Application.routes.draw do
   match "engaged_contact_thank_you" => "engaged_contacts#thank_you"
   resources :engaged_contacts, only: ["new", "create"]
   
+	resources :event_applications, only: ["create"]
+
   match "download" => "download_managers#index"
   match "package_download" => "download_managers#activate_download"
   match "zip_download" => "download_managers#zip_download"
