@@ -281,8 +281,28 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 		return getNewPosts(dataSyncObject);
 	};
 
-	var injectNewPosts = function(posts, newPostsArray, injectIndex) {
-		var spliceArgs = [injectIndex, 0].concat(newPostsArray);
+	// var injectNewPosts = function(posts, newPostsArray, injectIndex) {
+	// 	var spliceArgs = [injectIndex, 0].concat(newPostsArray);
+	// 	Array.prototype.splice.apply(posts, spliceArgs);
+	// 	return posts;
+	// };
+	
+	var removePosts = function(posts, postsToRemoveArray) {
+		var i;
+
+		for(i = 0; i < postsToRemoveArray.length; i++) {
+			var index = findPostIndexById(posts, postsToRemoveArray[i].id);
+			// console.log("Removing post at: ", index, " Post: ", postsToRemoveArray[i]);
+			posts.splice(index, 1);
+		}
+
+		// return posts;
+	};
+
+	var injectPosts = function(posts, newData, injectIndex) {
+		removePosts(posts, newData.new_verified);	
+
+		var spliceArgs = [injectIndex, 0].concat(newData.new_posts, newData.new_verified);
 		Array.prototype.splice.apply(posts, spliceArgs);
 		return posts;
 	};
@@ -326,14 +346,15 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 		if ( angular.isDefined(options) ) {
 			var currentPostIndex = findPostIndexById(currentPosts, options.currentPostId);
 
-			posts = injectNewPosts(currentPosts, newData.new_posts, currentPostIndex);
+			// posts = injectNewPosts(currentPosts, newData.new_posts, currentPostIndex);
+			posts = injectPosts(currentPosts, newData, currentPostIndex);
 		} else {
 			posts = updatePosts(currentPosts, newData.new_posts);
+			posts = applyUpdates(posts, newData.new_verified, "verified");
 		}
 
-		posts = applyUpdates(posts, newData.new_deletions, "deletion");
 		posts = applyUpdates(posts, newData.new_undeleted, "undeletion");
-		posts = applyUpdates(posts, newData.new_verified, "verified");
+		posts = applyUpdates(posts, newData.new_deletions, "deletion");
 
 		setRootPostsData(posts);		
 

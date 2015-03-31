@@ -159,6 +159,10 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 					$scope.newPosts.push(post);
 				});
 
+				angular.forEach(data.new_verified, function(post) {
+					$scope.newPosts.push(post);
+				});
+
 				$scope.filmStrip = buildFilmStrip($scope.posts, $scope.post, $scope.videos, 5, []);
 				
 				// PostModel.updatePostData($scope.posts, data);
