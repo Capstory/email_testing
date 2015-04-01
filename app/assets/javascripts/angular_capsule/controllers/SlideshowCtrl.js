@@ -60,6 +60,7 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 	var rotateImages = function(posts, post, videos, filmStrip) {
 		$scope.post = filmStrip.shift();
 		$scope.post.large_image = PostModel.buildImageUrl($scope.post, "lightbox_width");
+		$scope.post.truncated_body = $scope.post.body ? S($scope.post.body).truncate(40).toString() : $scope.post.body;
 		$scope.filmStrip = buildFilmStrip(posts, $scope.post, videos, 5, []);
 		// $scope.smallFilmStrip = buildFilmStrip(posts, $scope.post, videos, 4, []);
 
@@ -87,6 +88,7 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 
 		var nextPost = getNextPost(posts, currentPost.id, videos);
 		nextPost.thumb = PostModel.buildImageUrl(nextPost, "thumb");
+		nextPost.truncated_body = nextPost.body ? S(nextPost.body).truncate(40).toString() : nextPost.body;
 		acc.push(nextPost);
 
 		if (acc.length == n) {

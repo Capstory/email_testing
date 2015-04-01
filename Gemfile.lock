@@ -204,6 +204,8 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.9)
+    stringjs-rails (3.0.0)
+      railties (> 3.1)
     thin (1.6.2)
       daemons (>= 1.0.9)
       eventmachine (>= 1.0.0)
@@ -255,6 +257,7 @@ DEPENDENCIES
   rubyzip
   sass-rails (~> 3.2.3)
   sqlite3
+  stringjs-rails
   stripe!
   thin
   uglifier (>= 1.0.3)

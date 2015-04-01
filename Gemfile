@@ -32,6 +32,7 @@ group :assets do
   gem 'jquery-ui-rails'
   gem 'angularjs-rails'
   
+	gem 'stringjs-rails'
 end
 
 gem 'will_paginate', '~> 3.0'
