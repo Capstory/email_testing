@@ -16,7 +16,7 @@ task :export_model => [:environment] do |t, args|
 					acc << element[attribute]
 				end
 
-				csv_array << acc
+				csv << acc
 		end
 	end
 	
