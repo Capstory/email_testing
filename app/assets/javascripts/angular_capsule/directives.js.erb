@@ -163,3 +163,13 @@ angular_capsule_app.directive("currentPostDirective", [function() {
 		}
 	};
 }]);
+
+angular_capsule_app.directive("blankStateDirective", [function() {
+	return {
+		restrict: "A",
+		templateUrl: "<%= asset_path 'angular_capsule/blank_state_directive.html' %>",
+		scope: {
+			capsuleAddress: "=capsuleEmailAddress"
+		}
+	};
+}]);

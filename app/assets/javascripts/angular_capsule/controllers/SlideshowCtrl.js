@@ -108,14 +108,20 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 		$scope.capsule = CapsuleModel.setAndGetCapsuleData(CapsuleData.getCapsuleData());
 		$scope.posts = PostModel.setAndGetPostsData(CapsuleData.getPosts());
 		$scope.videos = VideoModel.setAndGetVideoData(CapsuleData.getVideos());
-		$scope.post = PostModel.getCurrentPost($scope.posts, $scope.posts[0].id);
-		$scope.post.thumb = PostModel.buildImageUrl($scope.post, "thumb");
-		$scope.post.large_image = PostModel.buildImageUrl($scope.post, "lightbox_width");
 
-		$scope.filmStrip = buildFilmStrip($scope.posts, $scope.post, $scope.videos, 5, []);
-		// $scope.smallFilmStrip = buildFilmStrip($scope.posts, $scope.post, $scope.videos, 4, []);
+		if ($scope.posts.length > 0) {
+			$scope.postsExist = true;
+			$scope.post = PostModel.getCurrentPost($scope.posts, $scope.posts[0].id);
+			$scope.post.thumb = PostModel.buildImageUrl($scope.post, "thumb");
+			$scope.post.large_image = PostModel.buildImageUrl($scope.post, "lightbox_width");
 
-		setImageRotation($scope.timeInterval);
+			$scope.filmStrip = buildFilmStrip($scope.posts, $scope.post, $scope.videos, 5, []);
+			// $scope.smallFilmStrip = buildFilmStrip($scope.posts, $scope.post, $scope.videos, 4, []);
+
+			setImageRotation($scope.timeInterval);
+		} else {
+			$scope.postsExist = false;
+		}
 
 		// $scope.newPhotos = false;
 		$scope.newPosts = [];
@@ -140,6 +146,18 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 		return createNewPostObject(n, objectId + 1, acc);
 	};
 
+	var isPollDataEmpty = function(pollData, attrs) {
+		if ( attrs.length == 0 ) { return true; }
+
+		var attr = attrs.pop();
+
+		if ( pollData[attr].length > 0 ) {
+			return false;
+		}
+
+		return isPollDataEmpty(pollData, attrs);
+	};
+
 	var poller;
 	var startPoller = function() {
 		if ( angular.isDefined(poller) ) { return; }
@@ -155,18 +173,32 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 				// 	});
 				// }
 
-				PostModel.updatePostData($scope.posts, data, { genre: "inject", currentPostId: $scope.post.id });
+				if ( !isPollDataEmpty(data, ["new_posts", "new_deletions", "new_undeleted", "new_verified"]) ) {
+					if ( $scope.postsExist ) {
+						PostModel.updatePostData($scope.posts, data, { genre: "inject", currentPostId: $scope.post.id });
 
-				angular.forEach(data.new_posts, function(post) {
-					$scope.newPosts.push(post);
-				});
+						$scope.filmStrip = buildFilmStrip($scope.posts, $scope.post, $scope.videos, 5, []);
+					} else {
+						PostModel.updatePostData($scope.posts, data, {genre: "inject", currentPostId: 0});
+						$scope.post = PostModel.getCurrentPost($scope.posts, $scope.posts[0].id);
+						$scope.post.thumb = PostModel.buildImageUrl($scope.post, "thumb");
+						$scope.post.large_image = PostModel.buildImageUrl($scope.post, "lightbox_width");
+						$scope.filmStrip = buildFilmStrip($scope.posts, $scope.posts[0], $scope.videos, 5, []);
+						setImageRotation($scope.timeInterval);
 
-				angular.forEach(data.new_verified, function(post) {
-					$scope.newPosts.push(post);
-				});
+						$scope.postsExist = true;
+					}
 
-				$scope.filmStrip = buildFilmStrip($scope.posts, $scope.post, $scope.videos, 5, []);
-				
+					angular.forEach(data.new_posts, function(post) {
+						$scope.newPosts.push(post);
+					});
+
+					angular.forEach(data.new_verified, function(post) {
+						$scope.newPosts.push(post);
+					});
+
+				}
+			
 				// PostModel.updatePostData($scope.posts, data);
 
 				// PostModel.filterNewPosts($scope.posts, $scope.newPosts, data);

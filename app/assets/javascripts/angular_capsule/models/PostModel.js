@@ -344,7 +344,11 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 		var posts;
 
 		if ( angular.isDefined(options) ) {
-			var currentPostIndex = findPostIndexById(currentPosts, options.currentPostId);
+			if ( options.currentPostId == 0 ) {
+				var currentPostIndex = 0;	
+			} else {
+				var currentPostIndex = findPostIndexById(currentPosts, options.currentPostId);
+			}
 
 			// posts = injectNewPosts(currentPosts, newData.new_posts, currentPostIndex);
 			posts = injectPosts(currentPosts, newData, currentPostIndex);
