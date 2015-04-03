@@ -4,6 +4,18 @@
  *= require_tree ./angular_capsule
  *= require_self
  */
+.emailAddress {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -mox-border-radius: 5px;
+}
+
+.uploadImage {
+  width: 40%;
+  height: auto;
+}
 
 .capsule_link {
   text-align: center;
