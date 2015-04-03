@@ -22,7 +22,7 @@ task :export_model => [:environment] do |t, args|
 	temp_file.write(csv_array.to_csv)
 	temp_file.close
 	
-	EmailExporterMailer.send_export(temp_file.path, ENV["email_address"])
+	EmailExporterMailer.send_export(temp_file.path, ENV["email_address"]).deliver
 
 	temp_file.unlink
 end
