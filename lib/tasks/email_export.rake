@@ -7,19 +7,20 @@ task :export_model => [:environment] do |t, args|
 
 	instances = model.all
 	temp_file = Tempfile.new("export_file.csv")
-	csv_array = []
 
-	instances.each do |element|
-			acc = []
+	csv_array = CSV.generate do |csv|
+		instances.each do |element|
+				acc = []
 
-			model_attributes.each do |attribute|
-				acc << element[attribute]
-			end
+				model_attributes.each do |attribute|
+					acc << element[attribute]
+				end
 
-			csv_array << acc
+				csv_array << acc
+		end
 	end
 	
-	temp_file.write(csv_array.to_csv)
+	temp_file.write(csv_array)
 	temp_file.close
 	
 	EmailExporterMailer.send_export(temp_file.path, ENV["email_address"]).deliver
