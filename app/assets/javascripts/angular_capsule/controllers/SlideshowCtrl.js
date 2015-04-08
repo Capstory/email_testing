@@ -84,6 +84,23 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 		$timeout.cancel(imageRotator);
 	};
 
+	var deduplicateFilmStrip = function(filmStrip) {
+		var result = [];
+		var ids = [];
+		var i;
+
+		for (i = 0; i < filmStrip.length; i++) {
+			var index = ids.indexOf(filmStrip[i].id);
+
+			if ( index == -1 ) {
+				result.push(filmStrip[i]);
+				ids.push(filmStrip[i].id);
+			}
+		} 
+		// return jQuery.unique(filmStrip);	
+		return result;
+	};
+
 	var buildFilmStrip = function(posts, currentPost, videos, n, acc) {
 
 		var nextPost = getNextPost(posts, currentPost.id, videos);
@@ -92,7 +109,8 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 		acc.push(nextPost);
 
 		if (acc.length == n) {
-			return acc;
+			// return acc;
+			return deduplicateFilmStrip(acc);
 		}
 		return buildFilmStrip(posts, nextPost, videos, n, acc);
 	};
