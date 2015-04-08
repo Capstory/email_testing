@@ -1,6 +1,11 @@
 <script>
 	<%= render "angular_show.js.erb" %>
 </script>
+
+<% content_for(:title) do %>
+	Capstory || <%= @capsule.name ? @capsule.name : "Collect Every Moment" %>
+<% end %>
+
 <% content_for(:logo) do %>
 	<% if @capsule.has_logo? %>
 		<%= link_to image_tag(logo_url(@capsule), width: logo_width(@capsule), height: logo_height(@capsule), style: "padding-top:#{logo_padding_top(@capsule)};padding-left:#{logo_padding_left(@capsule)}"), self.send(resolve_logo_route), style: "padding-right:10px;" %>
