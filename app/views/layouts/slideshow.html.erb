@@ -31,9 +31,10 @@
 		   	<%= yield %>
 				
 				<div class="row">
-					<div class="small-6 small-centered columns">
+					<div class="small-8 small-centered columns" style="text-align:center;">
 						<div class="slideshow_empty"></div>
-						<div id="slideshow_buttons">
+						<h3 class="subheader">Send Photos to: <%= link_to @capsule.email, "mailto:#{@capsule.email}" %></h3>
+						<div id="slideshow_buttons" style="padding-top:30px">
 							<div class="row">
 								<div class="small-6 columns">	
 									<%= link_to "Back to Capsule", @capsule, class: 'button expand' %>
@@ -43,7 +44,6 @@
 								</div>
 							</div>
 						</div>
-						<h3 class="subheader">Send Photos to: <%= link_to @capsule.email, "mailto:#{@capsule.email}" %></h3>
 						<div class="slideshow_empty"></div>
 					</div>
 				</div>
