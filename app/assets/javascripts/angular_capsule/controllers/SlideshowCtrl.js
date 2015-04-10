@@ -15,26 +15,6 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 		}
 	};
 
-	// var computeNewPostTopPosition = function(element, offset) {
-	// 	var elementHeight = element[0].clientHeight;
-	// 	if (elementHeight > offset) {
-	// 		elementHeight -= offset;
-	// 	}
-
-	// 	return "-" + elementHeight.toString() + "px";
-	// };
-
-	// var setNewPostPosition = function() {
-	// 	var element = angular.element("#currentNewPostDiv");
-
-	// 	return {
-	// 		position: "relative",
-	// 		left: "0px",
-	// 		"z-index": 1000,
-	// 		top: computeNewPostTopPosition(element, 100)
-	// 	};	
-	// };
-
 	var getNextPost = function(posts, currentId, videos) {
 		var nextId = PostModel.findNextPostId(posts, currentId);
 		var nextPost = PostModel.getCurrentPost(posts, nextId);
@@ -101,6 +81,37 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 		return result;
 	};
 
+	// var tagDuplicates = function(filmStrip, acc, ids) {
+	// 	console.log("Film strip: ", filmStrip);
+	// 	console.log("Film Strip length: ", filmStrip.length);
+	// 	if ( filmStrip.length == 0 ) { return acc; }
+
+	// 	var current = filmStrip.shift();
+	// 	if ( ids.indexOf(current.id) == -1 ) {
+	// 		ids.push(current.id);
+	// 		current.duplicate = false;
+	// 	} else {
+	// 		current.duplicate = true;
+	// 	}
+	// 	return tagDuplicates(filmStrip, acc.push(current), ids);
+	// };
+	
+	var tagDuplicates = function(filmStrip) {
+		var ids = [];
+		var i;
+
+		for (i = 0; i < filmStrip.length; i++) {
+			if ( ids.indexOf(filmStrip[i].id) == -1 ) {
+				ids.push(filmStrip[i].id);
+				filmStrip[i].duplicate = false;
+			} else {
+				filmStrip[i].duplicate = true;
+			}
+		}
+
+		return filmStrip;
+	};
+
 	var buildFilmStrip = function(posts, currentPost, videos, n, acc) {
 
 		var nextPost = getNextPost(posts, currentPost.id, videos);
@@ -110,13 +121,14 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 
 		if (acc.length == n) {
 			// return acc;
-			return deduplicateFilmStrip(acc);
+			// return deduplicateFilmStrip(acc);
+			return tagDuplicates(acc, [], []);
 		}
 		return buildFilmStrip(posts, nextPost, videos, n, acc);
 	};
 
 	$scope.timeInterval = 5000;
-	// $scope.newPhotos = false;
+	$scope.newPhotos = false;
 	// $scope.currentNewPostPosition = setNewPostPosition();
 
 
@@ -141,7 +153,7 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 			$scope.postsExist = false;
 		}
 
-		// $scope.newPhotos = false;
+		$scope.newPhotos = false;
 		$scope.newPosts = [];
 	};
 
@@ -181,19 +193,19 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 		if ( angular.isDefined(poller) ) { return; }
 
 		poller = $interval(function() {
-			PostModel.getNewPosts($scope.capsule.id, $scope.posts).then(function(data) {
+			PostModel.getNewPosts($scope.capsule.id, $scope.posts, $scope.post.id).then(function(data) {
 
-				// if ($scope.newPhotos) {
-				// 	var maxId = Math.max.apply(null, PostModel.getPostIds($scope.posts));
-				// 	var objects = createNewPostObject(1, maxId, []);
-				// 	angular.forEach(objects, function(object) {
-				// 		data.new_posts.push(object);
-				// 	});
-				// }
+				if ($scope.newPhotos) {
+					var maxId = Math.max.apply(null, PostModel.getPostIds($scope.posts));
+					var objects = createNewPostObject(3, maxId, []);
+					angular.forEach(objects, function(object) {
+						data.new_posts.push(object);
+					});
+				}
 
 				if ( !isPollDataEmpty(data, ["new_posts", "new_deletions", "new_undeleted", "new_verified"]) ) {
 					if ( $scope.postsExist ) {
-						PostModel.updatePostData($scope.posts, data, { genre: "inject", currentPostId: $scope.post.id });
+						PostModel.updatePostData($scope.posts, data, { genre: "inject", currentPostId: data.currentPostId });
 
 						$scope.filmStrip = buildFilmStrip($scope.posts, $scope.post, $scope.videos, 5, []);
 					} else {
@@ -242,9 +254,9 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 
 	// $scope.currentNewPostVisible = false;
 
-	// $scope.toggleNewPhotos = function() {
-	// 	$scope.newPhotos = !$scope.newPhotos;
-	// };
+	$scope.toggleNewPhotos = function() {
+		$scope.newPhotos = !$scope.newPhotos;
+	};
 
 	// var showCurrentNewPost = function() {
 	// 	$scope.currentNewPost = $scope.newPosts.shift();
