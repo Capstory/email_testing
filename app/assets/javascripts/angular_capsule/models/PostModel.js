@@ -58,6 +58,7 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 			url: request_url
 		})
 		.success(function(data, status, headers) {
+			data.currentPostId = dataSyncObject.currentPostId;
 			deferred.resolve(data);
 		})
 		.error(function(data, status, headers) {
@@ -155,12 +156,13 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 		return postIds;
 	}
 
-	var genDataSyncObject = function(capsuleId, posts) {
+	var genDataSyncObject = function(capsuleId, posts, currentPostId) {
 		var object = {
 			capsuleId: capsuleId,
 			postIds: getPostIds(posts),
 			postsTaggedForDeletion: getTaggedForDeletionPosts(posts),
-			postsUnverified: getUnverifiedPosts(posts)
+			postsUnverified: getUnverifiedPosts(posts),
+			currentPostId: currentPostId
 		};
 
 		return object;
@@ -275,8 +277,8 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 		return video_url;
 	};
 
-	this.getNewPosts = function(capsuleId, posts) {
-		var dataSyncObject = genDataSyncObject(capsuleId, posts);
+	this.getNewPosts = function(capsuleId, posts, currentPostId) {
+		var dataSyncObject = genDataSyncObject(capsuleId, posts, currentPostId);
 
 		return getNewPosts(dataSyncObject);
 	};
@@ -299,12 +301,30 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 		// return posts;
 	};
 
-	var injectPosts = function(posts, newData, injectIndex) {
-		removePosts(posts, newData.new_verified);	
+	var injectPost = function(posts, postToInject, injectIndex) {
+		Array.prototype.splice.apply(posts, [injectIndex, 0, postToInject]);
+	};
 
-		var spliceArgs = [injectIndex, 0].concat(newData.new_posts, newData.new_verified);
-		Array.prototype.splice.apply(posts, spliceArgs);
-		return posts;
+	var injectPosts = function(posts, postsToInject, injectIndex) {
+		if ( postsToInject.length == 0 ) { return posts; }
+
+		injectPost(posts, postsToInject.pop(), injectIndex);
+
+		return injectPosts(posts, postsToInject, injectIndex);
+	};
+
+	// var injectPosts = function(posts, newData, injectIndex) {
+	// 	removePosts(posts, newData.new_verified);	
+
+	// 	var spliceArgs = [injectIndex, 0].concat(newData.new_posts, newData.new_verified);
+	// 	Array.prototype.splice.apply(posts, spliceArgs);
+	// 	return posts;
+	// };
+	
+	var injectChanges = function(posts, newData, injectIndex) {
+		removePosts(posts, newData.new_verified);
+
+		return injectPosts(posts, newData.new_posts.concat(newData.new_verified), injectIndex);
 	};
 
 	var updatePosts = function(currentPosts, newPosts) {
@@ -351,7 +371,7 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 			}
 
 			// posts = injectNewPosts(currentPosts, newData.new_posts, currentPostIndex);
-			posts = injectPosts(currentPosts, newData, currentPostIndex);
+			posts = injectChanges(currentPosts, newData, currentPostIndex);
 		} else {
 			posts = updatePosts(currentPosts, newData.new_posts);
 			posts = applyUpdates(posts, newData.new_verified, "verified");
