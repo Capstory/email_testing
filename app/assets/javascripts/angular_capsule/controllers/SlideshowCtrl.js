@@ -39,7 +39,8 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 
 	var rotateImages = function(posts, post, videos, filmStrip) {
 		$scope.post = filmStrip.shift();
-		$scope.post.large_image = PostModel.buildImageUrl($scope.post, "lightbox_width");
+		// $scope.post.large_image = PostModel.buildImageUrl($scope.post, "lightbox_width");
+		$scope.post.large_image = PostModel.buildSecureImageUrl($scope.post, "lightbox_width");
 		$scope.post.truncated_body = $scope.post.body ? S($scope.post.body).truncate(40).toString() : $scope.post.body;
 		$scope.filmStrip = buildFilmStrip(posts, $scope.post, videos, 5, []);
 		// $scope.smallFilmStrip = buildFilmStrip(posts, $scope.post, videos, 4, []);
@@ -115,7 +116,7 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 	var buildFilmStrip = function(posts, currentPost, videos, n, acc) {
 
 		var nextPost = getNextPost(posts, currentPost.id, videos);
-		nextPost.thumb = PostModel.buildImageUrl(nextPost, "thumb");
+		nextPost.thumb = PostModel.buildSecureImageUrl(nextPost, "thumb");
 		nextPost.truncated_body = nextPost.body ? S(nextPost.body).truncate(40).toString() : nextPost.body;
 		acc.push(nextPost);
 
@@ -144,8 +145,8 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 
 			$scope.postsExist = true;
 			$scope.post = PostModel.getCurrentPost($scope.posts, visiblePostIds[visiblePostIds.length - 1]);
-			$scope.post.thumb = PostModel.buildImageUrl($scope.post, "thumb");
-			$scope.post.large_image = PostModel.buildImageUrl($scope.post, "lightbox_width");
+			$scope.post.thumb = PostModel.buildSecureImageUrl($scope.post, "thumb");
+			$scope.post.large_image = PostModel.buildSecureImageUrl($scope.post, "lightbox_width");
 
 			$scope.filmStrip = buildFilmStrip($scope.posts, $scope.post, $scope.videos, 5, []);
 			// $scope.smallFilmStrip = buildFilmStrip($scope.posts, $scope.post, $scope.videos, 4, []);
@@ -213,8 +214,8 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 					} else {
 						PostModel.updatePostData($scope.posts, data, {genre: "inject", currentPostId: 0});
 						$scope.post = PostModel.getCurrentPost($scope.posts, $scope.posts[0].id);
-						$scope.post.thumb = PostModel.buildImageUrl($scope.post, "thumb");
-						$scope.post.large_image = PostModel.buildImageUrl($scope.post, "lightbox_width");
+						$scope.post.thumb = PostModel.buildSecureImageUrl($scope.post, "thumb");
+						$scope.post.large_image = PostModel.buildSecureImageUrl($scope.post, "lightbox_width");
 						$scope.filmStrip = buildFilmStrip($scope.posts, $scope.posts[0], $scope.videos, 5, []);
 						setImageRotation($scope.timeInterval);
 

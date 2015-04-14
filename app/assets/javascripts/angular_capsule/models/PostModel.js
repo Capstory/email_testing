@@ -432,4 +432,10 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 	this.buildImageUrl = function(post, genre) {
 		return buildImageUrl(post, genre);
 	};
+
+	this.buildSecureImageUrl = function(post, genre) {
+		var imageUrl = buildImageUrl(post, genre);
+
+		return imageUrl.replace("http", "https");
+	};
 }]);

@@ -26,7 +26,7 @@ angular_capsule_app.controller("CapsuleCtlr", ["$document", "$window", "$scope",
 	var buildCapsuleImages = function(posts) {
 		angular.forEach(posts, function(post) {
 			post.image = PostModel.cleanMissingImageUrl(post.image);
-			post.capsule_image = PostModel.buildImageUrl(post, "capsule_width");
+			post.capsule_image = PostModel.buildSecureImageUrl(post, "capsule_width");
 			post.isImage = PostModel.checkPostIsImage(post);
 			if ( !angular.isDefined(post.visible) ) {
 				post.visible = true;
