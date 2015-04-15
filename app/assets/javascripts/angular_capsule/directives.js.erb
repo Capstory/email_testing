@@ -68,12 +68,13 @@ angular_capsule_app.directive("mainElementDirective", [function() {
 							el.animate({
 								opacity: 0.0
 							}, {
+								queue: false,
 								duration: 500,
-							done: function() {
-								el.animate({
-									opacity: 1.0
-								}, 500);
-							}
+								done: function() {
+									el.animate({
+										opacity: 1.0
+									}, 500);
+								}
 							});
 						});
 
@@ -145,6 +146,7 @@ angular_capsule_app.directive("currentPostDirective", [function() {
 				el.animate({
 					opacity: 0.0
 				}, {
+					queue: false,
 					duration: 500,
 					done: function() {
 						el.css("opacity", 1.0);
