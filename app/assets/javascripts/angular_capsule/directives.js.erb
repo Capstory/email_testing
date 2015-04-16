@@ -69,12 +69,7 @@ angular_capsule_app.directive("mainElementDirective", [function() {
 								opacity: 0.0
 							}, {
 								queue: false,
-								duration: 500,
-								done: function() {
-									el.animate({
-										opacity: 1.0
-									}, 500);
-								}
+								duration: 500
 							});
 						});
 
@@ -86,7 +81,20 @@ angular_capsule_app.directive("mainElementDirective", [function() {
 						scope.mainImageContainerHeight = angular.extend({"margin-top":35}, setImageContainerHeight(0.8));
 						scope.mainImageHeight = setImageContainerHeight(0.72);
 						scope.mainBodyPaddingTop = {"padding-top": 200};
-					}
+
+						scope.$watch("post", function(newVal, oldVal) {
+							if ( newVal !== oldVal ) {
+								el.animate({
+									opacity: 1.0
+								}, {
+									queue: false,
+									duration: 1000
+								});
+							}
+						});					
+		},
+		controller: function($scope) {
+		}
 	};
 }]);
 

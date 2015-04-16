@@ -47,23 +47,46 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 
 	};
 
-	var imageRotator = undefined;
+	var universalTimer = undefined;
+	var universalStartTime = window.performance.now();
 
-	var setImageRotation = function(timeInterval) {
-		imageRotator = $timeout(function() {
-			rotateImages($scope.posts, $scope.post, $scope.videos, $scope.filmStrip);
-
-			$timeout(function() {
-				$scope.$broadcast("refreshPosts");
-			}, $scope.timeInterval - 500);
-
-			setImageRotation($scope.timeInterval);
+	var setUniversalTimer = function(timeInterval) {
+		universalTimer = $timeout(function() {
+			// console.log((window.performance.now() - universalStartTime), "ms elapsed");
+			$scope.$broadcast("rotatePosts");
+			setUniversalTimer($scope.timeInterval);
 		}, timeInterval);
 	};
 
-	var stopImageRotation = function() {
-		$timeout.cancel(imageRotator);
+	var stopUniversalTimer = function() {
+		$timeout.cancel(universalTimer);
 	};
+
+	// var imageRotator = undefined;
+
+	// var setImageRotation = function(timeInterval) {
+	// 	imageRotator = $timeout(function() {
+	// 		rotateImages($scope.posts, $scope.post, $scope.videos, $scope.filmStrip);
+
+	// 		$timeout(function() {
+	// 			$scope.$broadcast("refreshPosts");
+	// 		}, $scope.timeInterval - 500);
+
+	// 		setImageRotation($scope.timeInterval);
+	// 	}, timeInterval);
+	// };
+
+	// var stopImageRotation = function() {
+	// 	$timeout.cancel(imageRotator);
+	// };
+	
+	$scope.$on("rotatePosts", function() {
+		rotateImages($scope.posts, $scope.post, $scope.videos, $scope.filmStrip);
+
+		$timeout(function() {
+			$scope.$broadcast("refreshPosts");
+		}, $scope.timeInterval - 500);
+	});
 
 	var deduplicateFilmStrip = function(filmStrip) {
 		var result = [];
@@ -151,7 +174,8 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 			$scope.filmStrip = buildFilmStrip($scope.posts, $scope.post, $scope.videos, 5, []);
 			// $scope.smallFilmStrip = buildFilmStrip($scope.posts, $scope.post, $scope.videos, 4, []);
 
-			setImageRotation($scope.timeInterval);
+			// setImageRotation($scope.timeInterval);
+			setUniversalTimer($scope.timeInterval);
 		} else {
 			$scope.postsExist = false;
 		}
@@ -252,7 +276,8 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 	$scope.$on("$destroy", function() {
 		changeTopBarDiv("make_visible");
 		stopPoller();
-		stopImageRotation();
+		// stopImageRotation();
+		stopUniversalTimer();
 	});
 
 	// $scope.currentNewPostVisible = false;
