@@ -105,36 +105,39 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 		return result;
 	};
 
-	// var tagDuplicates = function(filmStrip, acc, ids) {
-	// 	console.log("Film strip: ", filmStrip);
-	// 	console.log("Film Strip length: ", filmStrip.length);
-	// 	if ( filmStrip.length == 0 ) { return acc; }
+	var tagDuplicates = function(filmStrip, acc, ids) {
+		// console.log("Film strip: ", filmStrip);
+		// console.log("Film Strip length: ", filmStrip.length);
+		if ( filmStrip.length == 0 ) { return acc; }
 
-	// 	var current = filmStrip.shift();
-	// 	if ( ids.indexOf(current.id) == -1 ) {
-	// 		ids.push(current.id);
-	// 		current.duplicate = false;
-	// 	} else {
-	// 		current.duplicate = true;
-	// 	}
-	// 	return tagDuplicates(filmStrip, acc.push(current), ids);
-	// };
-	
-	var tagDuplicates = function(filmStrip) {
-		var ids = [];
-		var i;
-
-		for (i = 0; i < filmStrip.length; i++) {
-			if ( ids.indexOf(filmStrip[i].id) == -1 ) {
-				ids.push(filmStrip[i].id);
-				filmStrip[i].duplicate = false;
-			} else {
-				filmStrip[i].duplicate = true;
-			}
+		var current = filmStrip.shift();
+		if ( ids.indexOf(current.id) == -1 ) {
+			ids.push(current.id);
+			current.duplicate = false;
+		} else {
+			current.duplicate = true;
 		}
 
-		return filmStrip;
+		acc.push(current);
+
+		return tagDuplicates(filmStrip, acc, ids);
 	};
+	
+	// var tagDuplicates = function(filmStrip) {
+	// 	var ids = [];
+	// 	var i;
+
+	// 	for (i = 0; i < filmStrip.length; i++) {
+	// 		if ( ids.indexOf(filmStrip[i].id) == -1 ) {
+	// 			ids.push(filmStrip[i].id);
+	// 			filmStrip[i].duplicate = false;
+	// 		} else {
+	// 			filmStrip[i].duplicate = true;
+	// 		}
+	// 	}
+
+	// 	return filmStrip;
+	// };
 
 	var buildFilmStrip = function(posts, currentPost, videos, n, acc) {
 
@@ -151,7 +154,7 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 		return buildFilmStrip(posts, nextPost, videos, n, acc);
 	};
 
-	$scope.timeInterval = 5000;
+	$scope.timeInterval = 7000;
 	$scope.newPhotos = false;
 	// $scope.currentNewPostPosition = setNewPostPosition();
 
