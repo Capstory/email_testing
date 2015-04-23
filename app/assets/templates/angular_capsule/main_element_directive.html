@@ -1,4 +1,4 @@
 <div ng-style="mainImageContainerHeight">
-  <img ng-show="post.isImage" ng-src="{{ post.large_image }}" ng-style="mainImageHeight" />
+  <img ng-show="post.isImage" ng-src="{{ post.large_image }}" ng-style="mainImageHeight" on-image-load />
   <h1 ng-hide="post.isImage" ng-style="mainBodyPaddingTop">{{ post.body }}</h1>
 </div>

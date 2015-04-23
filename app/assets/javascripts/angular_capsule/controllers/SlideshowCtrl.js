@@ -54,7 +54,7 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 		universalTimer = $timeout(function() {
 			// console.log((window.performance.now() - universalStartTime), "ms elapsed");
 			$scope.$broadcast("rotatePosts");
-			setUniversalTimer($scope.timeInterval);
+			// setUniversalTimer($scope.timeInterval);
 		}, timeInterval);
 	};
 
@@ -82,6 +82,12 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 	
 	$scope.$on("rotatePosts", function() {
 		rotateImages($scope.posts, $scope.post, $scope.videos, $scope.filmStrip);
+	});
+
+	$scope.$on("mainElementLoaded", function() {
+		console.log("Controller received event: mainElementLoaded");
+		stopUniversalTimer();
+		setUniversalTimer($scope.timeInterval);
 
 		$timeout(function() {
 			$scope.$broadcast("refreshPosts");

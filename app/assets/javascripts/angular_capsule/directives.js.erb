@@ -61,10 +61,23 @@ angular_capsule_app.directive("mainElementDirective", [function() {
 		restrict: "A",
 		templateUrl: "<%= asset_path 'angular_capsule/main_element_directive.html' %>",
 		scope: {
-			post: "="
+			post: "=",
+			mainElementLoading: "="
 		},
 		link: function(scope, el, attrs) {
+						var timer = undefined;
+						
+						var timeStamp = function() {
+							return window.performance.now();
+						};
+
+						var getTimerDiff = function(start, end) {
+							return end - start;
+						};
+
 						scope.$on("refreshPosts", function() {
+							timer = timeStamp();
+
 							el.animate({
 								opacity: 0.0
 							}, {
@@ -82,18 +95,50 @@ angular_capsule_app.directive("mainElementDirective", [function() {
 						scope.mainImageHeight = setImageContainerHeight(0.72);
 						scope.mainBodyPaddingTop = {"padding-top": 200};
 
-						scope.$watch("post", function(newVal, oldVal) {
-							if ( newVal !== oldVal ) {
-								el.animate({
-									opacity: 1.0
-								}, {
-									queue: false,
-									duration: 1000
-								});
-							}
-						});					
+						scope.$on("mainElementLoaded", function() {
+							console.log("It took ", getTimerDiff(timer, timeStamp()), "ms to load image");
+
+							el.animate({
+								opacity: 1.0
+							}, {
+								queue: false,
+								duration: 1000
+							});
+						});
+
 		},
 		controller: function($scope) {
+		}
+	};
+}]);
+
+angular_capsule_app.directive("onImageLoad", ["$timeout", function($timeout) {
+	return {
+		restrict: "A",
+		link: function(scope, el, attrs) {
+			var backstopEmitter = undefined;
+
+			el.bind("load", function() {
+				console.log("Image loaded");
+
+				if ( angular.isDefined(backstopEmitter) ) {
+					$timeout.cancel(backstopEmitter);	
+				}
+
+				scope.$emit("mainElementLoaded");
+			});
+
+			el.on("$destroy", function() {
+				el.unbind("load");
+			});	
+
+			scope.$watch("post", function(newV, oldV) {
+				if (newV !== oldV) {
+					backstopEmitter = $timeout(function() {
+						scope.$emit("mainElementLoaded");		
+					}, 12000);
+				}
+			});
 		}
 	};
 }]);
