@@ -17,12 +17,12 @@
 
 <div ng-init="init()">
   <div class="show-for-medium-up small-12 medium-6 columns capsule_link">
-    <a ng-href="{{ slideshowImage.linkPath }}">
-    <!-- <a ng-href="#/slideshow"> -->
+    <!-- <a ng-href="{{ slideshowImage.linkPath }}"> -->
+    <a ng-href="#/slideshow">
       <img ng-src="{{ slideshowImage.imagePath }}" />
     </a>
-    <h1><a ng-href="{{ slideshowImage.linkPath }}">Start Slideshow</h1>
-    <!-- <h1><a ng-href="#/slideshow">Start Slideshow</a></h1> -->
+    <!-- <h1><a ng-href="{{ slideshowImage.linkPath }}">Start Slideshow</h1> -->
+    <h1><a ng-href="#/slideshow">Start Slideshow</a></h1>
   </div>
   <div class="small-12 medium-6 columns capsule_link">
     <a ng-href="{{ uploadImage.linkPath }}" ng-click="activateFilepicker()">
