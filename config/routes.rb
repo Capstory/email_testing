@@ -92,8 +92,19 @@ class CodeForACauseConstraints
 	end
 end
 
+class CorporateConstraints
+	def matches?(request)
+		if request.subdomain.present?
+			request.subdomain == "corporate"
+		else
+			return false
+		end
+	end
+end
+
 EmailTesting::Application.routes.draw do
 
+	match "" => "homepages#corporate_page", constraints: CorporateConstraints.new
 	match "" => "homepages#code_for_a_cause", constraints: CodeForACauseConstraints.new
   match "" => "vendor_pages#matt_ryan", constraints: MattRyanConstraints.new
 	# match "" => "vendor_pages#demo", constraints: DemoPageConstraints.new

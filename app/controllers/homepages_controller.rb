@@ -19,6 +19,11 @@ class HomepagesController < ApplicationController
 		render "alt_ovni_homepage", layout: "ovni_layout"
 	end
 
+	def corporate_page
+		@contact_form = ContactForm.new
+		render "corporate_page", layout: "ovni_layout"
+	end
+
 	def test_ovni_landing
 		@contact_form = ContactForm.new
 		render "ovni_landing_purchase_799", layout: "ovni_layout"
