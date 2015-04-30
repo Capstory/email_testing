@@ -224,7 +224,7 @@
 											<h4 class="modal-title">Get a Quote for Your Event</h4>
 										</div>
 										<%= form_tag("/contact_forms/request_package_information", format: :json,  method: "post", remote: true, id: "requestPackageInfo") do |f| %>
-											<%= hidden_field_tag :source, "request_package_information" %>
+											<%= hidden_field_tag :source, "corporate_quote" %>
 											<div class="modal-body">
 												<div class="row" style="text-align:left;">
 													<div class="col-xs-12">
@@ -246,14 +246,14 @@
 																<%= label_tag :packages, "What Type of Event Are You Hosting?" %>
 																<br>
 																<br>
-																<%= check_box_tag(:bronze_package) %>
-																<%= label_tag(:bronze_package, "Corporate Retreat") %>
+																<%= check_box_tag(:corporate_retreat) %>
+																<%= label_tag(:corporate_retreat, "Corporate Retreat") %>
 																<br>
-																<%= check_box_tag(:silver_package) %>
-																<%= label_tag(:silver_package, "Conference") %>
+																<%= check_box_tag(:conference) %>
+																<%= label_tag(:conference, "Conference") %>
 																<br>
-																<%= check_box_tag(:gold_package) %>
-																<%= label_tag(:gold_package, "Company Party") %>
+																<%= check_box_tag(:company_party) %>
+																<%= label_tag(:company_party, "Company Party") %>
 																<br>
 																<%= check_box_tag(:custom_package) %>
 																<%= label_tag(:custom_package, "Other") %>
