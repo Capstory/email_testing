@@ -18,11 +18,11 @@ class ContactForm < ActiveRecord::Base
 				Below is a message from a request for more information concerning our packages:
 				---------------------------------
 				
-				Packages Interest:
-				Bronze - #{ ContactForm.package_interest?(msg_info_hash[:bronze_package]) }	
-				Silver - #{ ContactForm.package_interest?(msg_info_hash[:silver_package]) }	
-				Gold - #{ ContactForm.package_interest?(msg_info_hash[:gold_package]) }	
-				Custom Package - #{ ContactForm.package_interest?(msg_info_hash[:custom_package]) }	
+				Additional Interests:
+				Books - #{ ContactForm.package_interest?(msg_info_hash[:books]) }	
+				Extra Cards - #{ ContactForm.package_interest?(msg_info_hash[:extra_cards]) }	
+				Video Montage - #{ ContactForm.package_interest?(msg_info_hash[:video_montage]) }	
+				Other - #{ ContactForm.package_interest?(msg_info_hash[:other]) }	
 
 				----------------------------------
 
@@ -32,8 +32,30 @@ class ContactForm < ActiveRecord::Base
 
 				#{ msg_info_hash[:message] }
 
-			}
+		}
 	end
+
+	# def self.request_package_information_message(msg_info_hash)
+	# 	%Q{
+	# 			Below is a message from a request for more information concerning our packages:
+	# 			---------------------------------
+				
+	# 			Packages Interest:
+	# 			Bronze - #{ ContactForm.package_interest?(msg_info_hash[:bronze_package]) }	
+	# 			Silver - #{ ContactForm.package_interest?(msg_info_hash[:silver_package]) }	
+	# 			Gold - #{ ContactForm.package_interest?(msg_info_hash[:gold_package]) }	
+	# 			Custom Package - #{ ContactForm.package_interest?(msg_info_hash[:custom_package]) }	
+
+	# 			----------------------------------
+
+	# 			Event Date: #{ msg_info_hash[:event_date] }
+
+	# 			Additional Message:
+
+	# 			#{ msg_info_hash[:message] }
+
+	# 		}
+	# end
 
 	def self.corporate_quote_message(msg_info_hash)
 		%Q{

@@ -35,11 +35,13 @@ class ContactFormsController < ApplicationController
 		
 		case @contact_form.source
 		when "request_package_information"
-			msg_info = {bronze_package: params[:bronze_package], silver_package: params[:silver_package], gold_package: params[:gold_package], custom_package: params[:custom_package], message: params[:message], event_date: params[:event_date]}
+			# msg_info = {bronze_package: params[:bronze_package], silver_package: params[:silver_package], gold_package: params[:gold_package], custom_package: params[:custom_package], message: params[:message], event_date: params[:event_date]}
+			msg_info = {books: params[:books], extra_cards: params[:extra_cards], video_montage: params[:video_montage], other: params[:other]}
 		when "corporate_quote"
 			msg_info = {corporate_retreat: params[:corporate_retreat], conference: params[:conference], company_party: params[:company_party], custom_package: params[:custom_package], message: params[:message], event_data: params[:event_date]}
 		else
-			msg_info = {bronze_package: params[:bronze_package], silver_package: params[:silver_package], gold_package: params[:gold_package], custom_package: params[:custom_package], message: params[:message], event_date: params[:event_date]}
+			# msg_info = {bronze_package: params[:bronze_package], silver_package: params[:silver_package], gold_package: params[:gold_package], custom_package: params[:custom_package], message: params[:message], event_date: params[:event_date]}
+			msg_info = {books: params[:books], extra_cards: params[:extra_cards], video_montage: params[:video_montage], other: params[:other]}
 		end
 
 		@contact_form.message = ContactForm.compose_request_package_information_message(msg_info, @contact_form.source)
