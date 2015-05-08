@@ -162,7 +162,7 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 			postIds: getPostIds(posts),
 			postsTaggedForDeletion: getTaggedForDeletionPosts(posts),
 			postsUnverified: getUnverifiedPosts(posts),
-			currentPostId: currentPostId
+			currentPostId: currentPostId == undefined ? 0 : currentPostId
 		};
 
 		return object;

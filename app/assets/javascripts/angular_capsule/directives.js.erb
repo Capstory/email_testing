@@ -118,7 +118,7 @@ angular_capsule_app.directive("onImageLoad", ["$timeout", function($timeout) {
 		link: function(scope, el, attrs) {
 			var backstopEmitter = undefined;
 
-			el.bind("load", function() {
+			el.on("load", function() {
 				console.log("Image loaded");
 
 				if ( angular.isDefined(backstopEmitter) ) {
@@ -133,10 +133,16 @@ angular_capsule_app.directive("onImageLoad", ["$timeout", function($timeout) {
 			});	
 
 			scope.$watch("post", function(newV, oldV) {
-				if (newV !== oldV) {
-					backstopEmitter = $timeout(function() {
-						scope.$emit("mainElementLoaded");		
-					}, 12000);
+				if (newV.id != undefined) {
+					if (newV.id != oldV.id) {
+						backstopEmitter = $timeout(function() {
+							scope.$emit("mainElementLoaded");		
+						}, 12000);
+					} else if (newV.id == oldV.id) {
+						backstopEmitter = $timeout(function() {
+							scope.$emit("mainElementLoaded");
+						}, 1000);
+					}
 				}
 			});
 		}

@@ -172,8 +172,8 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 		$scope.posts = PostModel.setAndGetPostsData(CapsuleData.getPosts());
 		$scope.videos = VideoModel.setAndGetVideoData(CapsuleData.getVideos());
 
-		if ($scope.posts.length > 0) {
-			var visiblePostIds = PostModel.getVisiblePosts($scope.posts)[1];
+		var visiblePostIds = PostModel.getVisiblePosts($scope.posts)[1];
+		if (visiblePostIds.length > 0) {
 
 			$scope.postsExist = true;
 			$scope.post = PostModel.getCurrentPost($scope.posts, visiblePostIds[visiblePostIds.length - 1]);
@@ -187,6 +187,7 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 			setUniversalTimer($scope.timeInterval);
 		} else {
 			$scope.postsExist = false;
+			$scope.post = {};
 		}
 
 		$scope.newPhotos = false;
@@ -250,7 +251,8 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 						$scope.post.thumb = PostModel.buildSecureImageUrl($scope.post, "thumb");
 						$scope.post.large_image = PostModel.buildSecureImageUrl($scope.post, "lightbox_width");
 						$scope.filmStrip = buildFilmStrip($scope.posts, $scope.posts[0], $scope.videos, 5, []);
-						setImageRotation($scope.timeInterval);
+						setUniversalTimer($scope.timeInterval);
+						// setImageRotation($scope.timeInterval);
 
 						$scope.postsExist = true;
 					}

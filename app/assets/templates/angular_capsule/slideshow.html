@@ -1,13 +1,13 @@
 <div ng-init="init()">
+  <div ng-hide="postsExist">
+    <div blank-state-directive capsule-email-address="capsule.email"></div>
+  </div>
+  <div ng-show="postsExist">
     <div class="row">
       <div class="small-12 small-centered columns" style="text-align:center;padding-top:10px;">
         <h4>Send Photos to: <a>{{ capsule.email }}</a></h4>
       </div>
     </div>
-  <div ng-hide="postsExist">
-    <div blank-state-directive capsule-email-address="capsule.email"></div>
-  </div>
-  <div ng-show="postsExist">
     <div class="row">
       <div class="small-12 columns" style="text-align:center;">
         <div main-element-directive post="post"></div>
