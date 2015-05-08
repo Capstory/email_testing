@@ -72,8 +72,8 @@ class EmailRetriever
 
     self.get_new_emails.each do |mail|
     
-      email = Email.new(self.get_email_data(mail), self.get_email_header(mail), self.default_capsule_id)
 			self.imap_notify(mail)
+      email = Email.new(self.get_email_data(mail), self.get_email_header(mail), self.default_capsule_id)
   
 			if email.capsule_accepting_submissions?
 				if email.has_attachments?
