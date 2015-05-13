@@ -37,6 +37,21 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 		return previousPost;
 	};
 
+	var buildFilmStrip = function(posts, currentPost, videos, n, acc) {
+
+		var nextPost = getNextPost(posts, currentPost.id, videos);
+		nextPost.thumb = PostModel.buildSecureImageUrl(nextPost, "thumb");
+		nextPost.truncated_body = nextPost.body ? S(nextPost.body).truncate(40).toString() : nextPost.body;
+		acc.push(nextPost);
+
+		if (acc.length == n) {
+			// return acc;
+			// return deduplicateFilmStrip(acc);
+			return tagDuplicates(acc, [], []);
+		}
+		return buildFilmStrip(posts, nextPost, videos, n, acc);
+	};
+
 	var rotateImages = function(posts, post, videos, filmStrip) {
 		$scope.post = filmStrip.shift();
 		// $scope.post.large_image = PostModel.buildImageUrl($scope.post, "lightbox_width");
@@ -144,21 +159,6 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 
 	// 	return filmStrip;
 	// };
-
-	var buildFilmStrip = function(posts, currentPost, videos, n, acc) {
-
-		var nextPost = getNextPost(posts, currentPost.id, videos);
-		nextPost.thumb = PostModel.buildSecureImageUrl(nextPost, "thumb");
-		nextPost.truncated_body = nextPost.body ? S(nextPost.body).truncate(40).toString() : nextPost.body;
-		acc.push(nextPost);
-
-		if (acc.length == n) {
-			// return acc;
-			// return deduplicateFilmStrip(acc);
-			return tagDuplicates(acc, [], []);
-		}
-		return buildFilmStrip(posts, nextPost, videos, n, acc);
-	};
 
 	$scope.timeInterval = 7000;
 	$scope.newPhotos = false;

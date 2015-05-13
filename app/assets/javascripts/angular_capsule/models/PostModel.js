@@ -68,31 +68,54 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 		return deferred.promise;
 	};
 
-	this.findNextPostId = function(posts, currentPostId) {
-		// console.log("Posts: ", posts);
-		var filteredPosts = getVisiblePosts(posts);
-		var visiblePosts = filteredPosts[1];
-		var i;
-		var nextPostId;
+	var findNextPostId = function(posts, index, visiblePosts) {
 
-		for(i = 0; i < visiblePosts.length; i++) {
-			if ( parseInt(visiblePosts[i]) == parseInt(currentPostId) ) {
-				switch(i) {
-					case 0:
-						nextPostId = visiblePosts[visiblePosts.length - 1];
-						break;
-					// case visiblePosts.length - 1:
-					// 	nextPostId = visiblePosts[0];
-					// 	break;
-					default:
-						nextPostId = visiblePosts[i-1];	
-						break;
-				}
-			}	
+		var newIndex;
+		if (index == -1) {
+			newIndex = posts.length - 1;
+		} else {
+			newIndex = index;
 		}
 
-		return nextPostId;
+		if ( visiblePosts.indexOf(posts[newIndex].id) != -1 ) {
+			return posts[newIndex].id;
+		}
+
+		return findNextPostId(posts, newIndex - 1, visiblePosts);
 	};
+
+	this.findNextPostId = function(posts, currentPostId) {
+		var visiblePosts = getVisiblePosts(posts)[1];
+		var currentPostIndex = findPostIndexById(posts, currentPostId);
+
+		return findNextPostId(posts, currentPostIndex - 1, visiblePosts);
+	};
+
+	// this.findNextPostId = function(posts, currentPostId) {
+	// 	// console.log("Posts: ", posts);
+	// 	var filteredPosts = getVisiblePosts(posts);
+	// 	var visiblePosts = filteredPosts[1];
+	// 	var i;
+	// 	var nextPostId;
+
+	// 	for(i = 0; i < visiblePosts.length; i++) {
+	// 		if ( parseInt(visiblePosts[i]) == parseInt(currentPostId) ) {
+	// 			switch(i) {
+	// 				case 0:
+	// 					nextPostId = visiblePosts[visiblePosts.length - 1];
+	// 					break;
+	// 				// case visiblePosts.length - 1:
+	// 				// 	nextPostId = visiblePosts[0];
+	// 				// 	break;
+	// 				default:
+	// 					nextPostId = visiblePosts[i-1];	
+	// 					break;
+	// 			}
+	// 		}	
+	// 	}
+
+	// 	return nextPostId;
+	// };
 
 	var findPostIndexById = function(posts, postId) {
 		var i = 0;
