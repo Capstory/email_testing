@@ -29,9 +29,7 @@
 
   
 		<%= javascript_include_tag "corporate_template" %>
-		<% if Rails.env.production? && (params[:action] == "test_ovni_landing" || params[:action] == "wnci_marketing") %>
-			<%= render "layouts/crazy_egg" %>
-		<% end %>
+		<%= render "layouts/crazy_egg" if Rails.env.production? %>
 		<%= render "layouts/ga" if Rails.env.production? %>
 	</body>
 </html>
