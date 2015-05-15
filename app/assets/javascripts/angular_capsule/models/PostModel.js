@@ -84,11 +84,15 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 		return findNextPostId(posts, newIndex - 1, visiblePosts);
 	};
 
-	this.findNextPostId = function(posts, currentPostId) {
+	var doFindNextPostId = function(posts, currentPostId) {
 		var visiblePosts = getVisiblePosts(posts)[1];
 		var currentPostIndex = findPostIndexById(posts, currentPostId);
 
 		return findNextPostId(posts, currentPostIndex - 1, visiblePosts);
+	};
+
+	this.findNextPostId = function(posts, currentPostId) {
+		return doFindNextPostId(posts, currentPostId);
 	};
 
 	// this.findNextPostId = function(posts, currentPostId) {
@@ -383,6 +387,40 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 		return posts;
 	};
 
+	var moveForwardInVisiblePosts = function(posts, postId, stop, iteration) {
+		if (stop == iteration) { return postId; }
+		
+		nextPostId = doFindNextPostId(posts, postId);
+
+		iteration += 1;
+		return moveForwardInVisiblePosts(posts, nextPostId, stop, iteration);
+
+		// var nextPostId = findNextPostId(posts, currentPostIndex, visiblePosts);
+		// var nextIndex = findPostIndexById(posts, nextPostId);
+
+		// return moveForwardInVisiblePosts(posts, nextIndex, visiblePosts, stop, iteration + 1);
+	};
+
+	var addToIndexOfVisiblePosts = function(posts, postId, n) {
+		// var visiblePosts = getVisiblePosts(posts)[1];
+		// var currentPostIndex = findPostIndexById(posts, currentId);
+
+		// return moveForwardInVisiblePosts(posts, currentPostIndex - 1, visiblePosts, n, 0);
+		
+		return moveForwardInVisiblePosts(posts, postId, n, 0);
+	};
+
+	// var addToIndexOfVisiblePosts = function(posts, index, n) {
+	// 	var visiblePosts = getVisiblePosts(posts)[1];
+	// 	console.log("Visible Posts: ", visiblePosts);
+	// 	var nextPostId = findNextPostId(posts, index, visiblePosts);
+	// 	console.log("Next Post Id: ", nextPostId);
+
+	// 	for (i = 0; i < n; i++) {
+			
+	// 	}
+	// };
+
 	this.updatePostData = function(currentPosts, newData, options) {
 		var posts;
 
@@ -391,10 +429,14 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 				var currentPostIndex = 0;	
 			} else {
 				var currentPostIndex = findPostIndexById(currentPosts, options.currentPostId);
+				var injectionId = addToIndexOfVisiblePosts(currentPosts, options.currentPostId, 2);
+				var injectionIndex = findPostIndexById(currentPosts, injectionId);
+				
+				// console.log("Injection Point: ", injectionIndex, " Current Index: ", currentPostIndex);
 			}
 
 			// posts = injectNewPosts(currentPosts, newData.new_posts, currentPostIndex);
-			posts = injectChanges(currentPosts, newData, currentPostIndex);
+			posts = injectChanges(currentPosts, newData, injectionIndex);
 		} else {
 			posts = updatePosts(currentPosts, newData.new_posts);
 			posts = applyUpdates(posts, newData.new_verified, "verified");
