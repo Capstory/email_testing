@@ -130,7 +130,7 @@ class VendorPagesController < ApplicationController
 				layout: "ovni_layout"
 			},
 			"receptionsinc" => {
-				view: "receptions_landing",
+				view: "new_receptions_landing",
 				layout: "ovni_layout"
 			}
 		}

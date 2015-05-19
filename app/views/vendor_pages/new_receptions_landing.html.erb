@@ -1,0 +1,443 @@
+<style>
+	.btn-primary {
+		background-color: #C69C56;
+		border: none;
+	}
+
+	.down, .back-to-top {
+		background-color: #C69C56;
+	}
+</style>
+  <header id="header">   
+    <nav class="navbar" role="navigation">
+      <div class="navbar-inner">
+	      <div class="container">
+          <!-- logo-->                       
+					<%# <a href="#" title="Home" class="logo"><img src="img/logo.png " alt="logo"></a> %>         
+					<a href="#" title="Home" class="logo"><%= image_tag "receptions_large.png" %></a>         
+          <!-- Menu -->
+          <ul class="nav">
+            <li><a href="#home" title="Home">Home</a></li>
+            <%# <li><a href="#services" title="Services">Services</a></li> %>
+            <%# <li><a href="#about" title="About">About</a></li> %>
+						<li><a href="#howitworks" title="How It Works">How it Works</a></li>
+						<%# <li><a href="#keepsakes" title="Keepsakes">Keepsakes</a></li> %>
+						<li><a href="#testimonials" title="Testimonials">Testimonials</a></li>
+            <li><a href="#packages" title="Package">Package</a></li> 
+            <%# <li><a href="#experience" title="Experience">Experience</a></li> %>
+            <%# <li><a href="#features" title="Features">Features</a></li> %>
+						<li><a href="#contact" title="Contact Us">Get a Quote</a></li>
+						<%# <li><%= link_to "Login", login_path %1></li> %>
+            <%# <li><a href="#showcase" title="Showcase">Showcase</a></li> %>
+          </ul>
+          <select class="select-menu"></select> <!-- select menu for small screens -->  
+        </div>
+      </div>
+         
+	  </nav>    
+    <!-- Nav ends -->    
+		<div id="home"> 
+	      <!-- LayerSlider -->
+        	<div id="full-slider-wrapper">
+        		<div id="layerslider" style="width:1920px; height:1200px; max-width: 1920px;">
+              <!-- Slide 1 -->
+        			<div class="ls-slide" data-ls="slidedelay:8000;transition3d: 2,7,9;">
+        				<%# <img src="img/slider-main/1.jpg" class="ls-bg" alt="Slide background"> %>
+								<%= image_tag "corporate_page/header_image_dark_web.jpg", alt: "Slide background", class: "ls-bg" %>
+								<h1 class="ls-l hidden-xs" style="top:45%;left:50%;color:#fff;white-space: nowrap;" data-ls="durationin:2000;scalexin:1.5;scaleyin:1.5;">LIVESTREAM EVERY PHOTO <br>AT YOUR EVENT</h1>
+
+        				<p class="ls-l" style="top:60%;left:50%;" data-ls="durationin:2000;fadein:true;fadeout:true;scalexin:1.5;scaleyin:1.5;">
+        					<a class="down" href="#about"><i class="fa fa-angle-down"></i></a>
+        				</p>
+        				
+        			</div>
+        		</div>
+        	</div>
+          <!-- LayerSlider End -->    
+				</div>
+    
+
+  </header>
+  
+  <section id="howitworks"> 
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+					<h2 class="section-title">Engage Your Guests</h2> 
+        </div>
+      </div>
+      <div class="row spacer40"></div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+					<p class="lead">Journey by Receptions provides the best live experience for your wedding. Every photo taken can be livestreamed to a projector or TV.</p>
+					<p class="lead">Journey by Receptions does not require an app download. Anyone with a phone, tablet or computer can contribute.</p>
+					<br>
+
+					<p class="lead"><b>Here's how it works: </b></p>
+        </div>
+      </div>
+      <div class="row spacer80"></div>
+      <div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-4">
+						<%= image_tag "corporate_page/how_it_works_web.png", alt: "" %>
+						<div class="slider-text" style="background:none;">
+							<h3>1.Take a Photo or Video</h3>
+							<p>Journey by Receptions supports any cell phone or tablet on any carrier in the United States.</p>
+						</div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-4">
+						<%= image_tag "corporate_page/how_it_works2_web.png", alt: "" %>
+						<div class="slider-text" style="background:none;">
+							<h3>2. Text Message or Email</h3>
+							<p>Text message (just like you would to a friend) or email your photo(s) directly to your Journey by Receptions address. Ex. demo@capstory.me</p>
+						</div>
+				</div>               
+				<div class="col-xs-12 col-sm-12 col-md-4">
+						<%= image_tag "corporate_page/how_it_works3_web.png", alt: "" %>
+						<div class="slider-text" style="background:none;">
+							<h3>3. Watch Your Photo Appear!</h3>
+							<p>Watch the photo show up instantly on the Journey by Receptions livestream. This can be connected to a projector or TV to turn the entire event into an interactive experience!</p> 
+						</div>
+				</div>
+      </div>
+    </div>  
+    <div class="spacer40"></div>
+  </section> 
+   <section>
+    <div class="container">
+			<div class="row spacer100" id="testimonials"></div>
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<h2 class="section-title">Our Latest Testimonials</h2>
+				</div>
+			</div>
+			<div class="spacer40"></div>
+			<div class="row">
+				<div class="col-md-6" style="text-align:center;">
+					<%= image_tag "testimonials/aa_testimonial.png" %>
+					<div class="spacer20"></div>
+				</div>
+				<div class="col-md-6">
+					<%# <h3>The Wiesners</h3> %>
+					<blockquote>
+						<p>Our guests couldn't get enough of the live photo stream at our wedding. The live photo stream really helped pull the whole event together, and the photobook is full of great memories that we wouldn't have captured otherwise!</p>
+						<footer style="padding-top:5px;"><cite> - Amanda Renaud, Bride</cite></footer>
+					</blockquote>	
+				</div>
+			</div>
+			<div class="spacer40"></div>
+			<div class="row">
+				<div class="col-md-6" style="text-align:center;">
+					<%= image_tag "testimonials/jillian_and_ryan_testimonial.png" %>
+					<div class="spacer20"></div>
+				</div>
+				<div class="col-md-6">
+					<%# <h3>Martin & Assoc.</h3> %>
+					<blockquote>
+						<p>Once at the reception venue on our wedding night our families REALLY got into the live photo stream process and loved seeing their posted pictures scrolling on the all the TV screens. Our friends brought a Selfie Stick and the photos from that are hilarious! Sadly, one of my Aunts who lives in Alabama was not able to come in for the wedding. Her and her husband took a selfie holding a note reading “Congrats!” and sent it in to the live photo stream link. Moments later Aunt Janet’s face was up on the screens … Such a special moment!
+						</p>
+						<footer style="padding-top:5px;"><cite> - Jillian Wiesner, Bride</cite></footer>
+					</blockquote>	
+				</div>
+			</div>
+			<div class="spacer40"></div>
+			<div class="row">
+				<div class="col-md-6" style="text-align:center;">
+					<%= image_tag "testimonials/mark_testimonial.png" %>
+					<div class="spacer20"></div>
+				</div>
+				<div class="col-md-6">
+					<%# <h3>Longworth Hall Events</h3> %>
+					<blockquote>
+						<p>We really were pleased to have the live photo stream at our daughter's wedding. It provided a great new way for guests to engage during the reception - both by uploading their own pictures and by seeing pictures other friends were taking. We got some great pictures from different folks including photos from friends who are excellent photographers. Everything was really easy for anyone to upload pictures instantly from their phone, or from their "nicer camera" after the event. The live photo stream created a great way to further capture visual memories of this special event!</p>
+						<footer style="padding-top:5px;"><cite> - Mark Evans, Father of the Bride</cite></footer>
+					</blockquote>	
+				</div>
+			</div>
+			<div class="row spacer120"></div>
+    </div>     
+  </section>   
+
+	<div id="packages"></div>
+	<div id="parallax-two" class="parallax" style="background-image:url(<%= asset_path 'corporate_page/tablesetting_web.jpg' %>);">
+		<div class="parallax-colored">
+			<div class="parallax-text-container-2">
+				<div class="parallax-text-item">
+					<div class="container">
+						<div class="row spacer60"></div>
+						<div class="row">
+							<div class="col-md-12 text-center">
+								<h2 class="section-title-white">The Journey by Receptions Package</h2>
+							</div>
+						</div>
+						<div class="row spacer40"></div>
+						<div class="row">
+							<div class="col-md-12">
+								<p class="white text-center" style="font-size:15px;">Our package comes with everything you need to make your event outstanding. 
+								<%# <br><br> %>
+								<%# Included with every package:</p> %> 
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12	col-md-offset-4 col-md-4 text-center" style="font-size:15px;">
+								<ul class="list-unstyled">
+									<li>Live Photo Stream</li>
+									<li>Up to 250 Guest Instruction Cards</li>
+									<li>4 hrs of Remote Moderation</li>
+									<li>Unlimited Photo & Video Uploads</li>
+								</ul>
+								<h2 style="color: white; margin-top:20px;">$300*</h2>
+								<div class="row spacer40"></div>
+								<p class="text-center white"><small>* 19% service charge is added, which covers: projector screens, LCD screens, staff, and props (if wanted)</small></p>
+							</div>	
+						</div>
+						<%# <div class="row spacer50"></div> %>
+						<%# <div class="row"> %>
+						<%# 	<div class="col-md-3 col-xs-6"> %>
+						<%# 		<div class="services-1"> %>
+						<%# 			<div class="services-1-icon"> %>
+						<%# 				<i class="fa fa-play-circle" style="color:white;"></i> %>
+						<%# 			</div> %>
+						<%# 			<div class="services-1-title-white">1. Livestream Slideshow</div> %>
+						<%# 		</div> %>
+						<%# 	</div> %>
+						<%# 	<div class="col-md-3 col-xs-6"> %>
+						<%# 		<div class="services-1"> %>
+						<%# 			<div class="services-1-icon"> %>
+						<%# 				<i class="fa fa-check-square-o" style="color:white;"></i> %>
+						<%# 			</div> %>
+						<%# 			<div class="services-1-title-white">2. Remote Moderation</div> %>
+						<%# 		</div> %>
+						<%# 	</div> %>
+						<%# 	<div class="col-md-3 col-xs-6"> %>
+						<%# 		<div class="services-1"> %>
+						<%# 			<div class="services-1-icon"> %>
+						<%# 				<i class="fa fa-laptop" style="color:white;"></i> %>
+						<%# 			</div> %>
+						<%# 			<div class="services-1-title-white">3. Custom Journey by Receptions Page</div> %>
+						<%# 		</div> %>
+						<%# 	</div> %>
+						<%# 	<div class="col-md-3 col-xs-6"> %>
+						<%# 		<div class="services-1"> %>
+						<%# 			<div class="services-1-icon"> %>
+						<%# 				<i class="fa fa-phone" style="color:white;"></i> %>
+						<%# 			</div> %>
+						<%# 				<div class="services-1-title-white">4. Priority Support</div> %>
+						<%# 		</div> %>
+						<%# 	</div> %>                
+						<%# </div> %>
+						<div class="row">
+							<div class="col-xs-12 text-center">
+								<a data-toggle="modal" data-target="#requestPackageInfo" class="btn btn-primary btn-lg">Add to Your Receptions Package</a>
+							</div>
+							<div class="modal fade" id="requestPackageInfo" tabindex="-1" role="dialog" aria-labelledby="RequestPackageInfo" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+											<h4 class="modal-title">Get a Quote for Your Event</h4>
+										</div>
+										<%= form_tag("/contact_forms/request_package_information", format: :json,  method: "post", remote: true, id: "requestPackageInfo") do |f| %>
+											<%= hidden_field_tag :source, "corporate_quote" %>
+											<div class="modal-body">
+												<div class="row" style="text-align:left;">
+													<div class="col-xs-12">
+
+														<div class="row">            
+															<div class="form-group col-xs-12 col-sm-6">
+																<%= label_tag :name %>
+																<%= text_field_tag :name, "", class: "form-control", id: "package_info_name2", placeholder: "Name" %>
+															</div>
+															<div class="form-group col-xs-12 col-sm-6">
+																<%# <label for="email2">email</label> %>
+																<%= label_tag :email %>
+																<%= text_field_tag :email, "", class: "form-control", id: "package_info_email2", placeholder: "E-mail" %> 
+															</div>
+														</div>
+
+														<div class="row">            
+															<div class="form-group col-xs-12 col-sm-6">
+																<%= label_tag :packages, "What Type of Event Are You Hosting?" %>
+																<br>
+																<br>
+																<%= check_box_tag(:corporate_retreat) %>
+																<%= label_tag(:corporate_retreat, "Corporate Retreat") %>
+																<br>
+																<%= check_box_tag(:conference) %>
+																<%= label_tag(:conference, "Conference") %>
+																<br>
+																<%= check_box_tag(:company_party) %>
+																<%= label_tag(:company_party, "Company Party") %>
+																<br>
+																<%= check_box_tag(:custom_package) %>
+																<%= label_tag(:custom_package, "Other") %>
+															</div>
+															<div class="form-group col-xs-12 col-sm-6">
+																<%= label_tag :event_date %>
+																<%= text_field_tag :event_date, "", class: "form-control", id: "package_info_date", placeholder: "Event Date" %>
+															</div>
+														</div>
+														<div class="row">
+															<div class="form-group col-xs-12">
+																<%# <label for="message2">message</label> %>
+																<%= label_tag :message, "Other Info" %>
+																<%= text_area_tag :message, "",class: "form-control", id: "package_info_message2", placeholder: "Anything else that you'd like us to know?", rows: 4 %>
+
+															</div>
+														</div> 
+														<div class="row spacer30"></div>
+														<div class="row">
+															<div class="col-md-8 col-md-offset-2">
+																<p class="text-center">
+																	Please, fill out the form and press submit. Or, contact us by email or telephone.
+																	<br>
+																	t: 513.401.5572 | e: hello@capstory.me
+																</p>
+															</div>
+														</div>
+														<div class="row spacer10"></div>
+														<div class="row">            
+															<div class="col-xs-12 text-center">
+																<div class="alert alert-success" id="package_info_form_success" style="display:none;">The e-mail was successfully sent. Thank you. We will reach back out to you as soon as we possibly can.</div>
+																<div class="error alert alert-danger" id="package_info_form_err">There is a problem with the contact form, please verify that all the fields are filled out correctly.</div>
+																<div class="error" id="err-timedout">The connection to the server timed out!</div>
+																<div class="error" id="err-state"></div>
+
+															</div>
+														</div>
+													</div>  
+
+												</div>      
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+												<%= submit_tag "Submit", class: "btn btn-primary" %>
+											</div>
+										<% end %>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row spacer60"></div>
+					</div> 
+				</div>
+      </div>
+    </div>        
+  </div>
+
+  <section> 
+  
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2 class="section-title">Package Details</h2>         
+        </div>
+      </div>
+      <div class="row spacer80"></div>
+      <div class="row">
+        <div class="col-md-5 col-sm-5">
+          <div class="spacer30"></div>
+          <h3 class="big">1. Livestream Slideshow</h3>
+					<p>Journey by Receptions provides the best live experience for your event. As guests take photos and text message them to Journey by Receptions, they show up live on any TV or projector. There's no app for them to download or service to sign up for and it works on any phone or tablet!</p>
+        </div>
+        <div class="col-md-7 col-sm-7">
+        <%# <div class="laptop"> %>
+					<%# <%= image_tag "corporate_template/slider-laptop/laptop.png" %1> %>
+          <%# <div class="laptop-slider"> %>
+            
+            <%# <ul class="slides"> %> 
+            <%#   <li> %>        
+								<%= image_tag "corporate_page/slideshow_web.png" %>
+              <%# </li> %>  
+            <%# </ul> %>
+          <%# </div> %>
+        <%# </div> %>
+        </div>
+      </div>      
+      <div class="row spacer40"></div>
+      <div class="row">
+        <%# <div class="col-md-6"> %>
+        <%#   <div class="row"> %>
+        <%#     <div class="clients"> %>            
+							<%# <div class="col-xs-12 col-sm-3 col-md-3"><%= fa_icon "tablet 4x" %1></div> %>
+							<%# <div class="col-xs-12 col-sm-3 col-md-3"><%= fa_icon "laptop 4x" %1></div> %>
+							<%# <div class="col-xs-12 col-sm-3 col-md-3"><%= fa_icon "mobile 4x" %1></div> %>
+							<%# <div class="col-xs-12 col-sm-3 col-md-3"><%= fa_icon "desktop 4x" %1></div> %>
+        <%#     </div> %>  
+        <%#   </div> %>
+        <%# </div> %>
+        <div class="col-md-12">
+          <h3>2. Remote Moderation</h3>
+					<p>During the entirety of your event, our professionals observe and moderate the photostream. Based on your standards, we ensure nothing inappropriate ever makes it to your photostream and instead log it separately for you to evaluate after the event in order to give you the ultimate peace of mind.</p>
+        </div>
+      </div>
+      <div class="row spacer80"></div>
+      <div class="row">
+        <div class="col-md-5 col-sm-5">
+          <div class="spacer30"></div>
+          <h3 class="big">3. Custom Journey by Receptions Page</h3>
+					<p>Everyone's photos, videos, and stories are all saved in one shared location online. They are accessible to view and download by your guests and you have full access to all the high resolution photos sent in for no additional charge.</p>
+        </div>
+        <div class="col-md-7 col-sm-7">
+					<div class="laptop">
+						<%= image_tag "corporate_template/slider-laptop/laptop.png" %>
+						<div class="laptop-slider">
+							
+							<ul class="slides"> 
+								<li>        
+									<%= image_tag "journey_capsule_page.png" %>
+								</li>  
+							</ul>
+						</div>
+					</div>
+        </div>
+      </div>      
+      <div class="row spacer80"></div>
+      <div class="row">
+        <div class="col-md-12">
+          <h3>4. Priority Support</h3>
+					<p>The Journey by Receptions team will work with you every step of the way to ensure your experience is as effortless as possible. We handle setting up your Journey by Receptions page, designing and mailing you your instruction cards and ensuring that everything is working properly the day of your wedding. We are available via phone or email anytime you need us.</p>
+        </div>
+      </div>
+      <div class="row spacer100"></div>
+    </div>
+   
+  <footer id="contact"> <!-- footer begings -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+					<h2 class="section-title">Make Your Event Outstanding!</h2>
+					<div class="row spacer40"></div>
+        </div>
+      </div>
+      <div class="row spacer40"></div>    
+			<div class="row">
+				<div class="col-xs-12 text-center">
+					<a data-toggle="modal" data-target="#requestPackageInfo" class="btn btn-primary btn-lg">Add to Your Receptions Package</a>
+				</div>
+			</div>
+    </div>
+    <div class="top">
+        <div class="top-line"></div>
+      <a class="back-to-top"><i class="fa fa-angle-up"></i></a>    
+    </div>      
+    <div class="container">    
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+					<h4>RECEPTIONS, INC.</h4>
+          <%# <p>1275 Kinnear Road, Columbus, OH 43212</p> %>
+					<p>Visit the Receptions Homepage</p>
+					<p><a href="http://receptionsinc.com" class="btn btn-primary">receptionsinc.com</a></p>
+          <%# <p>513-401-5572</p> %>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6">
+          <h4>SUPPORT</h4>
+          <p>If you have a question or comment, please contact us.</p>
+          <%# <p><button type="button" class="btn btn-primary">Phone: 513-401-5572</button></p> %>
+          <p><button type="button" class="btn btn-primary">Email: hello@receptionsinc.com</button></p>
+					<p><%= link_to "Login", login_path, class: "btn btn-primary" %></p>
+        </div>        
+      </div>
+    </div>
+    <div class="spacer100"></div>
+  </footer> <!-- Footer ends -->
