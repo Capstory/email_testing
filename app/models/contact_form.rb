@@ -10,6 +10,8 @@ class ContactForm < ActiveRecord::Base
 			request_package_information_message(msg_info_hash)
 		when "corporate_quote"
 			corporate_quote_message(msg_info_hash)
+		when "receptions_addon"
+			receptions_add_message(msg_info_hash)
 		end
 	end
 
@@ -76,6 +78,20 @@ class ContactForm < ActiveRecord::Base
 
 				#{ msg_info_hash[:message] }
 
+			}
+	end
+
+	def self.receptions_add_message(msg_info_hash)
+		%Q{
+				Someone has submitted an order for Journey by Receptions
+
+				Below are the details of the order:
+				-----------------------------------------
+
+				Phone Number: #{ msg_info_hash[:phone_number] }
+				Event Date: #{ msg_info_hash[:event_date] }
+				Event Location: #{ msg_info_hash[:event_location] }
+				Message: #{ msg_info_hash[:message] }
 			}
 	end
 

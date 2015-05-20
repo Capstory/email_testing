@@ -39,6 +39,8 @@ class ContactFormsController < ApplicationController
 			msg_info = {books: params[:books], extra_cards: params[:extra_cards], video_montage: params[:video_montage], other: params[:other]}
 		when "corporate_quote"
 			msg_info = {corporate_retreat: params[:corporate_retreat], conference: params[:conference], company_party: params[:company_party], custom_package: params[:custom_package], message: params[:message], event_data: params[:event_date]}
+		when "receptions_addon"
+			msg_info = {phone_number: params[:phone_number], event_date: params[:event_date], event_location: params[:event_location], message: params[:message]}
 		else
 			# msg_info = {bronze_package: params[:bronze_package], silver_package: params[:silver_package], gold_package: params[:gold_package], custom_package: params[:custom_package], message: params[:message], event_date: params[:event_date]}
 			msg_info = {books: params[:books], extra_cards: params[:extra_cards], video_montage: params[:video_montage], other: params[:other]}

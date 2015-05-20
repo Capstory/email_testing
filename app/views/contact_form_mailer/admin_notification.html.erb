@@ -4,7 +4,9 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-		<h4>Someone has submitted a question or comment from the contact form</h4>
+		<% unless @contact_form.source == "receptions_addon" %>
+			<h4>Someone has submitted a question or comment from the contact form</h4>
+		<% end %>
     <p>Name: <%= @contact_form.name %></p>
 		<p>Email: <%= @contact_form.email %></p>
 		<pre>Message: <%= @contact_form.message %></pre>

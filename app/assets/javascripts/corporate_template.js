@@ -60,6 +60,15 @@ $(function(){
 		resetCheckBoxes(["#bronze_package", "#silver_package", "#gold_package", "#custom_package"]);	
 	};
 
+	var resetReceptionAddonForm = function() {
+		$("#receptions_addon_name").val("");
+		$("#receptions_addon_email").val("");
+		$("#receptions_addon_phone_number").val("");
+		$("#receptions_addon_event_date").val("");
+		$("#receptions_addon_event_location").val("Eastgate");
+		$("#receptions_addon_message").val("");
+	};
+
 	var resetEventApplicationForm = function() {
 		var elements = ["name", "email", "github_account_name", "language_preference", "university_year", "work_preference", "message"];
 		var i = 0;
@@ -146,5 +155,16 @@ $(function(){
 			
 			$("#package_info_form_success").hide();
 			$("#package_info_form_err").show();
+		});
+
+	$("#receptionsAddon")
+		.on("ajax:success", function(e, data, status, xhr) {
+			$("#receptions_addon_form_success").show();
+			$("#receptions_addon_form_err").hide();
+			resetReceptionAddonForm();
+		})
+		.on("ajax:error", function(e, xhr, status, error) {
+			$("#receptions_addon_form_success").hide();
+			$("#receptions_addon_form_err").show();
 		});
 });
