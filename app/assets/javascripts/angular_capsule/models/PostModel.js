@@ -481,6 +481,18 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 		return getVisiblePosts(allPosts);
 	};
 
+	this.filterOutTextPosts = function(posts) {
+		var results = [];
+
+		angular.forEach(posts, function(post) {
+			if( checkPostIsImage(post) ) {
+				results.push(post);
+			}			
+		});
+
+		return results;
+	};
+
 	this.setAndGetPostsData = function(postsData) {
 		if ( !angular.isDefined($rootScope.postsData) ) {
 			setRootPostsData(postsData);

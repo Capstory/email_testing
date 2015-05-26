@@ -19,7 +19,7 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 		var nextId = PostModel.findNextPostId(posts, currentId);
 		var nextPost = PostModel.getCurrentPost(posts, nextId);
 
-		if ( PostModel.checkPostHasVideo(nextPost, videos) ) {
+		if ( PostModel.checkPostHasVideo(nextPost, videos) || !nextPost.isImage ) {
 			return getNextPost(posts, nextId, videos);
 		}
 
@@ -169,12 +169,11 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 		changeTopBarDiv("make_invisible");
 
 		$scope.capsule = CapsuleModel.setAndGetCapsuleData(CapsuleData.getCapsuleData());
-		$scope.posts = PostModel.setAndGetPostsData(CapsuleData.getPosts());
+		$scope.posts = PostModel.filterOutTextPosts(PostModel.setAndGetPostsData(CapsuleData.getPosts()));
 		$scope.videos = VideoModel.setAndGetVideoData(CapsuleData.getVideos());
 
 		var visiblePostIds = PostModel.getVisiblePosts($scope.posts)[1];
 		if (visiblePostIds.length > 0) {
-
 			$scope.postsExist = true;
 			$scope.post = PostModel.getCurrentPost($scope.posts, visiblePostIds[visiblePostIds.length - 1]);
 			$scope.post.thumb = PostModel.buildSecureImageUrl($scope.post, "thumb");
@@ -225,6 +224,15 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 		return isPollDataEmpty(pollData, attrs);
 	};
 
+	var filterTextPostsFromPollData = function(data, attrs) {
+		if ( attrs.length == 0 ) { return data; }
+		
+		var attr = attrs.pop();
+		data[attr] = PostModel.filterOutTextPosts(data[attr]);
+
+		return filterTextPostsFromPollData(data, attrs); 
+	};
+
 	var poller;
 	var startPoller = function() {
 		if ( angular.isDefined(poller) ) { return; }
@@ -239,6 +247,9 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 						data.new_posts.push(object);
 					});
 				}
+
+				// data.new_posts = PostModel.filterOutTextPosts(data.new_posts);
+				data = filterTextPostsFromPollData(data, ["new_posts", "new_deletions", "new_undeleted", "new_verified"]);
 
 				if ( !isPollDataEmpty(data, ["new_posts", "new_deletions", "new_undeleted", "new_verified"]) ) {
 					if ( $scope.postsExist ) {
