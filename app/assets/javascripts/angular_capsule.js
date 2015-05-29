@@ -5,6 +5,7 @@
 //= require angular_src_files/angular
 //= require ./angular_src_files/angular-route
 //= require ./angular_src_files/angular-touch
+//= require ./angular_src_files/angular-cookies
 //= require ./angular_capsule/angular_capsule.js.erb
 //= require_tree ./angular_capsule/controllers
 //= require_tree ./angular_capsule/services

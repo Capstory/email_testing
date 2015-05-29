@@ -234,3 +234,24 @@ angular_capsule_app.directive("blankStateDirective", [function() {
 		}
 	};
 }]);
+
+angular_capsule_app.directive("selectionImage", ["$timeout", function($timeout) {
+	return {
+		restrict: "A",
+		templateUrl: "<%= asset_path 'angular_capsule/selection_image_directive.html' %>",
+		scope: {
+			selection: "="
+		},
+		transclude: true,
+		link: function(scope, el, attrs) {
+			<%# scope.$emit("postSelected"); %>
+		},
+		controller: function($scope) {
+									$scope.toggleSelection = function(selection) {
+										selection.selected = !selection.selected;
+										selection.style = {"opacity": selection.selected ? 1 : 0.7 };
+										$scope.$emit("postSelected");
+									};
+		}
+	}
+}]);

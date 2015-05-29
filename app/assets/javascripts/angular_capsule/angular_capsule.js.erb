@@ -1,6 +1,7 @@
 angular_capsule_app = angular.module("AngularCapsuleApp", 
 		[
 		"ngRoute",
+		"ngCookies",
 		"ngTouch",
 		"infinite-scroll"
 		]);
@@ -10,6 +11,14 @@ angular_capsule_app.config(["$routeProvider", function($routeProvider) {
 		.when("/", {
 			controller: "CapsuleCtlr",
 			templateUrl: "<%= asset_path 'angular_capsule/capsule.html' %>"
+		})
+		.when("/albumcreator", {
+			controller: "CustomOrderCtrl",
+			templateUrl: "<%= asset_path 'angular_capsule/custom_order.html' %>"
+		})
+		.when("/coverphoto", {
+			controller: "CoverPhotoCtrl",
+			templateUrl: "<%= asset_path 'angular_capsule/cover_photo.html' %>"
 		})
 		.when("/photo/:postId", {
 			controller: "PostCtrl",

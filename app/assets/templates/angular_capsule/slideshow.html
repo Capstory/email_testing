@@ -1,3 +1,8 @@
+<style>
+  body {
+    background-color: #202020;
+  }
+</style>
 <div ng-init="init()">
   <div ng-hide="postsExist">
     <div blank-state-directive capsule-email-address="capsule.email"></div>
@@ -5,7 +10,7 @@
   <div ng-show="postsExist">
     <div class="row">
       <div class="small-12 small-centered columns" style="text-align:center;padding-top:10px;">
-        <h4>Send Photos to: <a>{{ capsule.email }}</a></h4>
+        <h4 style="color:#fffdea;">Send Photos to: {{ capsule.email }}</h4>
       </div>
     </div>
     <div class="row">

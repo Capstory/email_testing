@@ -1,0 +1,100 @@
+<style>
+  .coverPhotoArea {
+    height: 400px;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .coverPhotoArea p {
+    font-size: 14px;
+  }
+
+  .coverPhoto {
+    max-height: 350px;
+    vertical-align: middle;
+    width: auto;
+  }
+
+  .coverPhotoHelper {
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .selectionArea {
+    overflow-y: auto;
+    height: 350px;
+    margin: auto;
+    z-index: 1000;
+  }
+
+  .selectionItem {
+    padding: 5px;
+  }
+</style>
+<div ng-init="init()">
+  <div class="row">
+    <div class="small-12 medium-6 columns">
+      <h3>2. Choose a Cover Photo</h3>
+    </div>
+    <div class="small-12 medium-6 columns">
+      <!-- <button class="button small pull-right">{{ selections.length }} of {{ selections.length }} Selections Made</button> -->
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 columns">
+      <p>Please, select an image that you would like to appear on the cover of your custom photo album.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 columns" style="text-align:center;">
+      <img src="/images/cover_photo_icons.jpg" width="70%"/>
+      <!-- <p>{{ selections }}</p> -->
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 columns">
+      <p>Choose one of the images from those you have already selected to serve as the cover photo. Click on the photos to choose.</p>
+    </div>
+  </div>
+  <div class="row" style="border:2px solid #ccc;padding: 15px;margin-bottom:50px;">
+    <div class="small-12 columns">
+      <div class="row">
+        <div class="small-12 medium-6 columns">
+          <h3>Cover Photo Selection</h3>
+        </div>
+        <div class="small-12 medium-6 columns">
+          <button class="button small pull-right">Save Selection & Proceed to Order Form</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-12 medium-6 columns coverPhotoArea">
+          <span class="coverPhotoHelper"></span>
+          <img ng-src="{{ coverPhoto.coverImage }}" class="coverPhoto" /> 
+        </div>
+        <div class="small-12 medium-6 columns selectionArea" id="selectionContainer">
+          <div ng-repeat="selection in selections" class="selectionItem">
+            <div class="coverLayer" ng-click="selectForCover(selection)">
+              <img ng-src="{{ selection.thumb }}" ng-style="selection.style" />
+              <i class="fa fa-check"  ng-show="!!selection.coverPhotoSelection"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="row" style="margin-top:20px"> -->
+      <!--   <div class="small-12 medium-6 columns"> -->
+      <!--     <1!-- <h3>2. Choose a Cover Photo</h3> --1> -->
+      <!--   </div> -->
+      <!--   <div class="small-12 medium-6 columns"> -->
+      <!--     <button class="button small pull-right">Save Selection & Proceed to Order Form</button> -->
+      <!--   </div> -->
+      <!-- </div> -->
+    </div>
+  </div>
+  <div class="row" style="margin-bottom:50px;">
+    <div class="small-12 medium-6 columns">
+      <a ng-href="#/albumcreator"><i class="fa fa-long-arrow-left"></i> Back to Photo Selection</a>
+    </div>
+    <div class="small-12 medium-6 columns"></div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div ng-init="init()">
+  <!-- <div class="panel row"> -->
+  <!--   <ul class="small-block-grid-6"> -->
+  <!--     <li ng-repeat="selection in posts | filter:{selected: true} | limitTo: 6"> -->
+  <!--       <img ng-src="{{ selection.capsule_height }}" ng-click="toggleSelection(selection)" /> -->
+  <!--     </li> -->
+  <!--   </ul> -->
+  <!-- </div> -->
+  <div class="selectionNotification">
+    <div class="alert-box alert" style="height:50px;font-size:16px;" ng-show="tooManySelections">You have selected more than the maximum of {{ selectionLimit }} photos.</div> 
+    <div class="alert-box success" style="height:50px;font-size:16px;" ng-show="enoughSelections">You have chosen {{ selectionLimit }}. Click <a ng-click="toNextCoverPhoto()">here</a> if you are happy with your choices and want to continue with your order.</div> 
+  </div>
+  <div class="row">
+    <div class="small-12 medium-6 columns">
+      <h3>1. Choose Photos</h3>
+    </div>
+    <div class="small-12 medium-6 columns">
+      <button class="button small pull-right" ng-show="selectedCount == selectionLimit">{{ selectedCount }} of {{ selectionLimit }} Selections Made</button>
+      <button class="button small disabled pull-right" ng-hide="selectedCount == selectionLimit">{{ selectedCount }} of {{ selectionLimit }} Selections Made</button>
+    </div>
+  </div>
+  <div class="selectionsArea" ng-hide="thereAreSelections">
+    <h4>Selections</h4>
+    <img src="http://placehold.it/75x75" class="selectionImage" />
+  </div>
+  <div class="selectionsArea" ng-show="thereAreSelections">
+    <h4>Selections</h4>
+    <div ng-repeat="selection in posts | filter:{selected: true}" class="selectionItem">
+      <div selection-image selection="selection"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 columns">
+      <p>Please, select the photos that you would like to appear in your custom photo album by clicking on the photos below.</p>
+    </div>
+  </div>
+  <div id="isotopeContainer" class="row" style="margin-top:40px;max-width:1400px;">
+    <div ng-repeat="post in posts | orderBy:'id':true | filter:{tag_for_deletion: false, verified: true, visible: true}" class="isotopeItem small-12 medium-4 large-3" style="padding:5px;cursor:pointer;">
+      <div class="layer" ng-click="toggleSelection(post)">
+        <img ng-src="{{ post.view_image }}" ng-show="post.isImage" ng-style="post.style" /> 
+        <i class="fa fa-check"  ng-show="!!post.selected"></i>
+      </div>
+    </div>
+  </div>
+  <!-- <p>{{ posts }}</p> -->
+</div>
