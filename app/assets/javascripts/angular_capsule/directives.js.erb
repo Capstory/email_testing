@@ -243,14 +243,6 @@ angular_capsule_app.directive("selectionImage", [function() {
 			selection: "="
 		},
 		transclude: true,
-		link: function(scope, el, attrs) {
-		},
-		controller: function($scope) {
-									$scope.toggleSelection = function(selection) {
-										selection.selected = !selection.selected;
-										selection.style = {"opacity": selection.selected ? 1 : 0.7 };
-										$scope.$emit("postSelected");
-									};
-		}
+		controller: "SelectionImageCtrl"
 	}
 }]);
