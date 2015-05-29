@@ -235,7 +235,7 @@ angular_capsule_app.directive("blankStateDirective", [function() {
 	};
 }]);
 
-angular_capsule_app.directive("selectionImage", ["$timeout", function($timeout) {
+angular_capsule_app.directive("selectionImage", [function() {
 	return {
 		restrict: "A",
 		templateUrl: "<%= asset_path 'angular_capsule/selection_image_directive.html' %>",

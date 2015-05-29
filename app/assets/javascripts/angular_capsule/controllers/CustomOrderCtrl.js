@@ -94,7 +94,8 @@ angular_capsule_app.controller("CustomOrderCtrl", ["$scope", "$rootScope", "$tim
 		if ( $scope.selectedCount > 0 ) {
 			$scope.thereAreSelections = true;
 		} else {
-			$scope.thereAreSelections = false;		}
+			$scope.thereAreSelections = false;		
+		}
 
 	});
 
