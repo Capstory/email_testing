@@ -37,10 +37,12 @@ angular_capsule_app.controller("CustomOrderCtrl", ["$scope", "$rootScope", "$tim
 	};
 
 	$scope.init = function() {
+		$scope.capsuleName = CapsuleData.getCapsuleNamedUrl();
+
 		$scope.posts = buildViewPosts(CapsuleData.getPosts());
 
-		if ( !!$cookies.photoSelections ) {
-			toggleSelectionsFromCookie($scope.posts, angular.fromJson($cookies.photoSelections));
+		if ( !!$cookies[$scope.capsuleName + "_photoSelections"] ) {
+			toggleSelectionsFromCookie($scope.posts, angular.fromJson($cookies[$scope.capsuleName + "_photoSelections"]));
 		}
 
 		$timeout(function() {
@@ -101,13 +103,13 @@ angular_capsule_app.controller("CustomOrderCtrl", ["$scope", "$rootScope", "$tim
 
 	$scope.toNextCoverPhoto = function() {
 		var selections = getSelectedPosts($scope.posts);		
-		$rootScope.selections = [];
+		$rootScope[$scope.capsuleName + "_selections"] = [];
 
 		angular.forEach(selections, function(post) {
-			$rootScope.selections.push(angular.copy(post, {}));
+			$rootScope[$scope.capsuleName + "_selections"].push(angular.copy(post, {}));
 		});
 
-		$cookies.photoSelections = angular.toJson(PostModel.getPostIds($rootScope.selections));
+		$cookies[$scope.capsuleName + "_photoSelections"] = angular.toJson(PostModel.getPostIds($rootScope[$scope.capsuleName + "_selections"]));
 
 		$location.path("/coverphoto");
 	};

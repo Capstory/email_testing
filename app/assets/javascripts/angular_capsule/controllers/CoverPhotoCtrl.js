@@ -22,11 +22,13 @@ angular_capsule_app.controller("CoverPhotoCtrl", ["$scope", "$rootScope", "$cook
 	};
 
 	$scope.init = function() {
-		if ( !!$rootScope.selections ) {
-			$scope.selections = buildImages($rootScope.selections, new Array); 
-		} else if ( !!$cookies.photoSelections ) {
+		$scope.capsuleName = CapsuleData.getCapsuleNamedUrl();
+
+		if ( !!$rootScope[$scope.capsuleName + "_selections"] ) {
+			$scope.selections = buildImages($rootScope[$scope.capsuleName + "_selections"], new Array); 
+		} else if ( !!$cookies[$scope.capsuleName + "_photoSelections"] ) {
 			capsuleData = CapsuleData.getPosts();		
-			var selectionIds = angular.fromJson($cookies.photoSelections);
+			var selectionIds = angular.fromJson($cookies[$scope.capsuleName + "_photoSelections"]);
 
 			$scope.selections = [];
 			angular.forEach(selectionIds, function(id) {
@@ -38,9 +40,9 @@ angular_capsule_app.controller("CoverPhotoCtrl", ["$scope", "$rootScope", "$cook
 			$scope.selections = [];
 		}
 
-		if ( !!$cookies.coverPhotoSelection && ( PostModel.getPostIds($scope.selections).indexOf(parseInt($cookies.coverPhotoSelection)) != -1 )) {
+		if ( !!$cookies[$scope.capsuleName + "_coverPhotoSelection"] && ( PostModel.getPostIds($scope.selections).indexOf(parseInt($cookies[$scope.capsuleName + "_coverPhotoSelection"])) != -1 )) {
 			angular.forEach($scope.selections, function(post) {
-				if ( post.id == $cookies.coverPhotoSelection ) {
+				if ( post.id == $cookies[$scope.capsuleName + "_coverPhotoSelection"] ) {
 					$scope.coverPhoto = setCurrentPhotoToSelected($scope.selections, post);
 				}
 			});
@@ -65,9 +67,9 @@ angular_capsule_app.controller("CoverPhotoCtrl", ["$scope", "$rootScope", "$cook
 	};
 
 	var setCoverPhotoCookie = function(selection) {
-		$cookies.coverPhotoSelection = selection.id;
+		$cookies[$scope.capsuleName + "_coverPhotoSelection"] = selection.id;
 
-		console.log("Cookie for Cover photo: ", $cookies.coverPhotoSelection);
+		console.log("Cookie for Cover photo: ", $cookies[$scope.capsuleName + "_coverPhotoSelection"]);
 	};
 
 	var setCurrentPhotoToSelected = function(posts, selection) {

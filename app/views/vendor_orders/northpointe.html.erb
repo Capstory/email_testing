@@ -1,0 +1,92 @@
+<div class="row">
+	<div class="small-12 medium-6 columns">
+		<h3>Build a Customized Photo Album</h3>
+		<h4>The steps are as follows:</h4>
+	</div>
+	<div class="small-12 medium-6 columns">
+		<h3>Northpointe Dance</h3>
+	</div>
+</div>
+<br>
+<div class="row">
+	<div class="small-12 columns">
+		<h5>1. Choose Photos</h5>
+		<%= image_tag "custom_orders/custom_order_horizontal_photos.png" %>
+	</div>
+</div>
+<div class="row">
+	<div class="small-12 columns">
+		<h5>2. Choose Cover Image</h5>
+		<%= image_tag "custom_orders/custom_order_cover_photo.png" %>
+	</div>
+</div>
+<div class="row">
+	<div class="small-12 columns">
+		<h5>3. Enter Order Information</h5>
+		<%= image_tag "custom_orders/custom_order_order_information.png" %>
+	</div>
+</div>
+<div class="row">
+	<div class="small-12 columns">
+		<h5>4. Submit and Receive Order</h5>
+		<%= image_tag "custom_orders/custom_order_process.png" %>
+	</div>
+</div>
+<div class="row" style="margin-top:100px;">
+	<div class="small-12 columns">
+		<h5>Select a Team and Start Choosing Photos</h5>
+		
+		<select id="teamSelect" onchange="setStartButtonState(event.target.value)">
+			<option>-- Choose a Team --</option>
+			<% @capsule_names.each do |name, url| %>
+				<option value="<%= url %>"><%= name %></option>
+			<% end %>
+		</select>
+	</div>
+</div>
+
+<div class="row" style="margin-top:40px;margin-bottom:100px;">
+	<div class="small-12 columns">
+		<button class="button expand" id="startButton">Go to Step 1</button>
+	</div>
+</div>
+<script>
+	var teamSelect = document.getElementById("teamSelect");
+	var startButton = document.getElementById("startButton");
+	var startButtonState;
+
+	function setStartButtonState(selection) {
+		startButton.classList.remove("disabled");
+
+		if ( selection == null || selection == "-- Choose a Team --") {
+			startButton.classList.add("disabled");
+			startButtonState = undefined;
+		} else {
+			startButton.classList.remove("disabled");
+			startButtonState = selection;
+		}
+	}
+
+	function getStartButtonState() {
+		return startButtonState;
+	};
+
+	function routeStartButton() {
+		var state = getStartButtonState();
+
+		if ( state == undefined ) { return; }
+
+		location = "/" + state + "/#albumcreator";
+	}
+
+	startButton.addEventListener("click", function() {
+		return routeStartButton();	
+	});
+	
+	window.onload = function() {
+		teamSelect.value = "-- Choose a Team --";
+		setStartButtonState();
+
+	};
+
+</script>

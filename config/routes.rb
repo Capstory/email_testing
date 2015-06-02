@@ -103,6 +103,7 @@ class CorporateConstraints
 end
 
 EmailTesting::Application.routes.draw do
+	match "orders/northpointe" => "vendor_orders#northpointe"
 
 	match "" => "homepages#corporate_page", constraints: CorporateConstraints.new
 	match "" => "homepages#code_for_a_cause", constraints: CodeForACauseConstraints.new
