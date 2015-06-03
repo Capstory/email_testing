@@ -1,4 +1,4 @@
-angular_capsule_app.controller("CustomOrderCtrl", ["$scope", "$rootScope", "$timeout", "$location", "$cookies", "CapsuleData", "PostModel", function($scope, $rootScope, $timeout, $location, $cookies, CapsuleData, PostModel) {
+angular_capsule_app.controller("CustomOrderCtrl", ["$scope", "$rootScope", "$timeout", "$location", "$cookies", "CapsuleData", "PostModel", "CapsuleModel", function($scope, $rootScope, $timeout, $location, $cookies, CapsuleData, PostModel, CapsuleModel) {
 	var buildViewPosts = function(posts) {
 		angular.forEach(posts, function(post) {
 			post.image = PostModel.cleanMissingImageUrl(post.image);
@@ -36,10 +36,19 @@ angular_capsule_app.controller("CustomOrderCtrl", ["$scope", "$rootScope", "$tim
 		});	
 	};
 
+	var setAllPostsToInvisible = function(posts, acc) {
+		angular.forEach(posts, function(post) {
+			post.visible = false;
+		});
+
+		return posts;
+	};
+
 	$scope.init = function() {
 		$scope.capsuleName = CapsuleData.getCapsuleNamedUrl();
 
-		$scope.posts = buildViewPosts(CapsuleData.getPosts());
+		var postsData = buildViewPosts(CapsuleData.getPosts()); 
+		$scope.posts = setAllPostsToInvisible(postsData, new Array);
 
 		if ( !!$cookies[$scope.capsuleName + "_photoSelections"] ) {
 			toggleSelectionsFromCookie($scope.posts, angular.fromJson($cookies[$scope.capsuleName + "_photoSelections"]));
@@ -112,5 +121,28 @@ angular_capsule_app.controller("CustomOrderCtrl", ["$scope", "$rootScope", "$tim
 		$cookies[$scope.capsuleName + "_photoSelections"] = angular.toJson(PostModel.getPostIds($rootScope[$scope.capsuleName + "_selections"]));
 
 		$location.path("/coverphoto");
+	};
+
+	var loadPhotos = function(n, c, posts) {
+		if ( n == 0 ) { return; }
+		if ( CapsuleModel.allPostsVisible(posts) ) { return; }
+
+		if ( !posts[c].visible ) {
+			posts[c].visible = true;
+			if ( !posts[c].tag_for_deletion && posts[c].verified ) { n -= 1; } 
+		}
+
+		return loadPhotos(n, (c - 1), posts);
+	}
+
+	$scope.loadPhotos = function() {
+		loadPhotos(9, ($scope.posts.length - 1), $scope.posts);
+
+		$timeout(function() {
+			$scope.iso = new Isotope("#isotopeContainer", {
+				itemSelector: ".isotopeItem",
+				layout: "masonry"
+			});
+		}, 500);
 	};
 }]);
