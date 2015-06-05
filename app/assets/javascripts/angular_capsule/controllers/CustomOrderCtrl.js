@@ -1,16 +1,20 @@
 angular_capsule_app.controller("CustomOrderCtrl", ["$scope", "$rootScope", "$timeout", "$location", "$cookies", "CapsuleData", "PostModel", "CapsuleModel", function($scope, $rootScope, $timeout, $location, $cookies, CapsuleData, PostModel, CapsuleModel) {
+	var buildViewPost = function(post) {
+		post.image = PostModel.cleanMissingImageUrl(post.image);
+		post.view_image = PostModel.buildSecureImageUrl(post, "capsule_width");
+		post.isImage = PostModel.checkPostIsImage(post);
+		post.thumb = PostModel.buildSecureImageUrl(post, "thumb");
+		post.capsule_height = PostModel.buildSecureImageUrl(post, "capsule_height");
+		post.style = {"opacity": 0.7};
+
+		if ( !angular.isDefined(post.visible) ) {
+			post.visible = true;
+		}
+	};
+
 	var buildViewPosts = function(posts) {
 		angular.forEach(posts, function(post) {
-			post.image = PostModel.cleanMissingImageUrl(post.image);
-			post.view_image = PostModel.buildSecureImageUrl(post, "capsule_width");
-			post.isImage = PostModel.checkPostIsImage(post);
-			post.thumb = PostModel.buildSecureImageUrl(post, "thumb");
-			post.capsule_height = PostModel.buildSecureImageUrl(post, "capsule_height");
-			post.style = {"opacity": 0.7};
-
-			if ( !angular.isDefined(post.visible) ) {
-				post.visible = true;
-			}
+			buildViewPost(post);
 		});
 
 		return posts;

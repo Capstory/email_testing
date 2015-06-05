@@ -76,13 +76,11 @@ angular_capsule_app.controller("CoverPhotoCtrl", ["$scope", "$rootScope", "$cook
 	};
 
 	var buildImages = function(posts, acc) {
-		if ( posts.length == 0 ) { return acc; }
+		angular.forEach(posts, function(post) {
+			buildImage(post);
+		});
 
-		var currentImage = posts.shift();
-
-		acc = acc.concat(buildImage(currentImage));
-		
-		return buildImages(posts, acc);
+		return posts
 	};
 
 	$scope.init = function() {
