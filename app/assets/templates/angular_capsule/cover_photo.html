@@ -48,7 +48,8 @@
   </div>
   <div class="row">
     <div class="small-12 columns" style="text-align:center;">
-      <img src="/images/cover_photo_icons.jpg" width="70%"/>
+      <!-- <img src="/images/cover_photo_icons.jpg" width="70%"/> -->
+      <img src="/images/custom_order_cover_photo_small.png" width="80%" />
       <!-- <p>{{ selections }}</p> -->
     </div>
   </div>
@@ -67,13 +68,14 @@
           <button class="button small pull-right">Save Selection & Proceed to Order Form</button>
         </div>
       </div>
+      <!-- <p>{{ coverPhoto.imageDimensions }}</p> -->
       <div class="row">
         <div class="small-12 medium-6 columns coverPhotoArea">
           <span class="coverPhotoHelper"></span>
           <img ng-src="{{ coverPhoto.coverImage }}" class="coverPhoto" /> 
         </div>
         <div class="small-12 medium-6 columns selectionArea" id="selectionContainer">
-          <div ng-repeat="selection in selections" class="selectionItem">
+          <div ng-repeat="selection in selections | orderBy:'id':true | filter:{visible: true}" class="selectionItem">
             <div class="coverLayer" ng-click="selectForCover(selection)">
               <img ng-src="{{ selection.thumb }}" ng-style="selection.style" />
               <i class="fa fa-check"  ng-show="!!selection.coverPhotoSelection"></i>
