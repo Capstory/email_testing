@@ -103,7 +103,15 @@ class CorporateConstraints
 end
 
 EmailTesting::Application.routes.draw do
-	match "orders/northpointe" => "vendor_orders#northpointe"
+	# match "orders/northpointe" => "album_orders#northpointe"
+	# match "orders/billing" => "album_orders#order_details"
+	# resources :album_orders, path: "orders"
+
+	scope "/orders" do
+		match "northpointe" => "album_orders#northpointe"
+		match "billing" => "album_orders#billing"
+		match "quantity" => "album_orders#quantity"
+	end
 
 	match "" => "homepages#corporate_page", constraints: CorporateConstraints.new
 	match "" => "homepages#code_for_a_cause", constraints: CodeForACauseConstraints.new
