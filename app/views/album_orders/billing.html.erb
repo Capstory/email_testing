@@ -124,14 +124,14 @@
 	<div class="small-12 small-centered columns">
 		<ul class="breadcrumbs">
 			<li><%= link_to "Select", "/orders/northpointe" %></li>
-			<li><%= link_to "Quantity", "/orders/quantity" %></li>
+			<li><%= link_to "Quantity", "/orders/quantity?order_id=#{ @order.id }" %></li>
 			<li class="current">Shipping and Billing</li>
 			<li class="unavailable">Place Order</li>
 		</ul>
 	</div>
 </div>
 
-	<%= form_tag(controller: "charges", action: "order_details") do %>
+<%= form_tag("/orders/details") do %>
 <div class="row" style="margin-top:20px;">
 		<div class="small-6 columns">
 			<h3 class="subheader">Shipping Details</h3>	
@@ -234,6 +234,7 @@
 				</div>
 			</div>
 
+			<%= hidden_field_tag :order_id, @order.id %>
 			<%= hidden_field_tag :transaction_token, nil, id: "transaction_token" %>
 			<%= hidden_field_tag :last_4, nil, id: "last4" %>
 			<%= hidden_field_tag :card_type, nil, id: "cardType" %>
@@ -301,15 +302,33 @@
 	<div class="small-12 columns">
 		<h3 class="subheader">Order Summary</h3>
 		<div class="row panel">
-			<div class="small-6 medium-9 columns">
-				<p class="subheader">Package</p>
-				<%# <h4>The <%= package_name_prep(@package[:name].titleize) %1> Package</h4> %>
-          <div class="spacer60"></div>
-			</div>
-			<div class="small-6 medium-3 columns">
-				<div class="pull-right">
-					<p class="subheader">Price</p>
-					<%# <h4>$<%= @package[:price] %1></h4> %>	
+			<div class="small-12 columns">
+				<div class="row">
+					<div class="small-6 medium-9 columns">
+						<p class="subheader">Order</p>
+					</div>
+					<div class="small-6 medium-3 columns">
+						<div class="pull-right">
+							<p class="subheader">Price</p>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="small-6 medium-9 columns">
+						<%# <p class="subheader">Order</p> %>
+						<%# <h4>The <%= package_name_prep(@package[:name].titleize) %1> Package</h4> %>
+						<h5>Hard Covers: <%= @order.hard_cover_quantity %></h5>
+						<h5>Soft Covers: <%= @order.soft_cover_quantity %></h5>
+						<div class="spacer60"></div>
+					</div>
+					<div class="small-6 medium-3 columns">
+						<div class="pull-right">
+							<%# <p class="subheader">Price</p> %>
+							<%# <h4>$<%= @package[:price] %1></h4> %>	
+							<h5><%= number_to_currency @order.hard_cover_total %></h5>
+							<h5><%= number_to_currency @order.soft_cover_total %></h5>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -322,6 +341,7 @@
 				<div class="pull-right">
 					<h4 class="subheader">Total</h4>
 					<%# <h3>$<%= @package[:price] %1></h3> %>
+					<h3><%= number_to_currency @order.total %></h3>
 				</div>
 			</div>
 		</div>

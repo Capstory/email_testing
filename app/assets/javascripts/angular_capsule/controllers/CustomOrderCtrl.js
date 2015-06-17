@@ -116,6 +116,7 @@ angular_capsule_app.controller("CustomOrderCtrl", ["$scope", "$rootScope", "$tim
 
 	$scope.toNextCoverPhoto = function() {
 		var selections = getSelectedPosts($scope.posts);		
+		// console.log("Selected Posts: ", selections.length);
 		$rootScope[$scope.capsuleName + "_selections"] = [];
 
 		angular.forEach(selections, function(post) {
@@ -123,6 +124,9 @@ angular_capsule_app.controller("CustomOrderCtrl", ["$scope", "$rootScope", "$tim
 		});
 
 		$cookies[$scope.capsuleName + "_photoSelections"] = angular.toJson(PostModel.getPostIds($rootScope[$scope.capsuleName + "_selections"]));
+		
+		// console.log("Root Selections: ", $rootScope[$scope.capsuleName + "_selections"]);
+		// console.log("Cookie Selections: ", $cookies[$scope.capsuleName + "_photoSelections"]);
 
 		$location.path("/coverphoto");
 	};

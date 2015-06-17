@@ -111,6 +111,11 @@ EmailTesting::Application.routes.draw do
 		match "northpointe" => "album_orders#northpointe"
 		match "billing" => "album_orders#billing"
 		match "quantity" => "album_orders#quantity"
+		match "details" => "album_orders#order_details"
+		match "confirmation" => "album_orders#order_confirmation"
+		match "thank_you" => "album_orders#thank_you"
+		match "already_paid" => "album_orders#already_paid"
+		resources :album_orders
 	end
 
 	match "" => "homepages#corporate_page", constraints: CorporateConstraints.new

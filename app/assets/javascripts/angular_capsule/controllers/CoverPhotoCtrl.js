@@ -1,4 +1,4 @@
-angular_capsule_app.controller("CoverPhotoCtrl", ["$scope", "$rootScope", "$cookies", "$timeout", "CapsuleData", "PostModel", "CapsuleModel", function($scope, $rootScope, $cookies, $timeout, CapsuleData, PostModel, CapsuleModel) {
+angular_capsule_app.controller("CoverPhotoCtrl", ["$scope", "$rootScope", "$cookies", "$timeout", "$http", "$q", "CapsuleData", "PostModel", "CapsuleModel", function($scope, $rootScope, $cookies, $timeout, $http, $q, CapsuleData, PostModel, CapsuleModel) {
 	var capsuleData;
 
 	var getImageDimensions = function(imageUrl) {
@@ -85,6 +85,7 @@ angular_capsule_app.controller("CoverPhotoCtrl", ["$scope", "$rootScope", "$cook
 
 	$scope.init = function() {
 		$scope.capsuleName = CapsuleData.getCapsuleNamedUrl();
+		$scope.capsuleSelections = $cookies[$scope.capsuleName + "_photoSelections"];
 
 		var posts = setAllPostsToInvisible(buildImages(CapsuleData.getPosts(), new Array));
 		$scope.selections = filterImages(posts, {"tag_for_deletion": false, "verified": true, "adequateSize": true});
@@ -204,4 +205,43 @@ angular_capsule_app.controller("CoverPhotoCtrl", ["$scope", "$rootScope", "$cook
 	}
 
 	angular.element("#selectionContainer").on("scroll", checkScrolling);
+
+	var createOrder = function(contentObject) {
+		var deferred = $q.defer();		
+
+		$http({
+			method: "POST",
+			url: "/orders/album_orders.json",
+			data: contentObject
+		})
+		.success(function(data, status, headers) {
+			deferred.resolve(data);
+		})
+		.error(function(data, status, headers) {
+			deferred.reject(data);
+		});
+
+		return deferred.promise;
+	};
+
+	$scope.saveSelectionAndProceed = function(selections, coverPhoto) {
+		// console.log("Selections: ", PostModel.getPostIds(selections));
+		// console.log("Cover: ", coverPhoto.id);
+
+		var contentObject = {
+			selection_ids: JSON.parse(selections),
+			cover_photo_id: coverPhoto.id,
+			capsule_name: $scope.capsuleName
+		};
+
+		console.log(contentObject);
+
+		createOrder(contentObject).then(function(data) {
+			console.log(data);
+			location = "/orders/quantity?order_id=" + data.id;
+		}, function(data) {
+			console.log(data);
+		});
+
+	};
 }]);

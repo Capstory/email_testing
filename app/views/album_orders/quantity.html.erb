@@ -3,7 +3,11 @@
 		<ul class="breadcrumbs">
 			<li><%= link_to "Select", "/orders/northpointe" %></li>
 			<li class="current">Quantity</li>
-			<li class="unavailable">Shipping and Billing</li>
+			<% if @order.quantities %>
+				<li><%= link_to "Shipping and Billing", "/orders/billing?order_id=#{ @order.id }" %></li>
+			<% else %>
+				<li class="unavailable">Shipping and Billing</li>
+			<% end %>
 			<li class="unavailable">Place Order</li>
 		</ul>
 	</div>
@@ -33,7 +37,7 @@
 						<p class="pull-right">Total:</p>
 					</div>
 					<div class="small-6 columns">
-						<input type="number" value="1" onchange="adjustTotal()" id="hardCoverInput" />
+						<input type="number" value="1" onchange="updateTotal()" id="hardCoverInput" />
 						<p>$ <span id="hardCoverTotal" class="pull-right"></span></p>
 					</div>
 				</div>
@@ -53,7 +57,7 @@
 						<p class="pull-right">Total:</p>
 					</div>
 					<div class="small-6 columns">
-						<input type="number" value="1" onchange="adjustTotal()" id="softCoverInput" />
+						<input type="number" value="1" onchange="updateTotal()" id="softCoverInput" />
 						<p>$ <span id="softCoverTotal" class="pull-right"></span></p>
 					</div>
 				</div>
@@ -63,12 +67,12 @@
 </div>
 <div class="row">
 	<div class="small-12 columns">
-		<h3 class="pull-right">Order Total <small>(w/ discount applied)</small> - $<span id="totalCounter"></span></h3>
+		<h3 class="pull-right">Order Total <small>(w/ discount applied)</small>  $<span id="totalCounter"></span></h3>
 	</div>
 </div>
 <div class="row" style="margin-top:50px;margin-bottom:50px;">
 	<div class="small-6 medium-6 columns">
-		<a href=""><i class="fa fa-long-arrow-left"></i> Back to Photo Selection</a>
+		<a href="/orders/northpointe"><i class="fa fa-long-arrow-left"></i> Back to Photo Selection</a>
 	</div>
 	<div class="small-6 medium-6 columns">
 		<button class="btn btn-primary pull-right" onclick="saveAndAdvance()">Confirm</button>
@@ -80,9 +84,22 @@
 	var hardCoverTotal = document.getElementById("hardCoverTotal");
 	var softCoverTotal = document.getElementById("softCoverTotal");
 	var totalCounter = document.getElementById("totalCounter");	
-
 	var hardCoverPrice = 35.00;
 	var softCoverPrice = 25.00;
+
+	<% if @order.quantities %>
+		var orderObject = {
+			hard_cover_total: <%= @order.quantities["hard_covers"]["total"] %>,
+			hard_cover_quantity: <%= @order.quantities["hard_covers"]["quantity"] %>,
+			soft_cover_total: <%= @order.quantities["soft_covers"]["total"] %>,
+			soft_cover_quantity: <%= @order.quantities["soft_covers"]["quantity"] %>,
+			total: <%= @order.total %>,
+			order_id: <%= @order.id %>
+		};
+	<% else %>
+		var orderObject = getTotals();
+	<% end %>
+
 
 	function calculatePrice(count, price) {
 		var total = 0.0;
@@ -95,32 +112,75 @@
 				total += (price * 0.8);
 			}
 			count -= 1;
+
 		}
 
 		return total;
 	}
 
-	function adjustTotal() {
+	function getTotals() {
 		var hardQuant = hardCoverInput.value;
 		var softQuant = softCoverInput.value;
 
-		console.log("Hard: ", hardQuant);
-		console.log("Soft: ", softQuant);
+		<%# console.log("Hard: ", hardQuant); %>
+		<%# console.log("Soft: ", softQuant); %>
+
+		<%# console.log("Hard Price: ", hardCoverPrice); %>
+		<%# console.log("Soft Price: ", softCoverPrice); %>
 
 		var hardTotal = calculatePrice(hardQuant, hardCoverPrice);
 		var softTotal = calculatePrice(softQuant, softCoverPrice);
 
-		hardCoverTotal.innerHTML = hardTotal;
-		softCoverTotal.innerHTML = softTotal;
-		totalCounter.innerHTML = hardTotal + softTotal;
+		return {
+			hard_cover_total: hardTotal,
+			hard_cover_quantity: hardQuant,
+			soft_cover_total: softTotal,
+			soft_cover_quantity: softQuant,
+			total: hardTotal + softTotal,
+			order_id: <%= @order.id %>
+		}; 
+	}
+
+	function adjustTotal(pricing) {
+		orderObject = pricing;
+
+		hardCoverTotal.innerHTML = pricing.hard_cover_total;
+		hardCoverInput.value = pricing.hard_cover_quantity;
+		softCoverTotal.innerHTML = pricing.soft_cover_total;
+		softCoverInput.value = pricing.soft_cover_quantity;
+		totalCounter.innerHTML = pricing.total;
 	}
 
 	function saveAndAdvance() {
-		location = "/orders/billing";
+		<%# location = "/orders/billing"; %>
+		$.ajax({
+			url: "/orders/album_orders/" + orderObject.id,
+			method: "PUT",
+			dataType: "json",
+			data: orderObject,
+			success: function(data, status, xhr) {
+				console.log("Success: ", data);
+				location = "/orders/billing?order_id=" + data.id;
+			},
+			error: function(xhr, status, error){
+				console.log("Error: ", error, ", with status: ", status); 
+			}
+		});
+	}
+
+	function updateTotal() {
+		var pricingObject = getTotals();
+		adjustTotal(pricingObject);
 	}
 
 	window.onload = function() {
-		adjustTotal();
+		<%# adjustTotal(getTotals()); %>
+		<%# updateTotal(); %>
+		if ( orderObject != undefined ) {
+			adjustTotal(orderObject);
+		} else {
+			updateTotal();
+		}
 	};
 
 </script>

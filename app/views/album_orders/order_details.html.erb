@@ -1,0 +1,131 @@
+<div class="row">
+	<div class="small-12 small-centered columns">
+		<ul class="breadcrumbs">
+			<li><%= link_to "Select", "/orders/northpointe" %></li>
+			<li><%= link_to "Quantity", "/orders/quantity?order_id=#{ @order.id }" %></li>
+			<li><%= link_to "Shipping and Billing", "/orders/billing?order_id=#{ @order.id }" %></li>
+			<li class="unavailable">Place Order</li>
+		</ul>
+	</div>
+</div>
+<style>
+	ul.vcard {
+		border: none;
+	}
+</style>
+<div class="row">
+	<div class="small-12 medium-4 columns">
+		<h3 class="subheader">Shipping Address</h3>
+		<hr>
+		<ul class="vcard">
+			<li class="fn"><%= @order.address["full_name"] %></li>
+			<li class="street-address"><%= @order.address["shipping_address_1"] %></li>
+			<li class="street-address"><%= @order.address["shipping_address_2"] %></li>
+			<li class="state"><%= @order.address["shipping_city"] %>, <%= @order.address["shipping_state"] %> <%= @order.address["shipping_zip"] %></li>
+			<li class="email"><%= link_to @order.email %></li>
+		</ul>
+	</div>
+	<div class="small-12 medium-4 columns">
+		<h3 class="subheader">Billing Address</h3>
+		<hr>
+		<ul class="vcard">
+			<li class="fn"><%= @order.address["full_name"] %></li>
+			<li class="street-address"><%= @order.address["billing_address_1"] %></li>
+			<li class="street-address"><%= @order.address["billing_address_2"] %></li>
+			<li class="state"><%= @order.address["billing_city"] %>, <%= @order.address["billing_state"] %> <%= @order.address["billing_zip"] %></li>
+		</ul>
+	</div>
+	<div class="small-12 medium-4 columns">
+		<h3 class="subheader">Payment Details</h3>
+		<hr>
+		<ul class="vcard">
+			<li>Credit Card No: **** **** **** <%= @order.customer_info["last_4"] %></li>
+			<li>Credit Card Type: <%= @order.customer_info["card_type"] %></li>
+			<li>Credit Card Expiration: <%= @order.customer_info["card_expiration"] %></li>
+		</ul>
+	</div>
+</div>
+<%# <div class="row"> %>
+<%# 	<div class="small-12 columns panel"> %>
+<%# 		<h3><small>Order Details</small></h3> %>
+<%# 		<div class="row"> %>
+			<%# <div class="small-12 medium-6 columns"> %>
+			<%# 	<h4> Package</h4> %>
+			<%# </div> %>
+			<%# <div class="small-12 medium-6 columns"> %>
+			<%# 	<h4 class="pull-right">$<%= @order.* %1></h4> %>
+			<%# </div> %>
+		<%# </div> %>
+	<%# </div> %>
+<%# </div> %>
+<div class="row" style="margin-bottom:100px;">
+	<div class="small-12 columns">
+		<h3 class="subheader">Order Summary</h3>
+		<div class="row panel">
+			<div class="small-12 columns">
+				<div class="row">
+					<div class="small-6 medium-9 columns">
+						<p class="subheader">Order</p>
+					</div>
+					<div class="small-6 medium-3 columns">
+						<div class="pull-right">
+							<p class="subheader">Price</p>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="small-6 medium-9 columns">
+						<%# <p class="subheader">Order</p> %>
+						<%# <h4>The <%= package_name_prep(@package[:name].titleize) %1> Package</h4> %>
+						<h5>Hard Covers: <%= @order.hard_cover_quantity %></h5>
+						<h5>Soft Covers: <%= @order.soft_cover_quantity %></h5>
+						<div class="spacer60"></div>
+					</div>
+					<div class="small-6 medium-3 columns">
+						<div class="pull-right">
+							<%# <p class="subheader">Price</p> %>
+							<%# <h4>$<%= @package[:price] %1></h4> %>	
+							<h5><%= number_to_currency @order.hard_cover_total %></h5>
+							<h5><%= number_to_currency @order.soft_cover_total %></h5>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row" style="margin-top:50px;">
+			<div class="small-6 medium-9 columns">
+				<p class="subheader"><em>All Taxes and Shipping Fees are Included</em></p>
+			</div>
+			<div class="small-6 medium-3 columns">
+				<%# <hr> %>
+				<div class="pull-right">
+					<h4 class="subheader">Total</h4>
+					<%# <h3>$<%= @package[:price] %1></h3> %>
+					<h3><%= number_to_currency @order.total %></h3>
+				</div>
+			</div>
+		</div>
+		<div class="row" style="margin-top:50px;">
+			<hr>
+			<div class="small-6 medium-9 columns">
+				<p class="subheader">By submitting an order with Capstory, I agree to the <%= link_to "Terms of Use", "/legal/terms_of_use" %> and <%= link_to "Privacy Policy", "/legal/privacy_policy" %>.</p>
+				<p class="subheader">If you have any questions, please contact us anytime at 513-401-5572 or email us at <%= link_to "hello@capstory.me", "mailto:hello@capstory.me" %></p>
+			</div>
+			<div class="small-6 medium-3 columns">
+				<%# <a class="button pull-right" onclick="activateStripe()"></a> %>
+			</div>
+		</div>
+<div class="row" style="margin-top:50px;">
+	<div class="small-6 medium-6 columns">
+		<a href="/orders/billing?order_id=<%= @order.id %>"><i class="fa fa-long-arrow-left"></i> Back to Shipping and Billing</a>
+	</div>
+	<div class="small-6 medium-6 columns">
+		<%= form_tag("/orders/confirmation") do %>
+			<%= hidden_field_tag :order_id, @order.id %>
+			<%= submit_tag "Submit Order", class:"button pull-right" %>
+		<% end %>
+	</div>
+	<%# <div class="small-6 columns"> %>
+		<%# <%= link_to "Back", :back, class: "button" %1> %>
+	<%# </div> %>
+</div>
