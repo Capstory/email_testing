@@ -64,7 +64,7 @@ class AlbumOrdersController < ApplicationController
 		@order.update_order_details(params)
 		@order.save
 
-		render "order_details", layout: "application"
+		# render "order_details", layout: "application"
 	end
 
 	def order_confirmation

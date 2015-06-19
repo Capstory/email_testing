@@ -70,13 +70,27 @@
 		<h3 class="pull-right">Order Total <small>(w/ discount applied)</small>  $<span id="totalCounter"></span></h3>
 	</div>
 </div>
-<div class="row" style="margin-top:50px;margin-bottom:50px;">
+<div class="row" style="margin-top:50px;">
 	<div class="small-6 medium-6 columns">
 		<a href="/orders/northpointe"><i class="fa fa-long-arrow-left"></i> Back to Photo Selection</a>
 	</div>
 	<div class="small-6 medium-6 columns">
 		<button class="btn btn-primary pull-right" onclick="saveAndAdvance()">Confirm</button>
 	</div>
+</div>
+
+<div class="row" style="margin-top:40px;margin-bottom:100px;">
+	<div class="small-12 columns">
+		<a href="#" data-reveal-id="multipleOrdersModal">Want to order albums from more than one team?</a>
+	</div>
+</div>
+
+<div id="multipleOrdersModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+	<h2 id="modalTitle">Multiple Orders</h2>
+	<p class="lead">What if I want to order albums from more than one team?</p>
+		<p >To order albums for different teams, you must go through the ordering and checkout process for each team. All taxes are included in each order and shipping is covered. So, there is no price difference or cost to going through the checkout process numerous times. All the albums you order will be delivered together.</p>
+		<p >We apologize for any inconvenience. If you have any questions or concerns please email us at <a href="mailto:hello@capstory.me">hello@capstory.me</a>. We will do everything we can to help you receive the albums that you desire.</p>
+	<a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>
 <script>
 	var hardCoverInput = document.getElementById("hardCoverInput");
@@ -181,6 +195,10 @@
 		} else {
 			updateTotal();
 		}
+
+		$zopim.livechat.window.onShow(function() {
+			sendSlackChatStarted();
+		});
 	};
 
 </script>

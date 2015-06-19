@@ -108,6 +108,11 @@
 
 	};
 
+	window.onload = function() {
+		$zopim.livechat.window.onShow(function() {
+			sendSlackChatStarted();
+		});
+	};
 </script>
 <style>
 	div.errorMessage {
@@ -131,7 +136,7 @@
 	</div>
 </div>
 
-<%= form_tag("/orders/details") do %>
+<%= form_tag("/orders/details?order_id=#{ @order.id }") do %>
 <div class="row" style="margin-top:20px;">
 		<div class="small-6 columns">
 			<h3 class="subheader">Shipping Details</h3>	

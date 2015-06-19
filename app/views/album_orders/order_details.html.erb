@@ -1,3 +1,15 @@
+<style>
+	ul.vcard {
+		border: none;
+	}
+</style>
+<script>
+	window.onload = function() {
+		$zopim.livechat.window.onShow(function() {
+			sendSlackChatStarted();
+		});
+	};
+</script>
 <div class="row">
 	<div class="small-12 small-centered columns">
 		<ul class="breadcrumbs">
@@ -8,11 +20,6 @@
 		</ul>
 	</div>
 </div>
-<style>
-	ul.vcard {
-		border: none;
-	}
-</style>
 <div class="row">
 	<div class="small-12 medium-4 columns">
 		<h3 class="subheader">Shipping Address</h3>
@@ -128,4 +135,17 @@
 	<%# <div class="small-6 columns"> %>
 		<%# <%= link_to "Back", :back, class: "button" %1> %>
 	<%# </div> %>
+</div>
+<div class="row" style="margin-top:40px;margin-bottom:100px;">
+	<div class="small-12 columns">
+		<a href="#" data-reveal-id="multipleOrdersModal">Want to order albums from more than one team?</a>
+	</div>
+</div>
+
+<div id="multipleOrdersModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+	<h2 id="modalTitle">Multiple Orders</h2>
+	<p class="lead">What if I want to order albums from more than one team?</p>
+		<p >To order albums for different teams, you must go through the ordering and checkout process for each team. All taxes are included in each order and shipping is covered. So, there is no price difference or cost to going through the checkout process numerous times. All the albums you order will be delivered together.</p>
+		<p >We apologize for any inconvenience. If you have any questions or concerns please email us at <a href="mailto:hello@capstory.me">hello@capstory.me</a>. We will do everything we can to help you receive the albums that you desire.</p>
+	<a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>

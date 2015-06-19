@@ -1,0 +1,36 @@
+<script type="text/javascript">
+	window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+			d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+			_.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
+			$.src="//v2.zopim.com/?36OJhPQINhm06l7JUpEtu7gSqSg536eO";z.t=+new Date;$.
+			type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
+
+	function sendSlackNotif() {
+		$.ajax({
+			url: "https://slack.com/api/chat.postMessage",
+			method: "POST",
+			data: "token=<%= Rails.configuration.slack %>&channel=#northpointe-chat&text=" + encodeURIComponent("Someone has arrived on the Northpointe Order Page"),
+			success: function(data, status, xhr) {
+				console.log("Success: ", data);
+			},
+			error: function(xhr, status, error) {
+				console.log("Error: ", error);
+			}
+		});
+	}
+
+	function sendSlackChatStarted() {
+		$.ajax({
+			url: "https://slack.com/api/chat.postMessage",
+			method: "POST",
+			data: "token=<%= Rails.configuration.slack %>&channel=#northpointe-chat&text=" + encodeURIComponent("Someone wants to chat on the Northpointe Dance Order Page"),
+			success: function(data, status, xhr) {
+				console.log("Success: ", data);
+			},
+			error: function(xhr, status, error) {
+				console.log("Error: ", error);
+			}
+		});
+	}
+
+	</script>
