@@ -21,7 +21,7 @@
     <%= csrf_meta_tags %>
 		<%= filepicker_js_include_tag %>
 		<script type="text/javascript">if (window.location.hash == '#_=_')window.location.hash = '';</script>
-		<%= render partial: "album_orders/zopim" %>
+		<%= render partial: "album_orders/zopim" if ( Rails.env.production? || Rails.env.staging? ) %>
   </head>
 
   <body>

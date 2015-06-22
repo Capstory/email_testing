@@ -5,9 +5,11 @@
 </style>
 <script>
 	window.onload = function() {
-		$zopim.livechat.window.onShow(function() {
-			sendSlackChatStarted();
-		});
+		<% if Rails.env.production? || Rails.env.staging? %>
+			$zopim.livechat.window.onShow(function() {
+				sendSlackChatStarted();
+			});
+		<% end %>
 	};
 </script>
 <div class="row">

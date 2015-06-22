@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+	<body>
+		<h3>Thank you for ordering!</h3>
+		<%= simple_format AlbumOrdersMailerHelper.print_capsule(@order) %>
+		<%= simple_format AlbumOrdersMailerHelper.print_shipping_address(@order) %>
+		<%= simple_format AlbumOrdersMailerHelper.print_billing_address(@order) %>
+		<%= simple_format AlbumOrdersMailerHelper.print_billing_details(@order) %>
+		<%= simple_format AlbumOrdersMailerHelper.print_order_details(@order) %>
+
+		<p>If you have any questions of concerns, please contact us at <a href="mailto:hello@capstory.me">hello@capstory.me</a>. We are happy to talk. We will make sure that your order get processed promptly and you receive exactly what you ordered.</p>
+		<h3>
+			Sincerely,</br>
+			The Capstory Team
+		</h3>
+	</body>
+</html>

@@ -103,13 +103,15 @@
 		teamSelect.value = "-- Choose a Team --";
 		setStartButtonState();
 
-		$zopim.livechat.setOnConnected(function() {
-			sendSlackNotif();
-		});
+		<% if Rails.env.production? || Rails.env.staging? %>
+			$zopim.livechat.setOnConnected(function() {
+				sendSlackNotif();
+			});
 
-		$zopim.livechat.window.onShow(function() {
-			sendSlackChatStarted();
-		});
+			$zopim.livechat.window.onShow(function() {
+				sendSlackChatStarted();
+			});
+		<% end %>
 	};
 
 </script>

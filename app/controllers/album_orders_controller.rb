@@ -97,25 +97,21 @@ class AlbumOrdersController < ApplicationController
 		end
 
 		order.paid = stripe_charge["paid"]
+		order.save
 
 		if error_hash.empty?
-				# charge = Charge.create(name: customer[:full_name], email: customer[:email], customer_hash: customer)
-				# PaymentMailer.admin_payment_confirmation(customer).deliver
-				# PaymentMailer.client_payment_confirmation(customer).deliver
-
-			unless order.save
-				problem = "The payment was made but the charge wasn't saved to the database"
-				# PaymentMailer.admin_error_notification(customer, problem).deliver
-			end
 
 			cookie_name = "#{order.contents['capsule_name']}_order".to_sym
 			cookies.delete cookie_name
+
+			AlbumOrdersMailer.customer_notification(order).deliver
+			AlbumOrdersMailer.admin_notification(order).deliver
 
 			flash[:success] = "Transaction Successful"
 			redirect_to "/orders/thank_you?order_id=#{ order.id }"
 		else
 				# charge = Charge.create(name: customer[:full_name], email: customer[:email], customer_hash: customer, error_hash: error_hash)
-				problem = order.save ? "There was an issue with the payment." : "There was an issue with the payment and the charge was not properly saved in the database."
+				# problem = order.save ? "There was an issue with the payment." : "There was an issue with the payment and the charge was not properly saved in the database."
 				# PaymentMailer.admin_error_notification(customer, problem, error_hash).deliver
 
 			flash[:error] = "Unable to process the payment."

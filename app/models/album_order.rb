@@ -6,6 +6,7 @@ class AlbumOrder < ActiveRecord::Base
 	serialize :quantities, JSON
 	serialize :customer_info, JSON
 
+
 	def hard_cover_quantity
 		self.quantities["hard_covers"]["quantity"]
 	end
