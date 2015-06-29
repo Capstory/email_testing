@@ -1,0 +1,55 @@
+<script>
+	album_orders_app.factory("OrdersData", [function() {
+		var orders = <%= @orders.to_json(methods: [:inner_file_url, :cover_photo_url]).html_safe %>;
+		var filterOrdersByStatus = function(orders, status) {
+			var i;
+			var results = [];
+
+			for (i = 0; i < orders.length; i++) {
+				if ( orders[i].status == status ) {
+					results.push(orders[i]);
+				}
+			}
+
+			return results;
+		};
+
+		var getOrder = function(orderId) {
+			var i;
+
+			for (i = 0; i < orders.length; i++) {
+				if ( orders[i].id == orderId ) {
+					return orders[i];
+				}
+			}
+
+			return false;
+		};
+
+		var updateOrder = function(order) {
+			var i;
+
+			for (i = 0; i < orders.length; i++) {
+				if (orders[i].id == order.id) {
+					orders.splice(i, 1, order);
+					return true;
+				}
+			}
+
+			return false;
+		};
+
+		return {
+			getOrders: function() {
+				return orders;
+			},
+			filterOrdersByStatus: filterOrdersByStatus,
+			getOrder: function(orderId) {
+				var order = getOrder(orderId);
+				return order;
+			},
+			updateOrder: updateOrder
+		};
+	}]);
+</script>
+<div ng-view style="margin-top:40px;"></div>

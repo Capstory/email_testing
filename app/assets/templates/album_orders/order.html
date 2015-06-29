@@ -1,0 +1,132 @@
+<div app-navigation></div>
+<div ng-init="init()">
+  <div class="row">
+    <div class="small-12 columns" style="text-align:center;padding-bottom:40px;">
+      <h1>Status: {{ order.printableStatus }}</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 medium-6 columns">
+      <h4>Order ID: {{ order.id }}</h4>
+      <h4>Capsule: {{ order.contents.capsule_name }}</h4>
+    </div>
+    <div class="small-12 medium-6 columns">
+      <div ng-show="order.status == 'new'">
+        <div class="row">
+          <div class="small-6 columns">
+            <p style="color: red;">This order has not yet been moved to "In Progress"</p>
+          </div>
+          <div class="small-6 columns">
+            <button class="button default expand" ng-click="updateStatus(order.id, 'progress')">Move To In Progress</button>
+          </div>
+        </div>
+      </div>
+      <div ng-show="order.status == 'progress'">
+        <div class="row">
+          <div class="small-6 columns">
+            <button class="button secondary expand" ng-click="updateStatus(order.id, 'new')">Revert to New</button>
+          </div>
+          <div class="small-6 columns">
+            <button class="button default expand" ng-click="updateStatus(order.id, 'finished')">Move To Finished</button>
+          </div>
+        </div>
+      </div>
+      <div ng-show="order.status == 'finished'">
+        <div class="row">
+          <div class="small-6 columns">
+            <button class="button default expand" ng-click="updateStatus(order.id, 'progress')">Revert to In Progress</button>
+          </div>
+          <div class="small-6 columns">
+            <p>This order is marked as finished</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 columns" style="text-align:center;padding-top:40px;padding-bottom:20px;">
+      <h2>Finished Files</h2>
+    </div>
+  </div>
+  <div class="row" style="margin-bottom:60px;">
+    <div class="small-12 medium-6 columns">
+      <div class="row" ng-hide="order.coverPhotoPresent">
+        <div class="small-6 columns">
+          <input id="coverPhotoInput" type="file" onchange="angular.element(this).scope().updateInputState(this)" /> 
+        </div>
+        <div class="small-6 columns" ng-hide="coverPhotoInputPopulated">
+          <button class="button expand disabled">Upload Cover Photo File</button> 
+        </div>
+        <div class="small-6 columns" ng-show="!!coverPhotoInputPopulated">
+          <button ng-click="uploadFile(order.id, 'cover')" class="button expand">Upload Cover Photo File</button> 
+        </div>
+      </div>
+      <div class="row" ng-show="order.coverPhotoPresent" style="text-align:center;">
+        <div class="small-6 columns">
+          <a href="{{ order.cover_photo_url }}" target="_blank"><i class="fa fa-file-o fa-4x"></i></a>
+          <p><small>{{ order.cover_photo_file_name }}</small></p>
+        </div>
+        <div class="small-6 columns">
+          <p>Cover Photo File</p>
+          <a href="{{ order.cover_photo_url }}" target="_blank"><button class="button expand">Download</button></a>
+          <a ng-click="deleteFile(order.id, 'cover')">Delete</a>
+        </div>
+      </div>
+    </div>
+    <div class="small-12 medium-6 columns">
+      <div class="row" ng-hide="order.innerFilePresent">
+        <div class="small-6 columns">
+          <input id="innerFileInput" type="file" onchange="angular.element(this).scope().updateInputState(this)" /> 
+        </div>
+        <div class="small-6 columns" ng-hide="innerFileInputPopulated">
+          <button class="button expand disabled">Upload Inner File</button> 
+        </div>
+        <div class="small-6 columns" ng-show="!!innerFileInputPopulated">
+          <button ng-click="uploadFile(order.id, 'inner')" class="button expand">Upload Inner File</button> 
+        </div>
+      </div>
+      <div class="row" ng-show="order.innerFilePresent" style="text-align:center;">
+        <div class="small-6 columns">
+          <a href="{{ order.inner_file_url }}" target="_blank"><i class="fa fa-file-o fa-4x"></i></a>
+          <p><small>{{ order.inner_file_file_name }}</small></p>
+        </div>
+        <div class="small-6 columns">
+          <p>Inner File</p>
+          <a href="{{ order.inner_file_url }}" target="_blank"><button class="button expand">Download</button></a>
+          <a ng-click="deleteFile(order.id, 'inner')">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 medium-6 columns">
+      <h2>Cover Photo</h2>
+      <img ng-src="{{ order.coverPhoto.url}}" />
+    </div>
+    <div class="small-12 medium-6 columns" style="height:550px;overflow:auto;z-index:1000;">
+      <h2>Inner Photos</h2>
+      <p><small>Scroll down to see all the photos</small></p>
+      <div class="row" ng-repeat="selection in order.selections">
+        <div class="small-6 columns" style="padding:5px;">
+          <img ng-src="{{ selection.url }}" />
+        </div>
+        <div class="small-6 columns" style="padding-top:100px;">
+          <p>image_{{ selection.id }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="myModal" class="reveal-modal medium" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+  <h2 style="text-align:center;">Do you want to move this order to "In Process"?</h2>
+  <div class="row" style="padding-top:40px;">
+    <div class="small-12 medium-6 columns">
+      <button class="button expand" ng-click="hideModal()">No</button>
+    </div>
+    <div class="small-12 medium-6 columns">
+      <button class="button expand" ng-click="updateStatus(order.id, 'progress')">Yes</button>
+    </div>
+  </div>
+</div>
+<!-- <p>{{ order }}</p> -->

@@ -1,6 +1,11 @@
 class AlbumOrdersController < ApplicationController
 	before_filter :already_paid?, only: [:quantity, :update, :billing, :order_details, :order_confirmation]
 
+	def index
+		@orders = AlbumOrder.all
+		render "index", layout: "angular_orders"
+	end
+
 	def create
 		cookie_name = "#{params[:capsule_name]}_order".to_sym
 
@@ -55,6 +60,22 @@ class AlbumOrdersController < ApplicationController
 		end
 	end
 
+	def update_status
+		@order = AlbumOrder.find(params[:id])
+		@order.status = params[:status]
+
+		if @order.save
+			respond_to do |format|
+				format.json { render json: @order }
+			end
+		else
+			respond_to do |format|
+				format.json { render json: {msg: "Unable to save status update"} }
+			end
+		end
+
+	end
+
 	def billing
 		@order = AlbumOrder.find(params[:order_id])
 	end
@@ -97,6 +118,7 @@ class AlbumOrdersController < ApplicationController
 		end
 
 		order.paid = stripe_charge["paid"]
+		order.status = "new"
 		order.save
 
 		if error_hash.empty?
@@ -138,7 +160,7 @@ class AlbumOrdersController < ApplicationController
 		else
 			@capsule_names = {
 				"My Capsule" => "submit", 
-				"An Awesome Cap" => "awesomecap",
+				"An Empty Capsule" => "emptycapsule",
 				"Makarov's Capsule" => "makarov"
 			}
 		end
@@ -146,6 +168,54 @@ class AlbumOrdersController < ApplicationController
 
 	def already_paid
 		@order = AlbumOrder.find(params[:order_id])
+	end
+
+	def upload
+		order = AlbumOrder.find(params[:order_id])
+
+		file = File.new("#{Rails.root}/tmp/#{params[:file_name]}", "wb")
+		file.write(request.body.read)
+		file.close
+
+		case params[:file_format]
+		when "inner"
+			order.inner_file = File.open(file.path, "rb")
+		when "cover"
+			order.cover_photo = File.open(file.path, "rb")
+		end
+
+		# File.delete(file.path)
+
+		if order.save
+			respond_to do |format|
+				format.json { render json: order.to_json(methods: [:inner_file_url, :cover_photo_url]), status: :ok }
+			end
+		else
+			respond_to do |format|
+				format.json { render json: {msg: "Unable to save album upload"}, status: :not_acceptable } 
+			end
+		end
+	end
+
+	def delete_upload
+		order = AlbumOrder.find(params[:order_id])
+
+		case params[:file_format]
+		when "inner"
+			order.inner_file = nil
+		when "cover"
+			order.cover_photo = nil
+		end
+
+		if order.save
+			respond_to do |format|
+				format.json { render json: order.to_json(methods: [:inner_file_url, :cover_photo_url]), status: :ok }
+			end
+		else
+			respond_to do |format|
+				format.json { render json: { msg: "Unable to delete the file" }, status: :not_accpetable }
+			end
+		end
 	end
 
 	private

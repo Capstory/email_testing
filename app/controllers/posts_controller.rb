@@ -42,6 +42,15 @@ class PostsController < ApplicationController
     end
   end
 
+	# GET /posts/1/thumbnail.json
+	def get_url
+		@post = Post.find(params[:id])
+
+		respond_to do |format|
+			format.json { render json: {id: params[:id], url: @post.image(params[:img_format].to_sym)} }
+		end
+	end
+
   # GET /posts/new
   # GET /posts/new.json
   def new

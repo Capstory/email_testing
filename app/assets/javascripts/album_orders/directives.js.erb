@@ -1,0 +1,66 @@
+album_orders_app.directive("orderList", ["OrdersData", function(OrdersData) {
+	return {
+		restrict: "A",
+		templateUrl: "<%= asset_path 'album_orders/directives/order_list.html' %>",
+		scope: {
+			orders: "=",
+			status: "="
+		},
+		link: function(scope) {
+			var buildStatus = function(orderStatus) {
+				var result;
+
+				switch(orderStatus) {
+					case "new":
+						result = "New";
+						break;
+					case "progress":
+						result = "In Progress";
+						break;
+					case "finished":
+						result = "Finished";
+						break;
+					default:
+						result = "No Status";
+				}
+
+				return result;
+			};
+
+			scope.orders = OrdersData.filterOrdersByStatus(scope.orders, scope.status);
+			scope.printableStatus = buildStatus(scope.status);
+		}
+	};
+}]);
+
+album_orders_app.directive("orderListItem", ["$location", function($location) {
+	return {
+		restrict: "A",
+		templateUrl: "<%= asset_path 'album_orders/directives/order_list_item.html' %>",
+		scope: {
+			order: "=",
+			index: "="
+		},
+		controller: function($scope, $location) {
+									$scope.goToOrder = function(order_id) {
+										$location.path("/orders/" + order_id);
+									};
+								}
+	};
+}]);
+
+album_orders_app.directive("appNavigation", ["$location", "$window", function($location, $window) {
+	return {
+		restrict: "A",
+		templateUrl: "<%= asset_path 'album_orders/directives/app_navigation.html' %>",
+		controller: function($scope, $location, $window) {
+			$scope.toHome = function() {
+				$location.path("/");
+			};	
+
+			$scope.toBack = function() {
+				$window.history.back();
+			};
+		}
+	};
+}]);

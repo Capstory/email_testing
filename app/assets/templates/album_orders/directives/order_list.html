@@ -1,0 +1,12 @@
+<div class="row" style="text-align:center;margin-bottom:40px;">
+  <div class="small-12 columns">
+    <h1>{{ printableStatus }} Orders</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="small-12 collumns">
+    <div ng-repeat="order in orders">
+      <div order-list-item order="order" index="$index"></div>
+    </div>
+  </div>
+</div>

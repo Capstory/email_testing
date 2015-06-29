@@ -1,0 +1,80 @@
+<div class="row" ng-init="init()">
+  <div class="small-12 columns">
+    <div class="row ">
+      <div class="small-2 columns">
+        <i class="fa fa-arrow-circle-o-left fa-2x" ng-show="searching" ng-click="searching = false"><span> back</span></i>
+      </div>
+      <div class="small-6 small-centered columns">
+        <div class="row collapse">
+          <div class="small-3 medium-2 columns">
+            <span class="prefix search-button" ng-click="searching = true"><i class="fa fa-search"></i> Search</span>
+          </div>
+          <div class="small-9 medium-10 columns">
+            <input type="text" placeholder="Search for Team Name, Parent Name..." ng-model="searchInput.$" ng-focus="searching = true" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 50px;margin-bottom:100px;" ng-show="searching">
+      <div class="small-3 columns">
+        <div class="panel" style="text-align:center;" ng-click="searchInput.status = ''">
+          <h4><a>All</a></h4>
+          <i class="fa fa-exclamation fa-2x order-icon"></i>
+          <p>Click to view</p>
+        </div> 
+        <div class="panel" style="text-align:center;" ng-click="searchInput.status = 'new'">
+          <h4><a>New</a></h4>
+          <i class="fa fa-exclamation fa-2x order-icon"></i>
+          <p>Click to view</p>
+        </div> 
+        <div class="panel" style="text-align:center;" ng-click="searchInput.status = 'progress'">
+          <h4><a>In Progress</a></h4>
+          <i class="fa fa-ellipsis-h fa-2x order-icon"></i>
+          <p>Click to view</p>
+        </div> 
+        <div class="panel" style="text-align:center;" ng-click="searchInput.status = 'finished'">
+          <h4><a>Finished</a></h4>
+          <i class="fa fa-check fa-2x order-icon"></i>
+          <p>Click to view</p>
+        </div> 
+      </div>
+      <div class="small-9 columns">
+        <div ng-repeat="order in orders | filter:searchInput:strict">
+          <div order-list-item order="order" index="$index"></div>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 50px;margin-bottom:100px;" ng-hide="searching">
+      <div class="small-12 medium-4 columns order-list-link" ng-click="toOrdersList('new')">
+        <div class="panel" style="text-align:center;">
+          <h1><a>New</a></h1>
+          <i class="fa fa-exclamation fa-4x order-icon"></i>
+          <p>Click to view</p>
+        </div> 
+        <div class="panel count-panel">
+          <p>{{ newCount }}</p>
+        </div>
+      </div> 
+      <div class="small-12 medium-4 columns order-list-link" ng-click="toOrdersList('progress')">
+        <div class="panel" style="text-align:center;">
+          <h1><a>In Progress</a></h1>
+          <i class="fa fa-ellipsis-h fa-4x order-icon"></i>
+          <p>Click to view</p>
+        </div> 
+        <div class="panel count-panel">
+          <p>{{ inProgressCount }}</p>
+        </div>
+      </div> 
+      <div class="small-12 medium-4 columns order-list-link" ng-click="toOrdersList('finished')">
+        <div class="panel" style="text-align:center;">
+          <h1><a>Finished</a></h1>
+          <i class="fa fa-check fa-4x order-icon"></i>
+          <p>Click to view</p>
+        </div> 
+        <div class="panel count-panel">
+          <p>{{ finishedCount }}</p>
+        </div>
+      </div> 
+    </div>
+  </div>
+</div>

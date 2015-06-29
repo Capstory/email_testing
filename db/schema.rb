@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150615213341) do
+ActiveRecord::Schema.define(:version => 20150626182339) do
 
   create_table "access_requests", :force => true do |t|
     t.string   "name"
@@ -34,10 +34,19 @@ ActiveRecord::Schema.define(:version => 20150615213341) do
     t.string   "name"
     t.string   "email"
     t.text     "contents"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
     t.text     "customer_info"
     t.boolean  "paid"
+    t.string   "status"
+    t.string   "cover_photo_file_name"
+    t.string   "cover_photo_content_type"
+    t.integer  "cover_photo_file_size"
+    t.datetime "cover_photo_updated_at"
+    t.string   "inner_file_file_name"
+    t.string   "inner_file_content_type"
+    t.integer  "inner_file_file_size"
+    t.datetime "inner_file_updated_at"
   end
 
   create_table "authorizations", :force => true do |t|

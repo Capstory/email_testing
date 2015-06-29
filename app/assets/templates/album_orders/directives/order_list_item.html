@@ -1,0 +1,15 @@
+<div class="panel" ng-click="goToOrder(order.id)">
+  <div class="row">
+    <div class="small-4 columns">
+      <h5><a>Order #{{ index + 1 }}</a></h5>
+      <h4>{{ order.address.full_name  }}</h4>
+    </div>
+    <div class="small-4 columns">
+      <h5><a>Capsule Name</a></h5>
+      <h4>{{ order.contents.capsule_name }}</h4>
+    </div>
+    <div class="small-4 columns" style="text-align:center;">
+      <h3><a>View</a></h3>
+    </div>
+  </div>
+</div>

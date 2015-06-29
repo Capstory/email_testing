@@ -1,0 +1,25 @@
+/*
+ *= require foundation_and_overrides
+ *= require font-awesome
+ * require_tree ./album_orders
+ *= require_self
+ */
+
+i.order-icon {
+  padding: 25px;
+}
+
+.count-panel {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  max-width: 80px;
+}
+
+.search-button {
+  cursor: pointer;
+}
+
+.order-list-link {
+  cursor: pointer;
+}

@@ -115,6 +115,9 @@ EmailTesting::Application.routes.draw do
 		match "confirmation" => "album_orders#order_confirmation"
 		match "thank_you" => "album_orders#thank_you"
 		match "already_paid" => "album_orders#already_paid"
+		post "upload" => "album_orders#upload"
+		put "update_status" => "album_orders#update_status"
+		put "delete_file" => "album_orders#delete_upload"
 		resources :album_orders
 	end
 
@@ -190,6 +193,7 @@ EmailTesting::Application.routes.draw do
   match "auth/failure" => "sessions#failure"
   match "signout" => "sessions#destroy"
   
+	match "/get_post_url" => "posts#get_url"
   resources :posts
   match "slides" => "posts#slides"
 	match "check_new_posts" => "posts#get_new_posts"

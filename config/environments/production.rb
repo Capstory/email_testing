@@ -57,7 +57,8 @@ EmailTesting::Application.configure do
 		"conference_capsule.js", "conference_capsule.css", 
 		"corporate_template.css", "corporate_template.js",
 		"remote_moderation.js", "remote_moderation.css",
-		"angular_capsule.js", "angular_capsule.css"
+		"angular_capsule.js", "angular_capsule.css",
+		"album_orders.js", "album_orders.css"
 	]
 
   # Disable delivery errors, bad email addresses will be ignored

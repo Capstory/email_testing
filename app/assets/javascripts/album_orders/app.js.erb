@@ -1,0 +1,23 @@
+album_orders_app = angular.module("AlbumOrdersApp", 
+		[
+			"ngRoute"
+		]);
+
+album_orders_app.config(["$routeProvider", function($routeProvider) {
+	$routeProvider
+		.when("/", {
+			controller: "MainCtrl",
+			templateUrl: "<%= asset_path 'album_orders/main.html' %>"
+		})
+		.when("/lists/:status", {
+			controller: "NewOrdersCtrl",
+			templateUrl: "<%= asset_path 'album_orders/new_orders.html' %>"
+		})
+		.when("/orders/:order_id", {
+			controller: "OrderCtrl",
+			templateUrl: "<%= asset_path 'album_orders/order.html' %>"
+		})
+		.otherwise({
+			redirectTo: "/"
+		});
+}])

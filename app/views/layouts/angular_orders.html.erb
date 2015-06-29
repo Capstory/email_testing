@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+  <head>
+  	<meta charset="utf-8" />
+
+  	<!-- Uncomment to make IE8 render like IE7 -->
+  	<!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
+
+  	<!-- Set the viewport width to device width for mobile -->
+		<meta name="description" content="Capstory Weddings">
+		<meta name="keywords" content="wedding photography">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Favicon -->
+		<%= favicon_link_tag "favicon.ico" %>
+
+  	<title><%= content_for?(:title) ? yield(:title) : "Capstory || Collect Every Moment" %></title>
+
+  	<%= stylesheet_link_tag    "album_orders" %>
+  	<%= javascript_include_tag "vendor/modernizr" %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+		<%= javascript_include_tag "album_orders" %>
+		<div class="off-canvas-wrap" data-offcanvas>
+			<div class="inner-wrap">
+				<nav class="left-off-canvas-menu">
+					<ul class="off-canvas-list">
+						<div class="capsuleOffCanvasMenuItems">
+							<li><label>Capsule Options</label></li>
+							<%# <li><%= link_to "Start Slideshow", slideshow_path(capsule_id: @capsule.id) %1></li> %>
+							<%# <li><a onclick="emitFilepickerEngage()">Upload Image/Video</a></li> %>
+						</div>
+						<% if current_user %>
+							<li><label><%= show_user_name %></label></li>
+							<li><%= link_to "Sign Out", signout_path %></li>
+						<% else %>
+							<li><label>User Options</label></li>
+							<li><%= link_to "Sign In", login_path %></li>
+						<% end %>
+					</ul>
+				</nav>
+
+				<a class="exit-off-canvas"></a>
+				
+				<div class="fixed" id="topBarDiv">
+					<nav class="top-bar">
+					<ul class="title-area">
+						<li class="name">
+						<span class="application_logo">
+							<%= yield :logo %>
+						</span>
+						</li>
+						<li class="toggle-topbar menu-icon">
+							<a class="left-off-canvas-toggle"><span>Menu</span></a>
+						</li>
+					</ul>
+					<ul class="title-area" style="padding-top:20px;">
+						<li class="name">
+						<span id="application_logo">
+							<%= link_to image_tag("logo.png", width: '275px', height: '30px'), self.send(resolve_logo_route) %>
+							<%# <1%# <%= link_to fa_icon("inbox", text: "Get Email"), retrieve_emails_path %2> %1> %>
+						</span>
+						</li>
+					</ul>
+					<section class="top-bar-section">	
+					<ul class="right">
+						<% if current_user %>
+							<%# <% user_name = !current_user.name.blank? ? current_user.name : "Mr. No Name" %1> %>
+							<li class="has-dropdown not-click">
+							<%= link_to show_user_name, current_user %>
+							<%# <%= link_to "Signed In as #{user_name}", current_user %1> %>
+
+							<%# <ul class="dropdown"> %>
+							<%# 	<% if current_user.admin? %1> %>
+							<%# 		<li><%= link_to "Download Capsule", download_path(klass: "Capsule", element_id: @capsule.id) %1></li> %>
+							<%# 	<% end %1> %>
+							<%# 	<li><%= link_to "Sign Out", signout_path %1></li> %>
+							<%# </ul> %>
+							</li>
+						<% else %>
+							<li><%= link_to "Login", login_path %></li>
+						<% end %>
+					</ul>
+					<%# <ul class="left"> %>
+					<%# 	<div style="margin-left:60px;display:none;" id="capsuleNavLinks"> %>
+					<%# 		<li><%= link_to "Start Slideshow", slideshow_path(capsule_id: @capsule.id) %1></li> %>	
+					<%# 		<li><a onclick="emitFilepickerEngage()">Upload Image/Video</a></li> %>	
+					<%# 	</div> %>
+					<%# </ul> %>
+					</section>
+					</nav>
+				</div>
+				<div id="topBarSpacer" style="height:65px;"></div>
+			<div class="row">
+				<div class="small-12 columns">
+					<% flash.each do |key, value| %>
+						<% alert_class = key == :error ? :alert : key %>
+						<div data-alert class="alert-box <%= alert_class %>" id="flashAlert">
+							<p class="subheader"><%= value %></p>
+							<a href="#" class="close">x</a>
+						</div>
+					<% end %>
+				</div>
+			</div>
+			<div ng-app="AlbumOrdersApp">
+				<%= yield %>
+			</div>
+		</div>
+	</div>
+  </body>
+</html>
