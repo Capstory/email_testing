@@ -33,7 +33,7 @@ album_orders_app.directive("orderList", ["OrdersData", function(OrdersData) {
 	};
 }]);
 
-album_orders_app.directive("orderListItem", ["$location", function($location) {
+album_orders_app.directive("orderListItem", [function() {
 	return {
 		restrict: "A",
 		templateUrl: "<%= asset_path 'album_orders/directives/order_list_item.html' %>",
@@ -41,26 +41,14 @@ album_orders_app.directive("orderListItem", ["$location", function($location) {
 			order: "=",
 			index: "="
 		},
-		controller: function($scope, $location) {
-									$scope.goToOrder = function(order_id) {
-										$location.path("/orders/" + order_id);
-									};
-								}
+		controller: "OrderListItemCtrl"
 	};
 }]);
 
-album_orders_app.directive("appNavigation", ["$location", "$window", function($location, $window) {
+album_orders_app.directive("appNavigation", [function() {
 	return {
 		restrict: "A",
 		templateUrl: "<%= asset_path 'album_orders/directives/app_navigation.html' %>",
-		controller: function($scope, $location, $window) {
-			$scope.toHome = function() {
-				$location.path("/");
-			};	
-
-			$scope.toBack = function() {
-				$window.history.back();
-			};
-		}
+		controller: "AppNavigationCtrl"
 	};
 }]);
