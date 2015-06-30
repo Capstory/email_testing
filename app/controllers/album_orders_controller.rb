@@ -184,7 +184,7 @@ class AlbumOrdersController < ApplicationController
 			order.cover_photo = File.open(file.path, "rb")
 		end
 
-		# File.delete(file.path)
+		File.delete(file.path)
 
 		if order.save
 			respond_to do |format|
@@ -218,6 +218,56 @@ class AlbumOrdersController < ApplicationController
 		end
 	end
 
+	def export_to_xlsx
+		orders = AlbumOrder.where("status IS NOT NULL")
+
+		Axlsx::Package.new do |p|
+			p.workbook.styles do |s|
+				title = s.add_style sz: 16, b: true, alignment: { horizontal: :center, vertical: :center }
+				header = s.add_style bg_color: "EFEFEF", sz: 14, b: true, alignment: { horizontal: :center, vertical: :center }, border: { style: :thin, color: "00"}
+				p.workbook.add_worksheet(name: "Orders") do |sheet|
+
+					image_path = Rails.root.join("public", "images", "logo.png").to_s
+					sheet.add_image(image_src: image_path, noSelect: true, noMove: true, hyperlink: "https://www.capstory.me") do |image|
+						image.start_at(0,0)
+						image.width = 467
+						image.height = 104
+						image.hyperlink.tooltip = "Capstory Website"
+					end
+
+					sheet.add_row []
+					sheet.add_row []
+					sheet.add_row []
+					sheet.add_row []
+					sheet.add_row []
+					sheet.add_row []
+					sheet.add_row []
+					sheet.add_row []
+					sheet.add_row []
+					sheet.add_row []
+					sheet.add_row ["Hard Cover Orders"], style: title
+					sheet.add_row xlsx_header_row, style: header
+					orders.each do |order|
+						sheet.add_row order.to_xlsx_row("hard_covers") if order.hard_cover_quantity > 0
+					end
+
+					sheet.add_row []
+					sheet.add_row []
+					sheet.add_row ["Soft Cover Orders"], style: title
+					sheet.add_row xlsx_header_row, style: header
+					orders.each do |order|
+						sheet.add_row order.to_xlsx_row("soft_covers") if order.soft_cover_quantity > 0
+					end
+				end
+			end
+
+			@file_path = Tempfile.new("my_export.xlsx")
+			p.serialize(@file_path)
+		end
+
+		send_file(@file_path, filename: "northpointe_orders_export.xlsx", type: "application/xlsx")
+	end
+
 	private
 
 	def already_paid?
@@ -229,5 +279,9 @@ class AlbumOrdersController < ApplicationController
 
 			redirect_to "/orders/already_paid?order_id=#{ order.id }"
 		end
+	end
+
+	def xlsx_header_row
+		["First Name", "Last Name", "Shipping Address", "Description", "Quantity", "Cover", "Inside Pages"]
 	end
 end

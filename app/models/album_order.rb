@@ -37,6 +37,24 @@ class AlbumOrder < ActiveRecord::Base
 		self.quantities["soft_covers"]["total"]
 	end
 
+	def first_name
+		self.address["first_name"]
+	end
+
+	def last_name
+		self.address["last_name"]
+	end
+
+	def full_address
+		shipping_lines = self.address["shipping_address_2"].blank? ? [self.address["shipping_address_1"]] : [self.address["shipping_address_1"], self.address["shipping_address_2"]]
+
+		shipping_lines.join(", ") + ", " + [self.address["shipping_city"], self.address["shipping_state"]].join(", ") + " #{self.address["shipping_zip"]}"
+	end
+
+	def description
+		"Northpointe Dance Team: #{self.contents["capsule_name"].titlecase}"
+	end
+
 	def update_order_details(params)
 		self.email = params[:email]
 
@@ -62,5 +80,9 @@ class AlbumOrder < ActiveRecord::Base
 			"card_expiration" => "#{params[:card_exp_month]}/#{params[:card_exp_year]}",
 			"transaction_token" => params[:transaction_token]
 		}
+	end
+
+	def to_xlsx_row(book_format)
+		[self.first_name, self.last_name, self.full_address, self.description, self.quantities[book_format]["quantity"], self.cover_photo_url, self.inner_file_url]
 	end
 end

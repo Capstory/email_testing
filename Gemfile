@@ -83,6 +83,7 @@ gem 'stripe', git: 'https://github.com/stripe/stripe-ruby'
 
 # Zip gem for compressing bulk image downloads
 gem 'rubyzip'
+gem 'axlsx', git: 'https://github.com/randym/axlsx'
 
 # gem 'clockwork'
 # To use Jbuilder templates for JSON

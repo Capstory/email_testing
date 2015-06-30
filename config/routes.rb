@@ -115,6 +115,7 @@ EmailTesting::Application.routes.draw do
 		match "confirmation" => "album_orders#order_confirmation"
 		match "thank_you" => "album_orders#thank_you"
 		match "already_paid" => "album_orders#already_paid"
+		match "export" => "album_orders#export_to_xlsx"
 		post "upload" => "album_orders#upload"
 		put "update_status" => "album_orders#update_status"
 		put "delete_file" => "album_orders#delete_upload"
