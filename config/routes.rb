@@ -82,7 +82,7 @@ EmailTesting::Application.routes.draw do
 	match "" => "static_pages#americheer_landing", constraints: AmericheerConstraints.new
 	match "" => "static_pages#receptions_landing", constraints: ReceptionsConstraints.new
 	match "" => "homepages#corporate_page", constraints: CorporateConstraints.new
-	match "" => "homepages#code_for_a_cause", constraints: CodeForACauseConstraints.new
+	# match "" => "homepages#code_for_a_cause", constraints: CodeForACauseConstraints.new
 
 	match "wnci" => "homepages#wnci_marketing"
 	match "homepages/ovni" => "homepages#brads_ovni_landing"
