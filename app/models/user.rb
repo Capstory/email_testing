@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :authorizations_attributes
   
   has_many :authorizations
-  has_many :encapsulations
+  has_many :encapsulations, dependent: :destroy
   has_many :capsules, through: :encapsulations
 	
 	validates :name, presence: true

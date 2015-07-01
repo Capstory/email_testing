@@ -18,4 +18,14 @@ class StaticPagesController < ApplicationController
 	def privacy_policy
 		render "legal", layout: "application"
 	end
+
+	def americheer_landing
+		@contact_form = ContactForm.new
+		render "americheer_landing", layout: "ovni_layout"
+	end
+
+	def receptions_landing
+		@contact_form = ContactForm.new
+		render "new_receptions_landing", layout: "ovni_layout"
+	end
 end

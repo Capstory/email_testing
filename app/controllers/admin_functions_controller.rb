@@ -9,8 +9,6 @@ class AdminFunctionsController < ApplicationController
     @access_requests = AccessRequest.all
     @authorizations = Authorization.all
     @encapsulations = Encapsulation.all
-    @vendor_pages = VendorPage.all
-		@vendors = Vendor.all
 		@discounts = Discount.all
   end
 

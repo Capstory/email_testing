@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150626182339) do
+ActiveRecord::Schema.define(:version => 20150701150803) do
 
   create_table "access_requests", :force => true do |t|
     t.string   "name"
@@ -226,59 +226,6 @@ ActiveRecord::Schema.define(:version => 20150626182339) do
     t.datetime "updated_at", :null => false
     t.string   "type"
     t.integer  "vendor_id"
-  end
-
-  create_table "vendor_contacts", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "vendor_code"
-    t.string   "address_1"
-    t.string   "address_2"
-    t.string   "phone"
-    t.text     "message"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
-    t.integer  "vendor_contactable_id"
-    t.string   "vendor_contactable_type"
-  end
-
-  create_table "vendor_employees", :force => true do |t|
-    t.string   "name"
-    t.string   "partner_code"
-    t.string   "email"
-    t.string   "phone"
-    t.string   "named_url"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-    t.integer  "vendor_page_id"
-  end
-
-  create_table "vendor_orders", :force => true do |t|
-    t.integer  "vendor_id"
-    t.string   "requested_address"
-    t.string   "email"
-    t.date     "event_date"
-    t.text     "requested_upgrades"
-    t.string   "shipping_1"
-    t.string   "shipping_2"
-    t.string   "shipping_city"
-    t.string   "shipping_state"
-    t.string   "shipping_zip"
-    t.string   "client_names"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-    t.string   "status"
-  end
-
-  create_table "vendor_pages", :force => true do |t|
-    t.string   "name"
-    t.string   "partner_code"
-    t.string   "email"
-    t.string   "phone"
-    t.string   "named_url"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.boolean  "vendor_status"
   end
 
   create_table "videos", :force => true do |t|

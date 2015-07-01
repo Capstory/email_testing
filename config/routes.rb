@@ -4,18 +4,6 @@ class SiteConstraints
   end
 end
 
-class VendorPagesConstraints
-  def matches?(request)
-    url = request.env["REQUEST_URI"]
-    request_parts = url.split("/")
-    if request_parts.last.include? "-"
-      return false
-    else
-      return true
-    end
-  end
-end
-
 class PureRomanceConstraints
 	def matches?(request)
 		url = request.env["REQUEST_URI"]
@@ -31,61 +19,30 @@ class PureRomanceConstraints
 	end
 end
 
-class MattRyanConstraints
-  def matches?(request)
-    subdomain = request.subdomain
-    if subdomain == "mattryandj"
-      return true
-    else
-      return false
-    end
-  end
-end
+# class CodeForACauseConstraints
+# 	def matches?(request)
+# 		if request.subdomain.present?
+# 			request.subdomain == "codeforacause"
+# 		else
+# 			return false
+# 		end
+# 	end
+# end
 
-class DemoPageConstraints
+class AmericheerConstraints
 	def matches?(request)
-		subdomain = request.subdomain
-		if subdomain == "demo"
-			return true
+		if request.subdomain.present?
+			request.subdomain == "americheer"
 		else
 			return false
 		end
 	end
 end
 
-class OhioUnionConstraints
-	def matches?(request)
-		subdomain = request.subdomain
-		if subdomain == "ohiounion"
-			return true
-		else
-			return false
-		end
-	end
-end
-
-class VendorSubdomainConstraints
+class ReceptionsConstraints
 	def matches?(request)
 		if request.subdomain.present?
-			subdomain = request.subdomain
-			case subdomain
-			when "www"
-				return false
-			when "ww"
-				return false
-			when "wwww"
-				return false
-			else
-				return true
-			end
-		end
-	end
-end
-
-class CodeForACauseConstraints
-	def matches?(request)
-		if request.subdomain.present?
-			request.subdomain == "codeforacause"
+			request.subdomain == "receptionsinc"
 		else
 			return false
 		end
@@ -122,12 +79,10 @@ EmailTesting::Application.routes.draw do
 		resources :album_orders
 	end
 
+	match "" => "static_pages#americheer_landing", constraints: AmericheerConstraints.new
+	match "" => "static_pages#receptions_landing", constraints: ReceptionsConstraints.new
 	match "" => "homepages#corporate_page", constraints: CorporateConstraints.new
 	match "" => "homepages#code_for_a_cause", constraints: CodeForACauseConstraints.new
-  match "" => "vendor_pages#matt_ryan", constraints: MattRyanConstraints.new
-	# match "" => "vendor_pages#demo", constraints: DemoPageConstraints.new
-	# match "" => "vendor_pages#ohiounion", constraints: OhioUnionConstraints.new
-	match "" => "vendor_pages#alt_show", constraints: VendorSubdomainConstraints.new
 
 	match "wnci" => "homepages#wnci_marketing"
 	match "homepages/ovni" => "homepages#brads_ovni_landing"
@@ -244,32 +199,12 @@ EmailTesting::Application.routes.draw do
 			post "order_confirm"
 		end
 	end
-  
-	# ==========================
-	# Note the constraints on the partners/:id route. It is the same path as the vendor_employees#show route
-	# ==========================
-  match 'partners/:id' => "vendor_pages#show", constraints: VendorPagesConstraints.new
-  match 'employee_index' => "vendor_pages#employee_index"
-	match 'vendor_orders_index' => "vendor_orders#vendor_index"
-	resources :vendors
-  resources :vendor_pages
-  resources :vendor_contacts
 
 	match "logo_redimension" => "logos#update"
 	resources :logos
 	
-	match "submit_order" => "vendor_orders#new"
-	match "order_confirmation" => "vendor_orders#order_thank_you"
-	resources :vendor_orders, only: [:new, :index, :create, :show]
-
 	resources :discounts
 
-  # ==========================
-  # Note that this is the same path as the vendors#show route above. Thus, must be placed below the constrained route.
-  # ==========================
-  match 'partners/:id' => "vendor_employees#show"
-  resources :vendor_employees
-  
   match "reminder_thank_you" => "reminders#thank_you"
   resources :reminders
   
