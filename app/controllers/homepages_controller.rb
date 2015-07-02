@@ -81,7 +81,6 @@ class HomepagesController < ApplicationController
   end
 
   def buy
-		@access_request = AccessRequest.new
   end
 
 	def code_for_a_cause

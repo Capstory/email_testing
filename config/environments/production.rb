@@ -52,7 +52,6 @@ EmailTesting::Application.configure do
 		"charge.css", "capsule.js", 
 		"homepage.css", "homepage.js", 
 		"vendor/modernizr.js", 
-		"matt_ryan.css", "matt_ryan.js", 
 		"conference_capsule.js", "conference_capsule.css", 
 		"corporate_template.css", "corporate_template.js",
 		"remote_moderation.js", "remote_moderation.css",

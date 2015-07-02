@@ -1,7 +1,8 @@
 class StaticPagesController < ApplicationController
   
   def home
-    @access_request = AccessRequest.new
+		@contact_form = ContactForm.new
+		render "home", layout: "ovni_layout"
   end
   
   def login
@@ -17,6 +18,16 @@ class StaticPagesController < ApplicationController
 
 	def privacy_policy
 		render "legal", layout: "application"
+	end
+
+	def code_for_a_cause
+		@event_application = EventApplication.new
+		render "code_for_a_cause", layout: "ovni_layout"
+	end
+  
+	def corporate_page
+		@contact_form = ContactForm.new
+		render "corporate_page", layout: "ovni_layout"
 	end
 
 	def americheer_landing

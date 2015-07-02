@@ -81,22 +81,8 @@ EmailTesting::Application.routes.draw do
 
 	match "" => "static_pages#americheer_landing", constraints: AmericheerConstraints.new
 	match "" => "static_pages#receptions_landing", constraints: ReceptionsConstraints.new
-	match "" => "homepages#corporate_page", constraints: CorporateConstraints.new
-	# match "" => "homepages#code_for_a_cause", constraints: CodeForACauseConstraints.new
-
-	match "wnci" => "homepages#wnci_marketing"
-	match "homepages/ovni" => "homepages#brads_ovni_landing"
-	match "homepages/live_stream" => "homepages#live_stream_focus"
-	match "homepages/ovni2" => "homepages#dustins_ovni_landing"
-	# match "homepages/pay" => "homepages#alt_ovni_homepage"
-	# match "landing" => "homepages#landing"
-	match "landing" => "homepages#test_ovni_landing"
-	# match "a" => "homepages#alt_first_test_landing"
-  # match "alt_a" => "homepages#first_test_landing"
-  # match "b" => "homepages#second_test_landing"
-  # match "c" => "homepages#third_test_landing"
-  match "pricing" => "homepages#pricing"
-  match "purchase" => "homepages#buy"
+	match "" => "static_pages#corporate_page", constraints: CorporateConstraints.new
+	# match "" => "static_pages#code_for_a_cause", constraints: CodeForACauseConstraints.new
 
   match "test_program/:test_version" => "test_program_visits#create"
   match "update_test_program_visit" => "test_program_visits#update"
@@ -113,15 +99,6 @@ EmailTesting::Application.routes.draw do
 	match "remote_moderation/remove_from_trash" => "admin_functions#remote_moderation_undelete"
 	match "remote_moderation/get_new_posts" => "admin_functions#remote_moderation_new_posts"
 	match "remote_moderation/verify_post" => "admin_functions#remote_moderation_verify_post"
-
-  # ===================================================
-  # AngularJS Play Routes 
-  # ===================================================
-  resources :entries
-  match "raffle" => "raffle#index"
-  # ===================================================
-  # End AngularJS Play Routes
-  # ===================================================
   
   match "create_client" => "clients#create"
   match "create_admin" => "admins#create"
@@ -186,9 +163,6 @@ EmailTesting::Application.routes.draw do
 	get "legal/terms_of_use" => "static_pages#terms_of_use"
 	match "legal/privacy_policy" => "static_pages#privacy_policy"
 
-  match "thank_you" => "access_requests#thank_you"
-  resources :access_requests, only: ["create", "new"]
-  
   match 'payment' => 'charges#alt_new'
   match 'payment_thank_you' => "charges#thank_you"
   match 'payment_error' => "charges#payment_error"
@@ -204,18 +178,12 @@ EmailTesting::Application.routes.draw do
 	resources :logos
 	
 	resources :discounts
-
-  match "reminder_thank_you" => "reminders#thank_you"
-  resources :reminders
   
 	post "contact_forms/request_package_information" => "contact_forms#request_package_information"
   match "contact_thank_you" => "contact_forms#thank_you"
   resources :contact_forms, only: ["index", "create", "new"]
   
-  match "engaged_contact_thank_you" => "engaged_contacts#thank_you"
-  resources :engaged_contacts, only: ["new", "create"]
-  
-	resources :event_applications, only: ["create"]
+	# resources :event_applications, only: ["create"]
 
   match "download" => "download_managers#index"
   match "package_download" => "download_managers#activate_download"
@@ -240,6 +208,7 @@ EmailTesting::Application.routes.draw do
   root :to => "users#welcome", constraints: SiteConstraints.new
   
   # root :to => 'homepages#alt_first_test_landing'
-  root :to => 'homepages#alt_ovni_homepage'
+  # root :to => 'homepages#alt_ovni_homepage'
+	root to: "static_pages#home"
 
 end
