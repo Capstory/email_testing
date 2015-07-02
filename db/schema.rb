@@ -11,21 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150701150803) do
-
-  create_table "access_requests", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "event_address"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-    t.date     "event_date"
-    t.string   "request_status"
-    t.string   "source"
-    t.string   "partner_code"
-    t.string   "industry_role"
-    t.text     "questions"
-  end
+ActiveRecord::Schema.define(:version => 20150701202436) do
 
   create_table "album_orders", :force => true do |t|
     t.float    "total"
@@ -119,22 +105,6 @@ ActiveRecord::Schema.define(:version => 20150701150803) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "engaged_contacts", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "engaged_email"
-    t.string   "engaged_name"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
-
-  create_table "entries", :force => true do |t|
-    t.string   "name"
-    t.boolean  "winner"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "event_applications", :force => true do |t|
     t.string   "name"
     t.boolean  "student",             :default => true
@@ -199,14 +169,6 @@ ActiveRecord::Schema.define(:version => 20150701150803) do
     t.string   "time_group"
     t.boolean  "tag_for_deletion",   :default => false
     t.boolean  "verified",           :default => true
-  end
-
-  create_table "reminders", :force => true do |t|
-    t.string   "email"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.string   "date"
-    t.boolean  "reminder_sent"
   end
 
   create_table "test_program_visits", :force => true do |t|

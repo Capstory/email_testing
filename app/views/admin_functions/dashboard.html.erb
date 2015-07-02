@@ -15,7 +15,6 @@
 			<li><%= link_to "Clients", "#", class: "admin_links", id: "show_clients" %></li>
 			<li><%= link_to "Admins", "#", class: "admin_links", id: "show_admins" %></li>
 			<li><%= link_to "All Users", "#", class: "admin_links", id: "show_users" %></li>
-			<li><%= link_to "Access Request", "#", class: "admin_links", id: "show_access_requests" %></li>
 			<li><%= link_to "Authorizations", "#", class: "admin_links", id: "show_authorizations" %></li>
 			<li><%= link_to "Discounts", "#", class: "admin_links", id: "show_discounts" %></li>
 		</ul>
@@ -32,9 +31,6 @@
 		</div>
 		<div id="show_admins_data" style="display:none;" class="data_partial">
 			<%= render "admin_admins", admins: @admins %>
-		</div>
-		<div id="show_access_requests_data" style="display:none;" class="data_partial">
-			<%= render "admin_access_requests", access_requests: @access_requests %>
 		</div>
 		<div id="show_authorizations_data" style="display:none;" class="data_partial">
 			<%= render "admin_authorizations", authorizations: @authorizations %>

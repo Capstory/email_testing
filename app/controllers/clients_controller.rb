@@ -20,27 +20,6 @@ class ClientsController < ApplicationController
     end
     if @client.save
       
-      # Change the access request status to show that it is validated
-      
-      # ***************************************
-      # This will likely need to change since the workflow is no longer a question of going to an access request to a client and capsule creation
-      
-      # access_request = AccessRequest.find_by_name_and_email_and_event_date(params[:name], params[:email], params[:event_date])
-      # access_request.request_status = "validated"
-      # access_request.save
-      
-      # Create an Authorization to hold the authentication and login information
-      # Authorization.create do |auth|
-      #   auth.user_id = @client.id
-      #   auth.uid = params[:uid]
-      #   auth.provider = params[:provider]
-      #   auth.oauth_token = params[:oauth_token]
-      #   auth.save!
-      # end
-      
-      # Automatically create a capsule for the new client
-      # create_client_capsule(@client, params[:event_date])
-      
       flash[:success] = "Successfully Created New Client"
       redirect_to dashboard_path
     else
@@ -107,15 +86,6 @@ class ClientsController < ApplicationController
       redirect_to client_path(id: client.id)
     else
       flash[:error] = "Client successfully created but unable to create capsule"
-      redirect_to :back
-    end
-  end
-  
-  def access_request_redirect_to_client
-    if @client = Client.find_by_name_and_email(params[:name], params[:email])
-      redirect_to @client
-    else
-      flash.now[:error] = "Unable to find client"
       redirect_to :back
     end
   end

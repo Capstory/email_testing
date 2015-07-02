@@ -6,7 +6,6 @@ class AdminFunctionsController < ApplicationController
     @clients = Client.all
     @users = User.all
     @admins = Admin.all
-    @access_requests = AccessRequest.all
     @authorizations = Authorization.all
     @encapsulations = Encapsulation.all
 		@discounts = Discount.all

@@ -14,9 +14,9 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   end
   provider :twitter, 'KQZXkv7VAiRdU4nVkdrkbw', 'tfITw4tArdJRgwdCzHs8iAwxaQls4wPT7i7vPTCLA'
   provider :identity, :fields => [:email, :name, :user_id], on_failed_registration: lambda { |env|
-    env["rack.session"][:identity] = env['omniauth.identity']
+    user_id = env["rack.session"]["identity"][:user_id]
     resp = Rack::Response.new("", 302)
-    resp.redirect('/access_requests')
+    resp.redirect("/authorizations/new?id=#{ user_id }")
     resp.finish
   }
 end
