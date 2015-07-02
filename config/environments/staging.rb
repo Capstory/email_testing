@@ -50,7 +50,6 @@ EmailTesting::Application.configure do
 		"application.css", "application.js",
 		"static.css", "static.js", 
 		"charge.css", "capsule.js", 
-		"homepage.css", "homepage.js", 
 		"vendor/modernizr.js", 
 		"conference_capsule.js", "conference_capsule.css", 
 		"corporate_template.css", "corporate_template.js",
