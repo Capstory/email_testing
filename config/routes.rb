@@ -92,7 +92,7 @@ EmailTesting::Application.routes.draw do
 
   match "dashboard" => "admin_functions#dashboard"
 	get "admin/metrics" => "admin_functions#metrics"
-	match "manage_capsule" => "admin_functions#manage_capsule"
+	# match "manage_capsule" => "admin_functions#manage_capsule"
 	match "change_capsule_status" => "admin_functions#change_capsule_status"
 	match "remote_moderation" => "admin_functions#remote_moderation"
 	match "remote_moderation/mark_for_trash" => "admin_functions#remote_moderation_delete"
@@ -206,8 +206,6 @@ EmailTesting::Application.routes.draw do
 
   root :to => "users#welcome", constraints: SiteConstraints.new
   
-  # root :to => 'homepages#alt_first_test_landing'
-  # root :to => 'homepages#alt_ovni_homepage'
 	root to: "static_pages#home"
 
 end

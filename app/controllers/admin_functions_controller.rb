@@ -64,10 +64,6 @@ class AdminFunctionsController < ApplicationController
 		@client = Client.find(params[:client_id])
 	end
 
-	def	manage_capsule
-		@capsule = Capsule.find(params[:capsule_id])
-	end
-
 	def change_capsule_status
 		@capsule = Capsule.find(params[:capsule_id])
 		case params[:capsule_action]

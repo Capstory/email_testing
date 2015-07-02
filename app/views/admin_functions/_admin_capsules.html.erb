@@ -23,7 +23,6 @@
 			<th></th>
 			<th></th>
 			<th></th>
-			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -33,7 +32,6 @@
 				<td><%= link_to capsule.owners_name, capsule.owner %></td>
 				<td><%= capsule.email %></td>
 				<td><%= capsule.event_date %></td>
-				<td><%= link_to "Manage", manage_capsule_path(capsule_id: capsule.id) %></td>
 				<% if capsule.accepting_submissions? %>
 					<td><%= link_to "Lock", change_capsule_status_path(capsule_id: capsule.id, capsule_action: :lock), data: { confirm: "Are you sure that you want to close this capsule from accepting submissions?" } %></td>
 				<% else%>
