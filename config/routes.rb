@@ -158,7 +158,6 @@ EmailTesting::Application.routes.draw do
   end
 
   # Static Page Routes
-  # match "home" => "static_pages#home"
   match "login" => "static_pages#login"
 	get "legal/terms_of_use" => "static_pages#terms_of_use"
 	match "legal/privacy_policy" => "static_pages#privacy_policy"

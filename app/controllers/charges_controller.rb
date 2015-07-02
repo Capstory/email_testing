@@ -3,7 +3,6 @@ require "ostruct"
 class ChargesController < ApplicationController
 	before_filter :admin_authentication, only: :index
 	# force_ssl if: :in_production?, only: [:new, :create]
-	layout "homepages"
 
 	def index
 		@charges = Charge.all
@@ -236,10 +235,12 @@ class ChargesController < ApplicationController
 
 	def thank_you
 		@customer_email = params[:customer_email]
+		render "thank_you", layout: "application"
 	end
 
 	def payment_error
 		@customer_email = params[:customer_email]
+		render "payment_error", layout: "application"
 	end
 
 	# def in_production?
