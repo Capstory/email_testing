@@ -4,6 +4,16 @@ class StaticPagesController < ApplicationController
 		@contact_form = ContactForm.new
 		render "home", layout: "ovni_layout"
   end
+
+	def new_home
+		@contact_form = ContactForm.new
+		render "new_home", layout: "new_landing"
+	end
+
+	def bootstrap_home
+		@contact_form = ContactForm.new
+		render "bootstrap_home", layout: "new_landing"
+	end
   
   def login
   end

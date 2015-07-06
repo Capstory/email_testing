@@ -1,3 +1,6 @@
 /*
- *= require static_pages
+ * require ./corporate_template/bootstrap.min
+ *= require ./static_pages/static_pages
+ *= require ./static_pages/new_styles
+ *= require_self
  */

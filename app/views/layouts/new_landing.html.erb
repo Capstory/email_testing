@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html class="not-ie" lang="en"> <!--<![endif]-->
+<head>
+	<!-- Basic Meta Tags -->
+  <meta charset="utf-8">
+	<title><%= content_for?(:title) ? yield(:title) : "Capstory || Collect Every Moment" %></title>
+	<meta name="description" content="Capstory">
+	<meta name="keywords" content="wedding photography">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Favicon -->
+	<%= favicon_link_tag "favicon.ico" %>
+	<%= stylesheet_link_tag "static" %>
+  <!-- Google Fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,500,600,700' rel='stylesheet' type='text/css'>
+  <!-- Internet Explorer condition - HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<%= javascript_include_tag "vendor/modernizr" %>
+</head>
+	<body>
+		
+		<%= yield %>
+
+		<%= javascript_include_tag "static" %>
+	</body>
+</html>
