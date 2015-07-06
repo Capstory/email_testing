@@ -3,3 +3,6 @@
 //= require jquery.ui.datepicker
 //= require ./corporate_template/bootstrap.min
 //= require_tree ./static_pages
+//= require_self
+
+
