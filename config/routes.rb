@@ -208,6 +208,7 @@ EmailTesting::Application.routes.draw do
 
   root :to => "users#welcome", constraints: SiteConstraints.new
   
-	root to: "static_pages#home"
+	# root to: "static_pages#home"
+	root to: "static_pages#new_home"
 
 end
