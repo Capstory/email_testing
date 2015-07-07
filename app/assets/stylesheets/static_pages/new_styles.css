@@ -77,7 +77,7 @@ section.PartTwo h3 {
 	margin-right: auto;
 }
 
-.description p {
+div.description p {
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 300;
 	padding-top: 0px;
@@ -89,7 +89,7 @@ section.PartTwo h3 {
 }
 
 
-.requestDemoBtnDiv {
+div.requestDemoBtnDiv {
   margin-top: 45px;
   margin-bottom: 25px;
 }
@@ -125,12 +125,11 @@ button.requestDemoBtn a, a:hover, a:visited {
   cursor: pointer;
 }
 
-.dottedLine{
+div.dottedLine{
 	border-bottom: 3px dotted;
 	border-color: #F16524;
 	width: 50%;
   max-width: 440px;
-  min-width: 325px;
 	margin-left:auto; 
 	margin-right:auto;
 	margin-top: 50px;
@@ -262,7 +261,7 @@ section.PartTwo h2 {
  	color: #434244;
 }
 
-.picHolder{
+div.picHolder{
 	height: 100%;
 	width:80%;
 	margin-left: auto;
@@ -271,19 +270,19 @@ section.PartTwo h2 {
 	padding-top: 35px;
 }
 
-.explanatoryPics {
+div.explanatoryPics {
   display: inline-block;
   width: 33%;
   text-align: center;
 }
 
-.explanatoryPics img {
+div.explanatoryPics img {
   width: 200px;
  	padding: 0;
  	margin: 0;
 }
 
-.logobox{
+div.logobox{
 	width: 80%;
   margin-top: 45px;
   margin-bottom: 45px;
@@ -386,43 +385,43 @@ div.footerLogo {
   text-align: right;
 }
 
-.Facebook{
-	display:inline-block;
-}
+/* .Facebook{ */
+/* 	display:inline-block; */
+/* } */
 
-.Facebook img{
-	left-padding: 5px;
-}
+/* .Facebook img{ */
+/* 	left-padding: 5px; */
+/* } */
 
-.Facebook img{
-	width: 100%;
-	height: auto;
-}
+/* .Facebook img{ */
+/* 	width: 100%; */
+/* 	height: auto; */
+/* } */
 
-.Twitter{
-	left-padding: 5px;
-	display:inline-block;
-}
+/* .Twitter{ */
+/* 	left-padding: 5px; */
+/* 	display:inline-block; */
+/* } */
 
-.Twitter img{
-	width: 100%;
-	height: auto;
-}
+/* .Twitter img{ */
+/* 	width: 100%; */
+/* 	height: auto; */
+/* } */
 
-.LinkedIn{
-	left-padding: 5px;
-	display:inline-block;
-}
+/* .LinkedIn{ */
+/* 	left-padding: 5px; */
+/* 	display:inline-block; */
+/* } */
 
-.LinkedIn img{
-	width: 100%;
-	height: auto;
-}
+/* .LinkedIn img{ */
+/* 	width: 100%; */
+/* 	height: auto; */
+/* } */
 
-.Instagram{
-	left-padding: 5px;
-	display:inline-block;
-}
+/* .Instagram{ */
+/* 	left-padding: 5px; */
+/* 	display:inline-block; */
+/* } */
 
 
 div.hideOnFull {
@@ -434,9 +433,23 @@ div.hideOnFull {
     background-position: 0px 0px;
   }
 
+  div.description p {
+    font-size: 16px;
+  }
+
+  button.requestDemoBtn {
+    min-width: 250px;
+    padding: 10px 50px;
+    width: 90%;
+  }
+
   .slides {
     width: 90%;
     height: 300px; 
+  }
+
+  div.picHolder {
+    margin-bottom: 30px;
   }
 
   div.explanatoryPics {

@@ -19,11 +19,11 @@
 
 .capsule_link {
   text-align: center;
-  background-color: #fff;
+  background-color: #FFFDEA;
 }
 
 .capsule_link:hover {
-  background-color: #eee;
+  background-color: #eeecdb;
 }
 
 .application_logo a, a:hover, a:visited {
