@@ -10,7 +10,7 @@
 	<% if @capsule.has_logo? %>
 		<%= link_to image_tag(logo_url(@capsule), width: logo_width(@capsule), height: logo_height(@capsule), style: "padding-top:#{logo_padding_top(@capsule)};padding-left:#{logo_padding_left(@capsule)}"), self.send(resolve_logo_route), style: "padding-right:10px;" %>
 	<% else %>
-		<%= link_to image_tag("logo.png", width: '200px'), self.send(resolve_logo_route), style: "padding-right:10px;", id: "capstory_logo" %>
+		<%= link_to image_tag("logo.png", width: '125px'), self.send(resolve_logo_route), style: "padding-right:10px;", id: "capstory_logo" %>
 	<% end %>
 <% end %>
 <div ng-view></div>
