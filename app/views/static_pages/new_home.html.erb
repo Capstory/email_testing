@@ -34,7 +34,7 @@
 			</div>
 		</div>
 		<div class="requestDemoBtnDiv">
-			<button class="requestDemoBtn"><a href="mailto:hello@capstory.me">Request a Demo</a></button>
+			<button class="requestDemoBtn" onclick="overlay()">Request a Demo</button>
 		</div>
 
 		<div class="dottedLine"></div>
@@ -194,7 +194,7 @@
 			</div>
 		</div>
 				<div class="requestDemoBtnDiv hideOnFull showOnPhone">
-					<button class="requestDemoBtn"><a href="mailto:hello@capstory.me">Request a Demo</a></button>
+					<button class="requestDemoBtn" onclick="overlay()">Request a Demo</button>
 				</div>
 		</section>
 
@@ -222,7 +222,7 @@
 
 				<div class="footerColumn hideOnPhone">
 					<div class="requestDemoBtnDiv">
-						<button class="requestDemoBtn" style="padding: 17px 100px;"><a href="mailto:hello@capstory.me">Request a Demo</a></button>
+						<button class="requestDemoBtn" style="padding: 17px 100px;" onclick="overlay()">Request a Demo</button>
 					</div>
 					<%# <div class= "RequestDemo"> %>
 						<%#	 <input type="image" name="submit" value="submit" src="/images/Request-Demo-Button-Large.png" style= "padding-right: 0;"/> %>
@@ -236,7 +236,7 @@
 							</a>
 						</div>
 						<div class="socialIcon">
-							<a href="https://www.instagram.com/capstory">
+							<a href="https://www.instagram.com/capstory.me">
 								<%= image_tag "new_brand/Instagram-Icon.png", alt: "Instagram", width: "40px" %>
 							</a>
 						</div>
@@ -289,3 +289,164 @@
 			</div>	
 		<%# </div> %>
 		</section>
+		<div id="modal-overlay">
+			<div class="modal-content">
+				<div class="modal-header">
+					Request a Demo
+					<div class="close-button" id="close-modal"></div>
+				</div>
+				<div class="modal-body">
+					<p>Please fill out the form and press submit. Or, contact us by email or telephone.</p>
+					<%= form_tag("/contact_forms/request_demo", format: :json, method: "post", remote: true, id: "requestDemoForm") do %>
+						<div class="requestFormRow">
+							<div class="requestFormInputBlock">
+								<div class="requestFormLabel">
+									<%= label_tag :name %>
+								</div>
+								<div class="requestFormInput">
+									<%= text_field_tag :name %>
+								</div>
+							</div>
+
+							<div class="requestFormInputBlock">
+								<div class="requestFormLabel">
+									<%= label_tag :email, "Email/Phone Number" %>
+								</div>
+								<div class="requestFormInput">
+									<%= text_field_tag :email %>
+								</div>
+							</div>
+						</div>
+
+						<div class="requestFormRow">
+							<div class="requestFormInputBlock">
+								<div class="requestFormLabel">
+									<%= label_tag :company, "Company Name" %>
+								</div>
+								<div class="requestFormInput">
+									<%= text_field_tag :company %>
+								</div>
+							</div>
+
+							<div class="requestFormInputBlock">
+								<div class="requestFormLabel">
+									<%= label_tag :position, "Position/Title" %>
+								</div>
+								<div class="requestFormInput">
+									<%= text_field_tag :position %>
+								</div>
+							</div>
+						</div>
+
+						<div class="requestFormRow">
+							<div class="requestFormInputBlock">
+								<div class="requestFormLabel">
+									<%= label_tag :event_type %>
+								</div>
+								<div class="requestFormInput">
+									<%= text_field_tag :event_type %>
+								</div>
+								<div class="requestFormUnderInputText">
+									<p>i.e. holiday party, sales retreat, fundraiser, conference, etc.</p>
+								</div>
+							</div>
+
+							<div class="requestFormInputBlock">
+								<div class="requestFormSubInputBlock">
+									<div class="requestFormLabel">
+										<%= label_tag :event_date %>
+									</div>
+									<div class="requestFormInput">
+										<%= text_field_tag :event_date %>
+									</div>
+								</div>
+
+								<div class="requestFormSubInputBlock">
+									<div class="requestFormLabel">
+										<%= label_tag :event_size %>
+									</div>
+									<div class="requestFormInput">
+										<%= text_field_tag :event_size %>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<p style="text-transform: uppercase;"><b>What features are you most interested in?</b> (Select all that apply)</p>
+
+						<div class="requestFormRow">
+							<div class="requestFormInputBlock">
+								<div class="requestFormInput">
+									<div class="requestFormCheckBox">
+										<div class="requestFormCheckMark">
+											<%= check_box_tag :live_streaming %>
+										</div>
+									</div>
+									<span class="requestFormLabel">
+										<%= label_tag :live_streaming %>
+									</span>
+								</div>
+							</div>
+
+							<div class="requestFormInputBlock">
+								<div class="requestFormInput">
+									<div class="requestFormCheckBox">
+										<div class="requestFormCheckMark">
+											<%= check_box_tag :aggregation %>
+										</div>
+									</div>
+									<span class="requestFormLabel">
+										<%= label_tag :aggregation %>
+									</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="requestFormRow">
+							<div class="requestFormInputBlock">
+								<div class="requestFormInput">
+									<div class="requestFormCheckBox">
+										<div class="requestFormCheckMark">
+											<%= check_box_tag :branding %>
+										</div>
+									</div>
+									<span class="requestFormLabel">
+										<%= label_tag :branding %>
+									</span>
+								</div>
+							</div>
+
+							<div class="requestFormInputBlock">
+								<div class="requestFormInput">
+									<div class="requestFormCheckBox">
+										<div class="requestFormCheckMark">
+											<%= check_box_tag :custom_books %>
+										</div>
+									</div>
+									<span class="requestFormLabel">
+										<%= label_tag :custom_books %>
+									</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="requestFormRow">
+							<div class="requestFormLabel">
+								<%= label_tag :additional_information %>
+							</div>
+							<div class="requestFormInput">
+								<%= text_area_tag :additional_information %> 
+							</div>
+						</div>
+
+						<div class="requestFormDottedLine"></div>
+						<div class="requestFormRow">
+							<div class="requestFormButtonGroup">
+								<div id="requestFormCloseButton">Close</div>
+								<%= submit_tag "Submit", id: "requestFormSubmitButton" %>
+							</div>
+						</div>
+					<% end %>
+				</div>
+			</div>	
+		</div>
