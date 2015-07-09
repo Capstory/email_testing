@@ -80,7 +80,7 @@ EmailTesting::Application.configure do
     address: 'secure.emailsrvr.com',
     port: 465,
     user_name: 'hello@capstory.me',
-    password: 'foobar',
+    password: 'XKO9mJ2f7BiZ',
     authentication: :login,
   }
   
