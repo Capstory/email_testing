@@ -25,7 +25,7 @@
 </div>
 <div class="row">
 	<div class="small-12 medium-6 columns">
-		<%= image_tag "photobooks.png" %>
+		<%= image_tag "custom_orders/hardcover_sample.png" %>
 		<div class="row">
 			<div class="small-6 columns">
 				<h4>Hard Cover Albums</h4>
@@ -45,7 +45,7 @@
 		</div>
 	</div>
 	<div class="small-12 medium-6 columns">
-		<%= image_tag "photobooks.png" %>
+		<%= image_tag "custom_orders/softcover_sample.png" %>
 		<div class="row">
 			<div class="small-6 columns">
 				<h4>Soft Cover Albums</h4>
@@ -98,8 +98,8 @@
 	var hardCoverTotal = document.getElementById("hardCoverTotal");
 	var softCoverTotal = document.getElementById("softCoverTotal");
 	var totalCounter = document.getElementById("totalCounter");	
-	var hardCoverPrice = 35.00;
-	var softCoverPrice = 25.00;
+	var hardCoverPrice = 80.00;
+	var softCoverPrice = 65.00;
 
 	<% if @order.quantities %>
 		var orderObject = {
