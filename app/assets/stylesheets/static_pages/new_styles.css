@@ -11,13 +11,14 @@ body {
 }
 
 
-div.headerWrapper{
+div.headerWrapper {
 	height: 480px;
-	background-image: url("/images/capstory-header.jpg");
+	background-image: url("/images/capstory-header2.jpg");
 	-webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-	background-position: 0px -100px;
+	background-position: 0px -200px;
+  background-attachment: fixed;
 	background-repeat: no-repeat;
   background-size: cover;
 }
@@ -33,8 +34,8 @@ div.headerWrapper h1 {
 section.PartOne {
 	height: 100%;
   width: 95%;
-  max-width: 900px;
-  margin 0 auto;
+  max-width: 1024px;
+  margin: 0 auto;
 	/* -webkit-background-size: cover; */
   /* -moz-background-size: cover; */
   /* -o-background-size: cover; */
@@ -65,8 +66,9 @@ section.PartOne {
 }
 
 section.PartTwo {
-	max-width: 100%;
-	margin: 0;
+	/* max-width: 100%; */
+  max-width: 1024px;
+	margin: 0px auto;
 }
 
 section.PartTwo h3 {
@@ -339,7 +341,8 @@ section.PartThree{
 }
 
 div.footerRow {
-  width: 90%;
+  width: 93%;
+  max-width: 1024px;
   padding-top: 30px;
   padding-bottom: 30px;
   margin-left: auto;
@@ -366,12 +369,14 @@ div.addressSection p {
 
 div.addressSection a, a:hover, a:visited {
   display: block;
+  font-size: 16px;
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
 	color: #F16524;
   margin-top: 30px;
   margin-bottom: 30px; 
   text-decoration: none;
+  text-transform: none;
 }
 
 div.addressSection h3 {
@@ -454,10 +459,11 @@ div.modal-content {
   top: 0;
   left: 0;
   overflow-y: scroll;
+  overflow-x: hidden;
   z-index: 1100;
   width: 55%;
-  height: 90%;
-  margin: 2% auto;
+  height: 85%;
+  margin: 5% auto;
   padding-bottom: 30px;
   background-color: #FFFDEA;
 }
@@ -478,16 +484,18 @@ div.modal-header {
 
 div.close-button {
   float: right;
-  height: 10px;
-  width: 10px;
-  background-color: black;
+  margin-top: 3px;
+  height: 20px;
+  width: 20px;
+  background-image: url("/images/x-icon.png");
+  background-size: contain;
 }
 
 
 div.modal-body {
   width: 90%;
   max-width: 800px;
-  margin: 0 auto;
+  margin: 0px auto;
   text-align: left;
   font-family: "Open Sans", sans-serif;
  	color: #434244;
@@ -542,13 +550,15 @@ span.requestFormLabel {
 
 div.requestFormInput input[type=text] {
   background-color: #FFFDEA;
-  border: 0.25em solid #434244;
+  border: 0.15em solid #434244;
   border-radius: 7px;
   -web-border-radius: 7px;
   -o-border-radius: 7px;
   -moz-border-radius: 7px;
   padding: 10px;
   width: 85%;
+  font-size: 16px;
+  font-family: "Open Sans", sans-serif;
 }
 
 div.requestFormInput input[type=checkbox] {
@@ -561,14 +571,17 @@ div.requestFormSubInputBlock {
 }
 
 textarea#additional_information {
-  width: 98%;
+  width: 95%;
   height: 150px;
+  padding: 10px;
   background-color: #FFFDEA;
   border-radius: 7px;
   -web-border-radius: 7px;
   -o-border-radius: 7px;
   -moz-border-radius: 7px;
-  border: 0.25em solid #434244;
+  border: 0.15em solid #434244;
+  font-size: 16px;
+  font-family: "Open Sans", sans-serif;
 }
 
 div.requestFormSubInputBlock div.requestFormInput input {
@@ -581,6 +594,16 @@ div.requestFormUnderInputText p {
   padding-top: 5px;
   font-style: italic;
   font-size: 10px;
+}
+
+#requestFormErrorDisplay {
+  background-color: red;
+  padding: 10px;
+  border-radius: 7px;
+  -web-border-radius: 7px;
+  -o-border-radius: 7px;
+  -moz-border-radius: 7px;
+  visibility: hidden;
 }
 
 div.requestFormDottedLine {
@@ -625,6 +648,19 @@ div.requestFormButtonGroup {
 }
 
 @media (max-width: 768px) {
+
+  div.headerWrapper {
+    height: 480px;
+    background-image: url("/images/capstory-header2.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-position: 0px -80px;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
   section.PartOne {
     background-position: 0px 0px;
   }
@@ -667,6 +703,124 @@ div.requestFormButtonGroup {
   div.footerLogo {
     padding:10px;
     text-align:center;
+  }
+
+  div.modal-content {
+    width: 85%;
+  }
+
+  div.modal-header {
+    margin: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+    font-family: "Open Sans", sans-serif;
+    text-transform: uppercase;
+    background-color: #F16524;
+  }
+
+  div.modal-body {
+    width: 90%;
+    max-width: 800px;
+    text-align: left;
+    font-family: "Open Sans", sans-serif;
+    color: #434244;
+  }
+
+  /* form.requestDemoForm { */
+  /*   margin-left: auto; */
+  /*   margin-right: auto; */
+  /* } */
+
+  div.close-button {
+    float: right;
+    margin-top: 3px;
+    padding-left: 8px;
+    height: 20px;
+    width: 20px;
+    background-image: url("/images/x-icon.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    /* visibility: hidden; */
+  }
+
+  div.requestFormRow {
+   padding-top: 0px;
+   padding-bottom: 0px; 
+  }
+
+  div.requestFormInputBlock {
+    padding-top: 10px;
+    display: inline-block;
+    width: 100%;
+  }
+
+  div.requestFormInput input[type=text] {
+    width: 90%;
+  }
+
+  div.requestFormSubInputBlock {
+    display: inline-block;
+    width: 48%;
+  }
+
+  div.additionalInfoRow {
+    margin-top: 20px;
+  }
+
+  textarea#additional_information {
+    width: 90%;
+    height: 150px;
+    padding: 10px;
+    background-color: #FFFDEA;
+    border-radius: 7px;
+    -web-border-radius: 7px;
+    -o-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border: 0.15em solid #434244;
+    font-size: 16px;
+    font-family: "Open Sans", sans-serif;
+  }
+
+  div.requestFormButtonGroup {
+    float: none;
+  }
+
+  #requestFormCloseButton {
+    /* background-color: #FFFDEA; */
+    /* border: 0.12em solid #434244; */
+    /* border-radius: 5px; */
+    /* -web-border-radius: 5px; */
+    /* -o-border-radius: 5px; */
+    /* -moz-border-radius: 5px; */
+    /* text-transform: uppercase; */
+    /* padding: 15px 40px; */
+    /* font-size: 22px; */
+    /* font-weight: 600; */
+    margin-top: 10px;
+    display: block;
+    text-align: center;
+  }
+
+  #requestFormSubmitButton {
+    /* background-color: #F16524; */
+    /* border: none; */
+    /* text-transform: uppercase; */
+    /* border-radius: 5px; */
+    /* -web-border-radius: 5px; */
+    /* -o-border-radius: 5px; */
+    /* -moz-border-radius: 5px; */
+    /* padding: 17px 40px; */
+    /* font-size: 22px; */
+    /* font-weight: 600; */
+    /* color: #FFFDEA; */
+    margin-top: 10px;
+    display: block;
+    width: 100%;
   }
 }
 

@@ -181,6 +181,7 @@ EmailTesting::Application.routes.draw do
 	resources :discounts
   
 	post "contact_forms/request_package_information" => "contact_forms#request_package_information"
+	post "contact_forms/request_demo" => "contact_forms#request_demo"
   match "contact_thank_you" => "contact_forms#thank_you"
   resources :contact_forms, only: ["index", "create", "new"]
   

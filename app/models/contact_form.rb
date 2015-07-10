@@ -1,8 +1,33 @@
 class ContactForm < ActiveRecord::Base
   attr_accessible :email, :message, :name, :source
   
-  validates_presence_of :email
-  validates_format_of :email, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i
+  # validates_presence_of :email
+  # validates_format_of :email, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i
+
+	def self.compose_request_demo_message(params)
+		%Q{
+			Someone has requested a demo. Below is the information from the contact form:
+			-------------------------------------
+
+			Name: #{ params[:name] }
+			Email/Phone Number: #{ params[:email] }
+			Company: #{ params[:company] }
+			Position/Title: #{ params[:position] }
+
+			Event Type: #{ params[:event_type] }
+			Event Date: #{ params[:event_date] }
+			Event Size: #{ params[:event_size] }
+
+			Feature Interests:
+			Live Streaming: #{ feature_interest?(params[:live_streaming])}
+			Custom Branding: #{ feature_interest?(params[:branding]) }
+			Photo Aggregation: #{ feature_interest?(params[:aggregation]) }
+			Custom Books: #{feature_interest?(params[:custom_books]) }
+
+			Additional Information:
+			#{ params[:additional_information] }
+		}
+	end
 
 	def self.compose_request_package_information_message(msg_info_hash, genre)
 		case genre
@@ -97,5 +122,9 @@ class ContactForm < ActiveRecord::Base
 
 	def self.package_interest?(package_value)
 		package_value.nil? ? "No" : "Yes"
+	end
+
+	def self.feature_interest?(feature)
+		feature.nil? ? "No" : "Yes"
 	end
 end

@@ -6,9 +6,9 @@
 <head>
 	<!-- Basic Meta Tags -->
   <meta charset="utf-8">
-	<title><%= content_for?(:title) ? yield(:title) : "Capstory || Collect Every Moment" %></title>
+	<title><%= content_for?(:title) ? yield(:title) : "Capstory || Engage Your Event Attendees" %></title>
 	<meta name="description" content="Capstory">
-	<meta name="keywords" content="wedding photography">
+	<meta name="keywords" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Favicon -->
 	<%= favicon_link_tag "favicon.ico" %>
@@ -27,5 +27,7 @@
 		<%= yield %>
 
 		<%= javascript_include_tag "static" %>
+		<%= render 'layouts/ga' if Rails.env.production? %>
+		<%= render 'layouts/crazy_egg' if Rails.env.production? %>
 	</body>
 </html>

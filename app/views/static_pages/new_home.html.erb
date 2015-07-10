@@ -20,7 +20,7 @@
 		</div>
 		<div class="container">         
 			<div class="centerContent">
-				<div class = "description">
+				<div class="description">
 					<p>Your guests capture their favorite authentic and spontaneous moments from your next fundraiser, corporate celebration or holiday party and share them with everyone in an instant. There's no app for them to download and it works on any cellphone, tablet or computer! <br> </p> 
 				</div>         
 
@@ -159,7 +159,7 @@
 			<div class = "dottedLine"> </div>  
 		<%# </div> %>
 		<div class="logobox">
-			<h3 class="partnersHeader">Capstory has worked with these great brands:</h3>   
+			<h3 class="partnersHeader">Capstory has worked with these great brands and more:</h3>   
 			<div class="partnerLogo hideOnPhone" style="width: 18%">
 				<%# <img src="McDonalds-Logo_Grey.png" alt="Capture"> %>
 				<%= image_tag "new_brand/McDonalds-Logo_Grey.png", alt: "Capture", width: "60%" %>
@@ -215,14 +215,14 @@
 						<div class="showOnPhone hideOnFull">
 							<p style="line-height:1em;">Columbus, Ohio </br>43212</p>
 						</div>
-						<a href="https://capstory.me/login">hello@capstory.me</a>
+						<a href="mailto:hello@capstory.me">hello@capstory.me</a>
 						<p>(513) 401-5572</p>
 					</div>
 				</div>
 
 				<div class="footerColumn hideOnPhone">
 					<div class="requestDemoBtnDiv">
-						<button class="requestDemoBtn" style="padding: 17px 100px;" onclick="overlay()">Request a Demo</button>
+						<button class="requestDemoBtn" style="padding: 17px 80px;" onclick="overlay()">Request a Demo</button>
 					</div>
 					<%# <div class= "RequestDemo"> %>
 						<%#	 <input type="image" name="submit" value="submit" src="/images/Request-Demo-Button-Large.png" style= "padding-right: 0;"/> %>
@@ -297,7 +297,7 @@
 				</div>
 				<div class="modal-body">
 					<p>Please fill out the form and press submit. Or, contact us by email or telephone.</p>
-					<%= form_tag("/contact_forms/request_demo", format: :json, method: "post", remote: true, id: "requestDemoForm") do %>
+					<%= form_tag("/contact_forms/request_demo", method: :post, format: :json, remote: true, id: "requestDemoForm") do %>
 						<div class="requestFormRow">
 							<div class="requestFormInputBlock">
 								<div class="requestFormLabel">
@@ -372,65 +372,65 @@
 							</div>
 						</div>
 
-						<p style="text-transform: uppercase;"><b>What features are you most interested in?</b> (Select all that apply)</p>
+						<%# <p style="text-transform: uppercase;"><b>What features are you most interested in?</b> (Select all that apply)</p> %>
 
-						<div class="requestFormRow">
-							<div class="requestFormInputBlock">
-								<div class="requestFormInput">
-									<div class="requestFormCheckBox">
-										<div class="requestFormCheckMark">
-											<%= check_box_tag :live_streaming %>
-										</div>
-									</div>
-									<span class="requestFormLabel">
-										<%= label_tag :live_streaming %>
-									</span>
-								</div>
-							</div>
+						<%# <div class="requestFormRow"> %>
+						<%# 	<div class="requestFormInputBlock"> %>
+						<%# 		<div class="requestFormInput"> %>
+						<%# 			<div class="requestFormCheckBox"> %>
+						<%# 				<div class="requestFormCheckMark"> %>
+						<%# 					<%= check_box_tag :live_streaming %1> %>
+						<%# 				</div> %>
+						<%# 			</div> %>
+						<%# 			<span class="requestFormLabel"> %>
+						<%# 				<%= label_tag :live_streaming %1> %>
+						<%# 			</span> %>
+						<%# 		</div> %>
+						<%# 	</div> %>
 
-							<div class="requestFormInputBlock">
-								<div class="requestFormInput">
-									<div class="requestFormCheckBox">
-										<div class="requestFormCheckMark">
-											<%= check_box_tag :aggregation %>
-										</div>
-									</div>
-									<span class="requestFormLabel">
-										<%= label_tag :aggregation %>
-									</span>
-								</div>
-							</div>
-						</div>
+						<%# 	<div class="requestFormInputBlock"> %>
+						<%# 		<div class="requestFormInput"> %>
+						<%# 			<div class="requestFormCheckBox"> %>
+						<%# 				<div class="requestFormCheckMark"> %>
+						<%# 					<%= check_box_tag :aggregation %1> %>
+						<%# 				</div> %>
+						<%# 			</div> %>
+						<%# 			<span class="requestFormLabel"> %>
+						<%# 				<%= label_tag :aggregation %1> %>
+						<%# 			</span> %>
+						<%# 		</div> %>
+						<%# 	</div> %>
+						<%# </div> %>
 
-						<div class="requestFormRow">
-							<div class="requestFormInputBlock">
-								<div class="requestFormInput">
-									<div class="requestFormCheckBox">
-										<div class="requestFormCheckMark">
-											<%= check_box_tag :branding %>
-										</div>
-									</div>
-									<span class="requestFormLabel">
-										<%= label_tag :branding %>
-									</span>
-								</div>
-							</div>
+						<%# <div class="requestFormRow"> %>
+						<%# 	<div class="requestFormInputBlock"> %>
+						<%# 		<div class="requestFormInput"> %>
+						<%# 			<div class="requestFormCheckBox"> %>
+						<%# 				<div class="requestFormCheckMark"> %>
+						<%# 					<%= check_box_tag :branding %1> %>
+						<%# 				</div> %>
+						<%# 			</div> %>
+						<%# 			<span class="requestFormLabel"> %>
+						<%# 				<%= label_tag :branding %1> %>
+						<%# 			</span> %>
+						<%# 		</div> %>
+						<%# 	</div> %>
 
-							<div class="requestFormInputBlock">
-								<div class="requestFormInput">
-									<div class="requestFormCheckBox">
-										<div class="requestFormCheckMark">
-											<%= check_box_tag :custom_books %>
-										</div>
-									</div>
-									<span class="requestFormLabel">
-										<%= label_tag :custom_books %>
-									</span>
-								</div>
-							</div>
-						</div>
+						<%# 	<div class="requestFormInputBlock"> %>
+						<%# 		<div class="requestFormInput"> %>
+						<%# 			<div class="requestFormCheckBox"> %>
+						<%# 				<div class="requestFormCheckMark"> %>
+						<%# 					<%= check_box_tag :custom_books %1> %>
+						<%# 				</div> %>
+						<%# 			</div> %>
+						<%# 			<span class="requestFormLabel"> %>
+						<%# 				<%= label_tag :custom_books %1> %>
+						<%# 			</span> %>
+						<%# 		</div> %>
+						<%# 	</div> %>
+						<%# </div> %>
 
-						<div class="requestFormRow">
+						<div class="requestFormRow additionalInfoRow">
 							<div class="requestFormLabel">
 								<%= label_tag :additional_information %>
 							</div>
@@ -439,6 +439,9 @@
 							</div>
 						</div>
 
+						<div class="requestFormRow">
+							<div id="requestFormErrorDisplay"></div>
+						</div>
 						<div class="requestFormDottedLine"></div>
 						<div class="requestFormRow">
 							<div class="requestFormButtonGroup">
