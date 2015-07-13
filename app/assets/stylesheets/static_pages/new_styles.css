@@ -462,10 +462,26 @@ div.modal-content {
   overflow-x: hidden;
   z-index: 1100;
   width: 55%;
-  height: 85%;
+  /* height: 85%; */
   margin: 5% auto;
   padding-bottom: 30px;
   background-color: #FFFDEA;
+}
+
+div.modal-content#mainModalContent {
+  height: 85%;
+}
+
+div.modal-content#thankYouModalContent {
+  display: none;
+  min-height: 30%;
+  max-height: 85%;
+}
+
+div.modal-content#errorsModalContent {
+  display: none;
+  min-height: 30%;
+  max-height: 85%;
 }
 
 div.modal-header {
@@ -499,6 +515,26 @@ div.modal-body {
   text-align: left;
   font-family: "Open Sans", sans-serif;
  	color: #434244;
+}
+
+div.modal-content#thankYouModalContent div.modal-body {
+  text-align: center;
+  max-width: 450px;
+}
+
+div.modal-content#thankYouModalContent div.modal-body p {
+  font-size: 14px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+div.modal-content#errorsModalContent div.modal-body {
+  text-align: center;
+  max-width: 470px;
+}
+
+div.modal-content#errorsModalContent div.modal-body p {
+  font-size: 14px;
 }
 
 div.requestFormRow {
@@ -597,13 +633,34 @@ div.requestFormUnderInputText p {
 }
 
 #requestFormErrorDisplay {
-  background-color: red;
+  /* background-color: red; */
   padding: 10px;
   border-radius: 7px;
   -web-border-radius: 7px;
   -o-border-radius: 7px;
   -moz-border-radius: 7px;
   visibility: hidden;
+  text-align: left;
+  font-family: "Open Sans", sans-serif;
+}
+
+div.errorModalError {
+  padding: 10px;
+}
+
+#backToMainModal {
+  background-color: #F16524;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  border-radius: 5px;
+  -web-border-radius: 5px;
+  -o-border-radius: 5px;
+  -moz-border-radius: 5px;
+  padding: 17px 40px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #FFFDEA;
 }
 
 div.requestFormDottedLine {
@@ -631,10 +688,12 @@ div.requestFormButtonGroup {
   font-size: 22px;
   font-weight: 600;
   display: inline;
+  cursor: pointer;
 }
 
 #requestFormSubmitButton {
   background-color: #F16524;
+  cursor: pointer;
   border: none;
   text-transform: uppercase;
   border-radius: 5px;
@@ -751,13 +810,7 @@ div.requestFormButtonGroup {
   div.requestFormRow {
    padding-top: 0px;
    padding-bottom: 0px; 
-  }
-
-  div.requestFormInputBlock {
-    padding-top: 10px;
-    display: inline-block;
-    width: 100%;
-  }
+ }
 
   div.requestFormInput input[type=text] {
     width: 90%;
@@ -820,6 +873,12 @@ div.requestFormButtonGroup {
     /* color: #FFFDEA; */
     margin-top: 10px;
     display: block;
+    width: 100%;
+  }
+
+  div.requestFormInputBlock {
+    padding-top: 10px;
+    display: inline-block;
     width: 100%;
   }
 }

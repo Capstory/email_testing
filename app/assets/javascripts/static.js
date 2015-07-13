@@ -25,8 +25,9 @@ var requestFormValidator = function() {
 
 	function errorBuilder(displayEl, error) {
 		var div = document.createElement("div");
-		var errorMessage = "Oops, the " + error.elementName + " field has something wrong. Error: " + error.msg; 
+		var errorMessage = "The " + error.elementName + " field has something wrong. Error: " + error.msg; 
 		div.appendChild(document.createTextNode(errorMessage));
+		div.classList.add("errorModalError");
 		displayEl.appendChild(div);
 	}
 
@@ -113,21 +114,44 @@ var requestFormValidator = function() {
 		hideRequestFormErrors: function() {
 			errorDisplay.style.visibility = "hidden";					   
 		},
+		clearAllFormFields: function() {
+			var i;
+
+			for (i = 0; i < fields.length; i++) {
+				var el = document.getElementById(fields[i].id);
+				el.value = "";
+			}			
+		},
 		run: function(clickEvent) {
 			var errorMsgs = this.checkRequestFormForErrors();
 			if ( errorMsgs.length != 0 ) {
 				this.showRequestFormErrors(errorMsgs);
 				clickEvent.preventDefault();
+				return false;
 			} else {
 				this.hideRequestFormErrors();
+				return true;
 			}
 		}
 	}
 };
 
 function overlay() {
+	function setDefaultState() {
+		var modals = ["thankYouModalContent", "errorsModalContent"];
+		var i;
+
+		for (i = 0; i < modals.length; i++) {
+			$("#" + modals[i]).hide();
+		}
+
+		$("#mainModalContent").show();
+	}
+
+	setDefaultState();
+
 	var el = document.getElementById("modal-overlay");
-	el.style.visibility = ( el.style.visibility == "visible" ) ? "hidden" : "visible";   	
+	el.style.visibility = ( el.style.visibility == "visible" ) ? "hidden" : "visible";
 
 	el.addEventListener("click", function(evt) {
 		if (evt.target.id == "modal-overlay") {
@@ -147,17 +171,22 @@ function overlay() {
 }
 
 var successHandler = function(e, data, status, xhr) {
-	console.log("Event: ", e);
-	console.log("Data: ", data);
+	// console.log("Event: ", e);
+	// console.log("Data: ", data);
+	validator.clearAllFormFields();
+	$("#mainModalContent").hide();
+	$("#thankYouModalContent").show();
 };
 
 var errorHandler = function(e, xhr, status, error) {
 	console.log("There was an error: ", error);
 };
 
+var validator = requestFormValidator();
 $(function() {
 	// overlay();
-	var validator = requestFormValidator();
+	// $("#mainModalContent").hide();
+	// $("#thankYouModalContent").hide();
 
 	$(".requestFormCheckBox").on("click", function() {
 		var $el = $(this);
@@ -171,7 +200,22 @@ $(function() {
 
 	$("#requestFormSubmitButton").on("click", function(evt) {
 		console.log("I've submittted");
-		validator.run(evt);
+		if (validator.run(evt)) {
+			validator.hideRequestFormErrors();
+			$("#thankYouModalContent").show();
+
+			$("#closeThankYouModal").on("click", function() {
+				overlay();
+			});
+		} else {
+			$("#mainModalContent").hide();
+			$("#errorsModalContent").show();
+			
+			$("#backToMainModal").on("click", function() {
+				$("#mainModalContent").show();
+				$("#errorsModalContent").hide();
+			});
+		}
 	});
 
 	$("#requestDemoForm").on("ajax:success", successHandler).on("ajax:error", errorHandler);

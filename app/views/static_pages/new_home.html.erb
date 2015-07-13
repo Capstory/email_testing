@@ -196,12 +196,12 @@
 				<div class="requestDemoBtnDiv hideOnFull showOnPhone">
 					<button class="requestDemoBtn" onclick="overlay()">Request a Demo</button>
 				</div>
-		</section>
+</section>
 
 
-		<div class = "footerBorder"></div>
+<div class = "footerBorder"></div>
 
-		<section class="PartThree">
+<section class="PartThree">
 
 		<%# <div class="PartThreegroup"> %>
 			<div class="footerRow">
@@ -288,9 +288,9 @@
 				</div>
 			</div>	
 		<%# </div> %>
-		</section>
+</section>
 		<div id="modal-overlay">
-			<div class="modal-content">
+			<div class="modal-content" id="mainModalContent">
 				<div class="modal-header">
 					Request a Demo
 					<div class="close-button" id="close-modal"></div>
@@ -439,9 +439,9 @@
 							</div>
 						</div>
 
-						<div class="requestFormRow">
-							<div id="requestFormErrorDisplay"></div>
-						</div>
+						<%# <div class="requestFormRow"> %>
+						<%# 	<div id="requestFormErrorDisplay"></div> %>
+						<%# </div> %>
 						<div class="requestFormDottedLine"></div>
 						<div class="requestFormRow">
 							<div class="requestFormButtonGroup">
@@ -452,4 +452,30 @@
 					<% end %>
 				</div>
 			</div>	
+			<div class="modal-content" id="thankYouModalContent">
+				<div class="modal-header">
+					&nbsp;
+					<div class="close-button" id="closeThankYouModal"></div>
+				</div>
+				<div class="modal-body">
+					<h1>Thank you for your interest in Capstory!</h1>
+					<div class="requestFormDottedLine"></div>
+					<p>You should receive a confirmation email from us shortly.</p>
+				</div>
+			</div>
+			<div class="modal-content" id="errorsModalContent">
+				<%# <div class="modal-header"> %>
+				<%#  &nbsp; %>	
+				<%# 	<div class="close-button" id="backToMainModal"></div> %>
+				<%# </div> %>
+				<div class="modal-body">
+					<h1 style="margin-top:40px">Oops! It looks like we still need a bit more information.</h1>	
+					<div class="requestFormDottedLine"></div>
+					<p>Please double check the form and try again.</p>
+					<div class="requestFormRow">
+						<div id="requestFormErrorDisplay"></div>
+					</div>
+					<button id="backToMainModal">Back To Form</button>
+				</div>
+			</div>
 		</div>

@@ -64,7 +64,7 @@ class ContactFormsController < ApplicationController
 		@contact_form.source = "request_demo_form"
 		@contact_form.message = ContactForm.compose_request_demo_message(params)	
 
-		puts @contact_form.message
+		# puts @contact_form.message
 
 		respond_to do |format|
 			if @contact_form.save
