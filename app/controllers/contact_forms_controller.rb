@@ -57,4 +57,22 @@ class ContactFormsController < ApplicationController
 			end
 		end
 	end
+
+	def request_demo
+		@contact_form = ContactForm.new
+		@contact_form.name = params[:name]
+		@contact_form.source = "request_demo_form"
+		@contact_form.message = ContactForm.compose_request_demo_message(params)	
+
+		# puts @contact_form.message
+
+		respond_to do |format|
+			if @contact_form.save
+				ContactFormMailer.admin_notification(@contact_form).deliver
+				format.json { render json: { status: :ok } }
+			else
+				format.json { render json: { status: :unable_to_save_form }, status: :unprocessable_entity }
+			end
+		end
+	end
 end

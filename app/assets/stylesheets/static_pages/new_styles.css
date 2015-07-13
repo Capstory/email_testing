@@ -1,4 +1,5 @@
 body {
+  height: 100%;
  	margin-left: auto;
  	margin-right: auto;
  	margin-top: 0;
@@ -10,11 +11,19 @@ body {
 }
 
 
-.headerWrapper{
+div.headerWrapper {
 	height: 480px;
+	background-image: url("/images/capstory-header2.jpg");
+	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+	background-position: 0px -200px;
+  background-attachment: fixed;
+	background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.headerWrapper h1 {
+div.headerWrapper h1 {
 	text-align: center;
 	color: #FFFDEA;
 	font-family: "Montserrat", sans-serif;
@@ -24,13 +33,15 @@ body {
 
 section.PartOne {
 	height: 100%;
-	background-image: url("/images/capstory-header.jpg");
-	-webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-	background-position: 0px -100px;
-	background-repeat: no-repeat;
-  background-size: cover;
+  width: 95%;
+  max-width: 1024px;
+  margin: 0 auto;
+	/* -webkit-background-size: cover; */
+  /* -moz-background-size: cover; */
+  /* -o-background-size: cover; */
+	/* background-position: 0px -100px; */
+	/* background-repeat: no-repeat; */
+  /* background-size: cover; */
 }
 
 .navbar{
@@ -55,8 +66,9 @@ section.PartOne {
 }
 
 section.PartTwo {
-	max-width: 100%;
-	margin: 0;
+	/* max-width: 100%; */
+  max-width: 1024px;
+	margin: 0px auto;
 }
 
 section.PartTwo h3 {
@@ -65,14 +77,14 @@ section.PartTwo h3 {
  	color: #434244;
 }
 
-.container {  
+div.container {  
   margin: 0 auto;
   text-align: center;
   margin-top: 10px;
   width: 75%;
 }
 
-.centerContent {
+div.centerContent {
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -329,7 +341,8 @@ section.PartThree{
 }
 
 div.footerRow {
-  width: 90%;
+  width: 93%;
+  max-width: 1024px;
   padding-top: 30px;
   padding-bottom: 30px;
   margin-left: auto;
@@ -356,12 +369,14 @@ div.addressSection p {
 
 div.addressSection a, a:hover, a:visited {
   display: block;
+  font-size: 16px;
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
 	color: #F16524;
   margin-top: 30px;
   margin-bottom: 30px; 
   text-decoration: none;
+  text-transform: none;
 }
 
 div.addressSection h3 {
@@ -428,7 +443,283 @@ div.hideOnFull {
   display: none;
 }
 
+#modal-overlay {
+  position: fixed;
+  background-color: #434244;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  visibility: hidden;
+}
+
+div.modal-content {
+  position: relative;
+  top: 0;
+  left: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  z-index: 1100;
+  width: 55%;
+  /* height: 85%; */
+  margin: 5% auto;
+  padding-bottom: 30px;
+  background-color: #FFFDEA;
+}
+
+div.modal-content#mainModalContent {
+  height: 85%;
+}
+
+div.modal-content#thankYouModalContent {
+  display: none;
+  min-height: 30%;
+  max-height: 85%;
+}
+
+div.modal-content#errorsModalContent {
+  display: none;
+  min-height: 30%;
+  max-height: 85%;
+}
+
+div.modal-header {
+  margin: 0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: left;
+  font-family: "Open Sans", sans-serif;
+  text-transform: uppercase;
+  background-color: #F16524;
+}
+
+div.close-button {
+  float: right;
+  margin-top: 3px;
+  height: 20px;
+  width: 20px;
+  background-image: url("/images/x-icon.png");
+  background-size: contain;
+}
+
+
+div.modal-body {
+  width: 90%;
+  max-width: 800px;
+  margin: 0px auto;
+  text-align: left;
+  font-family: "Open Sans", sans-serif;
+ 	color: #434244;
+}
+
+div.modal-content#thankYouModalContent div.modal-body {
+  text-align: center;
+  max-width: 450px;
+}
+
+div.modal-content#thankYouModalContent div.modal-body p {
+  font-size: 14px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+div.modal-content#errorsModalContent div.modal-body {
+  text-align: center;
+  max-width: 470px;
+}
+
+div.modal-content#errorsModalContent div.modal-body p {
+  font-size: 14px;
+}
+
+div.requestFormRow {
+ padding-top: 10px;
+ padding-bottom: 10px; 
+}
+
+div.requestFormInputBlock {
+  display: inline-block;
+  width: 49%;
+}
+
+div.requestFormCheckBox {
+  display: inline-block;
+  background-color: #FFFDEA;
+  border: 0.15em solid #434244;
+  border-radius: 7px;
+  -web-border-radius: 7px;
+  -o-border-radius: 7px;
+  -moz-border-radius: 7px;
+  width: 18px;
+  height: 18px;
+}
+
+div.requestFormCheckMark {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  /* margin: 0px auto; */
+  margin-left: 2px;
+  margin-top: 2px;
+  border-radius: 4px;
+  -web-border-radius: 4px;
+  -o-border-radius: 4px;
+  -moz-border-radius: 4px;
+  background-color: #F16524;
+  visibility: hidden;
+}
+
+.requestFormLabel {
+  padding: 5px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+span.requestFormLabel {
+  /* display: inline; */ 
+}
+
+div.requestFormInput input[type=text] {
+  background-color: #FFFDEA;
+  border: 0.15em solid #434244;
+  border-radius: 7px;
+  -web-border-radius: 7px;
+  -o-border-radius: 7px;
+  -moz-border-radius: 7px;
+  padding: 10px;
+  width: 85%;
+  font-size: 16px;
+  font-family: "Open Sans", sans-serif;
+}
+
+div.requestFormInput input[type=checkbox] {
+  visibility: hidden;
+}
+
+div.requestFormSubInputBlock {
+  display: inline-block;
+  width: 45%;
+}
+
+textarea#additional_information {
+  width: 95%;
+  height: 150px;
+  padding: 10px;
+  background-color: #FFFDEA;
+  border-radius: 7px;
+  -web-border-radius: 7px;
+  -o-border-radius: 7px;
+  -moz-border-radius: 7px;
+  border: 0.15em solid #434244;
+  font-size: 16px;
+  font-family: "Open Sans", sans-serif;
+}
+
+div.requestFormSubInputBlock div.requestFormInput input {
+  width: 70%;
+}
+
+div.requestFormUnderInputText p {
+  float: left;
+  margin: 0px;
+  padding-top: 5px;
+  font-style: italic;
+  font-size: 10px;
+}
+
+#requestFormErrorDisplay {
+  /* background-color: red; */
+  padding: 10px;
+  border-radius: 7px;
+  -web-border-radius: 7px;
+  -o-border-radius: 7px;
+  -moz-border-radius: 7px;
+  visibility: hidden;
+  text-align: left;
+  font-family: "Open Sans", sans-serif;
+}
+
+div.errorModalError {
+  padding: 10px;
+}
+
+#backToMainModal {
+  background-color: #F16524;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  border-radius: 5px;
+  -web-border-radius: 5px;
+  -o-border-radius: 5px;
+  -moz-border-radius: 5px;
+  padding: 17px 40px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #FFFDEA;
+}
+
+div.requestFormDottedLine {
+	border-bottom: 3px dotted;
+	border-color: #F16524;
+	width: 98%;
+	margin-left:auto; 
+	margin-right:auto;
+  margin-top: 30px;
+}
+
+div.requestFormButtonGroup {
+  float:right;
+}
+
+#requestFormCloseButton {
+  background-color: #FFFDEA;
+  border: 0.12em solid #434244;
+  border-radius: 5px;
+  -web-border-radius: 5px;
+  -o-border-radius: 5px;
+  -moz-border-radius: 5px;
+  text-transform: uppercase;
+  padding: 15px 40px;
+  font-size: 22px;
+  font-weight: 600;
+  display: inline;
+  cursor: pointer;
+}
+
+#requestFormSubmitButton {
+  background-color: #F16524;
+  cursor: pointer;
+  border: none;
+  text-transform: uppercase;
+  border-radius: 5px;
+  -web-border-radius: 5px;
+  -o-border-radius: 5px;
+  -moz-border-radius: 5px;
+  padding: 17px 40px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #FFFDEA;
+}
+
 @media (max-width: 768px) {
+
+  div.headerWrapper {
+    height: 480px;
+    background-image: url("/images/capstory-header2.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-position: 0px -80px;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
   section.PartOne {
     background-position: 0px 0px;
   }
@@ -471,6 +762,124 @@ div.hideOnFull {
   div.footerLogo {
     padding:10px;
     text-align:center;
+  }
+
+  div.modal-content {
+    width: 85%;
+  }
+
+  div.modal-header {
+    margin: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+    font-family: "Open Sans", sans-serif;
+    text-transform: uppercase;
+    background-color: #F16524;
+  }
+
+  div.modal-body {
+    width: 90%;
+    max-width: 800px;
+    text-align: left;
+    font-family: "Open Sans", sans-serif;
+    color: #434244;
+  }
+
+  /* form.requestDemoForm { */
+  /*   margin-left: auto; */
+  /*   margin-right: auto; */
+  /* } */
+
+  div.close-button {
+    float: right;
+    margin-top: 3px;
+    padding-left: 8px;
+    height: 20px;
+    width: 20px;
+    background-image: url("/images/x-icon.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    /* visibility: hidden; */
+  }
+
+  div.requestFormRow {
+   padding-top: 0px;
+   padding-bottom: 0px; 
+ }
+
+  div.requestFormInput input[type=text] {
+    width: 90%;
+  }
+
+  div.requestFormSubInputBlock {
+    display: inline-block;
+    width: 48%;
+  }
+
+  div.additionalInfoRow {
+    margin-top: 20px;
+  }
+
+  textarea#additional_information {
+    width: 90%;
+    height: 150px;
+    padding: 10px;
+    background-color: #FFFDEA;
+    border-radius: 7px;
+    -web-border-radius: 7px;
+    -o-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border: 0.15em solid #434244;
+    font-size: 16px;
+    font-family: "Open Sans", sans-serif;
+  }
+
+  div.requestFormButtonGroup {
+    float: none;
+  }
+
+  #requestFormCloseButton {
+    /* background-color: #FFFDEA; */
+    /* border: 0.12em solid #434244; */
+    /* border-radius: 5px; */
+    /* -web-border-radius: 5px; */
+    /* -o-border-radius: 5px; */
+    /* -moz-border-radius: 5px; */
+    /* text-transform: uppercase; */
+    /* padding: 15px 40px; */
+    /* font-size: 22px; */
+    /* font-weight: 600; */
+    margin-top: 10px;
+    display: block;
+    text-align: center;
+  }
+
+  #requestFormSubmitButton {
+    /* background-color: #F16524; */
+    /* border: none; */
+    /* text-transform: uppercase; */
+    /* border-radius: 5px; */
+    /* -web-border-radius: 5px; */
+    /* -o-border-radius: 5px; */
+    /* -moz-border-radius: 5px; */
+    /* padding: 17px 40px; */
+    /* font-size: 22px; */
+    /* font-weight: 600; */
+    /* color: #FFFDEA; */
+    margin-top: 10px;
+    display: block;
+    width: 100%;
+  }
+
+  div.requestFormInputBlock {
+    padding-top: 10px;
+    display: inline-block;
+    width: 100%;
   }
 }
 
