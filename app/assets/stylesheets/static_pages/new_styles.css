@@ -692,6 +692,7 @@ div.requestFormButtonGroup {
 }
 
 #requestFormSubmitButton {
+  -webkit-appearance: none;
   background-color: #F16524;
   cursor: pointer;
   border: none;
