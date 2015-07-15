@@ -2,31 +2,90 @@
   body {
     background-color: #202020;
   }
+
+  <!-- div.slideshowHeader { -->
+  <!--   background-color: #FFFDEA; -->
+  <!--   height: 45px; -->
+  <!-- } -->
+
+  div.slideshowHeaderRow {
+    margin: 0px auto;
+    width: 90%;
+    max-width: 1000px;
+  }
+
+  div.slideshowHeaderColumn {
+    display: inline-block;
+    width: 49%;
+    vertical-align: middle;
+  }
+
+  div.slideshowHeaderColumn img {
+   width: auto;
+   height: 65px;
+   padding-left: 10px;
+   padding-top: 10px;
+  }
+
+  h5.slideshowHeaderEmail {
+    float: right;
+  }
+
+  div.filmStrip {
+    height: 580px;
+    overflow: hidden;
+  }
 </style>
 <div ng-init="init()">
   <div ng-hide="postsExist">
     <div blank-state-directive capsule-email-address="capsule.email"></div>
   </div>
   <div ng-show="postsExist">
-    <div class="row">
-      <div class="small-12 small-centered columns" style="text-align:center;padding-top:10px;">
-        <h4 style="color:#fffdea;">Send Photos to: {{ capsule.email }}</h4>
+    <div ng-style="headerData.headerStyles">
+      <div class="slideshowHeaderRow">
+        <div class="slideshowHeaderColumn">
+          <img src="{{ headerData.logoPath }}" />
+        </div>   
+        <div class="slideshowHeaderColumn">
+          <h5 class="slideshowHeaderEmail" style="color:#fffdea;">Send Photos to: <b>{{ capsule.email }}</b></h5>
+        </div>
       </div>
     </div>
+    <!-- <p style="color: white;">{{ filmStripStyles }}</p> -->
+    <!-- <div class="row"> -->
+    <!--   <div class="small-12 small-centered columns" style="text-align:center;padding-top:10px;"> -->
+    <!--     <h4 style="color:#fffdea;">Send Photos to: {{ capsule.email }}</h4> -->
+    <!--   </div> -->
+    <!-- </div> -->
     <div class="row">
-      <div class="small-12 columns" style="text-align:center;">
-        <div main-element-directive post="post"></div>
+      <div class="small-10 columns" style="text-align:center;">
+        <div main-element-directive post="post" film-strip-styles="filmStripStyles"></div>
       </div> 
-    </div>
-    <div class="row" style="margin-top:10px;margin-bottom:20px;max-width:900px;">
-      <div class="small-2 columns testStylesDiv">
-        <div class="testStyles"></div>
-        <div current-post-directive post="post"></div>
+      <div class="small-2 columns" style="text-align: center">
+        <div ng-style="filmStripStyles">
+          <div current-post-directive post="post"></div>  
+          <div ng-repeat="item in filmStrip">
+            <div film-strip-post item="item" new-notification-method="popNew(item)" new-post="isInNewPosts(item)"></div>
+          </div>
+        </div>
+        <!-- <p style="color: #FFFDEA; text-align: left;"><small>Updating Live...</small></p> -->
+        <div updating-live></div>
       </div>
-      <div class="small-2 columns" ng-repeat="item in filmStrip">
-        <div film-strip-post item="item" new-notification-method="popNew(item)" new-post="isInNewPosts(item)"></div>
+    </div>
+    <div class="row">
+      <div class="small-2 pull-right">
+        <img src="/images/powered_by_icon.png" />
       </div>
     </div>
+    <!-- <div class="row" style="margin-top:10px;margin-bottom:20px;max-width:900px;"> -->
+    <!--   <div class="small-2 columns testStylesDiv"> -->
+    <!--     <div class="testStyles"></div> -->
+    <!--     <div current-post-directive post="post"></div> -->
+    <!--   </div> -->
+    <!--   <div class="small-2 columns" ng-repeat="item in filmStrip"> -->
+    <!--     <div film-strip-post item="item" new-notification-method="popNew(item)" new-post="isInNewPosts(item)"></div> -->
+    <!--   </div> -->
+    <!-- </div> -->
     <!-- <div class="row"> -->
     <!--   <div class="small-12 columns"> -->
     <!--     <button class="button expand" ng-click="toggleNewPhotos()" ng-hide="newPhotos">Insert New Photos</button> -->

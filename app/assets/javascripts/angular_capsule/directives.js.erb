@@ -62,7 +62,8 @@ angular_capsule_app.directive("mainElementDirective", [function() {
 		templateUrl: "<%= asset_path 'angular_capsule/main_element_directive.html' %>",
 		scope: {
 			post: "=",
-			mainElementLoading: "="
+			mainElementLoading: "=",
+			filmStripStyles: "="		
 		},
 		link: function(scope, el, attrs) {
 						var timer = undefined;
@@ -91,9 +92,10 @@ angular_capsule_app.directive("mainElementDirective", [function() {
 							return {"width": "auto", "height": height * percentage};
 						};
 
-						scope.mainImageContainerHeight = angular.extend({"margin-top":15}, setImageContainerHeight(0.74));
-						scope.mainImageHeight = setImageContainerHeight(0.70);
+						scope.mainImageContainerHeight = angular.extend({"margin-top":15}, setImageContainerHeight(0.8));
+						scope.mainImageHeight = setImageContainerHeight(0.78);
 						scope.mainBodyPaddingTop = {"padding-top": 200};
+						scope.filmStripStyles = { height: scope.mainImageContainerHeight.height, overflow: "hidden" }; 
 
 						scope.$on("mainElementLoaded", function() {
 							console.log("It took ", getTimerDiff(timer, timeStamp()), "ms to load image");
@@ -163,10 +165,13 @@ angular_capsule_app.directive("filmStripPost", [function() {
 			el.css("top", 0);
 			el.css("left", 0);
 			scope.$on("refreshPosts", function() {
-							el.animate({
-								left: (-1 * (el.width() + 10))
-							}, 450);
+							<%# el.animate({ %>
+							<%# 	left: (-1 * (el.width() + 10)) %>
+							<%# }, 450); %>
 					
+								el.animate({
+									top: (-1 * (el.height() + 10))
+								}, 450);
 			});
 	
 			scope.item.newPhoto = scope.newPost();
@@ -185,10 +190,11 @@ angular_capsule_app.directive("filmStripPost", [function() {
 			var setFilmStripHeight = function() {
 				var height = window.innerHeight;
 
-				return {"width": "auto", "height": height * 0.1};
+				return {"width": "auto", "height": "auto"};
 			};
 
-			scope.filmStripPostHeight = setFilmStripHeight();
+			<%# scope.filmStripPostHeight = setFilmStripHeight(); %>
+			scope.filmStripPostHeight = {"width": "100%", "height": "auto", paddingTop: "15px"};
 		}
 	};
 }]);
@@ -216,12 +222,22 @@ angular_capsule_app.directive("currentPostDirective", [function() {
 			var setSpotlightImageHeight = function() {
 				var height = window.innerHeight;
 
-				return {"position": "relative", "left": 0, "top": -10, "width": "auto", "height": height * 0.1};
+				return {"position": "relative", "left": 0, "top": 15, "width": "auto", "height": height * 0.1};
 			}
 
-			scope.spotlightImageHeight = setSpotlightImageHeight();
-			scope.spotlightQuoteHeight = angular.extend({"padding-top": 15, "margin-bottom": -10}, setSpotlightImageHeight());
+			<%# scope.spotlightImageHeight = setSpotlightImageHeight(); %>
+			<%# scope.spotlightQuoteHeight = angular.extend({"padding-top": 15, "margin-bottom": -10}, setSpotlightImageHeight()); %>
+			scope.spotlightImageHeight = {"width": "100%", "height": "auto", paddingTop: "15px"};
 		}
+	};
+}]);
+
+angular_capsule_app.directive("updatingLive", [function() {
+
+	return {
+		restrict: "A",
+		templateUrl: "<%= asset_path 'angular_capsule/updating_live.html' %>",
+		controller: "UpdatingLiveCtrl"
 	};
 }]);
 

@@ -1,4 +1,5 @@
 angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interval", "$location", "RandomPhotoGenerator", "CapsuleData", "CapsuleModel", "PostModel", "VideoModel", function($scope, $timeout, $interval, $location, RandomPhotoGenerator, CapsuleData, CapsuleModel, PostModel, VideoModel) {
+	var filmStripCount = 4;
 	var changeTopBarDiv = function(endState) {
 		var el = angular.element("#topBarDiv");
 		var spacer = angular.element("#topBarSpacer");
@@ -57,7 +58,7 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 		// $scope.post.large_image = PostModel.buildImageUrl($scope.post, "lightbox_width");
 		$scope.post.large_image = PostModel.buildSecureImageUrl($scope.post, "lightbox_width");
 		$scope.post.truncated_body = $scope.post.body ? S($scope.post.body).truncate(40).toString() : $scope.post.body;
-		$scope.filmStrip = buildFilmStrip(posts, $scope.post, videos, 5, []);
+		$scope.filmStrip = buildFilmStrip(posts, $scope.post, videos, filmStripCount, []);
 		// $scope.smallFilmStrip = buildFilmStrip(posts, $scope.post, videos, 4, []);
 
 	};
@@ -160,6 +161,7 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 	// 	return filmStrip;
 	// };
 
+	$scope.filmStripStyles = { height: "580px", overflow: "hidden" };
 	$scope.timeInterval = 7000;
 	$scope.newPhotos = false;
 	// $scope.currentNewPostPosition = setNewPostPosition();
@@ -171,6 +173,7 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 		$scope.capsule = CapsuleModel.setAndGetCapsuleData(CapsuleData.getCapsuleData());
 		$scope.posts = PostModel.filterOutTextPosts(PostModel.setAndGetPostsData(CapsuleData.getPosts()));
 		$scope.videos = VideoModel.setAndGetVideoData(CapsuleData.getVideos());
+		$scope.headerData = CapsuleData.getHeaderData();
 
 		var visiblePostIds = PostModel.getVisiblePosts($scope.posts)[1];
 		if (visiblePostIds.length > 0) {
@@ -179,7 +182,7 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 			$scope.post.thumb = PostModel.buildSecureImageUrl($scope.post, "thumb");
 			$scope.post.large_image = PostModel.buildSecureImageUrl($scope.post, "lightbox_width");
 
-			$scope.filmStrip = buildFilmStrip($scope.posts, $scope.post, $scope.videos, 5, []);
+			$scope.filmStrip = buildFilmStrip($scope.posts, $scope.post, $scope.videos, filmStripCount, []);
 			// $scope.smallFilmStrip = buildFilmStrip($scope.posts, $scope.post, $scope.videos, 4, []);
 
 			// setImageRotation($scope.timeInterval);

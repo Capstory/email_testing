@@ -14,6 +14,13 @@ angular_capsule_app.factory("CapsuleData", [function() {
 		admin: <%= current_user ? current_user.admin? : false %>,
 		capsuleOwner: <%= current_user ? capsule_owner(current_user.id, @capsule.id) : false %>
 	};
+	var headerData = {
+		logoPath: "<%= asset_path("logo_cream.png") %>",
+		headerStyles: {
+			backgroundColor: "#F16524",
+			height: "75px"	
+		}
+	};
 
 	return {
 		getCapsuleData: function() {
@@ -36,6 +43,9 @@ angular_capsule_app.factory("CapsuleData", [function() {
 		},
 		getAuthDetails: function() {
 			return currentUser;
+		},
+		getHeaderData: function() {
+			return headerData;							 
 		}
 	};
 }]);
