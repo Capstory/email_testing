@@ -92,10 +92,10 @@ angular_capsule_app.directive("mainElementDirective", [function() {
 							return {"width": "auto", "height": height * percentage};
 						};
 
-						scope.mainImageContainerHeight = angular.extend({"margin-top":15}, setImageContainerHeight(0.8));
-						scope.mainImageHeight = setImageContainerHeight(0.78);
+						scope.mainImageContainerHeight = angular.extend({"margin-top":15}, setImageContainerHeight(0.73));
+						scope.mainImageHeight = setImageContainerHeight(0.71);
 						scope.mainBodyPaddingTop = {"padding-top": 200};
-						scope.filmStripStyles = { height: scope.mainImageContainerHeight.height, overflow: "hidden" }; 
+						scope.filmStripStyles = { height: scope.mainImageContainerHeight.height - 30, overflow: "hidden" }; 
 
 						scope.$on("mainElementLoaded", function() {
 							console.log("It took ", getTimerDiff(timer, timeStamp()), "ms to load image");
@@ -176,15 +176,24 @@ angular_capsule_app.directive("filmStripPost", [function() {
 	
 			scope.item.newPhoto = scope.newPost();
 			if (scope.item.newPhoto) {
-				el.css("top", 1000);
+				el.css("left", 1000);
 				el.animate({
-					top: 0
+					left: 0
 				}, {
 					duration: 500,
 					done: function() {
 						scope.notifyParent();
 					}
 				});
+				<%# el.css("top", 1000); %>
+				<%# el.animate({ %>
+				<%# 	top: 0 %>
+				<%# }, { %>
+				<%# 	duration: 500, %>
+				<%# 	done: function() { %>
+				<%# 		scope.notifyParent(); %>
+				<%# 	} %>
+				<%# }); %>
 			}
 
 			var setFilmStripHeight = function() {
@@ -227,13 +236,12 @@ angular_capsule_app.directive("currentPostDirective", [function() {
 
 			<%# scope.spotlightImageHeight = setSpotlightImageHeight(); %>
 			<%# scope.spotlightQuoteHeight = angular.extend({"padding-top": 15, "margin-bottom": -10}, setSpotlightImageHeight()); %>
-			scope.spotlightImageHeight = {"width": "100%", "height": "auto", paddingTop: "15px"};
+			scope.spotlightImageHeight = {"width": "100%", "height": "auto"};
 		}
 	};
 }]);
 
 angular_capsule_app.directive("updatingLive", [function() {
-
 	return {
 		restrict: "A",
 		templateUrl: "<%= asset_path 'angular_capsule/updating_live.html' %>",
