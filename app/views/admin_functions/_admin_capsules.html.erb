@@ -23,6 +23,7 @@
 			<th></th>
 			<th></th>
 			<th></th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -43,6 +44,7 @@
 				<% else %>
 					<td><%= link_to "Add Logo", new_logo_path(klass: capsule.class, associated_object_id: capsule.id) %></td>
 				<% end %>
+				<td><%= link_to "Edit Styles", "/capsules/styles/#{ capsule.id }/edit" %></td>
 				<td><%= link_to "Delete", capsule, method: :delete, data: { confirm: "Are you sure?" } %></td>
 			</tr>
 		<% end %>

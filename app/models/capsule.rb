@@ -1,5 +1,5 @@
 class Capsule < ActiveRecord::Base
-  attr_accessible :name, :email, :event_date, :named_url, :response_message, :requires_verification
+  attr_accessible :name, :email, :event_date, :named_url, :response_message, :requires_verification, :styles
   
   has_many :encapsulations
   has_many :users, through: :encapsulations
@@ -13,10 +13,38 @@ class Capsule < ActiveRecord::Base
   validates_uniqueness_of :email
   # validates_format_of :email, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i
 	
+	serialize :styles, JSON
   
   extend FriendlyId
   friendly_id :named_url
   
+	def update_styles(params)
+		self.styles = {
+			"header" => {
+				"backgroundColor" => params[:header_background_color].blank? ? nil : params[:header_background_color],
+				"height" => params[:header_height].blank? ? nil : params[:header_height],
+				"color" => params[:header_font_color].blank? ? nil : params[:header_font_color]
+			},
+			"body" => {
+				"backgroundColor" => params[:body_background_color].blank? ? nil : params[:body_background_color]
+			}
+		}
+	end
+
+	def get_header_styles
+		default_header_styles = {
+			"backgroundColor" => "#F16524",
+			"height" => "75px",
+			"color" => "#FFFDEA"
+		}
+
+		if self.styles
+			default_header_styles.merge(self.styles["header"].delete_if { |key, value| value.nil? || value.blank? })
+		else
+			default_header_styles
+		end
+	end
+
 	def self.posts_avg(capsules)
 		posts_count = capsules.map { |capsule| capsule.posts.count }
 		result = posts_count.reduce(:+) / capsules.count

@@ -145,6 +145,10 @@ EmailTesting::Application.routes.draw do
 	match "conference_filepicker_process" => "capsules#conference_filepicker_process"
 	match "angular/:id" => "capsules#angular_show"
   resources :capsules, except: :index
+	scope "/capsules/styles" do
+		get ":capsule_id/edit" => "capsules#styles_chooser"
+		post ":capsule_id/update" => "capsules#update_styles"
+	end
   
   match 'verify_pin' => "capsules#verify_pin"
   match 'pin_authentication' => "capsules#authenticate_pin"

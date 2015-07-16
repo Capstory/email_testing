@@ -15,11 +15,13 @@ angular_capsule_app.factory("CapsuleData", [function() {
 		capsuleOwner: <%= current_user ? capsule_owner(current_user.id, @capsule.id) : false %>
 	};
 	var headerData = {
-		logoPath: "<%= asset_path("logo_cream.png") %>",
-		headerStyles: {
-			backgroundColor: "#F16524",
-			height: "75px"	
-		}
+		<%# logoPath: "<%= asset_path("logo_cream.png") %1>", %>
+		logoPath: "<%= get_logo_path(@capsule) %>",
+		headerStyles: <%= @capsule.get_header_styles.to_json.html_safe %>
+		<%# headerStyles: { %>
+		<%# 	backgroundColor: "#F16524", %>
+		<%# 	height: "75px" %>	
+		<%# } %>
 	};
 
 	return {

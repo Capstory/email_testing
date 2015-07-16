@@ -58,8 +58,41 @@ function downloadPoller () {
 
 var downloadManager = downloadPoller();
 
+function stylesUpdateSuccess(e, data, status, xhr) {
+	console.log("Success");
+	console.log("Data: ", data);
+	// $("#header_background_color").val("");
+	// $("#header_font_color").val("");
+	// $("#header_height").val("");
+
+	$("#errorDisplay").html("<h2 style='color: green;'>Success! Capsule Updated!</h2>");
+}
+
+function stylesUpdateError(e, xhr, status, error) {
+	console.log("Unable to update");
+	console.log("Error: ", error);
+	$("#errorDisplay").html("<h2 style='color: red;'>There was a problem. Unable to save.</h2>");
+}
+
+function setUpdateFormDefault(event) {
+	$("#header_background_color").val("#F16524");
+	$("#header_font_color").val("#FFFDEA");
+	$("#header_height").val("75px");
+	event.preventDefault();
+}
+
 $(function(){ 
-  
+	if ( $("#stylesUpdateForm").length > 0 ) {
+		var stylesUpdateForm = $("#stylesUpdateForm");
+
+		$("#setToDefaultsBtn").click(function(evt) {
+			setUpdateFormDefault(evt);
+			stylesUpdateForm.submit();
+		})
+
+		stylesUpdateForm.on("ajax:success", stylesUpdateSuccess).on("ajax:error", stylesUpdateError);
+	}
+
   $(document).foundation(); 
 	checkForErrors();
 	

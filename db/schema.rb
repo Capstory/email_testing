@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150701202436) do
+ActiveRecord::Schema.define(:version => 20150715200304) do
 
   create_table "album_orders", :force => true do |t|
     t.float    "total"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20150701202436) do
     t.string   "page_title"
     t.boolean  "locked"
     t.boolean  "requires_verification", :default => false
+    t.text     "styles"
   end
 
   create_table "charges", :force => true do |t|

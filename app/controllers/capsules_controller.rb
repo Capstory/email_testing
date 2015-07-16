@@ -199,6 +199,26 @@ class CapsulesController < ApplicationController
       "capsules"
     end
   end
+
+	def styles_chooser
+		@capsule = Capsule.find(params[:capsule_id])
+		render "styles_chooser", layout: "admin_functions"
+	end
+
+	def update_styles
+		capsule = Capsule.find(params[:capsule_id])
+		capsule.update_styles(params)
+	
+		if capsule.save
+			respond_to do |format|
+				format.json { render json: { msg: "Capsule Styles Updated" }, status: :ok }	
+			end
+		else
+			respond_to do |format|
+				format.json { render json: { msg: "Unable to save styles" }, status: :not_accpetable }
+			end
+		end
+	end
   
   private
     def pin_code?

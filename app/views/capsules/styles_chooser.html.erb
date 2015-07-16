@@ -1,0 +1,24 @@
+<h1>Welcome to the style choose</h1>
+<%= form_tag("/capsules/styles/#{@capsule.id}/update", method: :post, format: :json, remote: true, id: "stylesUpdateForm") do %>
+	<%= label_tag :header_background_color %>
+	<%= text_field_tag :header_background_color, @capsule.styles ? @capsule.styles["header"]["backgroundColor"] : "" %>
+
+	<%= label_tag :header_height %>
+	<%= text_field_tag :header_height, @capsule.styles ? @capsule.styles["header"]["height"] : "" %>
+
+	<%= label_tag :header_font_color %>
+	<%= text_field_tag :header_font_color, @capsule.styles ? @capsule.styles["header"]["color"] : "" %>
+
+	<div class="row">
+		<div class="small-12 medium-6 columns">
+			<button class="button expand" id="setToDefaultsBtn">Set To Defaults</button>
+		</div>
+		<div class="small-12 medium-6 columns">
+			<%= submit_tag "Submit Updates", class: "button expand" %>	
+		</div>
+	</div>
+<% end %>
+<div id="errorDisplay"></div>
+<div style="margin-top:50px;text-align:left;">
+	<%= link_to "Back to Dashboard", dashboard_path %>
+</div>
