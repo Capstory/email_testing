@@ -1,4 +1,4 @@
-angular_capsule_app.controller("CustomOrderCtrl", ["$scope", "$rootScope", "$timeout", "$location", "$cookies", "CapsuleData", "PostModel", "CapsuleModel", function($scope, $rootScope, $timeout, $location, $cookies, CapsuleData, PostModel, CapsuleModel) {
+angular_capsule_app.controller("CustomOrderCtrl", ["$scope", "$rootScope", "$timeout", "$interval", "$location", "$cookies", "CapsuleData", "PostModel", "CapsuleModel", function($scope, $rootScope, $timeout, $interval, $location, $cookies, CapsuleData, PostModel, CapsuleModel) {
 	var buildViewPost = function(post) {
 		post.image = PostModel.cleanMissingImageUrl(post.image);
 		post.view_image = PostModel.buildSecureImageUrl(post, "capsule_width");
@@ -59,6 +59,13 @@ angular_capsule_app.controller("CustomOrderCtrl", ["$scope", "$rootScope", "$tim
 		}
 
 		$timeout(function() {
+			$scope.iso = new Isotope("#isotopeContainer", {
+				itemSelector: ".isotopeItem",
+				layout: "masonry"
+			});
+		}, 500);
+
+		$scope.isoInterval = $interval(function() {
 			$scope.iso = new Isotope("#isotopeContainer", {
 				itemSelector: ".isotopeItem",
 				layout: "masonry"
@@ -153,4 +160,8 @@ angular_capsule_app.controller("CustomOrderCtrl", ["$scope", "$rootScope", "$tim
 			});
 		}, 500);
 	};
+
+	$scope.$on("$destroy", function() {
+		$interval.cancel($scope.isoInterval);
+	});
 }]);

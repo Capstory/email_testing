@@ -1,4 +1,4 @@
-angular_capsule_app.controller("CoverPhotoCtrl", ["$scope", "$rootScope", "$cookies", "$timeout", "$http", "$q", "CapsuleData", "PostModel", "CapsuleModel", function($scope, $rootScope, $cookies, $timeout, $http, $q, CapsuleData, PostModel, CapsuleModel) {
+angular_capsule_app.controller("CoverPhotoCtrl", ["$scope", "$rootScope", "$cookies", "$timeout", "$interval", "$http", "$q", "CapsuleData", "PostModel", "CapsuleModel", function($scope, $rootScope, $cookies, $timeout, $interval, $http, $q, CapsuleData, PostModel, CapsuleModel) {
 	var capsuleData;
 
 	var getImageDimensions = function(imageUrl) {
@@ -130,7 +130,36 @@ angular_capsule_app.controller("CoverPhotoCtrl", ["$scope", "$rootScope", "$cook
 				}
 			});
 
+			// $timeout(function() {
+			// 	$scope.selectionIso = new Isotope("#selectionContainer", {
+			// 		itemSelector: ".selectionItem",
+			// 		layout: "masonry",
+			// 		masonry: {
+			// 			"columnWidth": 200,
+			// 			"gutter": 10
+			// 		},
+			// 		containerStyle: {
+			// 			"overflow-y": "auto"
+			// 		}
+			// 	});
+			// 	console.log("Second timeout is triggered");
+			// }, 1000);
 		}, 300);
+
+		$scope.isoInterval = $interval(function() {
+			$scope.selectionIso = new Isotope("#selectionContainer", {
+				itemSelector: ".selectionItem",
+				layout: "masonry",
+				masonry: {
+					"columnWidth": 200,
+					"gutter": 10
+				},
+				containerStyle: {
+					"overflow-y": "auto"
+				}
+			});
+
+		}, 1000);
 	};
 
 	var setCoverPhotoCookie = function(selection) {
@@ -202,6 +231,7 @@ angular_capsule_app.controller("CoverPhotoCtrl", ["$scope", "$rootScope", "$cook
 			});
 
 		}, 100);
+
 	}
 
 	angular.element("#selectionContainer").on("scroll", checkScrolling);
@@ -244,4 +274,8 @@ angular_capsule_app.controller("CoverPhotoCtrl", ["$scope", "$rootScope", "$cook
 		});
 
 	};
+
+	$scope.$on("$destroy", function() {
+		$interval.cancel($scope.isoInterval);
+	});
 }]);

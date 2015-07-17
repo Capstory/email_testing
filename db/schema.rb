@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150715200304) do
+ActiveRecord::Schema.define(:version => 20150716212608) do
 
   create_table "album_orders", :force => true do |t|
     t.float    "total"
@@ -158,8 +158,8 @@ ActiveRecord::Schema.define(:version => 20150715200304) do
   create_table "posts", :force => true do |t|
     t.text     "body"
     t.string   "email"
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
     t.string   "image"
     t.string   "image_file_name"
     t.string   "image_content_type"
@@ -168,8 +168,9 @@ ActiveRecord::Schema.define(:version => 20150715200304) do
     t.integer  "capsule_id"
     t.string   "filepicker_url"
     t.string   "time_group"
-    t.boolean  "tag_for_deletion",   :default => false
-    t.boolean  "verified",           :default => true
+    t.boolean  "tag_for_deletion",     :default => false
+    t.boolean  "verified",             :default => true
+    t.boolean  "included_in_template", :default => false
   end
 
   create_table "test_program_visits", :force => true do |t|
