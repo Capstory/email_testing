@@ -49,6 +49,7 @@ angular_capsule_app.controller("CustomOrderCtrl", ["$scope", "$rootScope", "$tim
 	};
 
 	$scope.init = function() {
+		$scope.capsuleTemplateUrl = CapsuleData.getTemplateUrl();
 		$scope.capsuleName = CapsuleData.getCapsuleNamedUrl();
 
 		var postsData = buildViewPosts(CapsuleData.getPosts()); 

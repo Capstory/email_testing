@@ -32,6 +32,7 @@
   <div class="row">
     <div class="small-12 columns">
       <p>Please, select the photos that you would like to appear in your custom photo album by clicking on the photos below.</p>
+      <p ng-show="!!capsuleTemplateUrl">If you don't see an image that you would like in the album, it is probably already part of the template. <a href="{{ capsuleTemplateUrl }}" target="_blank">Click Here</a> to see the photos that are already included.</p>
     </div>
   </div>
   <div id="isotopeContainer" class="row" style="margin-top:40px;max-width:1400px;" infinite-scroll="loadPhotos()" infinite-scroll-distance="1">
