@@ -24,7 +24,15 @@ angular_capsule_app.config(["$routeProvider", function($routeProvider) {
 			controller: "PostCtrl",
 			templateUrl: "<%= asset_path 'angular_capsule/post.html' %>"
 		})
+		.when("/slideshowchooser", {
+			controller: "SlideshowChooserCtrl",
+			templateUrl: "<%= asset_path 'angular_capsule/slideshow_chooser.html' %>"
+		})
 		.when("/slideshow", {
+			controller: "SlideshowCtrl",
+			templateUrl: "<%= asset_path 'angular_capsule/slideshow.html' %>"
+		})
+		.when("/slideshow/:view", {
 			controller: "SlideshowCtrl",
 			templateUrl: "<%= asset_path 'angular_capsule/slideshow.html' %>"
 		})

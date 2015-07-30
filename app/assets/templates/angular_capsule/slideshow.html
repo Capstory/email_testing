@@ -57,7 +57,12 @@
     <!--     <h4 style="color:#fffdea;">Send Photos to: {{ capsule.email }}</h4> -->
     <!--   </div> -->
     <!-- </div> -->
-    <div class="row" style="margin-top: 40px">
+    <div class="row" style="margin-top: 40px" ng-show="slideshowView == 'single'">
+      <div class="small-12 columns" style="text-align:center;">
+        <div main-element-directive post="post" film-strip-styles="filmStripStyles"></div>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 40px" ng-show="slideshowView == 'filmstrip'">
       <div class="small-10 columns" style="text-align:center;">
         <div main-element-directive post="post" film-strip-styles="filmStripStyles"></div>
       </div> 

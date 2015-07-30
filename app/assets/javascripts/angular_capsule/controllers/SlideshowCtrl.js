@@ -1,4 +1,4 @@
-angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interval", "$location", "RandomPhotoGenerator", "CapsuleData", "CapsuleModel", "PostModel", "VideoModel", function($scope, $timeout, $interval, $location, RandomPhotoGenerator, CapsuleData, CapsuleModel, PostModel, VideoModel) {
+angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interval", "$location", "$routeParams", "RandomPhotoGenerator", "CapsuleData", "CapsuleModel", "PostModel", "VideoModel", function($scope, $timeout, $interval, $location, $routeParams, RandomPhotoGenerator, CapsuleData, CapsuleModel, PostModel, VideoModel) {
 	var filmStripCount = 4;
 	var changeTopBarDiv = function(endState) {
 		var el = angular.element("#topBarDiv");
@@ -161,6 +161,7 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 	// 	return filmStrip;
 	// };
 
+	$scope.slideshowView = "filmstrip";
 	$scope.filmStripStyles = { height: "580px", overflow: "hidden" };
 	$scope.timeInterval = 7000;
 	$scope.newPhotos = false;
@@ -169,6 +170,19 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 
 	$scope.init = function() {
 		changeTopBarDiv("make_invisible");
+
+		if ($routeParams.view) {
+			switch($routeParams.view) {
+				case "single":
+					$scope.slideshowView = "single";
+					break;
+				case "filmstrip":
+					$scope.slideshowView = "filmstrip";
+					break;
+				default:
+					$scope.slideshowView = "filmstrip";
+			}
+		}
 
 		$scope.capsule = CapsuleModel.setAndGetCapsuleData(CapsuleData.getCapsuleData());
 		$scope.posts = PostModel.filterOutTextPosts(PostModel.setAndGetPostsData(CapsuleData.getPosts()));

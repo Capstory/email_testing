@@ -33,7 +33,9 @@
 					<ul class="off-canvas-list">
 						<div class="capsuleOffCanvasMenuItems">
 							<li><label>Capsule Options</label></li>
-							<li><%= link_to "Start Slideshow", slideshow_path(capsule_id: @capsule.id) %></li>
+							<%# <li><%= link_to "Start Slideshow", slideshow_path(capsule_id: @capsule.id) %1></li> %>
+							<%# <li><%= link_to "Start Slideshow", "/#{@capsule.named_url}#/slideshowchooser" %1></li> %>
+							<li><a href="#/slideshowchooser">Start Slideshow</a></li>
 							<li><a onclick="emitFilepickerEngage()">Upload Image/Video</a></li>
 						</div>
 						<% if current_user %>
@@ -89,7 +91,9 @@
 					</ul>
 					<ul class="left">
 						<div style="margin-left:60px;display:none;" id="capsuleNavLinks">
-							<li><%= link_to "Start Slideshow", slideshow_path(capsule_id: @capsule.id) %></li>	
+							<%# <li><%= link_to "Start Slideshow", slideshow_path(capsule_id: @capsule.id) %1></li> %>	
+							<%# <li><%= link_to "Start Slideshow", "/#{@capsule.named_url}#/slideshowchooser" %1></li> %>
+							<li><a href="#/slideshowchooser">Start Slideshow</a></li>
 							<li><a onclick="emitFilepickerEngage()">Upload Image/Video</a></li>	
 						</div>
 					</ul>
