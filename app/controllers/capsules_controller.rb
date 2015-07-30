@@ -149,6 +149,22 @@ class CapsulesController < ApplicationController
   # Begin non-standard controller actions
   # =====================================
   
+	def get_post_indexes
+		post_ids = params[:post_ids].split(",").map(&:to_i)
+		capsule = Capsule.find(params[:capsule_id])
+		result_object = {}
+		capsule.posts.each_with_index do |post, index|
+			if post_ids.include?(post.id)
+				selection_index = post_ids.index(post.id)
+				result_object[post_ids[selection_index]] = index + 1
+			end
+		end
+
+		respond_to do |format|
+			format.json { render json: result_object, status: :ok }
+		end
+	end
+
   def slideshow
     @capsule = Capsule.find(params[:capsule_id])
     @slides = []

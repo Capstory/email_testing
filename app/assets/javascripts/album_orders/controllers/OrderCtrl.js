@@ -51,6 +51,34 @@ album_orders_app.controller("OrderCtrl", ["$scope", "$location", "$routeParams",
 		}
 	};
 
+	var sendSelectionIndexesRequest = function(capsuleName, selectionString) {
+		var deferred = $q.defer();
+
+		$http({
+			method: "GET",
+			url: "/get_post_indexes.json?capsule_id=" + capsuleName +"&post_ids=" + selectionString
+		})
+		.success(function(data, status, headers) {
+			deferred.resolve(data);
+		})
+		.error(function(data, status, headers) {
+			deferred.reject(status);
+		});
+
+		return deferred.promise;
+	};
+
+	var buildSelectionIndexes = function(capsuleName, selections) {
+		var selectionString = selections.join(",");
+
+		sendSelectionIndexesRequest(capsuleName, selectionString).then(function(data) {
+			$scope.selectionIndex = data;
+			console.log("Selection index: ", data);
+		}, function(status) {
+			console.log("There was an error: ", status);
+		});
+	};
+
 	var buildCoverPhotoUrl = function(order) {
 		order.coverPhoto;
 
@@ -74,19 +102,19 @@ album_orders_app.controller("OrderCtrl", ["$scope", "$location", "$routeParams",
 		order[camelCasedFormat + "FileName"] = order[format + "_file_name"];
 	};
 
-	var buildUploadAttributes = function(order) {
-		if ( angular.isDefined(order.cover_photo_file_name) ) {
-			setUploadAttributes(order, "cover_photo", true);
-		} else {
-			setUploadAttributes(order, "cover_photo", false);
-		}
+	// var buildUploadAttributes = function(order) {
+	// 	if ( angular.isDefined(order.cover_photo_file_name) ) {
+	// 		setUploadAttributes(order, "cover_photo", true);
+	// 	} else {
+	// 		setUploadAttributes(order, "cover_photo", false);
+	// 	}
 
-		if ( angular.isDefined(order.inner_file_file_name) ) {
-			setUploadAttributes(order, "inner_file", true);
-		} else {
-			setUploadAttributes(order, "inner_file", false);
-		}
-	};
+	// 	if ( angular.isDefined(order.inner_file_file_name) ) {
+	// 		setUploadAttributes(order, "inner_file", true);
+	// 	} else {
+	// 		setUploadAttributes(order, "inner_file", false);
+	// 	}
+	// };
 
 	var buildOrder = function(order) {
 		// console.log(order);
@@ -94,9 +122,13 @@ album_orders_app.controller("OrderCtrl", ["$scope", "$location", "$routeParams",
 
 		order.coverPhotoPresent = order.cover_photo_file_name ? true : false;
 		order.innerFilePresent = order.inner_file_file_name ? true : false;
+		order.softCoverPresent = order.soft_cover_file_name ? true : false;
+		order.softInnerPresent = order.soft_inner_file_name ? true : false;
+
 		// buildUploadAttributes(order);
 		buildSelectionUrls(order);
 		buildCoverPhotoUrl(order);
+		buildSelectionIndexes(order.contents.capsule_name, order.contents.selections);
 
 		return order;
 	};
@@ -104,6 +136,8 @@ album_orders_app.controller("OrderCtrl", ["$scope", "$location", "$routeParams",
 	$scope.init = function() {
 		$scope.coverPhotoInputPopulated = false;
 		$scope.innerFileInputPopulated = false;
+		$scope.softCoverInputPopulated = false;
+		$scope.softInnerInputPopulated = false;
 
 		$scope.order = OrdersData.getOrder($routeParams.order_id);
 
@@ -188,6 +222,16 @@ album_orders_app.controller("OrderCtrl", ["$scope", "$location", "$routeParams",
 					$scope.innerFileInputPopulated = true;
 				})
 				break;
+			case "softCoverInput":
+				$scope.$apply(function() {
+					$scope.softCoverInputPopulated = true;
+				});
+				break;
+			case "softInnerInput":
+				$scope.$apply(function() {
+					$scope.softInnerInputPopulated = true;
+				});
+				break;
 			default:
 				break;
 		}
@@ -204,6 +248,12 @@ album_orders_app.controller("OrderCtrl", ["$scope", "$location", "$routeParams",
 				  break;
 			case "inner":
 				  inputId = "innerFileInput";
+				  break;
+			case "soft_cover":
+				  inputId = "softCoverInput";
+				  break;
+			case "soft_inner":
+				  inputId = "softInnerInput";
 				  break;
 			default:
 				  return;

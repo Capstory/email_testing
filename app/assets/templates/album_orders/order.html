@@ -9,6 +9,12 @@
     <div class="small-12 medium-6 columns">
       <h4>Order ID: {{ order.id }}</h4>
       <h4>Capsule: {{ order.contents.capsule_name }}</h4>
+      <h4>Order Info:</h4>
+      <ul>
+        <li>Hard Covers: {{ order.quantities.hard_covers.quantity }}</li>
+        <li>Soft Covers: {{ order.quantities.soft_covers.quantity }}</li>
+        <li>Child's Name: {{ order.name }}</li>
+      </ul>
     </div>
     <div class="small-12 medium-6 columns">
       <div ng-show="order.status == 'new'">
@@ -43,57 +49,116 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="small-12 columns" style="text-align:center;padding-top:40px;padding-bottom:20px;">
-      <h2>Finished Files</h2>
+  <div ng-show="order.quantities.hard_covers.quantity > 0">
+    <div class="row">
+      <div class="small-12 columns" style="text-align:center;padding-top:40px;padding-bottom:20px;">
+        <h2>Hard Cover Finished Files</h2>
+      </div>
+    </div>
+    <div class="row" style="margin-bottom:60px;">
+      <div class="small-12 medium-6 columns">
+        <div class="row" ng-hide="order.coverPhotoPresent">
+          <div class="small-6 columns">
+            <input id="coverPhotoInput" type="file" onchange="angular.element(this).scope().updateInputState(this)" /> 
+          </div>
+          <div class="small-6 columns" ng-hide="coverPhotoInputPopulated">
+            <button class="button expand disabled">Upload Cover File</button> 
+          </div>
+          <div class="small-6 columns" ng-show="!!coverPhotoInputPopulated">
+            <button ng-click="uploadFile(order.id, 'cover')" class="button expand">Upload Cover File</button> 
+          </div>
+        </div>
+        <div class="row" ng-show="order.coverPhotoPresent" style="text-align:center;">
+          <div class="small-6 columns">
+            <a href="{{ order.cover_photo_url }}" target="_blank"><i class="fa fa-file-o fa-4x"></i></a>
+            <p><small>{{ order.cover_photo_file_name }}</small></p>
+          </div>
+          <div class="small-6 columns">
+            <p>Cover Photo File</p>
+            <a href="{{ order.cover_photo_url }}" target="_blank"><button class="button expand">Download</button></a>
+            <a ng-click="deleteFile(order.id, 'cover')">Delete</a>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 medium-6 columns">
+        <div class="row" ng-hide="order.innerFilePresent">
+          <div class="small-6 columns">
+            <input id="innerFileInput" type="file" onchange="angular.element(this).scope().updateInputState(this)" /> 
+          </div>
+          <div class="small-6 columns" ng-hide="innerFileInputPopulated">
+            <button class="button expand disabled">Upload Inner File</button> 
+          </div>
+          <div class="small-6 columns" ng-show="!!innerFileInputPopulated">
+            <button ng-click="uploadFile(order.id, 'inner')" class="button expand">Upload Inner File</button> 
+          </div>
+        </div>
+        <div class="row" ng-show="order.innerFilePresent" style="text-align:center;">
+          <div class="small-6 columns">
+            <a href="{{ order.inner_file_url }}" target="_blank"><i class="fa fa-file-o fa-4x"></i></a>
+            <p><small>{{ order.inner_file_file_name }}</small></p>
+          </div>
+          <div class="small-6 columns">
+            <p>Inner File</p>
+            <a href="{{ order.inner_file_url }}" target="_blank"><button class="button expand">Download</button></a>
+            <a ng-click="deleteFile(order.id, 'inner')">Delete</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="row" style="margin-bottom:60px;">
-    <div class="small-12 medium-6 columns">
-      <div class="row" ng-hide="order.coverPhotoPresent">
-        <div class="small-6 columns">
-          <input id="coverPhotoInput" type="file" onchange="angular.element(this).scope().updateInputState(this)" /> 
-        </div>
-        <div class="small-6 columns" ng-hide="coverPhotoInputPopulated">
-          <button class="button expand disabled">Upload Cover Photo File</button> 
-        </div>
-        <div class="small-6 columns" ng-show="!!coverPhotoInputPopulated">
-          <button ng-click="uploadFile(order.id, 'cover')" class="button expand">Upload Cover Photo File</button> 
-        </div>
-      </div>
-      <div class="row" ng-show="order.coverPhotoPresent" style="text-align:center;">
-        <div class="small-6 columns">
-          <a href="{{ order.cover_photo_url }}" target="_blank"><i class="fa fa-file-o fa-4x"></i></a>
-          <p><small>{{ order.cover_photo_file_name }}</small></p>
-        </div>
-        <div class="small-6 columns">
-          <p>Cover Photo File</p>
-          <a href="{{ order.cover_photo_url }}" target="_blank"><button class="button expand">Download</button></a>
-          <a ng-click="deleteFile(order.id, 'cover')">Delete</a>
-        </div>
+  <div ng-show="order.quantities.soft_covers.quantity > 0">
+    <div class="row">
+      <div class="small-12 columns" style="text-align:center;padding-top:40px;padding-bottom:20px;">
+        <h2>Soft Cover Finished Files</h2>
       </div>
     </div>
-    <div class="small-12 medium-6 columns">
-      <div class="row" ng-hide="order.innerFilePresent">
-        <div class="small-6 columns">
-          <input id="innerFileInput" type="file" onchange="angular.element(this).scope().updateInputState(this)" /> 
+    <div class="row" style="margin-bottom:60px;">
+      <div class="small-12 medium-6 columns">
+        <div class="row" ng-hide="order.softCoverPresent">
+          <div class="small-6 columns">
+            <input id="softCoverInput" type="file" onchange="angular.element(this).scope().updateInputState(this)" /> 
+          </div>
+          <div class="small-6 columns" ng-hide="softCoverInputPopulated">
+            <button class="button expand disabled">Upload Cover File</button> 
+          </div>
+          <div class="small-6 columns" ng-show="!!softCoverInputPopulated">
+            <button ng-click="uploadFile(order.id, 'soft_cover')" class="button expand">Upload Cover File</button> 
+          </div>
         </div>
-        <div class="small-6 columns" ng-hide="innerFileInputPopulated">
-          <button class="button expand disabled">Upload Inner File</button> 
-        </div>
-        <div class="small-6 columns" ng-show="!!innerFileInputPopulated">
-          <button ng-click="uploadFile(order.id, 'inner')" class="button expand">Upload Inner File</button> 
+        <div class="row" ng-show="order.softCoverPresent" style="text-align:center;">
+          <div class="small-6 columns">
+            <a href="{{ order.soft_cover_url }}" target="_blank"><i class="fa fa-file-o fa-4x"></i></a>
+            <p><small>{{ order.soft_cover_file_name }}</small></p>
+          </div>
+          <div class="small-6 columns">
+            <p>Cover Photo File</p>
+            <a href="{{ order.soft_cover_url }}" target="_blank"><button class="button expand">Download</button></a>
+            <a ng-click="deleteFile(order.id, 'soft_cover')">Delete</a>
+          </div>
         </div>
       </div>
-      <div class="row" ng-show="order.innerFilePresent" style="text-align:center;">
-        <div class="small-6 columns">
-          <a href="{{ order.inner_file_url }}" target="_blank"><i class="fa fa-file-o fa-4x"></i></a>
-          <p><small>{{ order.inner_file_file_name }}</small></p>
+      <div class="small-12 medium-6 columns">
+        <div class="row" ng-hide="order.softInnerPresent">
+          <div class="small-6 columns">
+            <input id="softInnerInput" type="file" onchange="angular.element(this).scope().updateInputState(this)" /> 
+          </div>
+          <div class="small-6 columns" ng-hide="softInnerInputPopulated">
+            <button class="button expand disabled">Upload Inner File</button> 
+          </div>
+          <div class="small-6 columns" ng-show="!!softInnerInputPopulated">
+            <button ng-click="uploadFile(order.id, 'soft_inner')" class="button expand">Upload Inner File</button> 
+          </div>
         </div>
-        <div class="small-6 columns">
-          <p>Inner File</p>
-          <a href="{{ order.inner_file_url }}" target="_blank"><button class="button expand">Download</button></a>
-          <a ng-click="deleteFile(order.id, 'inner')">Delete</a>
+        <div class="row" ng-show="order.softInnerPresent" style="text-align:center;">
+          <div class="small-6 columns">
+            <a href="{{ order.soft_inner_url }}" target="_blank"><i class="fa fa-file-o fa-4x"></i></a>
+            <p><small>{{ order.soft_inner_file_name }}</small></p>
+          </div>
+          <div class="small-6 columns">
+            <p>Inner File</p>
+            <a href="{{ order.soft_inner_url }}" target="_blank"><button class="button expand">Download</button></a>
+            <a ng-click="deleteFile(order.id, 'soft_inner')">Delete</a>
+          </div>
         </div>
       </div>
     </div>
@@ -111,7 +176,7 @@
           <img ng-src="{{ selection.url }}" />
         </div>
         <div class="small-6 columns" style="padding-top:100px;">
-          <p>image_{{ selection.id }}</p>
+          <p>image_{{ selectionIndex[selection.id] }}</p>
         </div>
       </div>
     </div>

@@ -182,13 +182,17 @@ class AlbumOrdersController < ApplicationController
 			order.inner_file = File.open(file.path, "rb")
 		when "cover"
 			order.cover_photo = File.open(file.path, "rb")
+		when "soft_cover"
+			order.soft_cover = File.open(file.path, "rb")
+		when "soft_inner"
+			order.soft_inner = File.open(file.path, "rb")
 		end
 
 		File.delete(file.path)
 
 		if order.save
 			respond_to do |format|
-				format.json { render json: order.to_json(methods: [:inner_file_url, :cover_photo_url]), status: :ok }
+				format.json { render json: order.to_json(methods: [:soft_inner_url, :soft_cover_url, :inner_file_url, :cover_photo_url]), status: :ok }
 			end
 		else
 			respond_to do |format|
@@ -205,11 +209,15 @@ class AlbumOrdersController < ApplicationController
 			order.inner_file = nil
 		when "cover"
 			order.cover_photo = nil
+		when "soft_cover"
+			order.soft_cover = nil
+		when "soft_inner"
+			order.soft_inner = nil
 		end
 
 		if order.save
 			respond_to do |format|
-				format.json { render json: order.to_json(methods: [:inner_file_url, :cover_photo_url]), status: :ok }
+				format.json { render json: order.to_json(methods: [:soft_inner_url, :soft_cover_url, :inner_file_url, :cover_photo_url]), status: :ok }
 			end
 		else
 			respond_to do |format|

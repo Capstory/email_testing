@@ -1,5 +1,5 @@
 class AlbumOrder < ActiveRecord::Base
-  attr_accessible :address, :contents, :email, :name, :quantities, :total, :customer_info, :paid, :status, :cover_photo, :inner_file
+  attr_accessible :address, :contents, :email, :name, :quantities, :total, :customer_info, :paid, :status, :cover_photo, :inner_file, :soft_cover, :soft_inner
 
 	serialize :address, JSON
 	serialize :contents, JSON
@@ -13,12 +13,26 @@ class AlbumOrder < ActiveRecord::Base
 	has_attached_file :inner_file
 	validates_attachment :inner_file, content_type: { content_type: "application/pdf" }
 
+	has_attached_file :soft_cover
+	validates_attachment :soft_cover, content_type: { content_type: "application/pdf" }
+
+	has_attached_file :soft_inner
+	validates_attachment :soft_inner, content_type: { content_type: "application/pdf" }
+
 	def cover_photo_url
 		self.cover_photo.url(:original)
 	end
 
 	def inner_file_url
 		self.inner_file.url(:original)
+	end
+
+	def soft_cover_url
+		self.soft_cover.url(:original)
+	end
+
+	def soft_inner_url
+		self.soft_inner.url(:original)
 	end
 
 	def hard_cover_quantity

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150718021852) do
+ActiveRecord::Schema.define(:version => 20150729190615) do
 
   create_table "album_orders", :force => true do |t|
     t.float    "total"
@@ -33,6 +33,14 @@ ActiveRecord::Schema.define(:version => 20150718021852) do
     t.string   "inner_file_content_type"
     t.integer  "inner_file_file_size"
     t.datetime "inner_file_updated_at"
+    t.string   "soft_cover_file_name"
+    t.string   "soft_cover_content_type"
+    t.integer  "soft_cover_file_size"
+    t.datetime "soft_cover_updated_at"
+    t.string   "soft_inner_file_name"
+    t.string   "soft_inner_content_type"
+    t.integer  "soft_inner_file_size"
+    t.datetime "soft_inner_updated_at"
   end
 
   create_table "authorizations", :force => true do |t|
