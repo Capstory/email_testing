@@ -64,7 +64,7 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 	};
 
 	var universalTimer = undefined;
-	var universalStartTime = window.performance.now();
+	// var universalStartTime = window.performance.now();
 
 	var setUniversalTimer = function(timeInterval) {
 		universalTimer = $timeout(function() {
