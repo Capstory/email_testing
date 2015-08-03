@@ -17,7 +17,7 @@ angular_capsule_app.controller("CoverPhotoCtrl", ["$scope", "$rootScope", "$cook
 
 		img.setAttribute("src", imageUrl);
 
-		img.removeEventListener("load");
+		img.removeEventListener("load", function() {});
 
 		return results;
 	};
@@ -75,7 +75,7 @@ angular_capsule_app.controller("CoverPhotoCtrl", ["$scope", "$rootScope", "$cook
 		return posts;
 	};
 
-	var buildImages = function(posts, acc) {
+	var buildImages = function(posts) {
 		angular.forEach(posts, function(post) {
 			buildImage(post);
 		});
@@ -87,7 +87,7 @@ angular_capsule_app.controller("CoverPhotoCtrl", ["$scope", "$rootScope", "$cook
 		$scope.capsuleName = CapsuleData.getCapsuleNamedUrl();
 		$scope.capsuleSelections = $cookies[$scope.capsuleName + "_photoSelections"];
 
-		var posts = setAllPostsToInvisible(buildImages(CapsuleData.getPosts(), new Array));
+		var posts = setAllPostsToInvisible(buildImages(CapsuleData.getPosts()));
 		$scope.selections = filterImages(posts, {"tag_for_deletion": false, "verified": true, "adequateSize": true});
 		// if ( !!$rootScope[$scope.capsuleName + "_selections"] ) {
 		// 	$scope.selections = buildImages($rootScope[$scope.capsuleName + "_selections"], new Array); 
@@ -116,7 +116,6 @@ angular_capsule_app.controller("CoverPhotoCtrl", ["$scope", "$rootScope", "$cook
 		}
 
 		loadPhotos(9, ($scope.selections.length - 1), $scope.selections);
-
 		$timeout(function() {
 			$scope.selectionIso = new Isotope("#selectionContainer", {
 				itemSelector: ".selectionItem",

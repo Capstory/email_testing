@@ -36,7 +36,8 @@
 	<div class="small-12 columns">
 		<h5>Select Your Team and Start Choosing Photos</h5>
 		
-		<select id="teamSelect" onchange="setStartButtonState(event.target.value)">
+		<%# <select id="teamSelect" onchange="setStartButtonState(event.target.value)"> %>
+		<select id="teamSelect">
 			<option>-- Choose a Team --</option>
 			<% @capsule_names.each do |name, url| %>
 				<option value="<%= url %>"><%= name %></option>
@@ -67,18 +68,23 @@
 
 
 <script>
-	var teamSelect = document.getElementById("teamSelect");
-	var startButton = document.getElementById("startButton");
+	<%# var teamSelect = document.getElementById("teamSelect"); %>
+	var teamSelect;
+	<%# var startButton = document.getElementById("startButton"); %>
+	var startButton;
 	var startButtonState;
 
 	function setStartButtonState(selection) {
-		startButton.classList.remove("disabled");
+		<%# startButton.classList.remove("disabled"); %>
+		startButton.removeClass("disabled");
 
 		if ( selection == null || selection == "-- Choose a Team --") {
-			startButton.classList.add("disabled");
+			<%# startButton.classList.add("disabled"); %>
+			startButton.addClass("disabled");
 			startButtonState = undefined;
 		} else {
-			startButton.classList.remove("disabled");
+			<%# startButton.classList.remove("disabled"); %>
+			startButton.removeClass("disabled");
 			startButtonState = selection;
 		}
 	}
@@ -95,12 +101,19 @@
 		location = "/" + state + "/#albumcreator";
 	}
 
-	startButton.addEventListener("click", function() {
-		return routeStartButton();	
-	});
-	
 	window.onload = function() {
-		teamSelect.value = "-- Choose a Team --";
+		startButton = $("#startButton");
+		startButton.on("click", function() {
+			return routeStartButton();	
+		});
+	
+		<%# teamSelect.value = "-- Choose a Team --"; %>
+		teamSelect = $("#teamSelect");
+		teamSelect.val("-- Choose a Team --");
+		teamSelect.on("change", function(evt) {
+			setStartButtonState(evt.target.value);
+		});
+
 		setStartButtonState();
 
 		<% if Rails.env.production? || Rails.env.staging? %>
