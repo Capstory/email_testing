@@ -60,8 +60,9 @@ angular_capsule_app.controller("CoverPhotoCtrl", ["$scope", "$rootScope", "$cook
 		post.style = {"opacity": 0.7, "width": 200};
 		post.coverPhotoSelection = false;
 
-		post.imageDimensions = getImageDimensions(post.image);
-		post.adequateSize = isImageAdequateSize(post);
+		// post.imageDimensions = getImageDimensions(post.image);
+		// post.adequateSize = isImageAdequateSize(post);
+		post.adequateSize = true;
 
 		// console.log("Img Dimensions: ", getImageDimensions(post.image));
 		return post;

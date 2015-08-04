@@ -35,6 +35,11 @@
       <p ng-show="!!capsuleTemplateUrl">If you don't see an image that you would like in the album, it is probably already part of the template. <a href="{{ capsuleTemplateUrl }}" target="_blank">Click Here</a> to see the photos that are already included.</p>
     </div>
   </div>
+  <div class="row" style="margin-top:30px">
+    <div class="small-12 columns">
+      <h5>If you have any questions, please don't hesitate to call <b>740-815-0559</b> and Dustin will help any way that he can.</h5>
+    </div>
+  </div>
   <div id="isotopeContainer" class="row" style="margin-top:40px;max-width:1400px;" infinite-scroll="loadPhotos()" infinite-scroll-distance="1">
     <div ng-repeat="post in posts | orderBy:'id':true | filter:{included_in_template: false, tag_for_deletion: false, verified: true, visible: true}" class="isotopeItem small-12 medium-4 large-3" style="padding:5px;cursor:pointer;">
       <div class="layer" ng-click="toggleSelection(post)">

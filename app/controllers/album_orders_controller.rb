@@ -48,6 +48,7 @@ class AlbumOrdersController < ApplicationController
 		
 		@order = AlbumOrder.find(params[:order_id])
 		@order.quantities = quantities
+		@order.contents["child_name"] = params[:child_name]
 		@order.total = params[:total].to_f
 		@order.paid = false
 
