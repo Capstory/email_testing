@@ -177,7 +177,8 @@
         </div>
         <div class="small-6 columns" style="padding-top:100px;">
           <p>image_{{ selectionIndex[selection.id] }}</p>
-          <p>image_{{ selection.id }}</p>
+          <p>Image ID: {{ selection.id }}</p>
+          <a target="_blank" href="/capsules/{{ order.contents.capsule_name }}#/photo/{{ selection.id }}">Go To Image</a>
         </div>
       </div>
     </div>
