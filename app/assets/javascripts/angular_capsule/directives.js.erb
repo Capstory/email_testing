@@ -68,16 +68,15 @@ angular_capsule_app.directive("mainElementDirective", [function() {
 		link: function(scope, el, attrs) {
 						var timer = undefined;
 						
-						var timeStamp = function() {
-							return window.performance.now();
-						};
+						<%# var timestamp = function() { %>
+						<%# 	return window.performance.now(); %>
+						<%# }; %>
 
 						var getTimerDiff = function(start, end) {
 							return end - start;
 						};
 
 						scope.$on("refreshPosts", function() {
-							timer = timeStamp();
 
 							el.animate({
 								opacity: 0.0
@@ -98,7 +97,7 @@ angular_capsule_app.directive("mainElementDirective", [function() {
 						scope.filmStripStyles = { height: scope.mainImageContainerHeight.height - 30, overflow: "hidden" }; 
 
 						scope.$on("mainElementLoaded", function() {
-							console.log("It took ", getTimerDiff(timer, timeStamp()), "ms to load image");
+							<%# console.log("It took ", getTimerDiff(timer, timeStamp()), "ms to load image"); %>
 
 							el.animate({
 								opacity: 1.0

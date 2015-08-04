@@ -15,7 +15,7 @@ angular_capsule_app.controller("CoverPhotoCtrl", ["$scope", "$rootScope", "$cook
 			setResults(img);
 		});
 
-		img.setAttribute("src", imageUrl);
+		img.setAttribute("src", imageUrl.replace("http", "https"));
 
 		img.removeEventListener("load", function() {});
 
