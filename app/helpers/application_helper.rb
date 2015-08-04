@@ -9,7 +9,7 @@ module ApplicationHelper
 	end
 
 	def logo_url(object)
-		return object.logo.image.url(:standard)
+		return object.logo.image.url(:standard).gsub("http", "https")
 	end
 
 	def logo_width(object)
