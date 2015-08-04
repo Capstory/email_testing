@@ -14,7 +14,7 @@
 //= require ./angular_capsule/directives.js
 // require ./common_use/angular-isotope.js
 //= require ./common_use/ng-infinite-scroll.js
-//= require string
+// require string
 //= require_self
 
 var emitMenuClick = function() {

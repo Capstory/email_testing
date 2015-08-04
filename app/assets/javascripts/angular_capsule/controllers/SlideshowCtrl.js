@@ -42,7 +42,9 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 
 		var nextPost = getNextPost(posts, currentPost.id, videos);
 		nextPost.thumb = PostModel.buildSecureImageUrl(nextPost, "thumb");
-		nextPost.truncated_body = nextPost.body ? S(nextPost.body).truncate(40).toString() : nextPost.body;
+		nextPost.truncated_body = nextPost.body;
+		// String library was removed due to conflict with IE9
+		// nextPost.truncated_body = nextPost.body ? S(nextPost.body).truncate(40).toString() : nextPost.body;
 		acc.push(nextPost);
 
 		if (acc.length == n) {
@@ -57,7 +59,9 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 		$scope.post = filmStrip.shift();
 		// $scope.post.large_image = PostModel.buildImageUrl($scope.post, "lightbox_width");
 		$scope.post.large_image = PostModel.buildSecureImageUrl($scope.post, "lightbox_width");
-		$scope.post.truncated_body = $scope.post.body ? S($scope.post.body).truncate(40).toString() : $scope.post.body;
+		$scope.post.truncated_body = $scope.post.body;
+		// String library was removed due to conflict with IE9
+		// $scope.post.truncated_body = $scope.post.body ? S($scope.post.body).truncate(40).toString() : $scope.post.body;
 		$scope.filmStrip = buildFilmStrip(posts, $scope.post, videos, filmStripCount, []);
 		// $scope.smallFilmStrip = buildFilmStrip(posts, $scope.post, videos, 4, []);
 
