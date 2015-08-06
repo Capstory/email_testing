@@ -1,57 +1,57 @@
 angular_capsule_app.controller("CoverPhotoCtrl", ["$scope", "$rootScope", "$cookies", "$timeout", "$interval", "$http", "$q", "CapsuleData", "PostModel", "CapsuleModel", function($scope, $rootScope, $cookies, $timeout, $interval, $http, $q, CapsuleData, PostModel, CapsuleModel) {
 	var capsuleData;
 
-	var getImageDimensions = function(imageUrl) {
-		var results = { width: undefined, height: undefined };
+	// var getImageDimensions = function(imageUrl) {
+	// 	var results = { width: undefined, height: undefined };
 		
-		function setResults(img) {
-			results.width = img.width;
-			results.height = img.height;
-		}
+	// 	function setResults(img) {
+	// 		results.width = img.width;
+	// 		results.height = img.height;
+	// 	}
 
-		var img = document.createElement("img");
+	// 	var img = document.createElement("img");
 
-		img.addEventListener("load", function() {
-			setResults(img);
-		});
+	// 	img.addEventListener("load", function() {
+	// 		setResults(img);
+	// 	});
 
-		img.setAttribute("src", imageUrl.replace("http", "https"));
+	// 	img.setAttribute("src", imageUrl.replace("http", "https"));
 
-		img.removeEventListener("load", function() {});
+	// 	img.removeEventListener("load", function() {});
 
-		return results;
-	};
+	// 	return results;
+	// };
 	
-	var isImageAdequateSize = function(post) {
-		if ( post.imageDimensions.width > post.imageDimensions.height) {
-			if (post.image_file_size > 100000 ) { return true; }
-		} else {
-			if (post.image_file_size > 200000 ) { return true; } 
-		}
+	// var isImageAdequateSize = function(post) {
+	// 	if ( post.imageDimensions.width > post.imageDimensions.height) {
+	// 		if (post.image_file_size > 100000 ) { return true; }
+	// 	} else {
+	// 		if (post.image_file_size > 200000 ) { return true; } 
+	// 	}
 
-		return false;
-	};
+	// 	return false;
+	// };
 
-	var filterImages = function(posts, filters) {
-		var results = [];
+	// var filterImages = function(posts, filters) {
+	// 	var results = [];
 
-		function passesFilter(post, attribute, value) {
-			return post[attribute] == value;
-		}
+	// 	function passesFilter(post, attribute, value) {
+	// 		return post[attribute] == value;
+	// 	}
 
-		angular.forEach(posts, function(post) {
-			var passes = true;
-			angular.forEach(filters, function(value, key) {
-				if ( !passesFilter(post, key, value) ) {
-					passes = false;
-				}
-			});
+	// 	angular.forEach(posts, function(post) {
+	// 		var passes = true;
+	// 		angular.forEach(filters, function(value, key) {
+	// 			if ( !passesFilter(post, key, value) ) {
+	// 				passes = false;
+	// 			}
+	// 		});
 
-			if ( passes ) { results.push(post); }
-		});
+	// 		if ( passes ) { results.push(post); }
+	// 	});
 
-		return results;
-	};
+	// 	return results;
+	// };
 
 	var buildImage = function(post) {
 		post.image = PostModel.cleanMissingImageUrl(post.image);
@@ -62,7 +62,7 @@ angular_capsule_app.controller("CoverPhotoCtrl", ["$scope", "$rootScope", "$cook
 
 		// post.imageDimensions = getImageDimensions(post.image);
 		// post.adequateSize = isImageAdequateSize(post);
-		post.adequateSize = true;
+		// post.adequateSize = true;
 
 		// console.log("Img Dimensions: ", getImageDimensions(post.image));
 		return post;
@@ -88,23 +88,23 @@ angular_capsule_app.controller("CoverPhotoCtrl", ["$scope", "$rootScope", "$cook
 		$scope.capsuleName = CapsuleData.getCapsuleNamedUrl();
 		$scope.capsuleSelections = $cookies[$scope.capsuleName + "_photoSelections"];
 
-		var posts = setAllPostsToInvisible(buildImages(CapsuleData.getPosts()));
-		$scope.selections = filterImages(posts, {"tag_for_deletion": false, "verified": true, "adequateSize": true});
-		// if ( !!$rootScope[$scope.capsuleName + "_selections"] ) {
-		// 	$scope.selections = buildImages($rootScope[$scope.capsuleName + "_selections"], new Array); 
-		// } else if ( !!$cookies[$scope.capsuleName + "_photoSelections"] ) {
-		// 	capsuleData = CapsuleData.getPosts();		
-		// 	var selectionIds = angular.fromJson($cookies[$scope.capsuleName + "_photoSelections"]);
+		// var posts = setAllPostsToInvisible(buildImages(CapsuleData.getPosts()));
+		// $scope.selections = filterImages(posts, {"tag_for_deletion": false, "verified": true, "adequateSize": true});
+		if ( !!$rootScope[$scope.capsuleName + "_selections"] ) {
+			$scope.selections = buildImages($rootScope[$scope.capsuleName + "_selections"], new Array); 
+		} else if ( !!$cookies[$scope.capsuleName + "_photoSelections"] ) {
+			capsuleData = CapsuleData.getPosts();		
+			var selectionIds = angular.fromJson($cookies[$scope.capsuleName + "_photoSelections"]);
 
-		// 	$scope.selections = [];
-		// 	angular.forEach(selectionIds, function(id) {
-		// 		$scope.selections.push(PostModel.getCurrentPost(capsuleData, id));
-		// 	});
+			$scope.selections = [];
+			angular.forEach(selectionIds, function(id) {
+				$scope.selections.push(PostModel.getCurrentPost(capsuleData, id));
+			});
 
-		// 	$scope.selections = buildImages($scope.selections, new Array);
-		// } else {
-		// 	$scope.selections = [];
-		// }
+			$scope.selections = buildImages($scope.selections, new Array);
+		} else {
+			$scope.selections = [];
+		}
 
 		if ( !!$cookies[$scope.capsuleName + "_coverPhotoSelection"] && ( PostModel.getPostIds($scope.selections).indexOf(parseInt($cookies[$scope.capsuleName + "_coverPhotoSelection"])) != -1 )) {
 			angular.forEach($scope.selections, function(post) {
