@@ -20,10 +20,6 @@
 			<th>Email</th>
 			<th>Event Date</th>
 			<th></th>
-			<th></th>
-			<th></th>
-			<th></th>
-			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -33,19 +29,26 @@
 				<td><%= link_to capsule.owners_name, capsule.owner %></td>
 				<td><%= capsule.email %></td>
 				<td><%= capsule.event_date %></td>
-				<% if capsule.accepting_submissions? %>
-					<td><%= link_to "Lock", change_capsule_status_path(capsule_id: capsule.id, capsule_action: :lock), data: { confirm: "Are you sure that you want to close this capsule from accepting submissions?" } %></td>
-				<% else%>
-					<td><%= link_to "Unlock", change_capsule_status_path(capsule_id: capsule.id, capsule_action: :unlock), data: { confirm: "Are you sure that you want to open this capsule to accept submissions?" } %></td>
-				<% end %>
-				<td><%= link_to "Edit", edit_capsule_path(capsule) %></td>
-				<% if capsule.logo %>
-					<td><%= link_to "See Logo", capsule.logo %></td>
-				<% else %>
-					<td><%= link_to "Add Logo", new_logo_path(klass: capsule.class, associated_object_id: capsule.id) %></td>
-				<% end %>
-				<td><%= link_to "Edit Styles", "/capsules/styles/#{ capsule.id }/edit" %></td>
-				<td><%= link_to "Delete", capsule, method: :delete, data: { confirm: "Are you sure?" } %></td>
+				<td>
+					<button href="#" data-dropdown="drop_<%= capsule.id %>" aria-controls="drop_<%= capsule.id %>" aria-expanded="false" class="button tiny dropdown">Dropdown Button</button><br>
+					<ul id="drop_<%= capsule.id %>" data-dropdown-content class="f-dropdown" aria-hidden="true">
+						<% if capsule.logo %>
+							<li><%= link_to "See Logo", capsule.logo %></li>
+							<li><%= link_to "Delete Logo", capsule.logo, method: :delete, data: { confirm: "Are you sure?" } %></li>
+						<% else %>
+							<li><%= link_to "Add Logo", new_logo_path(klass: capsule.class, associated_object_id: capsule.id) %></li>
+						<% end %>
+						<li><%= link_to "Export Data", export_capsule_data_path(capsule_id: capsule.id) %></li>
+						<li><%= link_to "Edit Capsule", edit_capsule_path(capsule) %></li>
+						<li><%= link_to "Edit Styles", "/capsules/styles/#{ capsule.id }/edit" %></li>
+						<% if capsule.accepting_submissions? %>
+							<li><%= link_to "Lock Capsule", change_capsule_status_path(capsule_id: capsule.id, capsule_action: :lock), data: { confirm: "Are you sure that you want to close this capsule from accepting submissions?" } %></li>
+						<% else%>
+							<li><%= link_to "Unlock Capsule", change_capsule_status_path(capsule_id: capsule.id, capsule_action: :unlock), data: { confirm: "Are you sure that you want to open this capsule to accept submissions?" } %></li>
+						<% end %>
+						<li><%= link_to "Delete Capsule", capsule, method: :delete, data: { confirm: "Are you sure?" } %></li>
+					</ul>
+				</td>
 			</tr>
 		<% end %>
 	</tbody>

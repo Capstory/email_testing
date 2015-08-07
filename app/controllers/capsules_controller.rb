@@ -236,6 +236,27 @@ class CapsulesController < ApplicationController
 		end
 	end
   
+	def export
+		require "csv"
+
+		capsule = Capsule.includes(:posts).find(params[:capsule_id])
+
+		csv_array = CSV.generate do |csv|
+			csv << ["Capsule Name", "Number of Submissions", "Capsule Email"]
+			csv << [capsule.name, capsule.posts.length, capsule.email]
+			csv << [""]
+			csv << ["Submission Time", "Submission Source"]
+
+			capsule.posts.each do |post|
+				email = post.filepicker_url ? "Direct upload" : post.email
+				acc = [post.created_at.to_formatted_s(:long), email]
+				csv << acc	
+			end
+		end
+
+		send_data(csv_array, filename: "#{ capsule.name.split.join("_") }_capsule_export.csv")
+	end
+
   private
     def pin_code?
       capsule = Capsule.find(params[:id].to_s.downcase)

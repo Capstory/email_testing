@@ -44,4 +44,11 @@ class LogosController < ApplicationController
 			end
 		end
 	end
+
+	def destroy
+		logo = Logo.find(params[:id])
+		logo.delete
+		flash[:success] = "Logo successfully deleted"
+		redirect_to :back
+	end
 end
