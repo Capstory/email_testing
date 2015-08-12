@@ -1,0 +1,511 @@
+<div class = "headerWrapper tempHeaderWrapper"> 
+	<section class="PartOne">  
+		<div class = "navbar tempNavbar">
+			<a href="/login" class="Login" style= "font-family: 'Open Sans', sans-serif; font-weight: bold; font-size: 22px; font-weight: 300; color: #FFFDEA; text-decoration:none;">LOGIN</a>
+		</div>
+		<%= image_tag "new_brand/caplogo.png", alt: "logo", class: "tempMainLogo" %>
+
+		<h1>Your Next Sponsorship Opportunity</h1>
+	</section>
+</div>
+
+<div class="headerBorder"></div>
+
+<div class="darkGreyBackgroundArea">
+	<div class="tempPartTwo">
+		<div class="tempPartTwoHeader">
+			<h1>INTERACTIVE BRAND EXPOSURE	BUILT TO ...</h1>
+		</div>
+		<%= image_tag "new_brand/capstory-photowall.png", class: "photowallImage hideOnPhone" %>
+		<div class="tempThirdColumn">
+			<h3 style="margin-top:0px;">Maximize visibility</h3>	
+			<%# <h3>Showcase your brand</h3> %>	
+			<h3>Engage with attendees</h3>	
+			<h3>Capture their media</h3>	
+		</div>
+		<div style="text-align:center" class="hideOnFull showOnPhone">
+			<%= image_tag "new_brand/capstory-photowall.png", class: "photowallPhoneImage" %>
+		</div>
+	</div>
+
+	<div class="requestDemoBtnDiv hideOnFull showOnPhone">
+		<button class="requestDemoBtn" onclick="overlay()" style="width: 80%;">Request a Demo</button>
+	</div>
+</div>
+<div class="tempPartThree">
+			<div class="requestDemoBtnDiv tempPartThreeRequestBtn hideOnPhone">
+				<button class="requestDemoBtn" style="padding: 17px 80px;" onclick="overlay()">Request a Demo</button>
+			</div>
+			<div class = "dottedLine hideOnPhone"> </div>  
+	<div class="tempFourthColumn">
+		<%= image_tag "new_brand/Capstory-Text-Back.png", class: "textBackImage" %>	
+	</div>
+	<div class="tempThreeQuartersColumn">
+		<h1>GIVE YOUR SPONSORS A DIRECT LINK TO YOUR ATTENDEES.</h1>	
+		<h3>Collect and display guests photos via text message</h3>
+		<h3>Send customer response content to their phones</h3>
+		<h3>Access to the phone numbers of all participants</h3>
+	</div>	
+			<div class = "dottedLine"> </div>  
+		<div class="logobox tempLogobox">
+			<h3 class="partnersHeader tempPartnerHeader">Capstory has worked with these great brands and more:</h3>   
+			<div class="partnerLogo hideOnPhone" style="width: 18%">
+				<%# <img src="McDonalds-Logo_Grey.png" alt="Capture"> %>
+				<%= image_tag "new_brand/McDonalds-Logo_Grey.png", alt: "Capture", width: "50%" %>
+			</div>
+			<div class="partnerLogo partnerLogoMobile hideOnFull showOnPhone">
+				<%# <img src="McDonalds-Logo_Grey.png" alt="Capture"> %>
+				<%= image_tag "new_brand/McDonalds-Logo_Grey.png", alt: "Capture", width: "50%" %>
+			</div>
+			<div class="partnerLogo hideOnPhone" style="width: 34%">
+				<%# <img src="Pure-Romance-Logo_Grey.png" style= "padding-top: 14%; alt="Capture"> %>
+				<%= image_tag "new_brand/Pure-Romance-Logo_Grey.png", alt: "Capture", width: "100%" %>
+			</div>
+			<div class="partnerLogo partnerLogoMobile hideOnFull showOnPhone">
+				<%# <img src="Pure-Romance-Logo_Grey.png" style= "padding-top: 14%; alt="Capture"> %>
+				<%= image_tag "new_brand/Pure-Romance-Logo_Grey.png", alt: "Capture", width: "100%" %>
+			</div>
+			<div class="partnerLogo hideOnPhone" style="width: 26%">
+				<%# <img src="Drees-Logo_Grey.png" alt="Capture"> %>
+				<%= image_tag "new_brand/Drees-Logo_Grey.png", alt: "Capture", width: "60%" %>
+			</div>
+			<div class="partnerLogo partnerLogoMobile hideOnFull showOnPhone">
+				<%# <img src="Drees-Logo_Grey.png" alt="Capture"> %>
+				<%= image_tag "new_brand/Drees-Logo_Grey.png", alt: "Capture", width: "60%" %>
+			</div>
+			<div class="partnerLogo hideOnPhone" style="width: 20%">
+				<%# <img src="ASM-Logo_Grey.png" alt="Capture"> %>
+				<%= image_tag "new_brand/cinbell_logo_grey.png", alt: "Capture", width: "100%" %>
+			</div>
+			<div class="partnerLogo partnerLogoMobile hideOnFull showOnPhone">
+				<%# <img src="ASM-Logo_Grey.png" alt="Capture"> %>
+				<%= image_tag "new_brand/cinbell_logo_grey.png", alt: "Capture", width: "100%" %>
+			</div>
+		</div>
+</div>
+
+<%# <section class="PartTwo"> %>
+		<%# <div style="margin:35px;"> %>
+		<%# 	<h3>INTERACTIVE BRAND EXPOSURE BUILT TO...</h3> %>
+		<%# </div> %>
+		<%# <div class="container"> %>         
+		<%# 	<div class="centerContent"> %>
+		<%# 		<div class="description"> %>
+		<%# 			<p>Your guests capture their favorite authentic and spontaneous moments from your next fundraiser, corporate celebration or holiday party and share them with everyone in an instant. There's no app for them to download and it works on any cellphone, tablet or computer! <br> </p> %> 
+		<%# 		</div> %>         
+		<%# 	</div> %>
+		<%# </div> %>
+		<%# <div class="requestDemoBtnDiv"> %>
+		<%# 	<button class="requestDemoBtn" onclick="overlay()">Request a Demo</button> %>
+		<%# </div> %>
+
+		<%# <div class="dottedLine"></div> %>
+		<%# <div class="centerContent" > %>
+
+		<%# 	<ul class="slides"> %>
+		<%# 		<input type="radio" name="radio-btn" id="img-1" checked /> %>
+		<%# 		<li class="slide-container"> %>
+		<%# 		<div class="slide"> %>
+		<%# 			<1%# <img src="ASM_4.jpg" /> %1> %>
+		<%# 			<%= image_tag "new_brand/ASM_4.jpg" %1> %>
+		<%# 		</div> %>
+		<%# 		<div class="nav"> %>
+		<%# 			<label for="img-6" class="prev">&#x2039;</label> %>
+		<%# 			<label for="img-2" class="next">&#x203a;</label> %>
+		<%# 		</div> %>
+		<%# 		</li> %>
+
+		<%# 		<input type="radio" name="radio-btn" id="img-2" /> %>
+		<%# 		<li class="slide-container"> %>
+		<%# 		<div class="slide"> %>
+		<%# 			<1%# <img src="ASM_5.jpg" /> %1> %>
+		<%# 			<%= image_tag "new_brand/ASM_5.jpg" %1> %>
+		<%# 		</div> %>
+		<%# 		<div class="nav"> %>
+		<%# 			<label for="img-1" class="prev">&#x2039;</label> %>
+		<%# 			<label for="img-3" class="next">&#x203a;</label> %>
+		<%# 		</div> %>
+		<%# 		</li> %>
+
+		<%# 		<input type="radio" name="radio-btn" id="img-3" /> %>
+		<%# 		<li class="slide-container"> %>
+		<%# 		<div class="slide"> %>
+		<%# 			<1%# <img src="ASM_6.jpg" /> %1> %>
+		<%# 			<%= image_tag "new_brand/ASM_6.jpg" %1> %>
+		<%# 		</div> %>
+		<%# 		<div class="nav"> %>
+		<%# 			<label for="img-2" class="prev">&#x2039;</label> %>
+		<%# 			<label for="img-4" class="next">&#x203a;</label> %>
+		<%# 		</div> %>
+		<%# 		</li> %>
+
+		<%# 		<input type="radio" name="radio-btn" id="img-4" /> %>
+		<%# 		<li class="slide-container"> %>
+		<%# 		<div class="slide"> %>
+		<%# 			<1%# <img src="ASM_7.jpg" /> %1> %>
+		<%# 			<%= image_tag "new_brand/ASM_7.jpg" %1> %>
+		<%# 		</div> %>
+		<%# 		<div class="nav"> %>
+		<%# 			<label for="img-3" class="prev">&#x2039;</label> %>
+		<%# 			<label for="img-5" class="next">&#x203a;</label> %>
+		<%# 		</div> %>
+		<%# 		</li> %>
+
+		<%# 		<input type="radio" name="radio-btn" id="img-5" /> %>
+		<%# 		<li class="slide-container"> %>
+		<%# 		<div class="slide"> %>
+		<%# 			<1%# <img src="ASM_8.jpg" /> %1> %>
+		<%# 			<%= image_tag "new_brand/ASM_8.jpg" %1> %>
+		<%# 		</div> %>
+		<%# 		<div class="nav"> %>
+		<%# 			<label for="img-4" class="prev">&#x2039;</label> %>
+		<%# 			<label for="img-6" class="next">&#x203a;</label> %>
+		<%# 		</div> %>
+		<%# 		</li> %>
+
+		<%# 		<input type="radio" name="radio-btn" id="img-6" /> %>
+		<%# 		<li class="slide-container"> %>
+		<%# 		<div class="slide"> %>
+		<%# 			<1%# <img src="McDs_1.jpg" /> %1> %>
+		<%# 			<%= image_tag "new_brand/McDs_1.jpg" %1> %>
+		<%# 		</div> %>
+		<%# 		<div class="nav"> %>
+		<%# 			<label for="img-5" class="prev">&#x2039;</label> %>
+		<%# 			<label for="img-1" class="next">&#x203a;</label> %>
+		<%# 		</div> %>
+
+		<%# 		<input type="radio" name="radio-btn" id="img-6" /> %>
+		<%# 		<li class="slide-container"> %>
+		<%# 		<div class="slide"> %>
+		<%# 			<1%# <img src="McDs_2.jpg" /> %1> %>
+		<%# 			<%= image_tag "new_brand/McDs_2.jpg" %1> %>
+		<%# 		</div> %>
+		<%# 		<div class="nav"> %>
+		<%# 			<label for="img-5" class="prev">&#x2039;</label> %>
+		<%# 			<label for="img-1" class="next">&#x203a;</label> %>
+		<%# 		</div> %>
+		<%# 		</li> %>
+		<%# 		<li class="nav-dots"> %>
+		<%# 		<label for="img-1" class="nav-dot" id="img-dot-1"></label> %>
+		<%# 		<label for="img-2" class="nav-dot" id="img-dot-2"></label> %>
+		<%# 		<label for="img-3" class="nav-dot" id="img-dot-3"></label> %>
+		<%# 		<label for="img-4" class="nav-dot" id="img-dot-4"></label> %>
+		<%# 		<label for="img-5" class="nav-dot" id="img-dot-5"></label> %>
+		<%# 		<label for="img-6" class="nav-dot" id="img-dot-6"></label> %>
+		<%# 		</li> %>
+		<%# 	</ul> %> 
+
+		<%# </div> %>
+		<%# <1%# <div class = "dottwo"> %1> %>
+		<%# 	<div class="dottedLine" style="margin-top:60px;margin-bottom:60px;"></div> %>  
+		<%# <1%# </div> %1> %>
+
+		<%# <h2> HOW IT WORKS</h2> %>
+
+		<%# <div class="picHolder"> %>   
+		<%# 	<div class="explanatoryPics"> %>
+		<%# 		<1%# <img src="Capture-2.png" alt="Capture" style="width: 66%;"> %1> %>
+		<%# 		<%= image_tag "new_brand/capture-3.png", alt: "Capture" %1> %>
+		<%# 	</div> %>			
+		<%# 	<div class="explanatoryPics"> %>
+		<%# 		<1%# <img src="Share-2.png" alt="Share" style="width: 66%;"> %1> %>
+		<%# 		<%= image_tag "new_brand/share-2.png", alt: "Share" %1> %>
+		<%# 	</div> %>
+		<%# 	<div class="explanatoryPics"> %>
+		<%# 		<1%# <img src="Enjoy-2.png" alt="Enjoy" style="width: 66%; padding-top: .5%"> %1> %>
+		<%# 		<%= image_tag "new_brand/enjoy-2.png", alt: "Enjoy" %1> %> 
+		<%# 	</div> %>
+		<%# </div> %>
+
+		<%# <div class = "dotthree"> %>
+		<%# </div> %>
+				<div class="requestDemoBtnDiv hideOnFull showOnPhone">
+					<button class="requestDemoBtn" onclick="overlay()" style="width: 80%;">Request a Demo</button>
+				</div>
+<%# </section> %>
+
+
+<div class = "footerBorder"></div>
+
+<section class="PartThree">
+
+		<%# <div class="PartThreegroup"> %>
+			<div class="footerRow tempFooterRow">
+				<div class="footerColumn">
+					<div class="addressSection">
+						<h3>CONTACT US</h3>	
+						<p style="line-height: 0.8em;">1275 Kinnear Rd.</p>
+						<%# <div class="hideOnPhone"> %>
+							<p style="line-height: 0.8em;">Columbus, Ohio 43212</p>
+						<%# </div> %>
+						<%# <div class="showOnPhone hideOnFull"> %>
+						<%# 	<p style="line-height:1.5em;">Columbus, Ohio 43212</p> %>
+						<%# </div> %>
+						<a href="mailto:hello@capstory.me">hello@capstory.me</a>
+						<p>(513) 401-5572</p>
+					</div>
+				</div>
+
+				<div class="footerColumn hideOnPhone">
+					<div class="requestDemoBtnDiv">
+						<button class="requestDemoBtn" style="padding: 17px 80px;" onclick="overlay()">Request a Demo</button>
+					</div>
+					<%# <div class= "RequestDemo"> %>
+						<%#	 <input type="image" name="submit" value="submit" src="/images/Request-Demo-Button-Large.png" style= "padding-right: 0;"/> %>
+						<%# </div> %>
+
+					<div class="socialIconsDiv">
+						<div class="socialIcon">	
+							<a href="https://twitter.com/Capstory">
+							<%# <img src="Twitter-Icon.png" alt="Twitter" style="width:42px;height:42px;border:0;padding-right:20px;"> %>
+							<%= image_tag "new_brand/Twitter-Icon.png", alt: "Twitter", style: "", width: "40px" %>
+							</a>
+						</div>
+						<div class="socialIcon">
+							<a href="https://www.instagram.com/capstory.me">
+								<%= image_tag "new_brand/Instagram-Icon.png", alt: "Instagram", width: "40px" %>
+							</a>
+						</div>
+						<div class="socialIcon">
+							<a href="https://www.facebook.com/Capstory">
+								<%# <img src="Facebook-Icon.png" alt="Facebook" style="width:42px;height:42px;border:0;padding-right:20px;"> %>
+								<%= image_tag "new_brand/Facebook-Icon.png", alt: "Facebook", width: "40px" %>
+							</a>
+						</div>
+
+						<div class="socialIcon">
+							<a href="https://www.linkedin.com/company/capstory">
+								<%# <img src="LinkedIn-Icon.png" alt="LinkedIn" style="width:42px;height:42px;border:0;padding-right:20px;"> %>
+								<%= image_tag "new_brand/LinkedIn-Icon.png", alt: "LinkedIn", width: "40px" %>
+							</a>
+						</div>
+					</div>	
+				</div>
+
+				<div class="footerColumn footerLogo hideOnPhone">
+					<%# <img src="Capstory_Icon_Cream.png" alt="Icon" style="width: 108px;"> %>
+					<%= image_tag "new_brand/Capstory_Icon_Cream.png", alt: "Icon", style: "width:100px;" %>
+				</div>
+				<div class="footerLogo tempFooterLogoPhone hideOnFull showOnPhone">
+					<%# <img src="Capstory_Icon_Cream.png" alt="Icon" style="width: 108px;"> %>
+					<%= image_tag "new_brand/Capstory_Icon_Cream.png", alt: "Icon", style: "width: 100%" %>
+				</div>
+			</div>
+			<div class="socialIconsDiv hideOnFull showOnPhone">
+				<div class="socialIcon">	
+					<a href="https://twitter.com/Capstory">
+					<%# <img src="Twitter-Icon.png" alt="Twitter" style="width:42px;height:42px;border:0;padding-right:20px;"> %>
+					<%= image_tag "new_brand/Twitter-Icon.png", alt: "Twitter", style: "", width: "40px" %>
+					</a>
+				</div>
+				<div class="socialIcon">
+					<a href="https://www.instagram.com/capstory.me">
+						<%= image_tag "new_brand/Instagram-Icon.png", alt: "Instagram", width: "40px" %>
+					</a>
+				</div>
+				<div class="socialIcon">
+					<a href="https://www.facebook.com/Capstory">
+						<%# <img src="Facebook-Icon.png" alt="Facebook" style="width:42px;height:42px;border:0;padding-right:20px;"> %>
+						<%= image_tag "new_brand/Facebook-Icon.png", alt: "Facebook", width: "40px" %>
+					</a>
+				</div>
+
+				<div class="socialIcon">
+					<a href="https://www.linkedin.com/company/capstory">
+						<%# <img src="LinkedIn-Icon.png" alt="LinkedIn" style="width:42px;height:42px;border:0;padding-right:20px;"> %>
+						<%= image_tag "new_brand/LinkedIn-Icon.png", alt: "LinkedIn", width: "40px" %>
+					</a>
+				</div>
+			</div>	
+		<%# </div> %>
+</section>
+		<div id="modal-overlay">
+			<div class="modal-content" id="tempModalBody">
+				<div class="modal-header">
+					Request a Demo
+					<div class="close-button" id="close-modal"></div>
+				</div>
+				<div class="modal-body">
+					<p>Please fill out the form and press submit. Or, contact us by email or telephone.</p>
+					<%= form_tag("/contact_forms/request_demo", method: :post, format: :json, remote: true, id: "requestDemoForm") do %>
+						<div class="requestFormRow">
+							<div class="requestFormInputBlock">
+								<div class="requestFormLabel">
+									<%= label_tag :name %>
+								</div>
+								<div class="requestFormInput">
+									<%= text_field_tag :name %>
+								</div>
+							</div>
+
+							<div class="requestFormInputBlock">
+								<div class="requestFormLabel">
+									<%= label_tag :email, "Email/Phone Number" %>
+								</div>
+								<div class="requestFormInput">
+									<%= text_field_tag :email %>
+								</div>
+							</div>
+						</div>
+
+						<%# <div class="requestFormRow"> %>
+						<%# 	<div class="requestFormInputBlock"> %>
+						<%# 		<div class="requestFormLabel"> %>
+						<%# 			<%= label_tag :company, "Company Name" %1> %>
+						<%# 		</div> %>
+						<%# 		<div class="requestFormInput"> %>
+						<%# 			<%= text_field_tag :company %1> %>
+						<%# 		</div> %>
+						<%# 	</div> %>
+
+						<%# 	<div class="requestFormInputBlock"> %>
+						<%# 		<div class="requestFormLabel"> %>
+						<%# 			<%= label_tag :position, "Position/Title" %1> %>
+						<%# 		</div> %>
+						<%# 		<div class="requestFormInput"> %>
+						<%# 			<%= text_field_tag :position %1> %>
+						<%# 		</div> %>
+						<%# 	</div> %>
+						<%# </div> %>
+
+						<%# <div class="requestFormRow"> %>
+						<%# 	<div class="requestFormInputBlock"> %>
+						<%# 		<div class="requestFormLabel"> %>
+						<%# 			<%= label_tag :event_type %1> %>
+						<%# 		</div> %>
+						<%# 		<div class="requestFormInput"> %>
+						<%# 			<%= text_field_tag :event_type %1> %>
+						<%# 		</div> %>
+						<%# 		<div class="requestFormUnderInputText"> %>
+						<%# 			<p>i.e. holiday party, sales retreat, fundraiser, conference, etc.</p> %>
+						<%# 		</div> %>
+						<%# 	</div> %>
+
+						<%# 	<div class="requestFormInputBlock"> %>
+						<%# 		<div class="requestFormSubInputBlock"> %>
+						<%# 			<div class="requestFormLabel"> %>
+						<%# 				<%= label_tag :event_date %1> %>
+						<%# 			</div> %>
+						<%# 			<div class="requestFormInput"> %>
+						<%# 				<%= text_field_tag :event_date %1> %>
+						<%# 			</div> %>
+						<%# 		</div> %>
+
+						<%# 		<div class="requestFormSubInputBlock"> %>
+						<%# 			<div class="requestFormLabel"> %>
+						<%# 				<%= label_tag :event_size %1> %>
+						<%# 			</div> %>
+						<%# 			<div class="requestFormInput"> %>
+						<%# 				<%= text_field_tag :event_size %1> %>
+						<%# 			</div> %>
+						<%# 		</div> %>
+						<%# 	</div> %>
+						<%# </div> %>
+
+						<%# <p style="text-transform: uppercase;"><b>What features are you most interested in?</b> (Select all that apply)</p> %>
+
+						<%# <div class="requestFormRow"> %>
+						<%# 	<div class="requestFormInputBlock"> %>
+						<%# 		<div class="requestFormInput"> %>
+						<%# 			<div class="requestFormCheckBox"> %>
+						<%# 				<div class="requestFormCheckMark"> %>
+						<%# 					<%= check_box_tag :live_streaming %1> %>
+						<%# 				</div> %>
+						<%# 			</div> %>
+						<%# 			<span class="requestFormLabel"> %>
+						<%# 				<%= label_tag :live_streaming %1> %>
+						<%# 			</span> %>
+						<%# 		</div> %>
+						<%# 	</div> %>
+
+						<%# 	<div class="requestFormInputBlock"> %>
+						<%# 		<div class="requestFormInput"> %>
+						<%# 			<div class="requestFormCheckBox"> %>
+						<%# 				<div class="requestFormCheckMark"> %>
+						<%# 					<%= check_box_tag :aggregation %1> %>
+						<%# 				</div> %>
+						<%# 			</div> %>
+						<%# 			<span class="requestFormLabel"> %>
+						<%# 				<%= label_tag :aggregation %1> %>
+						<%# 			</span> %>
+						<%# 		</div> %>
+						<%# 	</div> %>
+						<%# </div> %>
+
+						<%# <div class="requestFormRow"> %>
+						<%# 	<div class="requestFormInputBlock"> %>
+						<%# 		<div class="requestFormInput"> %>
+						<%# 			<div class="requestFormCheckBox"> %>
+						<%# 				<div class="requestFormCheckMark"> %>
+						<%# 					<%= check_box_tag :branding %1> %>
+						<%# 				</div> %>
+						<%# 			</div> %>
+						<%# 			<span class="requestFormLabel"> %>
+						<%# 				<%= label_tag :branding %1> %>
+						<%# 			</span> %>
+						<%# 		</div> %>
+						<%# 	</div> %>
+
+						<%# 	<div class="requestFormInputBlock"> %>
+						<%# 		<div class="requestFormInput"> %>
+						<%# 			<div class="requestFormCheckBox"> %>
+						<%# 				<div class="requestFormCheckMark"> %>
+						<%# 					<%= check_box_tag :custom_books %1> %>
+						<%# 				</div> %>
+						<%# 			</div> %>
+						<%# 			<span class="requestFormLabel"> %>
+						<%# 				<%= label_tag :custom_books %1> %>
+						<%# 			</span> %>
+						<%# 		</div> %>
+						<%# 	</div> %>
+						<%# </div> %>
+
+						<div class="requestFormRow additionalInfoRow">
+							<div class="requestFormLabel">
+								<%= label_tag :additional_information %>
+							</div>
+							<div class="requestFormInput">
+								<%= text_area_tag :additional_information %> 
+							</div>
+						</div>
+
+						<%# <div class="requestFormRow"> %>
+						<%# 	<div id="requestFormErrorDisplay"></div> %>
+						<%# </div> %>
+						<div class="requestFormDottedLine"></div>
+						<div class="requestFormRow">
+							<div class="requestFormButtonGroup">
+								<div id="requestFormCloseButton">Close</div>
+								<%= submit_tag "Submit", id: "requestFormSubmitButton" %>
+							</div>
+						</div>
+					<% end %>
+				</div>
+			</div>	
+			<div class="modal-content" id="thankYouModalContent">
+				<div class="modal-header">
+					&nbsp;
+					<div class="close-button" id="closeThankYouModal"></div>
+				</div>
+				<div class="modal-body">
+					<h1>Thank you for your interest in Capstory!</h1>
+					<div class="requestFormDottedLine"></div>
+					<p>You should receive a confirmation email from us shortly.</p>
+				</div>
+			</div>
+			<div class="modal-content" id="errorsModalContent">
+				<%# <div class="modal-header"> %>
+				<%#  &nbsp; %>	
+				<%# 	<div class="close-button" id="backToMainModal"></div> %>
+				<%# </div> %>
+				<div class="modal-body">
+					<h1 style="margin-top:40px">Oops! It looks like we still need a bit more information.</h1>	
+					<div class="requestFormDottedLine"></div>
+					<p>Please double check the form and try again.</p>
+					<div class="requestFormRow">
+						<div id="requestFormErrorDisplay"></div>
+					</div>
+					<button id="backToMainModal">Back To Form</button>
+				</div>
+			</div>
+		</div>

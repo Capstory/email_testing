@@ -23,6 +23,12 @@ div.headerWrapper {
   background-size: cover;
 }
 
+div.tempHeaderWrapper {
+  height: 320px;
+  background-image: url("/images/Tradeshow-Header2.png");
+  background-position: 0px -350px;
+}
+
 div.headerWrapper h1 {
 	text-align: center;
 	color: #FFFDEA;
@@ -44,6 +50,11 @@ section.PartOne {
   /* background-size: cover; */
 }
 
+section.PartOne h1 {
+  line-height: 1.5em;
+  margin-top: 15px;
+}
+
 .navbar{
 	margin: 0;
 	padding-top: 25px;
@@ -52,11 +63,22 @@ section.PartOne {
 
 }
 
+div.tempNavbar {
+  padding-top: 15px;
+}
+
 .mainLogo {
   width: 38%;
   min-width: 300px;
   margin-bottom: 20px;
   padding-top: 3%;
+}
+
+img.tempMainLogo {
+  width: 28.5%;
+  min-width: 100px;
+  margin-bottom: 10px;
+  padding-top: 2%;
 }
 
 .headerBorder {
@@ -69,6 +91,56 @@ section.PartTwo {
 	/* max-width: 100%; */
   max-width: 1024px;
 	margin: 0px auto;
+}
+
+div.darkGreyBackgroundArea {
+  background-color: #434244;
+  padding-bottom: 25px;
+}
+
+div.tempPartTwo {
+  height: 100%;
+  width 100%;
+  margin: 0px auto;
+  padding: 0px 10%;
+  text-align: left;
+}
+
+div.tempPartTwo h3 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+  padding: 10px 0px;
+  font-size: 23px;
+}
+
+div.tempPartTwoHeader {
+  padding-top: 25px;
+}
+
+div.tempPartTwoHeader h1 {
+	font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+}
+
+div.tempThirdColumn {
+  display: inline-block;
+  width: 33%;
+}
+
+div.tempTwoThirdsColumn {
+  display: inline-block;
+  width: 66%;
+}
+
+img.photowallImage {
+  width: 60%;
+  float: right;
+}
+
+img.photowallPhoneImage {
+  padding-top: 20px;
+  width: 100%;
 }
 
 section.PartTwo h3 {
@@ -105,6 +177,11 @@ div.requestDemoBtnDiv {
   margin-top: 45px;
   margin-bottom: 25px;
 }
+
+div.tempPartThreeRequestBtn {
+  position: relative;
+  top: -100px;
+} 
 
 button.requestDemoBtn {
   min-width: 325px;
@@ -302,9 +379,19 @@ div.logobox{
 	margin-right: auto;
 }
 
+div.tempLogobox {
+  width: 100%;
+  margin-bottom: 0px;
+  text-align: center;
+}
+
 h3.partnersHeader {
   text-align: left;
   padding-left: 40px;
+}
+
+h3.partnersHeader.tempPartnerHeader {
+  padding-left: 0px;
 }
 
 div.partnerLogo {
@@ -328,6 +415,49 @@ div.footerBorder {
   border-color: #F16524;
 }
 
+div.tempPartThree {
+  height: 100%;
+  width: 80%;
+  padding: 0px;
+  padding-bottom: 0px;
+  margin: 0px auto;
+  display: inline-block;
+  color: #434244; 
+  text-align: left;
+  position:relative;
+  top: -70px;
+}
+
+div.tempPartThree h1{
+  font-family: "Montserrat", sans-serif;
+  font-size: 28px;
+  padding-left: 40px;
+}
+
+div.tempPartThree h3 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 23px;
+  padding-top: 20px;
+  padding-left: 40px;
+}
+
+div.tempFourthColumn {
+  display: inline-block;
+  width: 25%;
+}
+
+div.tempThreeQuartersColumn {
+  display: inline-block;
+  vertical-align: top;
+  width: 74%;
+  padding-top: 80px;
+}
+
+img.textBackImage {
+  width: 100%;
+  padding: 0px;
+}
 
 section.PartThree{
 	height: 100%;
@@ -470,6 +600,10 @@ div.modal-content {
 
 div.modal-content#mainModalContent {
   height: 85%;
+}
+
+div.modal-content#tempModalBody {
+  height: 55%;
 }
 
 div.modal-content#thankYouModalContent {
@@ -707,27 +841,84 @@ div.requestFormButtonGroup {
   color: #FFFDEA;
 }
 
+@media (max-width: 1024px) and (min-width: 769px) {
+  div.darkGreyBackgroundArea {
+    padding: 0px;
+  }
+
+  div.tempPartThreeRequestBtn {
+    top: -40px;
+  }
+
+  img.photowallImage {
+    padding-top: 40px;
+    width: 50%;
+  }
+}
+
 @media (max-width: 768px) {
 
   div.headerWrapper {
     height: 480px;
-    background-image: url("/images/capstory-header2.jpg");
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-position: 0px -80px;
+    background-image: url("/images/tradeshow-header2.png");
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-position: 0px 0px;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
+  }
+
+  div.tempHeaderWrapper {
+    height:280px;
   }
 
   section.PartOne {
     background-position: 0px 0px;
   }
 
+  img.tempMainLogo {
+    width: 50%;
+    max-width: 200px;
+    padding-top: 3%;
+  }
+
+  section.PartOne h1 {
+    line-height: 1.5em;
+    margin-top: 0px;
+  }
+
   div.description p {
     font-size: 16px;
   }
+
+  div.tempPartTwo h3 {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 300;
+    padding: 10px 0px;
+    font-size: 18px;
+  }
+
+  div.tempPartTwoHeader {
+    padding-top: 10px;
+  }
+
+  div.tempPartTwoHeader h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 21px;
+    font-weight: 400;
+  }
+
+  div.tempPartThree {
+    position: relative;
+    top: 0px;
+  }
+
+  div.requestDemoBtnDiv .tempPartThreeRequestBtn {
+    position: relative;
+    top: 0px;
+  } 
 
   button.requestDemoBtn {
     min-width: 250px;
@@ -735,6 +926,38 @@ div.requestFormButtonGroup {
     width: 90%;
   }
 
+  div.tempThirdColumn {
+    width: 95%;
+  }
+
+  div.tempFourthColumn {
+    width: 95%;
+    text-align: center;
+  }
+
+  img.textBackImage {
+    width: 60%;
+    padding-top: 50px;
+  }
+
+  div.tempThreeQuartersColumn {
+    width: 90%;
+    padding-top: 20px;
+  }
+
+  div.tempThreeQuartersColumn h1 {
+    padding: 0px;
+    font-size: 21px;
+  }
+
+  div.tempThreeQuartersColumn h3 {
+    padding: 0px;
+    font-size: 18px;
+  }
+
+  h3.partnersHeader.tempPartnerHeader {
+    font-size: 18px;
+  }
   .slides {
     width: 90%;
     height: 300px; 
@@ -748,16 +971,31 @@ div.requestFormButtonGroup {
     width: 100%;
   }
 
+  div.tempFooterRow {
+    width: 100%;
+  }
+
   div.footerColumn {
-    width: 45%;
+    width: 55%;
   }
 
   div.hideOnPhone {
     display: none;
   }
 
+  img.hideOnPhone {
+    display: none;
+  }
+
   div.showOnPhone {
     display: block;
+  }
+
+  div.tempFooterLogoPhone {
+    width: 20%;
+    display: inline-block;
+    text-align: right;
+    vertical-align: top;
   }
 
   div.footerLogo {

@@ -82,6 +82,7 @@ EmailTesting::Application.routes.draw do
 	match "" => "static_pages#americheer_landing", constraints: AmericheerConstraints.new
 	match "" => "static_pages#receptions_landing", constraints: ReceptionsConstraints.new
 	match "" => "static_pages#corporate_page", constraints: CorporateConstraints.new
+	# match "temp_home" => "static_pages#temp_home"
 	# match "new_landing" => "static_pages#new_home"
 	match "bootstrap_landing" => "static_pages#bootstrap_home"
 	# match "" => "static_pages#code_for_a_cause", constraints: CodeForACauseConstraints.new
@@ -216,6 +217,7 @@ EmailTesting::Application.routes.draw do
   root :to => "users#welcome", constraints: SiteConstraints.new
   
 	# root to: "static_pages#home"
-	root to: "static_pages#new_home"
+	# root to: "static_pages#new_home"
+	root to: "static_pages#temp_home"
 
 end

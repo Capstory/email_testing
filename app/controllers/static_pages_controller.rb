@@ -10,6 +10,11 @@ class StaticPagesController < ApplicationController
 		render "new_home", layout: "new_landing"
 	end
 
+	def temp_home
+		@contact_form = ContactForm.new
+		render "temp_home", layout: "new_landing"
+	end
+
 	def bootstrap_home
 		@contact_form = ContactForm.new
 		render "bootstrap_home", layout: "new_landing"
