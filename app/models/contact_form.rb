@@ -4,6 +4,19 @@ class ContactForm < ActiveRecord::Base
   # validates_presence_of :email
   # validates_format_of :email, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i
 
+	def self.compose_sponsor_request_info_message(params)
+		%Q{
+			Someone has requested information from the Sponsor-directed page
+			-------------------------------------
+
+			Name: #{ params[:name] }
+			Email/Phone Number: #{ params[:email] }
+
+			Additional Information:
+			#{ params[:additional_information] }
+		}
+	end
+
 	def self.compose_request_demo_message(params)
 		%Q{
 			Someone has requested a demo. Below is the information from the contact form:

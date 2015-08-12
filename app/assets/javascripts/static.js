@@ -33,53 +33,71 @@ var requestFormValidator = function() {
 
 	var errorDisplay = document.getElementById("requestFormErrorDisplay");
 	var fields = [{
-		id: "name",
-		name: "Name",
-		type: "text",
-		validatorFunctions: [isRequired]
-	},
-	{
-		id: "email",
-		name: "Email/Phone Number",
-		type: "text",
-		validatorFunctions: [isRequired] 
-	},
-	{
-		id: "company",
-		name: "Company Name",
-		type: "text",
-		validatorFunctions: [isRequired]
-	},
-	{
-		id: "position",
-		name: "Position/Title",
-		type: "text",
-		validatorFunctions: [isRequired]
-	},
-	{
-		id: "event_type",
-		name: "Event Type",
-		type: "text",
-		validatorFunctions: []
-	},
-	{
-		id: "event_date",
-		name: "Event Date",
-		type: "text",
-		validatorFunctions: []
-	},
-	{
-		id: "event_size",
-		name: "Event Size",
-		type: "text",
-		validatorFunctions: []
-	},
-	{
-		id: "additional_information",
-		name: "Additional Information",
-		type: "textarea",
-		validatorFunctions: []
-	}];
+			id: "name",
+			name: "Name",
+			type: "text",
+			validatorFunctions: [isRequired]
+		},
+		{
+			id: "email",
+			name: "Email/Phone Number",
+			type: "text",
+			validatorFunctions: [isRequired]
+		},
+		{
+			id: "additional_information",
+			name: "Additional Information",
+			type: "textarea",
+			validatorFunctions: []
+		}];
+	// var fields = [{
+	// 	id: "name",
+	// 	name: "Name",
+	// 	type: "text",
+	// 	validatorFunctions: [isRequired]
+	// },
+	// {
+	// 	id: "email",
+	// 	name: "Email/Phone Number",
+	// 	type: "text",
+	// 	validatorFunctions: [isRequired] 
+	// },
+	// {
+	// 	id: "company",
+	// 	name: "Company Name",
+	// 	type: "text",
+	// 	validatorFunctions: [isRequired]
+	// },
+	// {
+	// 	id: "position",
+	// 	name: "Position/Title",
+	// 	type: "text",
+	// 	validatorFunctions: [isRequired]
+	// },
+	// {
+	// 	id: "event_type",
+	// 	name: "Event Type",
+	// 	type: "text",
+	// 	validatorFunctions: []
+	// },
+	// {
+	// 	id: "event_date",
+	// 	name: "Event Date",
+	// 	type: "text",
+	// 	validatorFunctions: []
+	// },
+	// {
+	// 	id: "event_size",
+	// 	name: "Event Size",
+	// 	type: "text",
+	// 	validatorFunctions: []
+	// },
+	// {
+	// 	id: "additional_information",
+	// 	name: "Additional Information",
+	// 	type: "textarea",
+	// 	validatorFunctions: []
+	// }];
 
 	return {
 		checkRequestFormForErrors: function() {

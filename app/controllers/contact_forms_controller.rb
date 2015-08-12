@@ -59,10 +59,17 @@ class ContactFormsController < ApplicationController
 	end
 
 	def request_demo
+
 		@contact_form = ContactForm.new
 		@contact_form.name = params[:name]
-		@contact_form.source = "request_demo_form"
-		@contact_form.message = ContactForm.compose_request_demo_message(params)	
+		@contact_form.source = params[:source] || "request_demo_form"
+		
+		case @contact_form.source
+		when "sponsor_request_info"
+			@contact_form.message = ContactForm.compose_sponsor_request_info_message(params)
+		else
+			@contact_form.message = ContactForm.compose_request_demo_message(params)	
+		end
 
 		# puts @contact_form.message
 

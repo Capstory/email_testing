@@ -320,7 +320,7 @@
 		<%# </div> %>
 </section>
 		<div id="modal-overlay">
-			<div class="modal-content" id="tempModalBody">
+			<div class="modal-content" id="mainModalContent">
 				<div class="modal-header">
 					Request a Demo
 					<div class="close-button" id="close-modal"></div>
@@ -328,6 +328,7 @@
 				<div class="modal-body">
 					<p>Please fill out the form and press submit. Or, contact us by email or telephone.</p>
 					<%= form_tag("/contact_forms/request_demo", method: :post, format: :json, remote: true, id: "requestDemoForm") do %>
+						<%= hidden_field_tag :source, "sponsor_request_info" %>
 						<div class="requestFormRow">
 							<div class="requestFormInputBlock">
 								<div class="requestFormLabel">
