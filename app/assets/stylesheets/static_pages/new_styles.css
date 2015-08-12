@@ -25,7 +25,7 @@ div.headerWrapper {
 
 div.tempHeaderWrapper {
   height: 320px;
-  background-image: url("/images/Tradeshow-Header2.png");
+  background-image: url("/images/tradeshow_header_web.jpg");
   background-position: 0px -350px;
 }
 
@@ -100,7 +100,7 @@ div.darkGreyBackgroundArea {
 
 div.tempPartTwo {
   height: 100%;
-  width: 100%;
+  /* width: 100%; */
   margin: 0px auto;
   padding: 0px 10%;
   text-align: left;
@@ -860,7 +860,7 @@ div.requestFormButtonGroup {
 
   div.headerWrapper {
     height: 480px;
-    background-image: url("/images/tradeshow-header2.png");
+    background-image: url("/images/tradeshow_header_web.jpg");
     -webkit-background-size: 100%;
     -moz-background-size: 100%;
     -o-background-size: 100%;
