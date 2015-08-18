@@ -97,7 +97,7 @@ angular_capsule_app.controller("CapsuleCtlr", ["$document", "$window", "$scope",
 		}, 300);
 	};
 
-	var OKSaveScrollPos = false;
+	$scope.OKSaveScrollPos = false;
 
 	$scope.init = function() {
 		angular.element(".capsuleOffCanvasMenuItems").show();
@@ -110,7 +110,7 @@ angular_capsule_app.controller("CapsuleCtlr", ["$document", "$window", "$scope",
 		if (angular.isUndefined($rootScope.scrollPos)) {
 			$rootScope.scrollPos = {};
 			$scope.scrollPos = 0;
-			OKSaveScrollPos = true;
+			$scope.OKSaveScrollPos = true;
 		} else {
 			console.log("Scroll is set: ", $rootScope.scrollPos);
 			$scope.scrollPos = $rootScope.scrollPos[$location.absUrl()];
@@ -134,7 +134,7 @@ angular_capsule_app.controller("CapsuleCtlr", ["$document", "$window", "$scope",
 				$scope.goToScroll(scrollTarget);
 			}
 		}, 500);
-		OKSaveScrollPos = true;
+		$scope.OKSaveScrollPos = true;
 	};
 
 	$scope.toggleData = function(dataToShow) {
@@ -221,7 +221,7 @@ angular_capsule_app.controller("CapsuleCtlr", ["$document", "$window", "$scope",
 		console.log("Scroll position: ", $scope.scrollPos); 
 
 		$rootScope.scrollPos[oldUrl] = $scope.scrollPos;
-		OKSaveScrollPos = false;
+		$scope.OKSaveScrollPos = false;
 	});
 
 	startPoller();
@@ -272,7 +272,7 @@ angular_capsule_app.controller("CapsuleCtlr", ["$document", "$window", "$scope",
 			});
 		}
 
-		if ( OKSaveScrollPos ) {
+		if ( $scope.OKSaveScrollPos ) {
 			$scope.$apply(function() {
 				$scope.scrollPos = $(window).scrollTop();
 			});
