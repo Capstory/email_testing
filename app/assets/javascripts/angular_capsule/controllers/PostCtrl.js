@@ -1,4 +1,4 @@
-angular_capsule_app.controller("PostCtrl", ["$scope", "$routeParams", "$location", "$window", "$timeout", "CapsuleData", "CapsuleModel", "PostModel", "VideoModel", function($scope, $routeParams, $location, $window, $timeout, CapsuleData, CapsuleModel, PostModel, VideoModel) {
+angular_capsule_app.controller("PostCtrl", ["$rootScope", "$scope", "$routeParams", "$location", "$window", "$timeout", "CapsuleData", "CapsuleModel", "PostModel", "VideoModel", function($rootScope, $scope, $routeParams, $location, $window, $timeout, CapsuleData, CapsuleModel, PostModel, VideoModel) {
 	var setArrowDivHeight = function() {
 		return angular.element("#mainElement")[0].clientHeight;
 	};
@@ -37,6 +37,7 @@ angular_capsule_app.controller("PostCtrl", ["$scope", "$routeParams", "$location
 			$scope.lineHeight = { 'line-height': setLineHeight() + "px" };
 			// $scope.arrowShow = true;
 		}, 200);
+
 	};
 
 	$scope.backToCapsule = function() {

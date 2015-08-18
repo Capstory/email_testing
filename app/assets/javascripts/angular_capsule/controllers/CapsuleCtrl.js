@@ -97,6 +97,8 @@ angular_capsule_app.controller("CapsuleCtlr", ["$document", "$window", "$scope",
 		}, 300);
 	};
 
+	var OKSaveScrollPos = false;
+
 	$scope.init = function() {
 		angular.element(".capsuleOffCanvasMenuItems").show();
 		if ( angular.element("#flashAlert") ) {
@@ -104,6 +106,35 @@ angular_capsule_app.controller("CapsuleCtlr", ["$document", "$window", "$scope",
 				angular.element("#flashAlert").fadeOut("slow");
 			}, 3000);
 		}
+
+		if (angular.isUndefined($rootScope.scrollPos)) {
+			$rootScope.scrollPos = {};
+			$scope.scrollPos = 0;
+			OKSaveScrollPos = true;
+		} else {
+			console.log("Scroll is set: ", $rootScope.scrollPos);
+			$scope.scrollPos = $rootScope.scrollPos[$location.absUrl()];
+
+			// $(window).scrollTop($scope.scrollPos);
+			$scope.goToScroll($scope.scrollPos);
+		}
+	};
+
+	$scope.goToScroll = function(scrollTarget) {
+		var settingScroll = true;
+
+		console.log("Scrolling to: ", scrollTarget);
+		$timeout(function() {
+			$(window).scrollTop(scrollTarget);
+			console.log("Current Pos: ", $(window).scrollTop());
+
+			var remainingDistance = Math.abs(scrollTarget - $(window).scrollTop());
+
+			if ( remainingDistance > 50 ) {
+				$scope.goToScroll(scrollTarget);
+			}
+		}, 500);
+		OKSaveScrollPos = true;
 	};
 
 	$scope.toggleData = function(dataToShow) {
@@ -184,6 +215,15 @@ angular_capsule_app.controller("CapsuleCtlr", ["$document", "$window", "$scope",
 		angular.element("#capsuleNavLinks").fadeOut();
 	});
 
+	$scope.$on("$locationChangeStart", function(evt, newUrl, oldUrl) {
+		console.log("New Url: ", newUrl);
+		console.log("Old Url: ", oldUrl);
+		console.log("Scroll position: ", $scope.scrollPos); 
+
+		$rootScope.scrollPos[oldUrl] = $scope.scrollPos;
+		OKSaveScrollPos = false;
+	});
+
 	startPoller();
 
 	$scope.pollerActive = function() {
@@ -216,6 +256,7 @@ angular_capsule_app.controller("CapsuleCtlr", ["$document", "$window", "$scope",
 		$scope.activateFilepicker();
 	});
 
+
 	$document.bind("scroll", function() {
 		var isoContainerTop = angular.element("#isotopeContainer")[0].getClientRects()[0].top;
 		var capsuleNavLinks = angular.element("#capsuleNavLinks");
@@ -230,5 +271,12 @@ angular_capsule_app.controller("CapsuleCtlr", ["$document", "$window", "$scope",
 				capsuleNavLinks.fadeOut("slow");
 			});
 		}
+
+		if ( OKSaveScrollPos ) {
+			$scope.$apply(function() {
+				$scope.scrollPos = $(window).scrollTop();
+			});
+		}
 	});
+
 }]);
