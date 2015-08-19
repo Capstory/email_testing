@@ -112,7 +112,7 @@ angular_capsule_app.controller("CapsuleCtlr", ["$document", "$window", "$scope",
 			$scope.scrollPos = 0;
 			$scope.OKSaveScrollPos = true;
 		} else {
-			console.log("Scroll is set: ", $rootScope.scrollPos);
+			// console.log("Scroll is set: ", $rootScope.scrollPos);
 			$scope.scrollPos = $rootScope.scrollPos[$location.absUrl()];
 
 			// $(window).scrollTop($scope.scrollPos);
@@ -124,10 +124,10 @@ angular_capsule_app.controller("CapsuleCtlr", ["$document", "$window", "$scope",
 	$scope.goToScroll = function(scrollTarget) {
 		var settingScroll = true;
 
-		console.log("Scrolling to: ", scrollTarget);
+		// console.log("Scrolling to: ", scrollTarget);
 		$timeout(function() {
 			$(window).scrollTop(scrollTarget);
-			console.log("Current Pos: ", $(window).scrollTop());
+			// console.log("Current Pos: ", $(window).scrollTop());
 
 			var remainingDistance = Math.abs(scrollTarget - $(window).scrollTop());
 
@@ -212,14 +212,22 @@ angular_capsule_app.controller("CapsuleCtlr", ["$document", "$window", "$scope",
 	
 	$scope.$on("$destroy", function() {
 		stopPoller();
-		$document.unbind("scroll");
+
+		// Removed this element because it was still causing an error in the console
+		//
+		// Presumably it is because it was still trying to find the #isotopeContainer element
+		// when scrolling but that element was destroyed before the unbind call was invoked
+		// $document.unbind("scroll");
+		
 		angular.element("#capsuleNavLinks").fadeOut();
 	});
 
 	$scope.$on("$locationChangeStart", function(evt, newUrl, oldUrl) {
-		console.log("New Url: ", newUrl);
-		console.log("Old Url: ", oldUrl);
-		console.log("Scroll position: ", $scope.scrollPos); 
+		// console.log("New Url: ", newUrl);
+		// console.log("Old Url: ", oldUrl);
+		// console.log("Scroll position: ", $scope.scrollPos); 
+
+		$document.unbind("scroll");
 
 		$rootScope.scrollPos[oldUrl] = $scope.scrollPos;
 		$scope.OKSaveScrollPos = false;
