@@ -39,7 +39,8 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 	var buildGetNewPostUrl = function(dataSyncObject) {
 		var url = "/check_new_posts.json?capsule_id=" + dataSyncObject.capsuleId;
 		
-		url += "&post_ids=" + dataSyncObject.postIds;
+		// url += "&post_ids=" + dataSyncObject.postIds;
+		url += "&max_post_id=" + dataSyncObject.maxPostId;
 
 		url += "&posts_tagged_for_deletion=" + dataSyncObject.postsTaggedForDeletion;
 
@@ -186,7 +187,8 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 	var genDataSyncObject = function(capsuleId, posts, currentPostId) {
 		var object = {
 			capsuleId: capsuleId,
-			postIds: getPostIds(posts),
+			maxPostId: Math.max.apply(null, getPostIds(posts)),
+			// postIds: getPostIds(posts),
 			postsTaggedForDeletion: getTaggedForDeletionPosts(posts),
 			postsUnverified: getUnverifiedPosts(posts),
 			currentPostId: currentPostId == undefined ? 0 : currentPostId
@@ -307,6 +309,7 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 	this.getNewPosts = function(capsuleId, posts, currentPostId) {
 		var dataSyncObject = genDataSyncObject(capsuleId, posts, currentPostId);
 
+		console.log("Data Sync Object: ", dataSyncObject);
 		return getNewPosts(dataSyncObject);
 	};
 

@@ -107,7 +107,8 @@ class PostsController < ApplicationController
 	# ==================================
 	
 	def get_new_posts
-		currently_visible_post_ids = params[:post_ids].split(",").map(&:to_i)
+		# currently_visible_post_ids = params[:post_ids].split(",").map(&:to_i)
+		max_post_id = params[:max_post_id].to_i
 		currently_tagged_for_deletion_post_ids = params[:posts_tagged_for_deletion].split(",").map(&:to_i)
 		currently_unverified_post_ids = params[:posts_unverified].split(",").map(&:to_i)
 
@@ -117,7 +118,8 @@ class PostsController < ApplicationController
 		tagged_for_deletion_post_ids = @capsule.posts.where(tag_for_deletion: true).pluck(:id)
 		unverified_post_ids = @capsule.posts.where(verified: false).pluck(:id)
 
-		new_post_ids = post_ids.reject { |post_id| currently_visible_post_ids.include?(post_id) }
+		# new_post_ids = post_ids.reject { |post_id| currently_visible_post_ids.include?(post_id) }
+		new_post_ids = post_ids.select { |post_id| post_id > max_post_id }
 		# new_tagged_for_deletion_post_ids = tagged_for_deletion_post_ids.reject { |post_id| currently_tagged_for_deletion_post_ids.include?(post_id) }
 		new_tagged_for_deletion_post_ids = tagged_for_deletion_post_ids - currently_tagged_for_deletion_post_ids
 		new_undeleted_post_ids = currently_tagged_for_deletion_post_ids - tagged_for_deletion_post_ids
