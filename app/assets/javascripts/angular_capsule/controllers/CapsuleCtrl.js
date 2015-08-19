@@ -119,7 +119,6 @@ angular_capsule_app.controller("CapsuleCtlr", ["$document", "$window", "$scope",
 			$scope.goToScroll($scope.scrollPos);
 		}
 
-		console.log("Original Posts: ", $scope.posts);
 	};
 
 	$scope.goToScroll = function(scrollTarget) {

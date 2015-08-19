@@ -309,7 +309,6 @@ angular_capsule_app.service("PostModel", ["$rootScope", "$http", "$q", "$sce", "
 	this.getNewPosts = function(capsuleId, posts, currentPostId) {
 		var dataSyncObject = genDataSyncObject(capsuleId, posts, currentPostId);
 
-		console.log("Data Sync Object: ", dataSyncObject);
 		return getNewPosts(dataSyncObject);
 	};
 
