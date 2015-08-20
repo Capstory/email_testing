@@ -237,4 +237,24 @@ $(function() {
 	});
 
 	$("#requestDemoForm").on("ajax:success", successHandler).on("ajax:error", errorHandler);
+
+	if ( $("#introVideo").length > 0 ) {
+		function adjustVideoSize() {
+			var video = $("#introVideo iframe");
+			video.css("width", "100%");
+
+			var vidWidth = video.css("width");
+			// console.log("Video is now width of: ", vidWidth);
+
+			var vidHeight = parseInt(vidWidth.replace("px", "")) * 0.562;
+			// console.log("Video is of height: ", vidHeight);
+			video.css("height", vidHeight);
+		}
+
+		$(window).on("resize", function() {
+			adjustVideoSize();
+		});
+
+		adjustVideoSize();
+	}
 });

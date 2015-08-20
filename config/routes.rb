@@ -147,6 +147,7 @@ EmailTesting::Application.routes.draw do
 	match "angular/:id" => "capsules#angular_show"
 	match "get_post_indexes" => "capsules#get_post_indexes"
 	match "export_capsule_data" => "capsules#export"
+	match "build_vdp_file" => "capsules#vdp_export"
   resources :capsules, except: :index
 	scope "/capsules/styles" do
 		get ":capsule_id/edit" => "capsules#styles_chooser"

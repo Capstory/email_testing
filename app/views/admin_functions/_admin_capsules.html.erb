@@ -30,7 +30,7 @@
 				<td><%= capsule.email %></td>
 				<td><%= capsule.event_date %></td>
 				<td>
-					<button href="#" data-dropdown="drop_<%= capsule.id %>" aria-controls="drop_<%= capsule.id %>" aria-expanded="false" class="button tiny dropdown">Dropdown Button</button><br>
+					<button href="#" data-dropdown="drop_<%= capsule.id %>" aria-controls="drop_<%= capsule.id %>" aria-expanded="false" class="button tiny dropdown">Capsule Options</button><br>
 					<ul id="drop_<%= capsule.id %>" data-dropdown-content class="f-dropdown" aria-hidden="true">
 						<% if capsule.logo %>
 							<li><%= link_to "See Logo", capsule.logo %></li>
@@ -39,6 +39,7 @@
 							<li><%= link_to "Add Logo", new_logo_path(klass: capsule.class, associated_object_id: capsule.id) %></li>
 						<% end %>
 						<li><%= link_to "Export Data", export_capsule_data_path(capsule_id: capsule.id) %></li>
+						<li><%= link_to "Build VDP File", build_vdp_file_path(capsule_id: capsule.id) %></li>
 						<li><%= link_to "Edit Capsule", edit_capsule_path(capsule) %></li>
 						<li><%= link_to "Edit Styles", "/capsules/styles/#{ capsule.id }/edit" %></li>
 						<% if capsule.accepting_submissions? %>

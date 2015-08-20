@@ -257,6 +257,46 @@ class CapsulesController < ApplicationController
 		send_data(csv_array, filename: "#{ capsule.name.split.join("_") }_capsule_export.csv")
 	end
 
+	def vdp_export
+		capsule = Capsule.find(params[:capsule_id])
+		# posts = capsule.posts.order(id: :asc).take(VDP_FORMAT.data[:meta][:no_of_images])		
+		posts = capsule.posts.where(verified: true, tag_for_deletion: false).reverse_order.take(VDP_FORMAT.data[:meta][:no_of_images])
+
+		Axlsx::Package.new do |p|
+			p.workbook.add_worksheet(name: "Album Export") do |sheet|
+				sheet.add_row VDP_FORMAT.build_header_row				
+
+				content_row = []
+
+				example_names = { bride: "Jane Doe", groom: "John Doe", title: capsule.name }
+				random_cover_images = VDP_FORMAT.data[:meta][:images].sample(VDP_FORMAT.data[:meta][:cover_images].length)
+
+				VDP_FORMAT.data[:meta][:cover_images].each_with_index do |num, i|
+					content_row[num - 1] = posts[random_cover_images[i]].image.url
+				end
+
+				VDP_FORMAT.data[:meta][:names].each do |name, i|
+					content_row[i - 1] = example_names[name]
+				end
+
+				VDP_FORMAT.data[:meta][:images].each_with_index do |num, i|
+					content_row[num - 1] = posts[i].image.url		
+				end
+
+				sheet.add_row content_row
+
+				content_row.each_with_index do |el, i|
+					sheet.add_hyperlink(location: el, ref: sheet.rows[1].cells[i]) unless el.nil?
+				end
+			end
+
+			@file_path = Tempfile.new("my_export.xlsx")
+			p.serialize(@file_path)
+		end
+
+		send_file(@file_path, filename: "vdp_export.xlsx", type: "application/xlsx")
+	end
+
   private
     def pin_code?
       capsule = Capsule.find(params[:id].to_s.downcase)

@@ -98,6 +98,17 @@ div.darkGreyBackgroundArea {
   padding-bottom: 25px;
 }
 
+div#introVideo {
+  text-align:center;
+  width: 100%;
+  margin: 0px auto;
+}
+
+div#introVideo iframe {
+  width: 1000px;
+  height: 562px;
+}
+
 div.tempPartTwo {
   height: 100%;
   /* width: 100%; */
@@ -924,6 +935,11 @@ div.requestFormButtonGroup {
     min-width: 250px;
     padding: 10px 50px;
     width: 90%;
+  }
+
+  div#introVideo {
+    margin-top: 50px;
+    margin-bottom: 20px;
   }
 
   div.tempThirdColumn {
