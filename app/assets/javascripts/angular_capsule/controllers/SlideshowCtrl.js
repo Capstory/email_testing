@@ -1,5 +1,5 @@
 angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interval", "$location", "$routeParams", "RandomPhotoGenerator", "CapsuleData", "CapsuleModel", "PostModel", "VideoModel", function($scope, $timeout, $interval, $location, $routeParams, RandomPhotoGenerator, CapsuleData, CapsuleModel, PostModel, VideoModel) {
-	var filmStripCount = 4;
+	var filmStripCount = 6;
 	var changeTopBarDiv = function(endState) {
 		var el = angular.element("#topBarDiv");
 		var spacer = angular.element("#topBarSpacer");
