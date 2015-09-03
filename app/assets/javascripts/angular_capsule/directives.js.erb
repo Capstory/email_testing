@@ -120,7 +120,22 @@ angular_capsule_app.directive("onImageLoad", ["$timeout", function($timeout) {
 			var backstopEmitter = undefined;
 
 			el.on("load", function() {
-				console.log("Image loaded");
+				<%# console.log(el[0].parentElement.clientWidth); %>
+				<%# var elClientWidth = el[0].parentElement.clientWidth; %>
+				<%# console.log("Scope height: ", scope.mainImageContainerHeight); %>
+				<%# var naturalHeight = el[0].naturalHeight; %>
+				<%# var naturalWidth = el[0].naturalWidth; %>
+				<%# var naturalAspectRatio = naturalHeight / naturalWidth; %>
+
+				<%# var elHeight = el.height(); %>
+				<%# var elWidth = el.width(); %>
+				<%# var elAspectRatio = elHeight / elWidth; %>
+				
+				<%# if ( elClientWidth != 0 && elClientWidth < naturalWidth ) { %>
+				<%# 	var newHeight = elWidth * naturalAspectRatio; %>
+				<%# 	el.height(newHeight); %>
+
+				<%# } %>
 
 				if ( angular.isDefined(backstopEmitter) ) {
 					$timeout.cancel(backstopEmitter);	
