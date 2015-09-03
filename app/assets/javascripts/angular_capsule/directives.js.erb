@@ -63,7 +63,8 @@ angular_capsule_app.directive("mainElementDirective", [function() {
 		scope: {
 			post: "=",
 			mainElementLoading: "=",
-			filmStripStyles: "="		
+			filmStripStyles: "=",		
+			activeView: "="
 		},
 		link: function(scope, el, attrs) {
 						var timer = undefined;
@@ -119,48 +120,51 @@ angular_capsule_app.directive("onImageLoad", ["$timeout", function($timeout) {
 		link: function(scope, el, attrs) {
 			var backstopEmitter = undefined;
 
-			el.on("load", function() {
-				<%# console.log(el[0].parentElement.clientWidth); %>
-				<%# var elClientWidth = el[0].parentElement.clientWidth; %>
-				<%# console.log("Scope height: ", scope.mainImageContainerHeight); %>
-				<%# var naturalHeight = el[0].naturalHeight; %>
-				<%# var naturalWidth = el[0].naturalWidth; %>
-				<%# var naturalAspectRatio = naturalHeight / naturalWidth; %>
+			if ( scope.activeView ) {
+				el.on("load", function() {
+					var naturalHeight = el[0].naturalHeight;
+					var naturalWidth = el[0].naturalWidth;
+					var naturalAspectRatio = naturalHeight / naturalWidth;
 
-				<%# var elHeight = el.height(); %>
-				<%# var elWidth = el.width(); %>
-				<%# var elAspectRatio = elHeight / elWidth; %>
-				
-				<%# if ( elClientWidth != 0 && elClientWidth < naturalWidth ) { %>
-				<%# 	var newHeight = elWidth * naturalAspectRatio; %>
-				<%# 	el.height(newHeight); %>
-
-				<%# } %>
-
-				if ( angular.isDefined(backstopEmitter) ) {
-					$timeout.cancel(backstopEmitter);	
-				}
-
-				scope.$emit("mainElementLoaded");
-			});
-
-			el.on("$destroy", function() {
-				el.unbind("load");
-			});	
-
-			scope.$watch("post", function(newV, oldV) {
-				if (newV.id != undefined) {
-					if (newV.id != oldV.id) {
-						backstopEmitter = $timeout(function() {
-							scope.$emit("mainElementLoaded");		
-						}, 12000);
-					} else if (newV.id == oldV.id) {
-						backstopEmitter = $timeout(function() {
-							scope.$emit("mainElementLoaded");
-						}, 1000);
+					var elHeight = el.height();
+					var elWidth = el.width();
+					var elAspectRatio = elHeight / elWidth;
+					
+					if ( elAspectRatio != Infinity && Math.abs(naturalAspectRatio - elAspectRatio) * 100 > 5 ){
+						console.log("Natural Ratio: ", naturalAspectRatio);
+						console.log("EL Ratio: ", elAspectRatio);
+						console.log("Change aspect ratio");
+						var newHeight = elWidth * naturalAspectRatio;
+						scope.mainImageHeight = { "width": "auto", "height": newHeight };
+					} else if ( elAspectRatio != Infinity ) {
+						scope.mainImageHeight = {"width": "auto", "height": window.innerHeight * 0.71 };
 					}
-				}
-			});
+
+					if ( angular.isDefined(backstopEmitter) ) {
+						$timeout.cancel(backstopEmitter);	
+					}
+
+					scope.$emit("mainElementLoaded");
+				});
+
+				el.on("$destroy", function() {
+					el.unbind("load");
+				});	
+
+				scope.$watch("post", function(newV, oldV) {
+					if (newV.id != undefined) {
+						if (newV.id != oldV.id) {
+							backstopEmitter = $timeout(function() {
+								scope.$emit("mainElementLoaded");		
+							}, 12000);
+						} else if (newV.id == oldV.id) {
+							backstopEmitter = $timeout(function() {
+								scope.$emit("mainElementLoaded");
+							}, 1000);
+						}
+					}
+				});
+			}
 		}
 	};
 }]);

@@ -105,7 +105,7 @@ angular_capsule_app.controller("SlideshowCtrl", ["$scope", "$timeout", "$interva
 	});
 
 	$scope.$on("mainElementLoaded", function() {
-		console.log("Controller received event: mainElementLoaded");
+		// console.log("Controller received event: mainElementLoaded");
 		stopUniversalTimer();
 		setUniversalTimer($scope.timeInterval);
 
