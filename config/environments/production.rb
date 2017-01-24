@@ -88,9 +88,9 @@ EmailTesting::Application.configure do
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
-      :bucket => 'email_testing',
-      :access_key_id => 'AKIAJYSOEVAPM7VVU76A',
-      :secret_access_key => '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'
+      :bucket => 'capstory-production',
+      :access_key_id => 'AKIAIUKHPEXINYDOX5UQ',
+      :secret_access_key => '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'
     }
   }
   
