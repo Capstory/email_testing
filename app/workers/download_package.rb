@@ -6,13 +6,11 @@ class DownloadPackage
 	
 	def	self.perform(photos, capsule_id, download_id)
 		puts "Working"
-		# p photos
 		puts "Capsule ID: #{capsule_id}"
 		puts "Download ID: #{download_id}"
 
     s3 = AWS::S3.new
-    bucket = s3.buckets["download_manager_files"]
-    # bucket.exists?
+    bucket = s3.buckets["download-manager-files"]
 
     temp_dir = Dir.mktmpdir
     zip_path = File.join(temp_dir, "image_download_#{Time.now}.zip")
@@ -23,12 +21,7 @@ class DownloadPackage
         title = "image_#{ index + 1 }.jpg"
         url = Post.find(photo_id).image.url(:original)
         data = open(url).read
-        
-        # file_path = "#{Rails.root}/public/image_holder/#{title}"
-        # images << file_path
-        # File.open(file_path, "wb") do |f|
-        #   f.write data
-        # end
+
         temp_filename = "#{Rails.root}/tmp/image_file_#{index+1}"
         @@temp_files << temp_filename
         
@@ -40,7 +33,6 @@ class DownloadPackage
       end
     end
 
-    # basename = File.basename(zip_path)
     date_component = Date.today.to_formatted_s(:rfc822).split
     capsule_id = capsule_id
     basename = "capstory_download_#{capsule_id}_#{date_component.join('_')}.zip"
@@ -48,10 +40,8 @@ class DownloadPackage
     object.write(file: zip_path)
     
 		download = DownloadManager.find(download_id)
-    # @file_path = zip_path
     download.file_path = object.url_for(:read, expires_in: 60.minutes, use_ssl: true, response_content_disposition: "attachment/zip").to_s
     
-    # send_file zip_path, x_sendfile: true, type: "application/zip", disposition: "attachment", filename: "image_download.zip"
 		download.save	
 	end
 
