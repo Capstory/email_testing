@@ -91,7 +91,7 @@ EmailTesting::Application.configure do
     :storage => :s3,
     :s3_credentials => {
       :bucket => 'capstory-staging',
-      :access_key_id => ENV['AWS_ACCESS_KEY],
+      :access_key_id => ENV['AWS_ACCESS_KEY'],
       :secret_access_key => ENV['AWS_SECRET_KEY']
     },
 		:url => ":s3_domain_url",
