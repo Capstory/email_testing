@@ -51,13 +51,13 @@ EmailTesting::Application.configure do
     :storage => :s3,
     :s3_credentials => {
       :bucket => 'capstory-dev',
-      :access_key_id => 'AKIAIUKHPEXINYDOX5UQ',
-      :secret_access_key => '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'
+      :access_key_id => ENV['AWS_ACCESS_KEY'],
+      :secret_access_key => ENV['AWS_SECRET_KEY']
     },
 		:url => ":s3_domain_url",
 		:path => "/:class/:attachment/:id_partition/:style/:filename"
   }
   
-  Zencoder.api_key = "29c63ba7456d50ed3a0a36176cf59b0d"
+  Zencoder.api_key = ENV['ZENCODER_API_KEY']
   
 end
